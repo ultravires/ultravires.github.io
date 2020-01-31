@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Promise 对象 | 孤的容颜早已不是年前丶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+  <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+  <meta name="description" content="Promise 是异步编程的一种解决方案，起初它只存在于各种三方库，后来 ES6 将其写入了语言标准，以原生的方式提供 Promise 对象。目前比较流行的浏览器均支持。用 Promise 有以下优点：1. 分离了异步数据获取和业务逻辑，有利于代码的复用；2. 可以采用链式写法。 但是 Promise 的实现比较复杂，学习有困难。">
+<meta name="keywords" content="Promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise 对象">
+<meta property="og:url" content="https://ultravires.github.io/2019/02/21/Promise对象/index.html">
+<meta property="og:site_name" content="孤的容颜早已不是年前丶">
+<meta property="og:description" content="Promise 是异步编程的一种解决方案，起初它只存在于各种三方库，后来 ES6 将其写入了语言标准，以原生的方式提供 Promise 对象。目前比较流行的浏览器均支持。用 Promise 有以下优点：1. 分离了异步数据获取和业务逻辑，有利于代码的复用；2. 可以采用链式写法。 但是 Promise 的实现比较复杂，学习有困难。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/02/22/5c6ecce5c415c.png">
+<meta property="og:updated_time" content="2019-10-10T13:39:41.280Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise 对象">
+<meta name="twitter:description" content="Promise 是异步编程的一种解决方案，起初它只存在于各种三方库，后来 ES6 将其写入了语言标准，以原生的方式提供 Promise 对象。目前比较流行的浏览器均支持。用 Promise 有以下优点：1. 分离了异步数据获取和业务逻辑，有利于代码的复用；2. 可以采用链式写法。 但是 Promise 的实现比较复杂，学习有困难。">
+<meta name="twitter:image" content="https://i.loli.net/2019/02/22/5c6ecce5c415c.png">
+  
+    <link rel="alternate" href="/atom.xml" title="孤的容颜早已不是年前丶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">孤的容颜早已不是年前丶</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I wanna be a Hacker.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/security">Security</a>
+        
+          <a class="main-nav-link" href="/deeplearning">DeepLearning</a>
+        
+          <a class="main-nav-link" href="/algorithm">Algorithm</a>
+        
+          <a class="main-nav-link" href="/web">Web</a>
+        
+          <a class="main-nav-link" href="/life">Life</a>
+        
+          <a class="main-nav-link" href="/bug">CatchTheBug</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ultravires.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+          
+            <div class="posts">
+              
+  
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Promise"><span class="toc-text">使用 Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-的三种状态"><span class="toc-text">Promise 的三种状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-的链式调用"><span class="toc-text">Promise 的链式调用</span></a></li></ol>
+</div>
+
+
+
+<article id="post-Promise对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/21/Promise对象/" class="article-date">
+  <time datetime="2019-02-20T16:00:00.000Z" itemprop="datePublished">2019-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Promise 对象
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Promise</strong> 是异步编程的一种解决方案，起初它只存在于各种三方库，后来 ES6 将其写入了语言标准，以原生的方式提供 Promise 对象。目前比较流行的浏览器均支持。用 Promise 有以下优点：1. 分离了异步数据获取和业务逻辑，有利于代码的复用；2. 可以采用链式写法。 但是 Promise 的实现比较复杂，学习有困难。</p>
+<a id="more"></a>
+<h2 id="使用-Promise"><a href="#使用-Promise" class="headerlink" title="使用 Promise"></a>使用 Promise</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> status = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"some output 1"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (status) &#123;</span><br><span class="line">        resolve(<span class="string">"SUCCESS"</span>); <span class="comment">// 成功时异步回调</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"FAIL"</span>)); <span class="comment">// 失败时异步回调</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"some output 2"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"some output 3"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"some output 4"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果：（当 status = true 时）</span></span><br><span class="line"><span class="comment">// some output 1</span></span><br><span class="line"><span class="comment">// some output 2</span></span><br><span class="line"><span class="comment">// some output 3</span></span><br><span class="line"><span class="comment">// some output 4</span></span><br><span class="line"><span class="comment">// SUCCESS</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结果: （当 status = false 时）</span></span><br><span class="line"><span class="comment">// some output 1</span></span><br><span class="line"><span class="comment">// some output 2</span></span><br><span class="line"><span class="comment">// some output 3</span></span><br><span class="line"><span class="comment">// some output 4</span></span><br><span class="line"><span class="comment">// Error: FAIL</span></span><br><span class="line"><span class="comment">// at (index):39</span></span><br><span class="line"><span class="comment">// at new Promise (&lt;anonymous&gt;)</span></span><br><span class="line"><span class="comment">// at window.onload ((index):35)</span></span><br></pre></td></tr></table></figure>
+<p>Promise 对象一被创建就会执行，所以 Promise 先输出 “some output 1”，而 resolve() 和 reject() 均属于异步回调，它们都要等脚本中的同步操作执行完毕再执行。<code>promise.then()</code>可以接收两个参数，分别是成功时的回调函数原型（resolve）和失败时的回调函数原型（reject）。</p>
+<h2 id="Promise-的三种状态"><a href="#Promise-的三种状态" class="headerlink" title="Promise 的三种状态"></a>Promise 的三种状态</h2><p>Promise 对象有三种状态： Pending（初始化状态）、Fulfilled（执行成功）、Rejected（执行失败）。</p>
+<p>这三种状态只能从 Pending 到 Fulfilled 或从 Pending 到 Rejected，而不能由 Fulfilled 转变为 Rejected 或反过来。Promise 中的 then 的回调函数只会被调用一次，所以其状态是不可逆的，要么执行成功回调，要么执行失败回调。</p>
+<p><img src="https://i.loli.net/2019/02/22/5c6ecce5c415c.png" alt="Promise 三种状态"></p>
+<h2 id="Promise-的链式调用"><a href="#Promise-的链式调用" class="headerlink" title="Promise 的链式调用"></a>Promise 的链式调用</h2><p>Promise 的 then 方法返回一个<strong>新的</strong> Promise，这使得你能够写出像下面这样的链式写法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then().then()</span><br></pre></td></tr></table></figure>
+<p>这就比无限嵌套下去的回调地狱要高明的多。</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2019/02/21/Promise对象/" data-id="ck61wv2yi000qbc4dgi9zoh0t" class="article-share-link">分享</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise/">Promise</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/推荐系统（一）：常用的智能推荐算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          推荐系统（一）：常用的智能推荐算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/19/JavaScript异步编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">JavaScript异步编程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'fb0df633eecedc41127e',
+        clientSecret: '78a4a1deb351f20b52f5984440d19e56e10ef3c6',
+        repo: 'ultravires.github.io',
+        owner: 'ultravires',
+        admin: ['ultravires'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+            </div>
+          
+          
+        </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序人生/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matlab/">matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协同过滤/">协同过滤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网易云/">网易云</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遗传算法/">遗传算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/11/ECMAScript6_数组扩展/">ECMAScript6 学习笔记（三）：数组扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/07/ECMAScript6_解构赋值/">ECMAScript6学习笔记（二）：解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/06/ECMAScript6_变量声明/">ECMAScript6学习笔记（一）：变量声明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/17/Windows常见错误/">Windows常见错误</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div class="footer-text">
+      <p>我来，我见，我征服</p>
+      <p>我们的征途是星辰大海</p>
+    </div>
+    <div id="footer-info" class="inner">
+      <i>I wanna be a <b>HACKER</b><i> &copy; 2020 <a href="https://www.github.com/ultravires">ultravires</a><br>
+      Powered by <a href="https://www.sanphantom.com/" target="_blank">Sanphantom</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/security" class="mobile-nav-link">Security</a>
+  
+    <a href="/deeplearning" class="mobile-nav-link">DeepLearning</a>
+  
+    <a href="/algorithm" class="mobile-nav-link">Algorithm</a>
+  
+    <a href="/web" class="mobile-nav-link">Web</a>
+  
+    <a href="/life" class="mobile-nav-link">Life</a>
+  
+    <a href="/bug" class="mobile-nav-link">CatchTheBug</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

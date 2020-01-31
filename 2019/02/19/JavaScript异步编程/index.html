@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>JavaScript异步编程 | 孤的容颜早已不是年前丶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+  <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+  <meta name="description" content="JavaScript 语言的执行环境是“单线程（Single thread）”的。线程（Thread）是操作系统能够进行运算调度的最小单位。一条线程指的是进程中一个单一顺序的控制流。所以，“单线程”表示一次只能完成一件事。如果有多个任务就必须排队。">
+<meta name="keywords" content="异步编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript异步编程">
+<meta property="og:url" content="https://ultravires.github.io/2019/02/19/JavaScript异步编程/index.html">
+<meta property="og:site_name" content="孤的容颜早已不是年前丶">
+<meta property="og:description" content="JavaScript 语言的执行环境是“单线程（Single thread）”的。线程（Thread）是操作系统能够进行运算调度的最小单位。一条线程指的是进程中一个单一顺序的控制流。所以，“单线程”表示一次只能完成一件事。如果有多个任务就必须排队。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-20T10:30:26.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript异步编程">
+<meta name="twitter:description" content="JavaScript 语言的执行环境是“单线程（Single thread）”的。线程（Thread）是操作系统能够进行运算调度的最小单位。一条线程指的是进程中一个单一顺序的控制流。所以，“单线程”表示一次只能完成一件事。如果有多个任务就必须排队。">
+  
+    <link rel="alternate" href="/atom.xml" title="孤的容颜早已不是年前丶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">孤的容颜早已不是年前丶</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I wanna be a Hacker.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/security">Security</a>
+        
+          <a class="main-nav-link" href="/deeplearning">DeepLearning</a>
+        
+          <a class="main-nav-link" href="/algorithm">Algorithm</a>
+        
+          <a class="main-nav-link" href="/web">Web</a>
+        
+          <a class="main-nav-link" href="/life">Life</a>
+        
+          <a class="main-nav-link" href="/bug">CatchTheBug</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ultravires.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+          
+            <div class="posts">
+              
+  
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#回调函数"><span class="toc-text">回调函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#同步回调"><span class="toc-text">同步回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#异步回调"><span class="toc-text">异步回调</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件监听"><span class="toc-text">事件监听</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布-订阅"><span class="toc-text">发布/订阅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promises-对象"><span class="toc-text">Promises 对象</span></a></li></ol>
+</div>
+
+
+
+<article id="post-JavaScript异步编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/19/JavaScript异步编程/" class="article-date">
+  <time datetime="2019-02-18T16:00:00.000Z" itemprop="datePublished">2019-02-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript异步编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript 语言的执行环境是“单线程（Single thread）”的。<strong>线程（Thread）</strong>是操作系统能够进行运算调度的最小单位。一条线程指的是进程中一个单一顺序的控制流。所以，“单线程”表示一次只能完成一件事。如果有多个任务就必须排队。</p>
+<a id="more"></a>
+<p>这种模式（同步）的好处是实现起来比较简单，执行环境相对单纯；坏处是显然存在死等的可能性，如果前一个任务耗时较长，则后面的任务就必须等待，会拖延整个程序的执行。常见的浏览器无响应往往就是因为某一段 JavaScript 代码长时间运行（比如死循环）而导致整个页面卡在某个地方，其它任务无法执行。</p>
+<p>为了解决这个问题，JavaScript 语言将任务的<strong>执行模式</strong>分成了两种：<strong>同步（Syschronous）</strong>和<strong>异步（Asynchronous）</strong></p>
+<p>“同步模式”就是指前面的顺序执行，后一个任务等待前一个任务执行结束；“异步模式”则不同，每一个任务有一个或多个回调函数，回调函数后的任务可以不等回调函数执行完毕就可以先执行，程序的执行顺序与代码的先后排列顺序是不一致的。</p>
+<p>“异步模式”非常有用。在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是 Ajax 操作。</p>
+<p>下面是“异步模式”编程的几种方法。</p>
+<h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><p><strong>“回调函数”</strong>就是指被作为实参传入另一函数，并在该外部函数内被调用以用来完成某些任务的函数。</p>
+<p><strong>“回调函数”可以是同步的也可以是异步的。</strong>而并不是新手所认为的只要是回调函数就一定是“异步模式”。</p>
+<h3 id="同步回调"><a href="#同步回调" class="headerlink" title="同步回调"></a>同步回调</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> name = prompt(<span class="string">"请输入你的名字："</span>);</span><br><span class="line">    callback(name);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"main: "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"callback: "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f1(f2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果：(输入 “AlenWalker”)</span></span><br><span class="line"><span class="comment">// callback: AlenWalker</span></span><br><span class="line"><span class="comment">// main: AlenWalker</span></span><br></pre></td></tr></table></figure>
+<p>正如结果显示，其任务执行顺序与任务排列顺序一致，表现为同步。prompt -&gt; callback -&gt; console</p>
+<h3 id="异步回调"><a href="#异步回调" class="headerlink" title="异步回调"></a>异步回调</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> name = prompt(<span class="string">"请输入你的名字："</span>);</span><br><span class="line">    </span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    	callback(name);</span><br><span class="line">     &#125;, <span class="number">1000</span>); <span class="comment">// setTimeout 具有异步机制</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"main: "</span> + name);</span><br><span class="line">    <span class="comment">// while(true) &#123;&#125; // 进入死循环后，callback 一秒后并不会执行（因为单线程一次只能做一件事）。注意：异步回调函数永远要等主调函数执行完毕，而不是一秒后就会执行</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"callback: "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行结果：（输入 “AlenWalker”）</span></span><br><span class="line"><span class="comment">// main: AlenWalker</span></span><br><span class="line"><span class="comment">// callback: AlenWalker</span></span><br></pre></td></tr></table></figure>
+<p>显然，这里的结果显示 callback 在 console.log(“main: “ + name) 的后面执行，而并非顺序执行，它是异步的。</p>
+<p>采用“回调函数”实现“异步模式”的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个任务之间高度<strong>耦合（Coupling）</strong>，流程较为混乱，而且每个任务只能指定一个回调函数。</p>
+<h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><p><strong>事件驱动模式</strong>下任务的执行不取决于代码的顺序，而取决于某个事件是否发生。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HTML: &lt;button id="btn"&gt;click me&lt;/button&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> btn = <span class="built_in">document</span>.querySelector(<span class="string">"#btn"</span>);</span><br><span class="line"></span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"执行了 onclick 事件"</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"我被输出了"</span>); <span class="comment">// 不会一直等待点击事件执行</span></span><br></pre></td></tr></table></figure>
+<h2 id="发布-订阅"><a href="#发布-订阅" class="headerlink" title="发布/订阅"></a>发布/订阅</h2><p><strong>发布/订阅模式（publish-subscribe pattern）</strong>又称<strong>观察者模式（observer pattern）</strong>。</p>
+<p>引用一下阮一峰老师的例子：我们假定存在一个“信号中心”，某个人物执行完成，就向信号中心发布一个信号，其他任务可以向信号中心订阅这个信号，从而知道自己什么时候可以开始执行。</p>
+<p>再举一个比较生动的例子：微信公众号，微信公众号可以“发布”文章，用户可以“订阅”公众号，当然用户也有“取消订阅”公众号的权利。所以“订阅者”也可以取消订阅某个事件，这样就算你发布了这个事件我也不会理会。当然，用户还可以选择获取什么样的文章，所以“发布”是可以传参的。（你可能光看例子会很蒙，建议仔细分析代码后再结合例子推敲。）</p>
+<p>事件中心：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> list = &#123;</span><br><span class="line">    key: [callback1, callback2, callback3, ...],</span><br><span class="line">    key: [callback1, callback2, callback3, ...],</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们每订阅一条事件就向事件中心添加一条，每取消订阅一次就移除一条，每发布一次信息就执行一条。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> observerClass = &#123;</span><br><span class="line">    list: &#123;&#125;,</span><br><span class="line">    subscribe: <span class="function"><span class="keyword">function</span>(<span class="params">key, callback</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.list[key]) &#123;</span><br><span class="line">            <span class="keyword">this</span>.list[key] = [];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">this</span>.list[key].push(callback);</span><br><span class="line">    &#125;,</span><br><span class="line">    publish: <span class="function"><span class="keyword">function</span>(<span class="params">key, args</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> fns = <span class="keyword">this</span>.list[key];</span><br><span class="line">        <span class="keyword">if</span> (!fns || fns.length === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> len = fns.length;</span><br><span class="line">        <span class="keyword">while</span>(len--) &#123;</span><br><span class="line">            fns[len].apply(<span class="keyword">this</span>, args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    unsubscribe: <span class="function"><span class="keyword">function</span>(<span class="params">key, fn</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> fns = <span class="keyword">this</span>.this.list[key];</span><br><span class="line">        <span class="keyword">if</span> (!fns) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!fn) &#123;</span><br><span class="line">            fns &amp;&amp; (fns.length = <span class="number">0</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> len = fns.length;</span><br><span class="line">            <span class="keyword">while</span>(len--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (fns[len] === fn) &#123;</span><br><span class="line">                    fns.splice(len, <span class="number">1</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">observerClass.subscribe(<span class="string">"event"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">observerClass.subscribe(<span class="string">"event"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"twice "</span> + name);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">observerClass.publish(<span class="string">"event"</span>, [<span class="string">"AlenWalker"</span>]);</span><br></pre></td></tr></table></figure>
+<h2 id="Promises-对象"><a href="#Promises-对象" class="headerlink" title="Promises 对象"></a>Promises 对象</h2><p><a href="https://juejin.im/post/5b83cb5ae51d4538cc3ec354" target="_blank" rel="noopener">Promise 实现原理（附源码）</a></p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2019/02/19/JavaScript异步编程/" data-id="ck61wv2xi0005bc4dlqgl5nob" class="article-share-link">分享</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/异步编程/">异步编程</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/02/21/Promise对象/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Promise 对象
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/17/网易云接口加直链下载vip歌曲/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">网易云接口加直链下载vip歌曲</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'fb0df633eecedc41127e',
+        clientSecret: '78a4a1deb351f20b52f5984440d19e56e10ef3c6',
+        repo: 'ultravires.github.io',
+        owner: 'ultravires',
+        admin: ['ultravires'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+            </div>
+          
+          
+        </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序人生/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matlab/">matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协同过滤/">协同过滤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网易云/">网易云</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遗传算法/">遗传算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/11/ECMAScript6_数组扩展/">ECMAScript6 学习笔记（三）：数组扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/07/ECMAScript6_解构赋值/">ECMAScript6学习笔记（二）：解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/06/ECMAScript6_变量声明/">ECMAScript6学习笔记（一）：变量声明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/17/Windows常见错误/">Windows常见错误</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div class="footer-text">
+      <p>我来，我见，我征服</p>
+      <p>我们的征途是星辰大海</p>
+    </div>
+    <div id="footer-info" class="inner">
+      <i>I wanna be a <b>HACKER</b><i> &copy; 2020 <a href="https://www.github.com/ultravires">ultravires</a><br>
+      Powered by <a href="https://www.sanphantom.com/" target="_blank">Sanphantom</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/security" class="mobile-nav-link">Security</a>
+  
+    <a href="/deeplearning" class="mobile-nav-link">DeepLearning</a>
+  
+    <a href="/algorithm" class="mobile-nav-link">Algorithm</a>
+  
+    <a href="/web" class="mobile-nav-link">Web</a>
+  
+    <a href="/life" class="mobile-nav-link">Life</a>
+  
+    <a href="/bug" class="mobile-nav-link">CatchTheBug</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

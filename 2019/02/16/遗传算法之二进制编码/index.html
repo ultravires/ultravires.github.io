@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>遗传算法之二进制编码 | 孤的容颜早已不是年前丶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+  <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+  <meta name="description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat    st: 开始      code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异操">
+<meta name="keywords" content="遗传算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遗传算法之二进制编码">
+<meta property="og:url" content="https://ultravires.github.io/2019/02/16/遗传算法之二进制编码/index.html">
+<meta property="og:site_name" content="孤的容颜早已不是年前丶">
+<meta property="og:description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat    st: 开始      code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异操">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.blog.csdn.net/20170905193050633?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170905193137367?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170905193200424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-02-16T10:04:32.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="遗传算法之二进制编码">
+<meta name="twitter:description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat    st: 开始      code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异操">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170905193050633?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+    <link rel="alternate" href="/atom.xml" title="孤的容颜早已不是年前丶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">孤的容颜早已不是年前丶</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I wanna be a Hacker.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/security">Security</a>
+        
+          <a class="main-nav-link" href="/deeplearning">DeepLearning</a>
+        
+          <a class="main-nav-link" href="/algorithm">Algorithm</a>
+        
+          <a class="main-nav-link" href="/web">Web</a>
+        
+          <a class="main-nav-link" href="/life">Life</a>
+        
+          <a class="main-nav-link" href="/bug">CatchTheBug</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ultravires.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+          
+            <div class="posts">
+              
+  
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#遗传算法的基本步骤"><span class="toc-text">遗传算法的基本步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#编码"><span class="toc-text">编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#举个例子"><span class="toc-text">举个例子</span></a></li></ol></li></ol>
+</div>
+
+
+
+<article id="post-遗传算法之二进制编码" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/16/遗传算法之二进制编码/" class="article-date">
+  <time datetime="2019-02-16T09:38:06.786Z" itemprop="datePublished">2019-02-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
+  
+    <h1 class="article-title" itemprop="name">
+      遗传算法之二进制编码
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="遗传算法的基本步骤"><a href="#遗传算法的基本步骤" class="headerlink" title="遗传算法的基本步骤"></a>遗传算法的基本步骤</h1><p>遗传算法 GA 的流程如图所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">flowchat</span><br><span class="line">    st: 开始  </span><br><span class="line">    code: 编码和产生初始群体</span><br><span class="line">    fitness: 计算各个个体的适应度值</span><br><span class="line">    is: 是否满足算法收敛准则？</span><br><span class="line">    result: 输出收敛结果</span><br><span class="line">    choose: 执行选择操作</span><br><span class="line">    cross: 执行交叉操作</span><br><span class="line">    variation: 执行变异操作</span><br><span class="line">    end: 结束</span><br><span class="line">    st&gt;code&gt;fitness&gt;is</span><br><span class="line">    is(y)&gt;choose&gt;cross&gt;variation&gt;end</span><br><span class="line">    is(n)&gt;result</span><br><span class="line">    variation&gt;fitness</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>把所需要选择的特征进行编号，每一个特征就是一个基因，一个解就是一串基因的组合。为了减少组合数量，在图像中进行分块，然后把每一块看成一个基因进行组合优化的计算。每个解得基因数量是要通过实验确定的。</p>
+<p>遗传算法不能直接处理问题空间的参数，必须把它们转换成遗传空间的由基因按一定结构组成的染色体或个体。这一转换操作就叫做编码。评估编码策略常采用以下 3 个规范。<br><strong>（1） 完备性（Completeness）：</strong>问题空间中的所有点（候选解）都能作为 GA 空间中的点（染色体）表现。<br><strong>（2） 健全性（Soundness）：</strong>GA 空间中的染色体能对应所有空间中的候选解。<br><strong>（3） 非冗余性（Nonredundancy）：</strong>染色体和候选解一一对应。</p>
+<p>目前几种常用的编码技术有<strong>二进制编码、浮点数编码、字符编码、编程编码等</strong>。<strong>二进制编码</strong>是遗传算法中最常见的编码方法，即由二进制字符集 {0， 1} 产生通常的 0, 1 字符串来表示问题的候选解。它具有以下<strong>特点</strong>：<br><strong><br>（1） 简单易行；<br>（2） 符合最小字符集编码原则；<br>（3） 便于用模式定理进行分析。
+</strong></p>
+<p><strong><em>染色体编码最常用的是二进制编码，对于离散性变量直接进行编码，对于连续性变量先离散化后再编码。</em></strong></p>
+<p>科普1：SPSS常用的基础操作（2）——连续变量离散化<br>（下面的这个地址中详细介绍了什么是连续变量离散化及其必要性）</p>
+<pre><code>人人都是数据咖：http://www.ppvke.com/Blog/archives/44271
+</code></pre><p>科普2：连续特征的离散化：在什么情况下将连续的特征离散化后可以获得更好的效果？</p>
+<pre><code>问答来源于知乎：https://www.zhihu.com/question/31989952
+</code></pre><h2 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h2><p>已知一元函数：</p>
+<p><strong>F(x) = xsin(10pi*x)+2      x∈[-1, 2]</strong></p>
+<p>现在要求在既定的区间内找出函数的最大值。</p>
+<p>首先我们可以先用 MATLAB 把该函数的图像画出来：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">clc, clear;</span><br><span class="line">syms f(x); <span class="comment">% 声明函数</span></span><br><span class="line">x = <span class="built_in">linspace</span>(<span class="number">-1</span>,<span class="number">2</span>,<span class="number">3000</span>); <span class="comment">% 定义 x, x 属于 [-1, 2]</span></span><br><span class="line">f = x.*<span class="built_in">sin</span>(<span class="number">10</span>*<span class="built_in">pi</span>.*x)+<span class="number">2</span>; <span class="comment">% 定义函数，因为 x 是向量，所以采用点乘</span></span><br><span class="line"><span class="built_in">plot</span>(f); <span class="comment">% 画图</span></span><br></pre></td></tr></table></figure>
+<p>然后做出图形如下：</p>
+<p>￼￼￼￼<img src="http://img.blog.csdn.net/20170905193050633?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>我们可以看到，该图形显示说明该函数具有多个局部最优解，所以适合用遗传算法进行求解。</p>
+<p>由遗传算法的基本步骤可知我们第一步应该是编码：</p>
+<p><strong>二进制编码</strong></p>
+<p>受到人类染色体结构的启发，我们可以设想一下，假设目前只有 0 和 1 两种碱基，我们也用一条链把它们有序的串连在一起，因为每一个单位都能表现出 1bit 的信息量，所以一条足够长的染色体就能为我们勾勒出一个个体特征的所有特征。<strong>这就是二进制编码</strong></p>
+<p>下面将介绍如何建立二进制编码到一个实数的映射。</p>
+<p>明显地，一定长度的二进制编码序列，只能表示一定精度的浮点数。譬如我们要求小数点后<strong>精确到六位小数</strong>，由于区间长度为</p>
+<pre><code>2 - (-1) = 3
+</code></pre><p>为了保证精度的要求，至少把区间 [-1, 2] 分为 3*10^6 等份。又因为</p>
+<pre><code>2097152=2^21 &lt; 3*10^6 &lt; 2^22=4194304
+</code></pre><p>所以编码的二进制串至少有 22 位。<br>把一个二进制串 （b1b2…bn） 转换为区间里面对应的实数值通过下面两个步骤。<br>（1） 将一个二进制串代表的二进制转换为十进制数：</p>
+<p><img src="http://img.blog.csdn.net/20170905193137367?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>（2） 对应区间的实数：</p>
+<p><img src="http://img.blog.csdn.net/20170905193200424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>或许有人并不知道是如何把数值转换到对应区间的实数的，为什么要这么做？我也是问了一下我的小伙伴才知晓的，下面我来简单的说一下：<br>通常我们归一化到 [0, 1]，有时候我们需要归一化到其它区间，这样算一下就可以找到数列的最小值 m 及最大值 M，如果指定的区间是 [a, b]，即：</p>
+<pre><code>m--&gt;a, M--&gt;b；
+</code></pre><p>系数为：</p>
+<pre><code>k = (b-a)/(M-m)
+</code></pre><p>对任意项Xn：变成：</p>
+<pre><code>X = a+k(Xn-m)
+</code></pre><p>（二进制编码）<br>将十进制转换为二进制的 MATLAB 程序代码如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 将十进制数转换为二进制数（二进制编码）</span></span><br><span class="line"><span class="comment">% @params dec_num 十进制数</span></span><br><span class="line"><span class="comment">% @params N       需保留的二进制小数位数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bin_num</span> = <span class="title">encode</span><span class="params">(dec_num, N)</span></span></span><br><span class="line">	split = <span class="string">'.'</span>;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">rem</span>(dec_num, <span class="number">1</span>) == <span class="number">0</span></span><br><span class="line">		bin_num = dec2bin(dec_num);</span><br><span class="line">		float_num = <span class="built_in">zeros</span>(<span class="number">1</span>, N);</span><br><span class="line">        bin_num = strcat(num2str(bin_num), split);</span><br><span class="line">        bin_num = strcat(bin_num, num2str(float_num));</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		remainder = <span class="built_in">rem</span>(dec_num, <span class="number">1</span>); <span class="comment">% 小数部分</span></span><br><span class="line">		integer = <span class="built_in">floor</span>(dec_num); <span class="comment">% 整数部分</span></span><br><span class="line">		bin_num_int = dec2bin(integer);</span><br><span class="line">		<span class="built_in">i</span> = <span class="number">1</span>;</span><br><span class="line">		flag = <span class="built_in">true</span>;</span><br><span class="line">		<span class="keyword">while</span>(flag == <span class="built_in">true</span>)</span><br><span class="line">            remainder = remainder*<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">i</span> &gt; N) <span class="comment">% 是否满足精度</span></span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			<span class="keyword">end</span></span><br><span class="line">			<span class="keyword">if</span> remainder &gt; <span class="number">1</span></span><br><span class="line">				record(<span class="built_in">i</span>) = <span class="number">1</span>;</span><br><span class="line">                remainder = <span class="built_in">rem</span>(remainder, <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> remainder == <span class="number">1</span></span><br><span class="line">				record(<span class="built_in">i</span>) = <span class="number">1</span>;</span><br><span class="line">				remainder = <span class="built_in">rem</span>(remainder, <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				record(<span class="built_in">i</span>) = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">end</span></span><br><span class="line">			<span class="built_in">i</span> = <span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		bin_num_flt = record;</span><br><span class="line">		bin_num = strcat(num2str(bin_num_int), split);</span><br><span class="line">		bin_num = strcat(bin_num, num2str(bin_num_flt));</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>未完…（待续？不存在的）</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2019/02/16/遗传算法之二进制编码/" data-id="ck61wv2ys0012bc4dd6bge46v" class="article-share-link">分享</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/遗传算法/">遗传算法</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/02/17/网易云接口加直链下载vip歌曲/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          网易云接口加直链下载vip歌曲
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/16/Java无边框窗体透明化/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Java无边框窗体透明化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'fb0df633eecedc41127e',
+        clientSecret: '78a4a1deb351f20b52f5984440d19e56e10ef3c6',
+        repo: 'ultravires.github.io',
+        owner: 'ultravires',
+        admin: ['ultravires'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+            </div>
+          
+          
+        </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序人生/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matlab/">matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协同过滤/">协同过滤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网易云/">网易云</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遗传算法/">遗传算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/11/ECMAScript6_数组扩展/">ECMAScript6 学习笔记（三）：数组扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/07/ECMAScript6_解构赋值/">ECMAScript6学习笔记（二）：解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/06/ECMAScript6_变量声明/">ECMAScript6学习笔记（一）：变量声明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/17/Windows常见错误/">Windows常见错误</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div class="footer-text">
+      <p>我来，我见，我征服</p>
+      <p>我们的征途是星辰大海</p>
+    </div>
+    <div id="footer-info" class="inner">
+      <i>I wanna be a <b>HACKER</b><i> &copy; 2020 <a href="https://www.github.com/ultravires">ultravires</a><br>
+      Powered by <a href="https://www.sanphantom.com/" target="_blank">Sanphantom</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/security" class="mobile-nav-link">Security</a>
+  
+    <a href="/deeplearning" class="mobile-nav-link">DeepLearning</a>
+  
+    <a href="/algorithm" class="mobile-nav-link">Algorithm</a>
+  
+    <a href="/web" class="mobile-nav-link">Web</a>
+  
+    <a href="/life" class="mobile-nav-link">Life</a>
+  
+    <a href="/bug" class="mobile-nav-link">CatchTheBug</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

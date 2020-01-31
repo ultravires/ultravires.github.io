@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>推荐系统（一）：常用的智能推荐算法 | 孤的容颜早已不是年前丶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+  <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+  <meta name="description" content="公司最近需要研究智能推荐算法，技术总监在群里要投名状。我一个前端不知道是哪根筋短路了，竟脑子一热，自送断头台。没办法，既然递过了投名状那就硬着头皮去做好了。">
+<meta name="keywords" content="推荐系统,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐系统（一）：常用的智能推荐算法">
+<meta property="og:url" content="https://ultravires.github.io/2019/03/11/推荐系统（一）：常用的智能推荐算法/index.html">
+<meta property="og:site_name" content="孤的容颜早已不是年前丶">
+<meta property="og:description" content="公司最近需要研究智能推荐算法，技术总监在群里要投名状。我一个前端不知道是哪根筋短路了，竟脑子一热，自送断头台。没办法，既然递过了投名状那就硬着头皮去做好了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-19T09:46:35.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐系统（一）：常用的智能推荐算法">
+<meta name="twitter:description" content="公司最近需要研究智能推荐算法，技术总监在群里要投名状。我一个前端不知道是哪根筋短路了，竟脑子一热，自送断头台。没办法，既然递过了投名状那就硬着头皮去做好了。">
+  
+    <link rel="alternate" href="/atom.xml" title="孤的容颜早已不是年前丶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">孤的容颜早已不是年前丶</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I wanna be a Hacker.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/security">Security</a>
+        
+          <a class="main-nav-link" href="/deeplearning">DeepLearning</a>
+        
+          <a class="main-nav-link" href="/algorithm">Algorithm</a>
+        
+          <a class="main-nav-link" href="/web">Web</a>
+        
+          <a class="main-nav-link" href="/life">Life</a>
+        
+          <a class="main-nav-link" href="/bug">CatchTheBug</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ultravires.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+          
+            <div class="posts">
+              
+  
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基于内容推荐"><span class="toc-text">基于内容推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协同过滤（Collaborative-Filtering-CF）"><span class="toc-text">协同过滤（Collaborative Filtering, CF）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于用户（User-based）的协同过滤"><span class="toc-text">基于用户（User-based）的协同过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于项目（Item-based）的协同过滤"><span class="toc-text">基于项目（Item-based）的协同过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于模型（Model-based）的协同过滤"><span class="toc-text">基于模型（Model-based）的协同过滤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点-1"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点-1"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于规则推荐"><span class="toc-text">基于规则推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于效用推荐"><span class="toc-text">基于效用推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于知识推荐"><span class="toc-text">基于知识推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组合推荐"><span class="toc-text">组合推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol>
+</div>
+
+
+
+<article id="post-推荐系统（一）：常用的智能推荐算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/推荐系统（一）：常用的智能推荐算法/" class="article-date">
+  <time datetime="2019-03-11T08:28:45.854Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/推荐系统/">推荐系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
+  
+    <h1 class="article-title" itemprop="name">
+      推荐系统（一）：常用的智能推荐算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>公司最近需要研究智能推荐算法，技术总监在群里要投名状。我一个前端不知道是哪根筋短路了，竟脑子一热，自送断头台。没办法，既然递过了投名状那就硬着头皮去做好了。</p>
+<a id="more"></a>
+<h2 id="基于内容推荐"><a href="#基于内容推荐" class="headerlink" title="基于内容推荐"></a>基于内容推荐</h2><p>基于内容的信息推荐方法的理论依据主要来自于<a href="https://baike.baidu.com/item/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2" target="_blank" rel="noopener"><strong>信息检索</strong></a>和<a href="https://baike.baidu.com/item/%E4%BF%A1%E6%81%AF%E8%BF%87%E6%BB%A4" target="_blank" rel="noopener"><strong>信息过滤</strong></a>，所谓的基于内容的推荐方法就是根据用户过去的浏览记录来向用户推荐用户没有接触过的推荐项。主要是从两个方法来描述基于内容的推荐方法：启发式的方法和基于模型的方法。启发式的方法就是用户凭借经验来定义相关的计算公式，然后再根据公式的计算结果和实际的结果进行验证，然后再不断修改公式以达到最终目的。而对于模型的方法就是根据以往的数据作为数据集，然后根据这个数据集来学习出一个模型。一般的推荐系统中运用到的启发式的方法就是使用<a href="https://baike.baidu.com/item/tf-idf" target="_blank" rel="noopener"><strong>tf-idf</strong></a>的方法来计算，跟还有tf-idf的方法计算出这个文档中出现权重比较高的关键字作为描述用户特征，并使用这些关键字作为描述用户特征的向量；然后再根据被推荐项中的权重高的关键字来作为推荐项的属性特征，然后再将这个两个向量最相近的（与用户特征的向量计算得分最高）的项推荐给用户。在计算用户特征向量和被推荐项的特征向量的相似性时，一般使用的是cosine方法，计算两个向量之间夹角的cosine值。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>推荐结果直观，容易解释</li>
+<li>不需要领域知识</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>新用户问题</li>
+<li>复杂属性不好处理</li>
+<li>要有足够数据构造分类器</li>
+</ul>
+<h2 id="协同过滤（Collaborative-Filtering-CF）"><a href="#协同过滤（Collaborative-Filtering-CF）" class="headerlink" title="协同过滤（Collaborative Filtering, CF）"></a>协同过滤（Collaborative Filtering, CF）</h2><p><strong>协同过滤（Collaborative Filtering, CF）</strong>，简单来说就是通过与你相似用户的喜好向你推荐相关产品。就好比，你在网上有很多“知己”，你们的兴趣爱好大致相同，那么如果我知道了其中一位“知己”的兴趣爱好就可以推断你可能也喜欢某些东西。协同过滤不一定局限于特别感兴趣的，特别不敢兴趣的记录也十分重要。</p>
+<h3 id="基于用户（User-based）的协同过滤"><a href="#基于用户（User-based）的协同过滤" class="headerlink" title="基于用户（User-based）的协同过滤"></a>基于用户（User-based）的协同过滤</h3><p>用<strong>相似统计</strong>的方法得到具有相似爱好或者兴趣的同类用户，根据同类用户的喜好预测目标用户对某个物品的喜好程度，然后找到评分最高的若干物品推荐给目标用户。（找相似用户）</p>
+<h3 id="基于项目（Item-based）的协同过滤"><a href="#基于项目（Item-based）的协同过滤" class="headerlink" title="基于项目（Item-based）的协同过滤"></a>基于项目（Item-based）的协同过滤</h3><p>根据目标用户对物品的历史评分，找到相似物品，并将目标用户可能喜欢的若干物品推荐给他。（找相似物品）</p>
+<h3 id="基于模型（Model-based）的协同过滤"><a href="#基于模型（Model-based）的协同过滤" class="headerlink" title="基于模型（Model-based）的协同过滤"></a>基于模型（Model-based）的协同过滤</h3><p>基于模型的协同过滤作为目前最主流的协同过滤类型，其相关算法可以写一本书了，当然我们这里主要是对其思想做有一个归类概括。我们的问题是这样的m个物品，m个用户的数据，只有部分用户和部分数据之间是有评分数据的，其它部分评分是空白，此时我们要用已有的部分稀疏数据来预测那些空白的物品和数据之间的评分关系，找到最高评分的物品推荐给用户。</p>
+<p>对于这个问题，用机器学习的思想来建模解决，主流的方法可以分为：用关联算法，聚类算法，分类算法，回归算法，矩阵分解，神经网络,图模型以及隐语义模型来解决。</p>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><p>以用户的角度来推荐的协同过滤系统有以下优点：</p>
+<ul>
+<li>能够过滤机器难以自动内容分析的信息。如艺术品、音乐等。</li>
+<li>共享其他人的经验，避免了内容分析的不完全或不精确，并且能够基于一些复杂的，难以表述的概念（如信息质量、个人品味）进行过滤。</li>
+<li>有推荐新信息的能力，可以发现内容上完全不相似的信息，用户对推荐信息的内容是事先预料不到的。可以发现用户潜在的但自己未发现的兴趣偏好。</li>
+<li>推荐个性化、自动化程度高。能够有效的利用其他相似用户的反馈信息加快个性化学习的速度。</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><p>虽然协同过滤作为一推荐机制有其相当的应用，但协同过滤仍有许多的问题需要解决。整体而言，最典型的问题有：</p>
+<ul>
+<li>新用户问题，系统开始时推荐质量较差</li>
+<li>新项目问题，质量取决于历史数据集</li>
+<li>稀疏性问题</li>
+<li>系统延伸性问题</li>
+</ul>
+<h2 id="基于规则推荐"><a href="#基于规则推荐" class="headerlink" title="基于规则推荐"></a>基于规则推荐</h2><p>基于关联规则的推荐（Association Rule-based Recommendation）是以关联规则为基础，把已购商品作为规则头，规则体为推荐对象。关联规则挖掘可以发现不同商品在销售过程中的相关性，在零售业中已经得到了成功的应用。关联规则就是在一个交易数据库中统计购买了商品集X的交易中有多大比例的交易同时购买了商品集Y，其直观的意义就是用户在购买某些商品的时候有多大倾向去购买另外一些商品。比如购买牛奶的同时很多人会同时购买面包。</p>
+<p>算法的第一步关联规则的发现最为关键且最耗时，是算法的瓶颈，但可以离线进行。其次，商品名称的同义性问题也是关联规则的一个难点。</p>
+<h2 id="基于效用推荐"><a href="#基于效用推荐" class="headerlink" title="基于效用推荐"></a>基于效用推荐</h2><p>基于效用的推荐（Utility-based Recommendation）是建立在对用户使用项目的效用情况上计算的，其核心问题是怎么样为每一个用户去创建一个效用函数，因此，用户资料模型很大程度上是由系统所采用的效用函数决定的。基于效用推荐的好处是它能把非产品的属性，如提供商的可靠性（Vendor Reliability）和产品的可得性（Product Availability）等考虑到效用计算中。</p>
+<h2 id="基于知识推荐"><a href="#基于知识推荐" class="headerlink" title="基于知识推荐"></a>基于知识推荐</h2><p>基于知识的推荐（Knowledge-based Recommendation）在某种程度是可以看成是一种推理（Inference）技术，它不是建立在用户需要和偏好基础上推荐的。基于知识的方法因它们所用的功能知识不同而有明显区别。效用知识（Functional Knowledge）是一种关于一个项目如何满足某一特定用户的知识，因此能解释需要和推荐的关系，所以用户资料可以是任何能支持推理的知识结构，它可以是用户已经规范化的查询，也可以是一个更详细的用户需要的表示。</p>
+<h2 id="组合推荐"><a href="#组合推荐" class="headerlink" title="组合推荐"></a>组合推荐</h2><p>由于各种推荐方法都有优缺点，所以在实际中，组合推荐（Hybrid Recommendation）经常被采用。研究和应用最多的是内容推荐和协同过滤推荐的组合。最简单的做法就是分别用基于内容的方法和协同过滤推荐方法去产生一个推荐预测结果，然后用某方法组合其结果。尽管从理论上有很多种推荐组合方法，但在某一具体问题中并不见得都有效，组合推荐一个最重要原则就是通过组合后要能避免或弥补各自推荐技术的弱点。</p>
+<p>在组合方式上，有研究人员提出了七种组合思路：<br>　　1）<a href="https://baike.baidu.com/item/%E5%8A%A0%E6%9D%83" target="_blank" rel="noopener">加权</a>（Weight）：加权多种推荐技术结果。<br>　　2）<a href="https://baike.baidu.com/item/%E5%8F%98%E6%8D%A2" target="_blank" rel="noopener">变换</a>（Switch）：根据问题背景和实际情况或要求决定变换采用不同的推荐技术。<br>　　3）<a href="https://baike.baidu.com/item/%E6%B7%B7%E5%90%88" target="_blank" rel="noopener">混合</a>（Mixed）：同时采用多种推荐技术给出多种推荐结果为用户提供参考。<br>　　4）特征组合（Feature combination）：组合来自不同推荐数据源的特征被另一种推荐算法所采用。<br>　　5）层叠（Cascade）：先用一种推荐技术产生一种粗糙的推荐结果，第二种推荐技术在此推荐结果的基础上进一步作出更精确的推荐。<br>　　6）特征扩充（Feature augmentation）：一种技术产生附加的特征信息嵌入到另一种推荐技术的特征输入中。<br>　　7）元级别（Meta-level）：用一种推荐方法产生的模型作为另一种推荐方法的输入。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Wiki. <a href="https://zh.wikipedia.org/wiki/%E5%8D%94%E5%90%8C%E9%81%8E%E6%BF%BE" target="_blank" rel="noopener">协同过滤</a>. 推荐算法. 2019.</p>
+<p>[2] 刘建平. <a href="https://www.cnblogs.com/pinard/p/6349233.html" target="_blank" rel="noopener">协同过滤推荐算法总结</a>. 机器学习. 2017. </p>
+<p>[3] 百度百科. <a href="https://baike.baidu.com/item/%E6%8E%A8%E8%8D%90%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">推荐系统</a>. 推荐系统. 2019.</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2019/03/11/推荐系统（一）：常用的智能推荐算法/" data-id="ck61wv2yg000obc4dmox9keas" class="article-share-link">分享</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/12/npm源管理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          npm 源管理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/21/Promise对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Promise 对象</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'fb0df633eecedc41127e',
+        clientSecret: '78a4a1deb351f20b52f5984440d19e56e10ef3c6',
+        repo: 'ultravires.github.io',
+        owner: 'ultravires',
+        admin: ['ultravires'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+            </div>
+          
+          
+        </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序人生/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matlab/">matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协同过滤/">协同过滤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网易云/">网易云</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遗传算法/">遗传算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/11/ECMAScript6_数组扩展/">ECMAScript6 学习笔记（三）：数组扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/07/ECMAScript6_解构赋值/">ECMAScript6学习笔记（二）：解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/06/ECMAScript6_变量声明/">ECMAScript6学习笔记（一）：变量声明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/17/Windows常见错误/">Windows常见错误</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div class="footer-text">
+      <p>我来，我见，我征服</p>
+      <p>我们的征途是星辰大海</p>
+    </div>
+    <div id="footer-info" class="inner">
+      <i>I wanna be a <b>HACKER</b><i> &copy; 2020 <a href="https://www.github.com/ultravires">ultravires</a><br>
+      Powered by <a href="https://www.sanphantom.com/" target="_blank">Sanphantom</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/security" class="mobile-nav-link">Security</a>
+  
+    <a href="/deeplearning" class="mobile-nav-link">DeepLearning</a>
+  
+    <a href="/algorithm" class="mobile-nav-link">Algorithm</a>
+  
+    <a href="/web" class="mobile-nav-link">Web</a>
+  
+    <a href="/life" class="mobile-nav-link">Life</a>
+  
+    <a href="/bug" class="mobile-nav-link">CatchTheBug</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

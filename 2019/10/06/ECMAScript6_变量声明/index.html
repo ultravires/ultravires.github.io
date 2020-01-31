@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>ECMAScript6学习笔记（一）：变量声明 | 孤的容颜早已不是年前丶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+  <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+  <meta name="description" content="ES6 添加了 let 和const 命令，还有另外两种声明变量的方法：import 命令和 class 命令。所以，ES6 一共有 6 种声明变量的方法。">
+<meta name="keywords" content="ECMAScript6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECMAScript6学习笔记（一）：变量声明">
+<meta property="og:url" content="https://ultravires.github.io/2019/10/06/ECMAScript6_变量声明/index.html">
+<meta property="og:site_name" content="孤的容颜早已不是年前丶">
+<meta property="og:description" content="ES6 添加了 let 和const 命令，还有另外两种声明变量的方法：import 命令和 class 命令。所以，ES6 一共有 6 种声明变量的方法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/12/15/atIls2W1JzSR9PZ.png">
+<meta property="og:updated_time" content="2019-12-17T11:16:14.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ECMAScript6学习笔记（一）：变量声明">
+<meta name="twitter:description" content="ES6 添加了 let 和const 命令，还有另外两种声明变量的方法：import 命令和 class 命令。所以，ES6 一共有 6 种声明变量的方法。">
+<meta name="twitter:image" content="https://i.loli.net/2019/12/15/atIls2W1JzSR9PZ.png">
+  
+    <link rel="alternate" href="/atom.xml" title="孤的容颜早已不是年前丶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">孤的容颜早已不是年前丶</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I wanna be a Hacker.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/security">Security</a>
+        
+          <a class="main-nav-link" href="/deeplearning">DeepLearning</a>
+        
+          <a class="main-nav-link" href="/algorithm">Algorithm</a>
+        
+          <a class="main-nav-link" href="/web">Web</a>
+        
+          <a class="main-nav-link" href="/life">Life</a>
+        
+          <a class="main-nav-link" href="/bug">CatchTheBug</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ultravires.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+          
+            <div class="posts">
+              
+  
+<div id="toc">
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#let"><span class="toc-text">let</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#暂时性死区（TDZ）"><span class="toc-text">暂时性死区（TDZ）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不允许重复声明"><span class="toc-text">不允许重复声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不存在变量提升"><span class="toc-text">不存在变量提升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const"><span class="toc-text">const</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不能变的是地址指向，而不是值"><span class="toc-text">不能变的是地址指向，而不是值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-中的块级作用域"><span class="toc-text">ES6 中的块级作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-声明变量的六种方法"><span class="toc-text">ES6 声明变量的六种方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a>
+</div>
+
+
+
+<article id="post-ECMAScript6_变量声明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/06/ECMAScript6_变量声明/" class="article-date">
+  <time datetime="2019-10-05T16:00:00.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ECMAScript6学习笔记（一）：变量声明
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><code>ES6</code> 添加了 <code>let</code> 和<code>const</code> 命令，还有另外两种声明变量的方法：<code>import</code> 命令和 <code>class</code> 命令。所以，<em>ES6</em> 一共有 6 种声明变量的方法。</p>
+<a id="more"></a>
+<h2 id="let"><a href="#let" class="headerlink" title="let"></a>let</h2><p><code>let</code> 命令用来声明具有 <em>块级作用域</em> 的变量。通常，我们把包含在 <code>{}</code> 内的代码就称为一个代码块。</p>
+<h3 id="暂时性死区（TDZ）"><a href="#暂时性死区（TDZ）" class="headerlink" title="暂时性死区（TDZ）"></a>暂时性死区（TDZ）</h3><p><em>暂时性死区（TDZ, temporal dead zone）</em> 主要是为了减少运行时错误，防止在变量声明前就使用这个变量，从而导致意料之外的行为。这样的错误在 ES5 是很常见的，现在有了这种规定，避免此类错误就很容易了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i); <span class="comment">// Thrown: ReferenceError: i is not defined</span></span><br><span class="line">		<span class="keyword">let</span> i = <span class="number">2</span>;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<p>而 _c_ 语言中并不会存在暂时性死区的问题，原因是 _c_ 语言中不同作用域中声明的变量所分配的地址不同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* @file test.c</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"i_out = %d"</span>, i); <span class="comment">// 0, 1, 2</span></span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">8</span>;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"i_in = %d"</span>, i); <span class="comment">// 8, 8, 8</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 程序正常执行，执行结果请自行编译运行。</span></span><br></pre></td></tr></table></figure>
+<h3 id="不允许重复声明"><a href="#不允许重复声明" class="headerlink" title="不允许重复声明"></a>不允许重复声明</h3><p><code>let</code> 命令不允许在相同作用域内声明同名变量，_c_ 语言中也是如此。</p>
+<h3 id="不存在变量提升"><a href="#不存在变量提升" class="headerlink" title="不存在变量提升"></a>不存在变量提升</h3><p>ES6 中规定在暂时性死区中和用 let、const 所声明的变量<strong>不</strong>存在 <em>变量提升</em>。</p>
+<h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><p><code>const</code> 声明一个只读常量，一旦声明，值就不允许被修改。所以，我们在使用 <code>const</code> 命令进行变量的时候就需要立即对该变量进行初始化，否则会报错：<code>Uncaught SyntaxError: Missing initializer in const declaration</code> 。</p>
+<p><code>const</code> 命令声明的常量也不提升，同样存在暂时性死区，变量只能在声明之后使用。</p>
+<h3 id="不能变的是地址指向，而不是值"><a href="#不能变的是地址指向，而不是值" class="headerlink" title="不能变的是地址指向，而不是值"></a>不能变的是地址指向，而不是值</h3><p><code>const</code> 实质上并不保证所声明变量的值不能改变，不能被改变的是该变量的地址所存储的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> b = a;</span><br><span class="line"></span><br><span class="line">a = <span class="number">4</span>; <span class="comment">// 这里改变 a 的值并不会报错</span></span><br></pre></td></tr></table></figure>
+<h2 id="ES6-中的块级作用域"><a href="#ES6-中的块级作用域" class="headerlink" title="ES6 中的块级作用域"></a>ES6 中的块级作用域</h2><p>ES6 中的 <code>let</code> 和 <code>const</code> 为 <em>JavaScript</em> 提供了块级作用域。块级作用域的出现使得 IIFE 写法不再必要:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// IIFE</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 'a' is not defined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 块级作用域</span></span><br><span class="line">&#123; <span class="keyword">let</span> a = <span class="number">2</span>; &#125;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 'a' is not defined</span></span><br></pre></td></tr></table></figure>
+<h2 id="ES6-声明变量的六种方法"><a href="#ES6-声明变量的六种方法" class="headerlink" title="ES6 声明变量的六种方法"></a>ES6 声明变量的六种方法</h2><p><em>ES5</em> 只有两种声明变量的方法：<code>var</code> 命令和 <code>function</code> 命令。<code>ES6</code> 除了添加 <code>let</code> 和<code>const</code> 命令，还有另外两种声明变量的方法：<code>import</code> 命令和 <code>class</code> 命令。所以，<em>ES6</em> 一共有 6 种声明变量的方法。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><blockquote>
+<p><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">ECMAScript6 入门，阮一峰</a></p>
+</blockquote>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2019/10/06/ECMAScript6_变量声明/" data-id="ck61wv2xd0002bc4d5e6pya8i" class="article-share-link">分享</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/07/ECMAScript6_解构赋值/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          ECMAScript6学习笔记（二）：解构赋值
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/17/Windows常见错误/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Windows常见错误</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'fb0df633eecedc41127e',
+        clientSecret: '78a4a1deb351f20b52f5984440d19e56e10ef3c6',
+        repo: 'ultravires.github.io',
+        owner: 'ultravires',
+        admin: ['ultravires'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+            </div>
+          
+          
+        </section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序人生/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/">Promise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/matlab/">matlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协同过滤/">协同过滤</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推荐系统/">推荐系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网易云/">网易云</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/遗传算法/">遗传算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/11/ECMAScript6_数组扩展/">ECMAScript6 学习笔记（三）：数组扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/07/ECMAScript6_解构赋值/">ECMAScript6学习笔记（二）：解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/06/ECMAScript6_变量声明/">ECMAScript6学习笔记（一）：变量声明</a>
+          </li>
+        
+          <li>
+            <a href="/2019/05/17/Windows常见错误/">Windows常见错误</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div class="footer-text">
+      <p>我来，我见，我征服</p>
+      <p>我们的征途是星辰大海</p>
+    </div>
+    <div id="footer-info" class="inner">
+      <i>I wanna be a <b>HACKER</b><i> &copy; 2020 <a href="https://www.github.com/ultravires">ultravires</a><br>
+      Powered by <a href="https://www.sanphantom.com/" target="_blank">Sanphantom</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/security" class="mobile-nav-link">Security</a>
+  
+    <a href="/deeplearning" class="mobile-nav-link">DeepLearning</a>
+  
+    <a href="/algorithm" class="mobile-nav-link">Algorithm</a>
+  
+    <a href="/web" class="mobile-nav-link">Web</a>
+  
+    <a href="/life" class="mobile-nav-link">Life</a>
+  
+    <a href="/bug" class="mobile-nav-link">CatchTheBug</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
