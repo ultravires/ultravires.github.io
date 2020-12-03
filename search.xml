@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title>V2ray 搭建教程</title>
     <url>/2020/03/01/v2ray%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h2 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h2><h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://install.direct/go.sh</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@vultrguest ~]<span class="comment"># sudo bash go.sh</span></span><br><span class="line">Installing V2Ray v4.22.1 on x86_64</span><br><span class="line">Downloading V2Ray: https://github.com/v2ray/v2ray-core/releases/download/v4.22.1/v2ray-linux-64.zip</span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100   608  100   608    0     0   3234      0 --:--:-- --:--:-- --:--:--  3234</span><br><span class="line">100 11.6M  100 11.6M    0     0  4169k      0  0:00:02  0:00:02 --:--:-- 5173k</span><br><span class="line">Archive:  /tmp/v2ray/v2ray.zip</span><br><span class="line">  inflating: /usr/bin/v2ray/geoip.dat</span><br><span class="line">  inflating: /usr/bin/v2ray/geosite.dat</span><br><span class="line">  inflating: /usr/bin/v2ray/v2ctl</span><br><span class="line">  inflating: /usr/bin/v2ray/v2ray</span><br><span class="line">PORT:29014</span><br><span class="line">UUID:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx</span><br><span class="line">Archive:  /tmp/v2ray/v2ray.zip</span><br><span class="line">  inflating: /etc/systemd/system/v2ray.service</span><br><span class="line">Created symlink /etc/systemd/system/multi-user.target.wants/v2ray.service → /etc/systemd/system/v2ray.service.</span><br><span class="line">V2Ray v4.22.1 is installed.</span><br><span class="line">[root@vultrguest ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
@@ -13,6 +13,9 @@
 <h2 id="重启服务器"><a href="#重启服务器" class="headerlink" title="重启服务器"></a>重启服务器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
 <h2 id="加速"><a href="#加速" class="headerlink" title="加速"></a>加速</h2><h2 id="一键部署-（以上步骤都不需要）"><a href="#一键部署-（以上步骤都不需要）" class="headerlink" title="一键部署 （以上步骤都不需要）"></a>一键部署 （以上步骤都不需要）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -s -L https://git.io/v2ray.sh)</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <tags>
+        <tag>VPN</tag>
+      </tags>
   </entry>
   <entry>
     <title>设计模式（一）：观察者模式与发布/订阅模式</title>
