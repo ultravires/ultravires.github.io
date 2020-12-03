@@ -9,21 +9,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
   <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
-  <meta name="description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat    st: 开始      code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异操">
+  <meta name="description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat GA    st: 开始    code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异">
 <meta name="keywords" content="遗传算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="遗传算法之二进制编码">
 <meta property="og:url" content="https://ultravires.github.io/2019/02/16/遗传算法之二进制编码/index.html">
 <meta property="og:site_name" content="孤的容颜早已不是年前丶">
-<meta property="og:description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat    st: 开始      code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异操">
+<meta property="og:description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat GA    st: 开始    code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img.blog.csdn.net/20170905193050633?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170905193137367?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170905193200424?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2019-02-16T10:04:32.305Z">
+<meta property="og:updated_time" content="2020-12-03T01:50:17.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="遗传算法之二进制编码">
-<meta name="twitter:description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat    st: 开始      code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异操">
+<meta name="twitter:description" content="遗传算法的基本步骤遗传算法 GA 的流程如图所示： 1234567891011121314flowchat GA    st: 开始    code: 编码和产生初始群体    fitness: 计算各个个体的适应度值    is: 是否满足算法收敛准则？    result: 输出收敛结果    choose: 执行选择操作    cross: 执行交叉操作    variation: 执行变异">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20170905193050633?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveDEwMjA5MTUwOTg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
   
     <link rel="alternate" href="/atom.xml" title="孤的容颜早已不是年前丶" type="application/atom+xml">
@@ -129,12 +129,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="遗传算法的基本步骤"><a href="#遗传算法的基本步骤" class="headerlink" title="遗传算法的基本步骤"></a>遗传算法的基本步骤</h1><p>遗传算法 GA 的流程如图所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">flowchat</span><br><span class="line">    st: 开始  </span><br><span class="line">    code: 编码和产生初始群体</span><br><span class="line">    fitness: 计算各个个体的适应度值</span><br><span class="line">    is: 是否满足算法收敛准则？</span><br><span class="line">    result: 输出收敛结果</span><br><span class="line">    choose: 执行选择操作</span><br><span class="line">    cross: 执行交叉操作</span><br><span class="line">    variation: 执行变异操作</span><br><span class="line">    end: 结束</span><br><span class="line">    st&gt;code&gt;fitness&gt;is</span><br><span class="line">    is(y)&gt;choose&gt;cross&gt;variation&gt;end</span><br><span class="line">    is(n)&gt;result</span><br><span class="line">    variation&gt;fitness</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">flowchat GA</span><br><span class="line">    st: 开始</span><br><span class="line">    code: 编码和产生初始群体</span><br><span class="line">    fitness: 计算各个个体的适应度值</span><br><span class="line">    is: 是否满足算法收敛准则？</span><br><span class="line">    result: 输出收敛结果</span><br><span class="line">    choose: 执行选择操作</span><br><span class="line">    cross: 执行交叉操作</span><br><span class="line">    variation: 执行变异操作</span><br><span class="line">    end: 结束</span><br><span class="line">    st&gt;code&gt;fitness&gt;is</span><br><span class="line">    is(y)&gt;choose&gt;cross&gt;variation&gt;end</span><br><span class="line">    is(n)&gt;result</span><br><span class="line">    variation&gt;fitness</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>把所需要选择的特征进行编号，每一个特征就是一个基因，一个解就是一串基因的组合。为了减少组合数量，在图像中进行分块，然后把每一块看成一个基因进行组合优化的计算。每个解得基因数量是要通过实验确定的。</p>
 <p>遗传算法不能直接处理问题空间的参数，必须把它们转换成遗传空间的由基因按一定结构组成的染色体或个体。这一转换操作就叫做编码。评估编码策略常采用以下 3 个规范。<br><strong>（1） 完备性（Completeness）：</strong>问题空间中的所有点（候选解）都能作为 GA 空间中的点（染色体）表现。<br><strong>（2） 健全性（Soundness）：</strong>GA 空间中的染色体能对应所有空间中的候选解。<br><strong>（3） 非冗余性（Nonredundancy）：</strong>染色体和候选解一一对应。</p>
-<p>目前几种常用的编码技术有<strong>二进制编码、浮点数编码、字符编码、编程编码等</strong>。<strong>二进制编码</strong>是遗传算法中最常见的编码方法，即由二进制字符集 {0， 1} 产生通常的 0, 1 字符串来表示问题的候选解。它具有以下<strong>特点</strong>：<br><strong><br>（1） 简单易行；<br>（2） 符合最小字符集编码原则；<br>（3） 便于用模式定理进行分析。
-</strong></p>
+<p>目前几种常用的编码技术有<strong>二进制编码、浮点数编码、字符编码、编程编码等</strong>。<strong>二进制编码</strong>是遗传算法中最常见的编码方法，即由二进制字符集 {0， 1} 产生通常的 0, 1 字符串来表示问题的候选解。它具有以下<strong>特点</strong>：<br>（1） 简单易行；<br>（2） 符合最小字符集编码原则；<br>（3） 便于用模式定理进行分析。</p>
 <p><strong><em>染色体编码最常用的是二进制编码，对于离散性变量直接进行编码，对于连续性变量先离散化后再编码。</em></strong></p>
 <p>科普1：SPSS常用的基础操作（2）——连续变量离散化<br>（下面的这个地址中详细介绍了什么是连续变量离散化及其必要性）</p>
 <pre><code>人人都是数据咖：http://www.ppvke.com/Blog/archives/44271
@@ -167,13 +166,12 @@
 <pre><code>X = a+k(Xn-m)
 </code></pre><p>（二进制编码）<br>将十进制转换为二进制的 MATLAB 程序代码如下：</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 将十进制数转换为二进制数（二进制编码）</span></span><br><span class="line"><span class="comment">% @params dec_num 十进制数</span></span><br><span class="line"><span class="comment">% @params N       需保留的二进制小数位数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bin_num</span> = <span class="title">encode</span><span class="params">(dec_num, N)</span></span></span><br><span class="line">	split = <span class="string">'.'</span>;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">rem</span>(dec_num, <span class="number">1</span>) == <span class="number">0</span></span><br><span class="line">		bin_num = dec2bin(dec_num);</span><br><span class="line">		float_num = <span class="built_in">zeros</span>(<span class="number">1</span>, N);</span><br><span class="line">        bin_num = strcat(num2str(bin_num), split);</span><br><span class="line">        bin_num = strcat(bin_num, num2str(float_num));</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		remainder = <span class="built_in">rem</span>(dec_num, <span class="number">1</span>); <span class="comment">% 小数部分</span></span><br><span class="line">		integer = <span class="built_in">floor</span>(dec_num); <span class="comment">% 整数部分</span></span><br><span class="line">		bin_num_int = dec2bin(integer);</span><br><span class="line">		<span class="built_in">i</span> = <span class="number">1</span>;</span><br><span class="line">		flag = <span class="built_in">true</span>;</span><br><span class="line">		<span class="keyword">while</span>(flag == <span class="built_in">true</span>)</span><br><span class="line">            remainder = remainder*<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">i</span> &gt; N) <span class="comment">% 是否满足精度</span></span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			<span class="keyword">end</span></span><br><span class="line">			<span class="keyword">if</span> remainder &gt; <span class="number">1</span></span><br><span class="line">				record(<span class="built_in">i</span>) = <span class="number">1</span>;</span><br><span class="line">                remainder = <span class="built_in">rem</span>(remainder, <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> remainder == <span class="number">1</span></span><br><span class="line">				record(<span class="built_in">i</span>) = <span class="number">1</span>;</span><br><span class="line">				remainder = <span class="built_in">rem</span>(remainder, <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				record(<span class="built_in">i</span>) = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">end</span></span><br><span class="line">			<span class="built_in">i</span> = <span class="built_in">i</span>+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		bin_num_flt = record;</span><br><span class="line">		bin_num = strcat(num2str(bin_num_int), split);</span><br><span class="line">		bin_num = strcat(bin_num, num2str(bin_num_flt));</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>未完…（待续？不存在的）</p>
 
       
     </div>
     
       <footer class="article-footer">
-        <a data-url="https://ultravires.github.io/2019/02/16/遗传算法之二进制编码/" data-id="ck65yn93o00145o4dlkz6rivc" class="article-share-link">分享</a>
+        <a data-url="https://ultravires.github.io/2019/02/16/遗传算法之二进制编码/" data-id="cki86sjmn000xf84diob54t7n" class="article-share-link">分享</a>
         
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/遗传算法/">遗传算法</a></li></ul>
@@ -240,7 +238,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/程序人生/">程序人生</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
     </div>
   </div>
 
@@ -269,7 +267,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li></ul>
     </div>
   </div>
 
@@ -280,6 +278,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/03/01/v2ray搭建/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
@@ -295,10 +297,6 @@
         
           <li>
             <a href="/2019/10/06/ECMAScript6_变量声明/">ECMAScript6学习笔记（一）：变量声明</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/17/Windows常见错误/">Windows常见错误</a>
           </li>
         
       </ul>
