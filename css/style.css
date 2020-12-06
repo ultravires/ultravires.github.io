@@ -1545,3 +1545,10 @@ pre .javascript .function {
   margin-right: 5px;
   display: inline-block;
 }
+.backToTop {
+  position: fixed;
+  display: inline-block;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
