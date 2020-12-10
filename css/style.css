@@ -171,16 +171,11 @@ body {
   overflow: hidden;
 }
 #wrap {
-  height: 100%;
   width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
   -webkit-transition: 0.2s ease-out;
   -moz-transition: 0.2s ease-out;
   -ms-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
-  z-index: 1;
 }
 .mobile-nav-on #wrap {
   left: 280px;
