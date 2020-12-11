@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Base64 的编码原理及代码实现 | 孤的容颜早已不是年前丶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+  
+  <meta name="description" content="所谓 base64 编码就是从 ASCII 码表中选取64个可打印字符（A-Za-z0-9+/）作为基本字符集对其它字符进行编码转换。加上作为填充的 “=” 实际上是 65 个字符。">
+<meta name="keywords" content="博客,浅安,ultravires">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Base64 的编码原理及代码实现">
+<meta property="og:url" content="https://ultravires.github.io/2020/12/11/Base64的编码原理及实现/index.html">
+<meta property="og:site_name" content="孤的容颜早已不是年前丶">
+<meta property="og:description" content="所谓 base64 编码就是从 ASCII 码表中选取64个可打印字符（A-Za-z0-9+/）作为基本字符集对其它字符进行编码转换。加上作为填充的 “=” 实际上是 65 个字符。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-12-11T15:36:34.066Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Base64 的编码原理及代码实现">
+<meta name="twitter:description" content="所谓 base64 编码就是从 ASCII 码表中选取64个可打印字符（A-Za-z0-9+/）作为基本字符集对其它字符进行编码转换。加上作为填充的 “=” 实际上是 65 个字符。">
+  
+    <link rel="alternate" href="/atom.xml" title="孤的容颜早已不是年前丶" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="//at.alicdn.com/t/font_1244375_uanpnnz1vli.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      
+        <header id="header">
+  <!-- <div id="banner"></div> -->
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">
+          
+          
+            孤的容颜早已不是年前丶
+          
+        </a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I wanna be a Hacker.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">
+            
+              <i class="zm zm-home"></i>
+            
+            首页
+          </a>
+        
+          <a class="main-nav-link" href="/security">
+            
+              <i class="zm zm-anquan"></i>
+            
+            信息安全
+          </a>
+        
+          <a class="main-nav-link" href="/deeplearning">
+            
+              <i class="zm zm-shenduxuexi"></i>
+            
+            深度学习
+          </a>
+        
+          <a class="main-nav-link" href="/algorithm">
+            
+              <i class="zm zm-zhinengsuanfa"></i>
+            
+            算法学习
+          </a>
+        
+          <a class="main-nav-link" href="/web">
+            
+              <i class="zm zm-wordpress"></i>
+            
+            网站建设
+          </a>
+        
+          <a class="main-nav-link" href="/life">
+            
+              <i class="zm zm-cup_lemon"></i>
+            
+            程序人生
+          </a>
+        
+          <a class="main-nav-link" href="/bug">
+            
+              <i class="zm zm-bug"></i>
+            
+            捉BUG
+          </a>
+        
+          <a class="main-nav-link" href="/archives">
+            
+              <i class="zm zm-book"></i>
+            
+            归档
+          </a>
+        
+          <a class="main-nav-link" href="/about">
+            
+              <i class="zm zm-about"></i>
+            
+            关于作者
+          </a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ultravires.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      
+      <div class="outer">
+        <section id="main">
+          
+            <div class="posts">
+              <article id="post-Base64的编码原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/11/Base64的编码原理及实现/" class="article-date">
+  <time datetime="2020-12-10T16:00:00.000Z" itemprop="datePublished">2020-12-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Base64 的编码原理及代码实现
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>所谓 <code>base64</code> 编码就是从 <code>ASCII</code> 码表中选取64个可打印字符（A-Za-z0-9+/）作为基本字符集对其它字符进行编码转换。加上作为填充的 “=” 实际上是 65 个字符。</p>
+<a id="more"></a>
+<h2 id="Base64-产生的原因"><a href="#Base64-产生的原因" class="headerlink" title="Base64 产生的原因"></a>Base64 产生的原因</h2><p>要想了解 base64 就得先了解下 ASCII 码表， ASCII 码表是由以英语为母语的美国制定。英语用128个符号编码就够了，但是用来表示其他语言，128个符号是不够的。比如，在法语中，字母上方有注音符号，它就无法用 ASCII 码表示。于是，一些欧洲国家就决定，利用字节中闲置的最高位编入新的符号。比如，法语中的<code>é</code>的编码为130（二进制<code>10000010</code>）。这样一来，这些欧洲国家使用的编码体系，可以表示最多256个符号。</p>
+<p>但是，这里又出现了新的问题。不同的国家有不同的字母，因此，哪怕它们都使用256个符号的编码方式，代表的字母却不一样。比如，130在法语编码中代表了<code>é</code>，在希伯来语编码中却代表了字母<code>Gimel</code> (<code>ג</code>)，在俄语编码中又会代表另一个符号。但是不管怎样，所有这些编码方式中，0–127表示的符号是一样的，不一样的只是128–255的这一段。</p>
+<p>至于亚洲国家的文字，使用的符号就更多了，汉字就多达10万左右。一个字节只能表示256种符号，肯定是不够的，就必须使用多个字节表达一个符号。比如，简体中文常见的编码方式是 GB2312，使用两个字节表示一个汉字，所以理论上最多可以表示 256 * 256 = 65536 个符号。</p>
+<p> 而在网络上交换数据时，比如说从A地传到B地，往往要经过多个路由设备，由于不同的设备对字符的处理方式有一些不同，这样那些不可见字符就有可能被处理错误，这是不利于传输的。所以就先把数据先做一个 Base64 编码，统统变成可见字符，这样出错的可能性就大降低了。 </p>
+<h2 id="为什么是-Base64？"><a href="#为什么是-Base64？" class="headerlink" title="为什么是 Base64？"></a>为什么是 Base64？</h2><p>为什么是 base64 而不是 base128、base256 呢？其实原因很简单，因为在 ASCII 码表中的可打印字符只有 95 个，所以选取 64 个可打印字符是最为合理的。既然如此，那是不是也有 base32、base16 呢？对，当然可以有。只是目前大多用到的还是 base64 编码。</p>
+<h2 id="Base64-编码的理论实现"><a href="#Base64-编码的理论实现" class="headerlink" title="Base64 编码的理论实现"></a>Base64 编码的理论实现</h2><p>前面根据 A-Za-z0-9+/ 字符集可以得到一张索引表：</p>
+<table>
+<thead>
+<tr>
+<th>索引</th>
+<th>对应字符</th>
+<th>索引</th>
+<th>对应字符</th>
+<th>索引</th>
+<th>对应字符</th>
+<th>索引</th>
+<th>对应字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>A</td>
+<td>17</td>
+<td>R</td>
+<td>34</td>
+<td>i</td>
+<td>51</td>
+<td>z</td>
+</tr>
+<tr>
+<td>1</td>
+<td>B</td>
+<td>18</td>
+<td>S</td>
+<td>35</td>
+<td>j</td>
+<td>52</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>C</td>
+<td>19</td>
+<td>T</td>
+<td>36</td>
+<td>k</td>
+<td>53</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>D</td>
+<td>20</td>
+<td>U</td>
+<td>37</td>
+<td>l</td>
+<td>54</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>E</td>
+<td>21</td>
+<td>V</td>
+<td>38</td>
+<td>m</td>
+<td>55</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>F</td>
+<td>22</td>
+<td>W</td>
+<td>39</td>
+<td>n</td>
+<td>56</td>
+<td>4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>G</td>
+<td>23</td>
+<td>X</td>
+<td>40</td>
+<td>o</td>
+<td>57</td>
+<td>5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>H</td>
+<td>24</td>
+<td>Y</td>
+<td>41</td>
+<td>p</td>
+<td>58</td>
+<td>6</td>
+</tr>
+<tr>
+<td>8</td>
+<td>I</td>
+<td>25</td>
+<td>Z</td>
+<td>42</td>
+<td>q</td>
+<td>59</td>
+<td>7</td>
+</tr>
+<tr>
+<td>9</td>
+<td>J</td>
+<td>26</td>
+<td>a</td>
+<td>43</td>
+<td>r</td>
+<td>60</td>
+<td>8</td>
+</tr>
+<tr>
+<td>10</td>
+<td>K</td>
+<td>27</td>
+<td>b</td>
+<td>44</td>
+<td>s</td>
+<td>61</td>
+<td>9</td>
+</tr>
+<tr>
+<td>11</td>
+<td>L</td>
+<td>28</td>
+<td>c</td>
+<td>45</td>
+<td>t</td>
+<td>62</td>
+<td>+</td>
+</tr>
+<tr>
+<td>12</td>
+<td>M</td>
+<td>29</td>
+<td>d</td>
+<td>46</td>
+<td>u</td>
+<td>63</td>
+<td>/</td>
+</tr>
+<tr>
+<td>13</td>
+<td>N</td>
+<td>30</td>
+<td>e</td>
+<td>47</td>
+<td>v</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td>O</td>
+<td>31</td>
+<td>f</td>
+<td>48</td>
+<td>w</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>P</td>
+<td>32</td>
+<td>g</td>
+<td>49</td>
+<td>x</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td>Q</td>
+<td>33</td>
+<td>h</td>
+<td>50</td>
+<td>y</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Base64 具体编码转换步骤如下：</p>
+<ol>
+<li>将待转换的字符串以每 3 个字节分为一组，1byte = 8bit，每一组正好 24 个二进制位。</li>
+<li>将上面的 24 个二进制位划分为每 6 位一组，形成 4 组。</li>
+<li>每组前面加两个 0，形成 8 位一组，即 4 个字节。</li>
+<li>根据上面 Base64 对照表获取对应的值，形成 Base64 编码。</li>
+</ol>
+<p><strong>举个例子：</strong>下面表格是以字符串 “Man” 作为原始字符串进行 Base64 编码的过程。</p>
+<table>
+<thead>
+<tr>
+<th>文本</th>
+<th>M</th>
+<th>a</th>
+<th>n</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASCII</td>
+<td>77</td>
+<td>97</td>
+<td>110</td>
+<td></td>
+</tr>
+<tr>
+<td>二进制</td>
+<td>01001101</td>
+<td>01100001</td>
+<td>01101110</td>
+<td></td>
+</tr>
+<tr>
+<td>分组</td>
+<td><strong>00</strong> 010011</td>
+<td><strong>00</strong> 010110</td>
+<td><strong>00</strong> 000101</td>
+<td><strong>00</strong> 101110</td>
+</tr>
+<tr>
+<td>索引</td>
+<td>19</td>
+<td>22</td>
+<td>5</td>
+<td>46</td>
+</tr>
+<tr>
+<td>Base64编码</td>
+<td>T</td>
+<td>W</td>
+<td>F</td>
+<td>u</td>
+</tr>
+</tbody>
+</table>
+<p>那么你可能会问，如果我原始字符串少于 3 个字节怎么办呢？</p>
+<p>如果输入原始字符串长度不能被 3 整除的话，我们需要用 “=” 对其 Base64 编码进行填充。为什么需要 “=” 填充呢？因为 Base64 解码是以 4 位字符一划分的，如果你不对其进行填充就会导致解码失败。</p>
+<p>当原始字符串的二进制位不是 6 的倍数的时候，我们依然会将其划分为 6 位一组，然后将最后一组用 0 填充至 6 位（在末尾填充）。</p>
+<p><strong>举个例子：</strong>下面是对字符串 “AB” 的编码过程，其编码结果为 “QUI=”。</p>
+<table>
+<thead>
+<tr>
+<th>文本</th>
+<th>A</th>
+<th>B</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASCII</td>
+<td>65</td>
+<td>66</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>二进制</td>
+<td>01000001</td>
+<td>01000010</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>分组</td>
+<td><strong>00</strong> 010000</td>
+<td><strong>00</strong> 010100</td>
+<td><strong>00</strong> 0010<strong>00</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>索引</td>
+<td>16</td>
+<td>20</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>Base64编码</td>
+<td>Q</td>
+<td>U</td>
+<td>I</td>
+<td>=</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong>：中文字符有很多的编码，如 UTF-8、GBK、GB2312 等，不同的编码都会对 Base64 编码产生影响。</p>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p>base64.h</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*base64.h*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _BASE64_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _BASE64_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">BASE64_ENCODE_SIZE</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">// 计算字符串加密后的长度（不包括填充字符 '='）</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">ceil</span>(len * <span class="number">8</span> / <span class="number">6</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> *<span class="title">base64encode</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *str, <span class="keyword">unsigned</span> <span class="keyword">int</span> len)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> *<span class="title">base64decode</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *str, <span class="keyword">unsigned</span> <span class="keyword">int</span> len)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>base64.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"base64.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CHARPAD <span class="meta-string">'='</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">inline</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">BASE64_ENCODE_SIZE</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Base64 编码表 */</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> base64_table_encode[] = &#123;</span><br><span class="line">    <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'H'</span>,</span><br><span class="line">    <span class="string">'I'</span>, <span class="string">'J'</span>, <span class="string">'K'</span>, <span class="string">'L'</span>, <span class="string">'M'</span>, <span class="string">'N'</span>, <span class="string">'O'</span>, <span class="string">'P'</span>,</span><br><span class="line">    <span class="string">'Q'</span>, <span class="string">'R'</span>, <span class="string">'S'</span>, <span class="string">'T'</span>, <span class="string">'U'</span>, <span class="string">'V'</span>, <span class="string">'W'</span>, <span class="string">'X'</span>,</span><br><span class="line">    <span class="string">'Y'</span>, <span class="string">'Z'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>,</span><br><span class="line">    <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span>, <span class="string">'m'</span>, <span class="string">'n'</span>,</span><br><span class="line">    <span class="string">'o'</span>, <span class="string">'p'</span>, <span class="string">'q'</span>, <span class="string">'r'</span>, <span class="string">'s'</span>, <span class="string">'t'</span>, <span class="string">'u'</span>, <span class="string">'v'</span>,</span><br><span class="line">    <span class="string">'w'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>, <span class="string">'0'</span>, <span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>,</span><br><span class="line">    <span class="string">'4'</span>, <span class="string">'5'</span>, <span class="string">'6'</span>, <span class="string">'7'</span>, <span class="string">'8'</span>, <span class="string">'9'</span>, <span class="string">'+'</span>, <span class="string">'/'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> *<span class="title">base64encode</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *str, <span class="keyword">unsigned</span> <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> temp;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> encodeSize = BASE64_ENCODE_SIZE(len);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> *result = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *) <span class="built_in">calloc</span>(encodeSize + <span class="number">4</span>, <span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">char</span>));</span><br><span class="line"></span><br><span class="line">    result[encodeSize] = <span class="string">'\0'</span>; <span class="comment">/* 构造字符串 */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; encodeSize; i += <span class="number">4</span>, j += <span class="number">3</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        result[i] = base64_table_encode[(str[j] &gt;&gt; <span class="number">2</span>) &amp; <span class="number">0x3f</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (i + <span class="number">1</span> &gt;= encodeSize) <span class="keyword">break</span>;</span><br><span class="line">        result[i+<span class="number">1</span>] = base64_table_encode[((str[j] &amp; <span class="number">0x3</span>) &lt;&lt; <span class="number">4</span>) | ((str[j+<span class="number">1</span>] &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0xf</span>)];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (i + <span class="number">2</span> &gt;= encodeSize) <span class="keyword">break</span>;</span><br><span class="line">        result[i+<span class="number">2</span>] = base64_table_encode[((str[j+<span class="number">1</span>] &amp; <span class="number">0xf</span>) &lt;&lt; <span class="number">2</span>) | ((str[j+<span class="number">2</span>] &gt;&gt; <span class="number">6</span>) &amp; <span class="number">0x3</span>)];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i + <span class="number">3</span> &gt;= encodeSize) <span class="keyword">break</span>;</span><br><span class="line">        result[i+<span class="number">3</span>] = base64_table_encode[(str[j+<span class="number">2</span>] &amp; <span class="number">0x3f</span>)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, k = encodeSize % <span class="number">4</span>; i &lt; <span class="number">4</span> - k &amp;&amp; k != <span class="number">0</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        result[encodeSize + i] = CHARPAD;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a></p>
+<p><a href="https://blog.csdn.net/wo541075754/article/details/81734770" target="_blank" rel="noopener">https://blog.csdn.net/wo541075754/article/details/81734770</a></p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2020/12/11/Base64的编码原理及实现/" data-id="ckikfme800000ug4d60usluwq" class="article-share-link">分享</a>
+        
+        
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/12/09/WebRTC/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">WebRTC</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'fb0df633eecedc41127e',
+        clientSecret: '78a4a1deb351f20b52f5984440d19e56e10ef3c6',
+        repo: 'ultravires.github.io',
+        owner: 'ultravires',
+        admin: ['ultravires'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+            </div>
+          
+          
+        </section>
+        
+          <aside id="sidebar">
+  
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/11/Base64的编码原理及实现/">Base64 的编码原理及代码实现</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/09/WebRTC/">WebRTC</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/01/v2ray搭建/">V2ray 搭建教程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/11/ECMAScript6_数组扩展/">ECMAScript6 学习笔记（三）：数组扩展</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月9日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020年3月1日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019年12月15日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月7日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月6日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019年5月17日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月22日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月19日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月12日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月21日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月19日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月17日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月16日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年1月16日</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  
+</aside>
+          <a class="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth'})">回到顶部</a>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div class="footer-text">
+      <p>我来，我见，我征服</p>
+      <p>我们的征途是星辰大海</p>
+    </div>
+    <div id="footer-info" class="inner">
+      <i>I wanna be a <b>HACKER</b><i> &copy; 2020 <a href="https://www.github.com/ultravires">ultravires</a><br>
+      Powered by <a href="https://www.sanphantom.com/" target="_blank">Sanphantom</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/security" class="mobile-nav-link">信息安全</a>
+  
+    <a href="/deeplearning" class="mobile-nav-link">深度学习</a>
+  
+    <a href="/algorithm" class="mobile-nav-link">算法学习</a>
+  
+    <a href="/web" class="mobile-nav-link">网站建设</a>
+  
+    <a href="/life" class="mobile-nav-link">程序人生</a>
+  
+    <a href="/bug" class="mobile-nav-link">捉BUG</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于作者</a>
+  
+</nav>
+    
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
