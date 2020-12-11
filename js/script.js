@@ -51,10 +51,9 @@
   }
 
   // Infinite-Scroll
-  if (document.querySelector('.infinite')) {
+  if (document.querySelector('.infinite') && typeof InfiniteScroll !== 'undefined' ) {
     var infScroll = new InfiniteScroll( '.infinite', {
       // defaults listed
-    
       path: '.next',
       // REQUIRED. Determines the URL for the next page
       // Set to selector string to use the href of the next page's link
