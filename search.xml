@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>设计模式（二）：单例模式</title>
-    <url>/2020/12/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<p><strong>单例模式</strong> 是指一个类有且仅有一个实例。使用单例模式可以有效的节省内存。</p>
-<a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> _intance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (Singleton._instance <span class="keyword">instanceof</span> Singleton) &#123;</span><br><span class="line">            <span class="built_in">console</span>.warn(<span class="string">'Singleton has been instantiate!'</span>);</span><br><span class="line">            <span class="keyword">return</span> Singleton._instance;</span><br><span class="line">        &#125;</span><br><span class="line">        Singleton._instance = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">singleton.sayHello();</span><br></pre></td></tr></table></figure>
-<p>上面的代码将类是否被实例化的判断放入了构造函数，违背了 <em>单一职责原则（SRP 一个类或一个模块只负责完成一个职责或功能）</em>。于是可以对上面的代码做出以下优化：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> _instance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> getInstance(name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>._instance) &#123;</span><br><span class="line">            <span class="keyword">this</span>._instance = <span class="keyword">new</span> Singleton(name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleton = Singleton.getInstance();</span><br><span class="line">singleton.sayHello();</span><br></pre></td></tr></table></figure>
-<p>但是上面的代码还是存在问题，我们不能确保其他开发人员不会使用 <code>new Singleton()</code> 来实例化对象。于是我们还需要将 <code>Singleton</code> 的构造函数变成私有的，即不能被外部使用关键字 <code>new</code> 进行实例化，而只能使用类的特有函数来获取实例化对象。</p>
-]]></content>
-      <tags>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git commit emoji 指南</title>
     <url>/2020/12/15/Git%20commit%20emoji%20%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<table>
@@ -186,6 +172,20 @@
 ]]></content>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式（二）：单例模式</title>
+    <url>/2020/12/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p><strong>单例模式</strong> 是指一个类有且仅有一个实例。使用单例模式可以有效的节省内存。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> _intance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (Singleton._instance <span class="keyword">instanceof</span> Singleton) &#123;</span><br><span class="line">            <span class="built_in">console</span>.warn(<span class="string">'Singleton has been instantiate!'</span>);</span><br><span class="line">            <span class="keyword">return</span> Singleton._instance;</span><br><span class="line">        &#125;</span><br><span class="line">        Singleton._instance = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">singleton.sayHello();</span><br></pre></td></tr></table></figure>
+<p>上面的代码将类是否被实例化的判断放入了构造函数，违背了 <em>单一职责原则（SRP 一个类或一个模块只负责完成一个职责或功能）</em>。于是可以对上面的代码做出以下优化：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> _instance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> getInstance(name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>._instance) &#123;</span><br><span class="line">            <span class="keyword">this</span>._instance = <span class="keyword">new</span> Singleton(name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleton = Singleton.getInstance();</span><br><span class="line">singleton.sayHello();</span><br></pre></td></tr></table></figure>
+<p>但是上面的代码还是存在问题，我们不能确保其他开发人员不会使用 <code>new Singleton()</code> 来实例化对象。于是我们还需要将 <code>Singleton</code> 的构造函数变成私有的，即不能被外部使用关键字 <code>new</code> 进行实例化，而只能使用类的特有函数来获取实例化对象。</p>
+]]></content>
+      <tags>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
