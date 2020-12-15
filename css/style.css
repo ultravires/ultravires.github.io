@@ -1791,3 +1791,6 @@ pre .javascript .function {
   color: #999;
   cursor: pointer;
 }
+.cyxy-footer {
+  display: none !important;
+}

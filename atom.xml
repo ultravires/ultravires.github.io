@@ -6,7 +6,7 @@
   <link href="https://ultravires.github.io/atom.xml" rel="self"/>
   
   <link href="https://ultravires.github.io/"/>
-  <updated>2020-12-11T15:36:34.066Z</updated>
+  <updated>2020-12-15T02:46:38.853Z</updated>
   <id>https://ultravires.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设计模式（二）：单例模式</title>
+    <link href="https://ultravires.github.io/2020/12/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://ultravires.github.io/2020/12/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</id>
+    <published>2020-12-14T16:00:00.000Z</published>
+    <updated>2020-12-15T02:46:38.853Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>单例模式</strong> 是指一个类有且仅有一个实例。使用单例模式可以有效的节省内存。</p><a id="more"></a><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> _intance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (Singleton._instance <span class="keyword">instanceof</span> Singleton) &#123;</span><br><span class="line">            <span class="built_in">console</span>.warn(<span class="string">'Singleton has been instantiate!'</span>);</span><br><span class="line">            <span class="keyword">return</span> Singleton._instance;</span><br><span class="line">        &#125;</span><br><span class="line">        Singleton._instance = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">singleton.sayHello();</span><br></pre></td></tr></table></figure><p>上面的代码将类是否被实例化的判断放入了构造函数，违背了 <em>单一职责原则（SRP 一个类或一个模块只负责完成一个职责或功能）</em>。于是可以对上面的代码做出以下优化：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> _instance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> getInstance(name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>._instance) &#123;</span><br><span class="line">            <span class="keyword">this</span>._instance = <span class="keyword">new</span> Singleton(name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleton = Singleton.getInstance();</span><br><span class="line">singleton.sayHello();</span><br></pre></td></tr></table></figure><p>但是上面的代码还是存在问题，我们不能确保其他开发人员不会使用 <code>new Singleton()</code> 来实例化对象。于是我们还需要将 <code>Singleton</code> 的构造函数变成私有的，即不能被外部使用关键字 <code>new</code> 进行实例化，而只能使用类的特有函数来获取实例化对象。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;单例模式&lt;/strong&gt; 是指一个类有且仅有一个实例。使用单例模式可以有效的节省内存。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="设计模式" scheme="https://ultravires.github.io/tags/设计模式/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git commit emoji 指南</title>
+    <link href="https://ultravires.github.io/2020/12/15/Git%20commit%20emoji%20%E6%8C%87%E5%8D%97/"/>
+    <id>https://ultravires.github.io/2020/12/15/Git%20commit%20emoji%20%E6%8C%87%E5%8D%97/</id>
+    <published>2020-12-14T16:00:00.000Z</published>
+    <updated>2020-12-15T03:27:36.242Z</updated>
+    
+    <content type="html"><![CDATA[<table><thead><tr><th>emoji</th><th>emoji代码</th><th>commit说明</th></tr></thead><tbody><tr><td>🎨 (调色板)</td><td>:art:</td><td>改进代码结构/代码格式</td></tr><tr><td>⚡️ (闪电)</td><td>:zap:</td><td>提升性能</td></tr><tr><td>🐎 (赛马)</td><td>:racehorse:</td><td>提升性能</td></tr><tr><td>🔥 (火焰)</td><td>:fire:</td><td>移除代码或文件</td></tr><tr><td>🐛 (bug)</td><td>:bug:</td><td>修复 bug</td></tr><tr><td>🚑 (急救车)</td><td>:ambulance:</td><td>重要补丁</td></tr><tr><td>✨ (火花)</td><td>:sparkles:</td><td>引入新功能</td></tr><tr><td>📝 (铅笔)</td><td>:pencil:</td><td>撰写文档</td></tr><tr><td>🚀 (火箭)</td><td>:rocket:</td><td>部署功能</td></tr><tr><td>💄 (口红)</td><td>:lipstick:</td><td>更新 UI 和样式文件</td></tr><tr><td>🎉 (庆祝)</td><td>:tada:</td><td>初次提交</td></tr><tr><td>✅ (白色复选框)</td><td>:white_check_mark:</td><td>增加测试</td></tr><tr><td>🔒 (锁)</td><td>:lock:</td><td>修复安全问题</td></tr><tr><td>🍎 (苹果)</td><td>:apple:</td><td>修复 macOS 下的问题</td></tr><tr><td>🐧 (企鹅)</td><td>:penguin:</td><td>修复 Linux 下的问题</td></tr><tr><td>🏁 (旗帜)</td><td>:checked_flag:</td><td>修复 Windows 下的问题</td></tr><tr><td>🔖 (书签)</td><td>:bookmark:</td><td>发行/版本标签</td></tr><tr><td>🚨 (警车灯)</td><td>:rotating_light:</td><td>移除 linter 警告</td></tr><tr><td>🚧 (施工)</td><td>:construction:</td><td>工作进行中</td></tr><tr><td>💚 (绿心)</td><td>:green_heart:</td><td>修复 CI 构建问题</td></tr><tr><td>⬇️ (下降箭头)</td><td>:arrow_down:</td><td>降级依赖</td></tr><tr><td>⬆️ (上升箭头)</td><td>:arrow_up:</td><td>升级依赖</td></tr><tr><td>👷 (工人)</td><td>:construction_worker:</td><td>添加 CI 构建系统</td></tr><tr><td>📈 (上升趋势图)</td><td>:chart_with_upwards_trend:</td><td>添加分析或跟踪代码</td></tr><tr><td>🔨 (锤子)</td><td>:hammer:</td><td>重大重构</td></tr><tr><td>➖ (减号)</td><td>:heavy_minus_sign:</td><td>减少一个依赖</td></tr><tr><td>🐳 (鲸鱼)</td><td>:whale:</td><td>Docker 相关工作</td></tr><tr><td>➕ (加号)</td><td>:heavy_plus_sign:</td><td>增加一个依赖</td></tr><tr><td>🔧 (扳手)</td><td>:wrench:</td><td>修改配置文件</td></tr><tr><td>🌐 (地球)</td><td>:globe_with_meridians:</td><td>国际化与本地化</td></tr><tr><td>✏️ (铅笔)</td><td>:pencil2:</td><td>修复 typo</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;emoji&lt;/th&gt;
+&lt;th&gt;emoji代码&lt;/th&gt;
+&lt;th&gt;commit说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;🎨 (调色板)&lt;/td&gt;
+&lt;td&gt;:art:&lt;/td&gt;
+&lt;td&gt;改进代码</summary>
+      
+    
+    
+    
+    
+    <category term="Git" scheme="https://ultravires.github.io/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>Base64 的编码原理及代码实现</title>
@@ -203,7 +256,7 @@
     <link href="https://ultravires.github.io/2019/03/19/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/"/>
     <id>https://ultravires.github.io/2019/03/19/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/</id>
     <published>2019-03-18T16:00:00.000Z</published>
-    <updated>2019-03-19T09:17:17.112Z</updated>
+    <updated>2020-12-15T01:45:55.657Z</updated>
     
     <content type="html"><![CDATA[<p>上一篇文章我整理了一些常见的智能推荐算法，这一次我将更加详细的讲解<strong>协同过滤：基于用户的协同过滤（User-Based Collaborative）和基于项目的协同过滤（Item-Based Collaborative）</strong>。</p><a id="more"></a><h2 id="基于用户的协同过滤（User-Based-Collaborative）"><a href="#基于用户的协同过滤（User-Based-Collaborative）" class="headerlink" title="基于用户的协同过滤（User-Based Collaborative）"></a>基于用户的协同过滤（User-Based Collaborative）</h2><p>假设你想推荐一部电影给你的用户 Mark，但是我们怎么能确定我推荐的电影能让 Mark 喜欢呢？我们总不能去问：嘿！Mark 你喜欢看《成龙历险记》吗？这样愚蠢的问题吧。如果他能回答你，就说明他早已经看过了，就没有推荐的必要了。但是如果你知道还有一个用户 Jackson 与 Mark 具有相似的爱好，如他们都看过《喜羊羊与灰太狼》、《熊出没》和《大头儿子小头爸爸》且都给了很高的评价。而 Jackson 还看过了《大耳朵图图》且给了很高的评分，Mark 却没有看过。那么我们可以猜想 Mark 可能也喜欢《大耳朵图图》，并把此动画片推荐给 Mark。这就是简单的基于用户的协同过滤的例子。</p><p>那么，将这个问题放到数学的思想上来我们应该怎么做呢？</p><p>首先，我们需要这样一个矩阵，它包含了 <strong>User-Item-Rating</strong> 。</p><table><thead><tr><th style="text-align:center"></th><th style="text-align:center">商品1</th><th style="text-align:center">商品2</th><th style="text-align:center">商品3</th><th style="text-align:center">商品4</th><th style="text-align:center">商品5</th></tr></thead><tbody><tr><td style="text-align:center">用户1</td><td style="text-align:center">1</td><td style="text-align:center">-1</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center"></td></tr><tr><td style="text-align:center">用户2</td><td style="text-align:center"></td><td style="text-align:center">1</td><td style="text-align:center"></td><td style="text-align:center"></td><td style="text-align:center"></td></tr><tr><td style="text-align:center">用户3</td><td style="text-align:center">1</td><td style="text-align:center">-1</td><td style="text-align:center">1</td><td style="text-align:center"></td><td style="text-align:center">1</td></tr><tr><td style="text-align:center">用户4</td><td style="text-align:center">-1</td><td style="text-align:center">-1</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center">1</td></tr><tr><td style="text-align:center">用户5</td><td style="text-align:center">-1</td><td style="text-align:center">-1</td><td style="text-align:center"></td><td style="text-align:center">1</td><td style="text-align:center">1</td></tr></tbody></table><p>1) 有了这张表，我们就可以通过一些算法来计算用户的相似性，如 KNN 邻近算法：Similarity(a, i) = w(a, i), i ∈ K。</p><p>2) 找到 a 的相似用户后，我们就可以根据 K 个相似用户的喜好来向用户 a 推荐产品了。</p><h2 id="基于项目的协同过滤（Item-Based-Collaborative）"><a href="#基于项目的协同过滤（Item-Based-Collaborative）" class="headerlink" title="基于项目的协同过滤（Item-Based Collaborative）"></a>基于项目的协同过滤（Item-Based Collaborative）</h2><p>与基于用户的协同过滤类似，只是我们关注的对象发生了转变。基于用户的协同过滤是计算用户的相似性，基于项目的协同过滤就是计算项目的相似性了。</p><p>我们都访问过电商平台，如淘宝。淘宝就有基于项目的协同过滤推荐系统。你搜索了“电脑”，淘宝就会给你推荐键盘、鼠标等相关产品。这就典型的基于项目的协同过滤的应用。</p>]]></content>
     

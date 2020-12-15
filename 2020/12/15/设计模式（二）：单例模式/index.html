@@ -5,21 +5,22 @@
   
 
   
-  <title>标签: 设计模式 | 渝</title>
+  <title>设计模式（二）：单例模式 | 渝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
   
-  <meta name="description" content="ultravires&apos; blog">
-<meta name="keywords" content="博客,浅安,ultravires,孤的容颜早已不是年前丶,hacker,develop,font-end,developer,github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="渝">
-<meta property="og:url" content="https://ultravires.github.io/tags/设计模式/index.html">
+  <meta name="description" content="单例模式 是指一个类有且仅有一个实例。使用单例模式可以有效的节省内存。">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式（二）：单例模式">
+<meta property="og:url" content="https://ultravires.github.io/2020/12/15/设计模式（二）：单例模式/index.html">
 <meta property="og:site_name" content="渝">
-<meta property="og:description" content="ultravires&apos; blog">
+<meta property="og:description" content="单例模式 是指一个类有且仅有一个实例。使用单例模式可以有效的节省内存。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-12-15T02:46:38.853Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="渝">
-<meta name="twitter:description" content="ultravires&apos; blog">
+<meta name="twitter:title" content="设计模式（二）：单例模式">
+<meta name="twitter:description" content="单例模式 是指一个类有且仅有一个实例。使用单例模式可以有效的节省内存。">
   
     <link rel="alternate" href="/atom.xml" title="渝" type="application/atom+xml">
   
@@ -142,69 +143,85 @@
       <div class="outer">
         <section id="main">
           
-            <div class="posts infinite">
-              
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/12/15/设计模式（二）：单例模式/" class="archive-article-date">
-  <time datetime="2020-12-14T16:00:00.000Z" itemprop="datePublished">12月 15</time>
+            <div class="posts">
+              <article id="post-设计模式（二）：单例模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/15/设计模式（二）：单例模式/" class="article-date">
+  <time datetime="2020-12-14T16:00:00.000Z" itemprop="datePublished">2020-12-15</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/15/设计模式（二）：单例模式/">设计模式（二）：单例模式</a>
+    <h1 class="article-title" itemprop="name">
+      设计模式（二）：单例模式
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/15/设计模式（一）：订阅发布者模式/" class="archive-article-date">
-  <time datetime="2019-12-15T08:36:30.000Z" itemprop="datePublished">12月 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
-    </h1>
-  
+        <p><strong>单例模式</strong> 是指一个类有且仅有一个实例。使用单例模式可以有效的节省内存。</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> _intance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (Singleton._instance <span class="keyword">instanceof</span> Singleton) &#123;</span><br><span class="line">            <span class="built_in">console</span>.warn(<span class="string">'Singleton has been instantiate!'</span>);</span><br><span class="line">            <span class="keyword">return</span> Singleton._instance;</span><br><span class="line">        &#125;</span><br><span class="line">        Singleton._instance = <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">singleton.sayHello();</span><br></pre></td></tr></table></figure>
+<p>上面的代码将类是否被实例化的判断放入了构造函数，违背了 <em>单一职责原则（SRP 一个类或一个模块只负责完成一个职责或功能）</em>。于是可以对上面的代码做出以下优化：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> _instance = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> getInstance(name) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>._instance) &#123;</span><br><span class="line">            <span class="keyword">this</span>._instance = <span class="keyword">new</span> Singleton(name);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sayHello() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>!`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleton = Singleton.getInstance();</span><br><span class="line">singleton.sayHello();</span><br></pre></td></tr></table></figure>
+<p>但是上面的代码还是存在问题，我们不能确保其他开发人员不会使用 <code>new Singleton()</code> 来实例化对象。于是我们还需要将 <code>Singleton</code> 的构造函数变成私有的，即不能被外部使用关键字 <code>new</code> 进行实例化，而只能使用类的特有函数来获取实例化对象。</p>
 
-    </header>
+      
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2020/12/15/设计模式（二）：单例模式/" data-id="ckipc2b99001e2k4dsxy5ifq9" class="article-share-link">分享</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+      </footer>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/12/15/Git commit emoji 指南/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Git commit emoji 指南</div>
+    </a>
+  
+</nav>
+
+  
 </article>
+
+
   
-  
-    </div></section>
-  
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'fb0df633eecedc41127e',
+        clientSecret: '78a4a1deb351f20b52f5984440d19e56e10ef3c6',
+        repo: 'ultravires.github.io',
+        owner: 'ultravires',
+        admin: ['ultravires'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
 
 
 
