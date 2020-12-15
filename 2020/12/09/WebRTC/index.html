@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="渝">
 <meta property="og:description" content="WebRTC 全称 Web Real-Time Communication，即 网络即时通讯。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-12-10T03:44:14.888Z">
+<meta property="og:updated_time" content="2020-12-15T08:27:27.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebRTC">
 <meta name="twitter:description" content="WebRTC 全称 Web Real-Time Communication，即 网络即时通讯。">
@@ -179,10 +179,32 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getConnectionDevices</span>(<span class="params">type</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> devices = <span class="keyword">await</span> navigator.mediaDevices.enumerateDevices();</span><br><span class="line">        <span class="keyword">if</span> (!type) <span class="keyword">return</span> devices;</span><br><span class="line">        <span class="keyword">return</span> devices.filter(<span class="function"><span class="params">device</span> =&gt;</span> device.kind === type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">openCamera</span>(<span class="params">cameraId, minWidth = <span class="number">200</span>, minHeight = <span class="number">200</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> constraints = &#123;</span><br><span class="line">            video: &#123;</span><br><span class="line">                deviceId: cameraId,</span><br><span class="line">                width: &#123; <span class="attr">min</span>: minWidth &#125;,</span><br><span class="line">                height: &#123; <span class="attr">min</span>: minHeight &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">await</span> navigator.mediaDevices.getUserMedia(constraints);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> cameras = getConnectionDevices(<span class="string">'videoinput'</span>);</span><br><span class="line">    <span class="keyword">if</span> (cameras &amp;&amp; cameras.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> stream = <span class="keyword">await</span> openCamera(cameras[<span class="number">0</span>].deviceId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="播放流媒体"><a href="#播放流媒体" class="headerlink" title="播放流媒体"></a>播放流媒体</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 使用 playsinline 属性来禁止用户拖动进度条 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"player"</span> <span class="attr">autoplay</span> <span class="attr">playsinline</span> <span class="attr">width</span>=<span class="string">"500"</span> <span class="attr">height</span>=<span class="string">"300"</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> stream = <span class="keyword">await</span> openCamera(cameras[<span class="number">0</span>].deviceId);</span><br><span class="line"><span class="keyword">const</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'player'</span>);</span><br><span class="line"><span class="keyword">if</span> (player) &#123;</span><br><span class="line">    player.srcObject = stream;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<h2 id="声音的基础知识"><a href="#声音的基础知识" class="headerlink" title="声音的基础知识"></a>声音的基础知识</h2><p>为了更好的知道如何设置 <code>Constraints</code>，我们还得知道一些音频基础知识。</p>
+<h3 id="声音的三要素"><a href="#声音的三要素" class="headerlink" title="声音的三要素"></a>声音的三要素</h3><h4 id="音调-音频"><a href="#音调-音频" class="headerlink" title="音调/音频"></a>音调/音频</h4><p><a href="https://baike.baidu.com/item/%E9%9F%B3%E8%B0%83" target="_blank" rel="noopener">音调</a>主要与声波的频率有关。声波的频率越高，音调越高；声波的频率越低，音调越低。</p>
+<h4 id="音量-响度"><a href="#音量-响度" class="headerlink" title="音量/响度"></a>音量/响度</h4><p><a href="https://baike.baidu.com/item/%E9%9F%B3%E9%87%8F/4277506" target="_blank" rel="noopener">音量</a>和声波的振幅有关。声波的振动幅度越大，音量越高；声波的振动幅度越低，音量越低。</p>
+<h4 id="音色-音品"><a href="#音色-音品" class="headerlink" title="音色/音品"></a>音色/音品</h4><p><a href="https://baike.baidu.com/item/%E9%9F%B3%E8%89%B2" target="_blank" rel="noopener">音色</a>是众多音的混合表现，众多不同的音调和音量混合在一起就能形成不同的音色。</p>
+<h3 id="声音的量化"><a href="#声音的量化" class="headerlink" title="声音的量化"></a>声音的量化</h3><p>现实生活中，我们听到的声音都是时间连续的，我们把这种信号叫模拟信号。<a href="https://baike.baidu.com/item/%E6%A8%A1%E6%8B%9F%E4%BF%A1%E5%8F%B7" target="_blank" rel="noopener">模拟信号(连续信号)</a>需要量化成<a href="https://baike.baidu.com/item/%E6%95%B0%E5%AD%97%E4%BF%A1%E5%8F%B7" target="_blank" rel="noopener">数字信号(离散的、不连续的信号)</a>以后才能在计算机中使用。</p>
+<h4 id="模拟信号"><a href="#模拟信号" class="headerlink" title="模拟信号"></a>模拟信号</h4><p>现实生活中的声音表现为连续的、平滑的波形，其横坐标为时间轴，纵坐标表示声音的强弱。</p>
+<h4 id="采样"><a href="#采样" class="headerlink" title="采样"></a>采样</h4><p>按照一定的时间间隔在连续的波上进行采样取值。</p>
+<h4 id="量化"><a href="#量化" class="headerlink" title="量化"></a>量化</h4><p>将采样得到的值进行量化处理，也就是给纵坐标定一个刻度，记录下每个采样的纵坐标的值。</p>
+<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><p>将每个量化后的样本值转换成二进制编码。</p>
+<h4 id="数字信号"><a href="#数字信号" class="headerlink" title="数字信号"></a>数字信号</h4><p>将所有样本二进制编码连起来存储在计算机上就形成了数字信号。</p>
+<h3 id="量化的基本概念"><a href="#量化的基本概念" class="headerlink" title="量化的基本概念"></a>量化的基本概念</h3><h4 id="采样大小"><a href="#采样大小" class="headerlink" title="采样大小"></a>采样大小</h4><p>一个采样用多少个 <code>bit</code> 存放，常用的是 16bit (这就意味着上述的量化过程中，纵坐标的取值范围是 <code>0-65535</code>，声音是没有负值的)。</p>
+<h4 id="采样率"><a href="#采样率" class="headerlink" title="采样率"></a>采样率</h4><p>也就是采样频率(1秒采样次数)，一般采样率有8kHz、16kHz、32kHz、44.1kHz、48kHz等，采样频率越高，声音的还原就越真实越自然，当然数据量就越大。模拟信号中，人类听觉范围是20-20000Hz，如果按照44.1kHz的频率进行采样，对20HZ音频进行采样，一个正玄波采样2200次；对20000HZ音频进行采样，平均一个正玄波采样2.2次。</p>
+<h4 id="声道数"><a href="#声道数" class="headerlink" title="声道数"></a>声道数</h4><p>为了播放声音时能够还原真实的声场，在录制声音时在前后左右几个不同的方位同时获取声音，每个方位的声音就是一个声道。声道数是声音录制时的音源数量或回放时相应的扬声器数量，有单声道、双声道、多声道。</p>
+<h4 id="码率"><a href="#码率" class="headerlink" title="码率"></a>码率</h4><p>也叫比特率，是指每秒传送的 bit 数。单位为 <code>bps(Bit Per Second)</code>，比特率越高，每秒传送数据就越多，音质就越好。</p>
+<blockquote>
+<p>码率 = 采样率 * 采样大小 * 声道数</p>
+</blockquote>
+<h2 id="音频压缩技术"><a href="#音频压缩技术" class="headerlink" title="音频压缩技术"></a>音频压缩技术</h2><h3 id="消除冗余数据"><a href="#消除冗余数据" class="headerlink" title="消除冗余数据"></a>消除冗余数据</h3><p>这种压缩的主要方法是去除采集到的音频冗余信息，这些被删除掉的音频信号是没法恢复的，所以称为有损压缩。</p>
+<p>冗余信息包括人类听觉范围之外的音频信号和被掩蔽掉的音频信号。什么是被掩蔽的信号呢？信号的掩蔽分为 <strong>频域掩蔽</strong> 和 <strong>时域掩蔽</strong>。</p>
+<h3 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h3><p>将人类无法识别的声音信号删除掉后，对剩余的声音信号继续进行压缩编码，经过这种压缩后再还原时是可以复原到和原来一样的数据的(当然，复原也只是复原到压缩前的状态，那些删除的人类无法识别的部分是不能复原的)，所以称为无损压缩。</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
-<li><p><a href="https://webrtc.org/getting-started/overview" target="_blank" rel="noopener">WebRTC</a> <strong>注：该链接中涉及到 async/await 的写法有些问题，async 方法返回的是 Promise，而不是结果。</strong></p>
+<li><p><a href="https://webrtc.org/getting-started/overview" target="_blank" rel="noopener">WebRTC</a></p>
 </li>
 <li><p><a href="https://webrtc.github.io/samples/" target="_blank" rel="noopener">WebRTC samples</a></p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/f56114df9c0b" target="_blank" rel="noopener">音频基础知识</a></p>
 </li>
 </ol>
 
@@ -190,7 +212,7 @@
     </div>
     
       <footer class="article-footer">
-        <a data-url="https://ultravires.github.io/2020/12/09/WebRTC/" data-id="ckiplitty000uq44dk365rysz" class="article-share-link">分享</a>
+        <a data-url="https://ultravires.github.io/2020/12/09/WebRTC/" data-id="ckiplw7if000vlo4dn5kyb3dh" class="article-share-link">分享</a>
         
         
       </footer>
@@ -210,9 +232,9 @@
     </a>
   
   
-    <a href="/2020/03/01/v2ray搭建/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/11/09/函数防抖与函数节流/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">V2ray 搭建教程</div>
+      <div class="article-nav-title">函数防抖与函数节流</div>
     </a>
   
 </nav>
@@ -275,7 +297,7 @@
           </li>
         
           <li>
-            <a href="/2020/03/01/v2ray搭建/">V2ray 搭建教程</a>
+            <a href="/2020/11/09/函数防抖与函数节流/">函数防抖与函数节流</a>
           </li>
         
       </ul>
@@ -297,7 +319,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
+      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/函数节流/" style="font-size: 10px;">函数节流</a> <a href="/tags/函数防抖/" style="font-size: 10px;">函数防抖</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
     </div>
   </div>
 
@@ -306,7 +328,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月15日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月9日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020年3月1日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019年12月15日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月7日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月6日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019年5月17日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月22日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月19日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月12日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月21日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月19日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月17日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月16日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年1月16日</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月15日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月9日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020年11月9日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020年3月1日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019年12月15日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月7日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月6日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019年5月17日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月22日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月19日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月12日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月21日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月19日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月17日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月16日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年1月16日</a></li></ul>
     </div>
   </div>
 

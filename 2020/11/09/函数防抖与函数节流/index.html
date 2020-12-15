@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>函数防抖与函数节流 | 渝</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+  
+  <meta name="description" content="函数防抖(debounce): 事件在触发后的 t 时刻执行，如果在这个时间间隔 t 内，又一次触发事件，则重新计算时间。 函数节流(throttle): 在时间间隔 t 内，无论触发多少次事件，最终只执行一次。">
+<meta name="keywords" content="函数防抖,函数节流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数防抖与函数节流">
+<meta property="og:url" content="https://ultravires.github.io/2020/11/09/函数防抖与函数节流/index.html">
+<meta property="og:site_name" content="渝">
+<meta property="og:description" content="函数防抖(debounce): 事件在触发后的 t 时刻执行，如果在这个时间间隔 t 内，又一次触发事件，则重新计算时间。 函数节流(throttle): 在时间间隔 t 内，无论触发多少次事件，最终只执行一次。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-12-15T08:14:52.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数防抖与函数节流">
+<meta name="twitter:description" content="函数防抖(debounce): 事件在触发后的 t 时刻执行，如果在这个时间间隔 t 内，又一次触发事件，则重新计算时间。 函数节流(throttle): 在时间间隔 t 内，无论触发多少次事件，最终只执行一次。">
+  
+    <link rel="alternate" href="/atom.xml" title="渝" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="//at.alicdn.com/t/font_1244375_uanpnnz1vli.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      
+        <header id="header">
+  <!-- <div id="banner"></div> -->
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">
+          
+          
+            渝
+          
+        </a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">I wanna be a Hacker.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">
+            
+              <i class="zm zm-home"></i>
+            
+            首页
+          </a>
+        
+          <a class="main-nav-link" href="/security">
+            
+              <i class="zm zm-anquan"></i>
+            
+            信息安全
+          </a>
+        
+          <a class="main-nav-link" href="/deeplearning">
+            
+              <i class="zm zm-shenduxuexi"></i>
+            
+            深度学习
+          </a>
+        
+          <a class="main-nav-link" href="/algorithm">
+            
+              <i class="zm zm-zhinengsuanfa"></i>
+            
+            算法学习
+          </a>
+        
+          <a class="main-nav-link" href="/web">
+            
+              <i class="zm zm-wordpress"></i>
+            
+            网站建设
+          </a>
+        
+          <a class="main-nav-link" href="/life">
+            
+              <i class="zm zm-cup_lemon"></i>
+            
+            程序人生
+          </a>
+        
+          <a class="main-nav-link" href="/bug">
+            
+              <i class="zm zm-bug"></i>
+            
+            捉BUG
+          </a>
+        
+          <a class="main-nav-link" href="/archives">
+            
+              <i class="zm zm-book"></i>
+            
+            归档
+          </a>
+        
+          <a class="main-nav-link" href="/about">
+            
+              <i class="zm zm-about"></i>
+            
+            关于作者
+          </a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ultravires.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      
+      <div class="outer">
+        <section id="main">
+          
+            <div class="posts">
+              <article id="post-函数防抖与函数节流" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/09/函数防抖与函数节流/" class="article-date">
+  <time datetime="2020-11-08T16:00:00.000Z" itemprop="datePublished">2020-11-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
+  
+    <h1 class="article-title" itemprop="name">
+      函数防抖与函数节流
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>函数防抖(debounce):</strong> 事件在触发后的 t 时刻执行，如果在这个时间间隔 t 内，又一次触发事件，则重新计算时间。</p>
+<p><strong>函数节流(throttle):</strong> 在时间间隔 t 内，无论触发多少次事件，最终只执行一次。</p>
+<a id="more"></a>
+<h2 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h2><h3 id="最简单的函数防抖"><a href="#最简单的函数防抖" class="headerlink" title="最简单的函数防抖"></a>最简单的函数防抖</h3><p>通过能直接运行的代码一步步深入了解什么是 <em>函数防抖</em> 。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.html - 函数防抖样例 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">content</span>=<span class="string">"xiangchengyu"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"js_debounce"</span>&gt;</span>防抖<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    !(<span class="function"><span class="keyword">function</span> (<span class="params">global</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> element = &#123;</span></span><br><span class="line"><span class="javascript">            debounce: <span class="built_in">document</span>.getElementById(<span class="string">'js_debounce'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        element.debounce.addEventListener(<span class="string">'click'</span>, debounce(onClick, <span class="number">2000</span>));</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">onClick</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(event);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">/** 函数防抖 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">debounce</span> (<span class="params">fn, delay</span>)</span></span></span><br><span class="line"><span class="undefined">        &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"我被执行了！"</span>); <span class="comment">// ① 我在什么时候执行？</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> timer = <span class="literal">null</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> params = <span class="built_in">arguments</span>;</span></span><br><span class="line"><span class="undefined">                clearTimeout(timer);</span></span><br><span class="line"><span class="javascript">                timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    fn &amp;&amp; fn.apply(<span class="keyword">this</span>, params);</span></span><br><span class="line"><span class="undefined">                &#125;, delay);</span></span><br><span class="line"><span class="undefined">            &#125;;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;)(<span class="keyword">this</span>);</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h4><p>在做代码分析前，我请先思考下面这个问题：</p>
+<ol>
+<li>代码 ① 在什么时候被执行？</li>
+</ol>
+<p><strong>错误答案</strong>：<del>每次 debounce 按钮点击后立即执行</del>。</p>
+<p>如果你陷入这个误区很容易认为上面的函数防抖代码有问题，你可能会疑惑：这样的话，每次点击不都会调用 <code>debounce</code> 函数吗？那么 <code>let timer = null</code> 后又 <code>clearTimeout(timer)</code> 有什么意义呢？</p>
+<p>其实：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">`debounce(onClick, 2000)` 是一个完整的函数表达式，即函数调用。这里 `debounce(onClick, 2000)` 在绑定 `click` 事件时会立即执行并返回一个函数，</span></span><br><span class="line"><span class="comment">每当我们触发点击事件的时候执行的是 `debounce(fn, 2000)` 返回的匿名函数。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">element.debounce.addEventListener(<span class="string">'click'</span>, debounce(onClick, <span class="number">2000</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提供对比的代码1</span></span><br><span class="line">element.debounce.addEventListener(<span class="string">'click'</span>, onClick);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提供对比的代码2</span></span><br><span class="line">element.debounce.addEventListener(<span class="string">'click'</span>, onClick());</span><br></pre></td></tr></table></figure>
+<p>所以，代码 ① 在绑定 <code>click</code> 事件后立即执行，并非每次点击都会触发执行。</p>
+<p><strong>代码分析</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// __函数防抖(debounce):__ 事件在触发后的 t 时刻执行，</span></span><br><span class="line"><span class="comment">// 如果在这个时间间隔 t 内，又一次触发事件，则重新计算时间。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123; <span class="comment">// ==&gt; 函数作用域 ①</span></span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span>; <span class="comment">// 属于函数作用域 ① 的变量</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// ==&gt; 函数作用域 ②</span></span><br><span class="line">        <span class="keyword">let</span> params = <span class="built_in">arguments</span>; <span class="comment">// 匿名函数 ② 的参数（获取被防抖函数的参数）</span></span><br><span class="line">        clearTimeout(timer); <span class="comment">// 清除函数作用域 ① 的 timer</span></span><br><span class="line">        timer = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// ==&gt; 函数作用域 ③，改变函数作用域 ② 中 timer 的值</span></span><br><span class="line">            fn &amp;&amp; fn.apply(<span class="keyword">this</span>, params); <span class="comment">// params 从函数作用域 ② 获得</span></span><br><span class="line">            <span class="comment">// 使用 apply 可以避免使用 `...` 扩展 扩展运算符，有一定的兼容性哦！</span></span><br><span class="line">            <span class="comment">// fn &amp;&amp; fn.call(this, ...arguments);</span></span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 需要被防抖的函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">" ====&gt; "</span> + str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 得到匿名函数 ②</span></span><br><span class="line"><span class="keyword">let</span> debounceFn = debounce(fn, <span class="number">3000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行防抖函数</span></span><br><span class="line">debounceFn(<span class="string">'Hello World!'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="实战一-单击是单击，双击是双击（dblclick-is-not-twice-click）"><a href="#实战一-单击是单击，双击是双击（dblclick-is-not-twice-click）" class="headerlink" title="实战一 单击是单击，双击是双击（dblclick is not twice click）"></a>实战一 单击是单击，双击是双击（dblclick is not twice click）</h4><p>我们都知道，双击其实就是两次单击的组合事件。但大部分时候，我们并不希望在双击的时候同时触发单击事件。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"js_button"</span>&gt;</span>别说话，吻我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'js_button'</span>);</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">// ① 快速的多次点击按钮（超过三次且快速），观察输出结果。</span></span></span><br><span class="line"><span class="javascript">        btn.addEventListener(<span class="string">'click'</span>, handleClick);</span></span><br><span class="line"><span class="javascript">        btn.addEventListener(<span class="string">'dblclick'</span>, handleDoubleClick);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"请再爱我一次！"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">handleDoubleClick</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"喜欢是追求，爱是克制！"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行上面的代码，你会发现双击按钮也会触发单击的事件。现在的需求是：<em>单击触发 <code>请再爱我一次！</code>，双击只触发 <code>喜欢是追求，爱是克制！</code>。</em></p>
+<p><strong>我发现：</strong> ① 快速且多次的点击按钮，双击事件只会触发一次（只会在第二次单击后执行，oh,double click is strict twice click!），单击事件则会每次都触发。</p>
+<p>下面我们来增加一些代码来满足我们的需求：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 函数防抖 - 实战一、单击是单击，双击是双击 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"js_button"</span>&gt;</span>别说话，点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'js_button'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> debounceFn = debounce(dispatcher, <span class="number">600</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        btn.addEventListener(<span class="string">'click'</span>, debounceFn);</span></span><br><span class="line"><span class="javascript">        btn.addEventListener(<span class="string">'dblclick'</span>, debounceFn);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">/* 事件分发器 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">dispatcher</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">switch</span> (event.type) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">case</span> <span class="string">'click'</span>:</span></span><br><span class="line"><span class="undefined">                    handleClick(event);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">case</span> <span class="string">'dblclick'</span>:</span></span><br><span class="line"><span class="undefined">                    handleDoubleClick(event);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">default</span>:</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.warn(<span class="string">'unknown event type'</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">/* 单击事件处理函数 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"请再爱我一次！"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">/* 双击事件处理函数 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">handleDoubleClick</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"喜欢是追求，爱是克制！"</span>);</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">/* 防抖函数 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> timer = <span class="literal">null</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> params = <span class="built_in">arguments</span>;</span></span><br><span class="line"><span class="undefined">                clearTimeout(timer);</span></span><br><span class="line"><span class="javascript">                timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                    fn &amp;&amp; fn.apply(<span class="keyword">this</span>, params);</span></span><br><span class="line"><span class="undefined">                &#125;, delay);</span></span><br><span class="line"><span class="undefined">            &#125;;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>测试运行，完美实现需求。</p>
+<h3 id="可立即执行防抖函数"><a href="#可立即执行防抖函数" class="headerlink" title="可立即执行防抖函数"></a>可立即执行防抖函数</h3><p>“为啥你这第一次点击时感觉跟卡顿了一样？能不能立即执行？”客户如是说。不得不说，有的时候客户提的需求虽然刁钻但又很合理。做函数防抖本就为了防止用户频繁操作触发事件，如果因为代码执行慢而导致用户疯狂点击岂不得不偿失、事与愿违？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 函数防抖 - 立即执行的防抖函数 */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay, immediate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">let</span> _immediate = immediate;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> params = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="keyword">if</span> (_immediate &amp;&amp; immediate) &#123;</span><br><span class="line">            fn &amp;&amp; fn.apply(<span class="keyword">this</span>, params);</span><br><span class="line">            _immediate = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            (_immediate || !immediate) &amp;&amp; fn &amp;&amp; fn.apply(<span class="keyword">this</span>, params);</span><br><span class="line">            _immediate = <span class="literal">true</span>;</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="可取消执行的防抖函数"><a href="#可取消执行的防抖函数" class="headerlink" title="可取消执行的防抖函数"></a>可取消执行的防抖函数</h3><p>大家应该都玩过 _QQ_ 吧！QQ 有一个功能是光标悬浮在好友头像上，主面板周围会弹出一个信息面板。如果光标快速在多个好友头像经过，该信息面板不会显示，只有光标在头像上悬浮一会儿后或光标停留在信息面板上，信息面板才会展示出来。（建议大家先去体验一番哦，体验完之后先思考你会如何实现~）</p>
+<p>假设我现在想实现类似的功能，我的思路是下面这样子：</p>
+<ol>
+<li>写一个防抖函数，避免光标快速经过头像后频繁触发显示信息面板事件；</li>
+<li>光标 mouseenter 到头像时执行防抖函数，实现光标悬浮一会儿后展示信息面板；</li>
+<li>假设光标悬浮时间较短，则 <strong>取消执行 <em>展示信息面板</em> 的方法</strong>，即完善步骤 _1_ 的防抖函数。</li>
+<li>假设信息面板已经展示出来，光标从头像移动至信息面板的过程中（光标移出头像且并未移入面板）执行 <em>隐藏信息面板</em> 的方法。如果光标从头像移动至信息面板的过程很短（信息面板还没隐藏），则 <strong>取消执行 <em>隐藏信息面板</em> 的方法</strong>。</li>
+</ol>
+<p>可取消的防抖函数比较简单，只需要添加一个方法去清除定时器即可。代码片段如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 函数防抖 - 可取消的防抖函数 */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">    </span><br><span class="line">    debounce.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> params = <span class="built_in">arguments</span>;</span><br><span class="line">        clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            fn &amp;&amp; fn.apply(<span class="keyword">this</span>, params);</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实战二-QQ的逻辑也不是那么复杂嘛"><a href="#实战二-QQ的逻辑也不是那么复杂嘛" class="headerlink" title="实战二 QQ的逻辑也不是那么复杂嘛"></a>实战二 QQ的逻辑也不是那么复杂嘛</h3><p>下面的代码实现了上述的需求。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        .avatar &#123;</span></span><br><span class="line"><span class="undefined">            width: 60px;</span></span><br><span class="line"><span class="undefined">            height: 60px;</span></span><br><span class="line"><span class="undefined">            background-color: gray;</span></span><br><span class="line"><span class="undefined">            text-align: center;</span></span><br><span class="line"><span class="undefined">            line-height: 60px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        .circle &#123;</span></span><br><span class="line"><span class="undefined">            border-radius: 50%;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">        .panel &#123;</span></span><br><span class="line"><span class="undefined">            display: none;</span></span><br><span class="line"><span class="undefined">            width: 100px;</span></span><br><span class="line"><span class="undefined">            height: 100px;</span></span><br><span class="line"><span class="undefined">            margin-top: 20px;</span></span><br><span class="line"><span class="undefined">            background-color: red;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"js_avatar"</span> <span class="attr">class</span>=<span class="string">"avatar circle"</span>&gt;</span>悬浮我<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"js_panel"</span> <span class="attr">class</span>=<span class="string">"panel"</span>&gt;</span>面板<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> isShowPanel = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> avatarElem = <span class="built_in">document</span>.getElementById(<span class="string">'js_avatar'</span>);</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> panelElem = <span class="built_in">document</span>.getElementById(<span class="string">'js_panel'</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> debounceFn = debounce(dispatcher, <span class="number">1000</span>, <span class="literal">false</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        avatarElem.addEventListener(<span class="string">'mouseenter'</span>, debounceFn);</span></span><br><span class="line"><span class="javascript">        avatarElem.addEventListener(<span class="string">'mouseleave'</span>, debounceFn);</span></span><br><span class="line"><span class="javascript">        panelElem.addEventListener(<span class="string">'mouseenter'</span>, debounceFn);</span></span><br><span class="line"><span class="javascript">        panelElem.addEventListener(<span class="string">'mouseleave'</span>, debounceFn);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">/* 事件分发器 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">dispatcher</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">switch</span> (event.type) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">case</span> <span class="string">'mouseenter'</span>:</span></span><br><span class="line"><span class="undefined">                    handleMouseEnter(event);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">case</span> <span class="string">'mouseleave'</span>:</span></span><br><span class="line"><span class="undefined">                    handleMouseLeave(event);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">default</span>:</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.warn(<span class="string">'unknown event type'</span>);</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">break</span>;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">showPanel</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"showPanel 我的逻辑被执行了"</span>);</span></span><br><span class="line"><span class="javascript">            panelElem.style.display = <span class="string">'block'</span>;</span></span><br><span class="line"><span class="javascript">            isShowPanel = <span class="literal">true</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">hidePanel</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">"hidePanel 我的逻辑被执行了"</span>);</span></span><br><span class="line"><span class="javascript">            panelElem.style.display = <span class="string">'none'</span>;</span></span><br><span class="line"><span class="javascript">            isShowPanel = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">        </span></span><br><span class="line"><span class="javascript">        <span class="comment">/* 单击事件处理函数 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">handleMouseEnter</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// showPanel(); // 不取消防抖，每次都会执行哦！</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// 取消隐藏</span></span></span><br><span class="line"><span class="undefined">            isShowPanel ? debounce.cancel() : showPanel();</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">/* 双击事件处理函数 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">handleMouseLeave</span>(<span class="params">event</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// hidePanel(); // 不取消防抖，每次都会执行哦！</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// 取消显示</span></span></span><br><span class="line"><span class="undefined">            !isShowPanel ? debounce.cancel() : hidePanel();</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">/* 防抖函数 */</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay, immediate</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> timer = <span class="literal">null</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> _immediate = immediate;</span></span><br><span class="line"><span class="undefined">            </span></span><br><span class="line"><span class="javascript">            debounce.cancel = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="undefined">                clearTimeout(timer);</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> params = <span class="built_in">arguments</span>;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (_immediate &amp;&amp; immediate) &#123;</span></span><br><span class="line"><span class="javascript">                    fn &amp;&amp; fn.apply(<span class="keyword">this</span>, params);</span></span><br><span class="line"><span class="javascript">                    _immediate = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">                clearTimeout(timer);</span></span><br><span class="line"><span class="javascript">                timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    (_immediate || !immediate) &amp;&amp; fn &amp;&amp; fn.apply(<span class="keyword">this</span>, params);</span></span><br><span class="line"><span class="javascript">                    _immediate = <span class="literal">true</span>;</span></span><br><span class="line"><span class="undefined">                &#125;, delay);</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2020/11/09/函数防抖与函数节流/" data-id="ckippk5ad0000lw4dif388jki" class="article-share-link">分享</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数节流/">函数节流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/函数防抖/">函数防抖</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/12/09/WebRTC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          WebRTC
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/01/v2ray搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">V2ray 搭建教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  
+  <div class="gitalk" id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: 'fb0df633eecedc41127e',
+        clientSecret: '78a4a1deb351f20b52f5984440d19e56e10ef3c6',
+        repo: 'ultravires.github.io',
+        owner: 'ultravires',
+        admin: ['ultravires'],
+        // id: location.pathname,      // Ensure uniqueness and length less than 50
+        id: md5(location.pathname),
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+            </div>
+          
+          
+        </section>
+        
+          <aside id="sidebar">
+  
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/15/Git commit emoji 指南/">Git commit emoji 指南</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/15/设计模式（二）：单例模式/">设计模式（二）：单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/11/Base64的编码原理及实现/">Base64 的编码原理及代码实现</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/09/WebRTC/">WebRTC</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/09/函数防抖与函数节流/">函数防抖与函数节流</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/npm/">npm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/捉BUG/">捉BUG</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/推荐系统/">推荐系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ECMAScript6/" style="font-size: 20px;">ECMAScript6</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/VPN/" style="font-size: 10px;">VPN</a> <a href="/tags/matlab/" style="font-size: 10px;">matlab</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/函数节流/" style="font-size: 10px;">函数节流</a> <a href="/tags/函数防抖/" style="font-size: 10px;">函数防抖</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/异步编程/" style="font-size: 10px;">异步编程</a> <a href="/tags/推荐系统/" style="font-size: 15px;">推荐系统</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/网易云/" style="font-size: 10px;">网易云</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/遗传算法/" style="font-size: 10px;">遗传算法</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月15日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020年12月9日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020年11月9日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">2020年3月1日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">2019年12月15日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月7日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">2019年10月6日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">2019年5月17日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月22日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月19日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月12日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">2019年3月11日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月21日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月19日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月17日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">2019年2月16日</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年1月16日</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  
+</aside>
+          <a class="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth'})">回到顶部</a>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div class="footer-text">
+      <p>我来，我见，我征服</p>
+      <p>我们的征途是星辰大海</p>
+    </div>
+    <div id="footer-info" class="inner">
+      <i>I wanna be a <b>HACKER</b><i> &copy; 2020 <a href="https://www.github.com/ultravires">ultravires</a><br>
+      Powered by <a href="https://www.sanphantom.com/" target="_blank">Sanphantom</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/security" class="mobile-nav-link">信息安全</a>
+  
+    <a href="/deeplearning" class="mobile-nav-link">深度学习</a>
+  
+    <a href="/algorithm" class="mobile-nav-link">算法学习</a>
+  
+    <a href="/web" class="mobile-nav-link">网站建设</a>
+  
+    <a href="/life" class="mobile-nav-link">程序人生</a>
+  
+    <a href="/bug" class="mobile-nav-link">捉BUG</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于作者</a>
+  
+</nav>
+    
+
+<script
+  src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"
+  crossorigin="anonymous">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/toc.js"></script>
+
+
+
+  </div>
+</body>
+</html>
