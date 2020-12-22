@@ -507,7 +507,7 @@ body {
 .search-form-input {
   border: none;
   background: none;
-  color: #fff;
+  color: #999;
   width: 100%;
   font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   outline: none;
@@ -639,6 +639,7 @@ a.article-title:hover {
 }
 .article-entry {
   zoom: 1;
+  word-break: break-all;
   color: #fff;
   padding: 0 20px;
 }
@@ -1678,7 +1679,7 @@ pre .javascript .function {
 .search-form-input {
   border: none;
   background: none;
-  color: #fff;
+  color: #999;
   width: 100%;
   font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   outline: none;
