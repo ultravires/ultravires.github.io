@@ -5,21 +5,22 @@
   
 
   
-  <title>标签: 设计模式 | 渝</title>
+  <title>LeetCode_1_Two Sum | 渝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
   
-  <meta name="description" content="ultravires&apos; blog">
-<meta name="keywords" content="博客,浅安,ultravires,孤的容颜早已不是年前丶,hacker,develop,font-end,developer,github">
-<meta property="og:type" content="website">
-<meta property="og:title" content="渝">
-<meta property="og:url" content="https://ultravires.github.io/tags/设计模式/index.html">
+  <meta name="description" content="Two Sum Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.You may assume that each input would have exactly one solution, and you">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode_1_Two Sum">
+<meta property="og:url" content="https://ultravires.github.io/2020/12/22/LeetCode_1_Two Sum/index.html">
 <meta property="og:site_name" content="渝">
-<meta property="og:description" content="ultravires&apos; blog">
+<meta property="og:description" content="Two Sum Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.You may assume that each input would have exactly one solution, and you">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-12-22T09:09:14.387Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="渝">
-<meta name="twitter:description" content="ultravires&apos; blog">
+<meta name="twitter:title" content="LeetCode_1_Two Sum">
+<meta name="twitter:description" content="Two Sum Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.You may assume that each input would have exactly one solution, and you">
   
     <link rel="alternate" href="/atom.xml" title="渝" type="application/atom+xml">
   
@@ -142,87 +143,96 @@
       <div class="outer">
         <section id="main">
           
-            <div class="posts infinite">
-              
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/12/15/设计模式（二）：单例模式/" class="archive-article-date">
-  <time datetime="2020-12-15T01:44:40.000Z" itemprop="datePublished">12月 15</time>
+            <div class="posts">
+              <article id="post-LeetCode_1_Two Sum" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/22/LeetCode_1_Two Sum/" class="article-date">
+  <time datetime="2020-12-22T09:00:00.000Z" itemprop="datePublished">2020-12-22</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法学习/">算法学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/15/设计模式（二）：单例模式/">设计模式（二）：单例模式</a>
+    <h1 class="article-title" itemprop="name">
+      LeetCode_1_Two Sum
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
       
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/12/15/设计模式（一）：订阅发布者模式/" class="archive-article-date">
-  <time datetime="2019-12-15T08:36:30.000Z" itemprop="datePublished">12月 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/15/设计模式（一）：订阅发布者模式/">设计模式（一）：观察者模式与发布/订阅模式</a>
-    </h1>
-  
+        <h2 id="Two-Sum"><a href="#Two-Sum" class="headerlink" title="Two Sum"></a>Two Sum</h2><blockquote>
+<p>Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.<br>You may assume that each input would have exactly one solution, and you may not use the same element twice.<br>You can return the answer in any order.</p>
+</blockquote>
+<p><strong>Example1:</strong></p>
+<blockquote>
+<p><strong>Input</strong>: nums = [2,7,11,15], target = 9<br><strong>Output</strong>: [0,1]<br><strong>Output</strong>: Because nums[0] + nums[1] == 9, we return [0, 1].</p>
+</blockquote>
+<p><strong>Example 2:</strong></p>
+<blockquote>
+<p><strong>Input</strong>: nums = [3,2,4], target = 6<br><strong>Output</strong>: [1,2]</p>
+</blockquote>
+<p><strong>Example 3:</strong></p>
+<blockquote>
+<p><strong>Input</strong>: nums = [3,3], target = 6<br><strong>Output</strong>: [0,1]</p>
+</blockquote>
+<p><strong>Constraints:</strong></p>
+<blockquote>
+<p>2 &lt;= nums.length &lt;= 10<sup>3</sup><br>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup><br>-10<sup>9</sup> &lt;= target &lt;= 10<sup>9</sup><br><strong>Only one valid answer exists.</strong></p>
+</blockquote>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number[]&#125; nums</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; target</span></span><br><span class="line"><span class="comment"> * @return &#123;number[]&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> twoSum = <span class="function"><span class="keyword">function</span>(<span class="params">nums, target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">2</span> &amp;&amp; nums[<span class="number">0</span>] + nums[<span class="number">1</span>] == target) &#123;</span><br><span class="line">        <span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, length = nums.length; i &lt; length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = i + <span class="number">1</span>, length = nums.length; j &lt; length; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[j] == target) &#123;</span><br><span class="line">                <span class="keyword">return</span> [i, j]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [<span class="literal">undefined</span>, <span class="literal">undefined</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>Origin:</strong></p>
+<ul>
+<li><a href="https://leetcode-cn.com/problems/two-sum/" target="_blank" rel="noopener">LeetCode - Two Sum</a></li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/18/设计模式（三）：简单工厂模式/" class="archive-article-date">
-  <time datetime="2019-07-17T16:00:00.000Z" itemprop="datePublished">7月 18</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/设计模式（三）：简单工厂模式/">设计模式（三）：简单工厂模式</a>
-    </h1>
-  
+    </div>
+    
+      <footer class="article-footer">
+        <a data-url="https://ultravires.github.io/2020/12/22/LeetCode_1_Two Sum/" data-id="ckj16v6ep0000ik4dw8k7jwmp" class="article-share-link">分享</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
 
-    </header>
+      </footer>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/12/22/LeetCode_2_Add Two Numbers/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          LeetCode_1_Add Two Numbers
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/12/15/Git commit emoji 指南/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Git commit emoji 指南</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
+
+
   
 
 
