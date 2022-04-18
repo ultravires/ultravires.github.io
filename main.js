@@ -1,1 +1,1 @@
-console.log('https://ultravires.github.io/');
+import config from './config';
