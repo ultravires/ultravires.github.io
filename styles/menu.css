@@ -1,0 +1,30 @@
+.gh-menu {
+  display: flex;
+  align-items: center;
+  column-gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+
+.gh-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gh-menu-item > a {
+  color: #475669;
+  text-decoration: none;
+  transition: color .3s ease-in-out;
+}
+
+.gh-menu-item > a:hover {
+  text-underline-offset: .125rem;
+}
+
+.gh-menu-item > a > i {
+  margin-right: .125rem;
+}
