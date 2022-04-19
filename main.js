@@ -22,13 +22,16 @@ for (let i = 0, len = config.banner.length; i < len; ++i) {
 document.getElementById('banner').append(carousel);
 
 async function getPosts(category) {
-  return fetch(`https://api.github.com/repos/Honye/notes/contents/${category}`, {
-    method: 'GET'
-  }).then((res) => {
+  return fetch(
+    `https://api.github.com/repos/${config.github.user}/${config.github.user}.github.io/contents/${category}`,
+    {
+      method: 'GET'
+    }
+  ).then((res) => {
     return res.json();
   });
 }
-getPosts('Android').then((res) => {
+getPosts('articles').then((res) => {
   for (let i = 0, len = res.length; i < len; ++i) {
     const post = new Post(res[i]);
     document.getElementById('posts').append(post);
