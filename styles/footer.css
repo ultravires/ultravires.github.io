@@ -1,6 +1,8 @@
 .gh-footer {
   position: fixed;
   width: 100%;
+  padding: .125rem;
+  font-size: 12px;
   left: 0;
   bottom: 0;
 }
