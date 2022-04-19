@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>正在阅读</title>
   <script src="./libs/markdown-it.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
   <style>
     .container {
       width: min(100%, 750px);
@@ -28,8 +30,8 @@
     }).then((res) => {
       const markdown = window.markdownit();
       const html = markdown.render(res);
-      console.log(html);
       document.getElementById('article').innerHTML = html;
+      hljs.highlightAll();
     });
   </script>
 </body>
