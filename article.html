@@ -7,9 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>正在阅读</title>
   <script src="./libs/markdown-it.min.js"></script>
+  <style>
+    .container {
+      width: min(100%, 750px);
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
-  <article id="article"></article>
+  <div class="container">
+    <article id="article"></article>
+  </div>
   <script>
     const searchParams = new URLSearchParams(window.location.search);
     const download_url = searchParams.get('download_url');
