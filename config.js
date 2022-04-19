@@ -24,5 +24,9 @@ export default {
       title: '辞去归来兮',
       image: '/public/images/happy.png'
     }
-  ]
+  ],
+
+  github: {
+    user: 'ultravires'
+  }
 };

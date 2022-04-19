@@ -7,6 +7,7 @@ export class Post extends HTMLDivElement {
     }
 
     const image = document.createElement('img');
+    image.loading = 'lazy';
     image.src = 'https://www.whbwiki.com/wp-content/uploads/2021/08/u32683474932946025097fm26fmtautogp0.webp';
 
     const thumbnail = document.createElement('thumbnail');

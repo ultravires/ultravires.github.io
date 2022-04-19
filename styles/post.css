@@ -15,6 +15,7 @@
 }
 
 .gh-post__thumbnail {
+  flex-shrink: 0;
   width: 33.333333333333%;
 }
 
