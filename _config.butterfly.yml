@@ -10,7 +10,7 @@ menu:
   杂项||fas fa-list:
     音乐: /music/ || fas fa-music
     电影: /movies/ || fas fa-video
-  # 链接: /link/ || fas fa-link
+  链接: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 
 # Code Blocks (代碼相關)
@@ -81,10 +81,10 @@ avatar:
   effect: false
 
 # Disable all banner image
-disable_top_img: true
+disable_top_img: false
 
 # The banner image of home page
-index_img:
+index_img: https://s2.loli.net/2022/04/21/9ICaB8kRtyLUhf7.jpg
 
 # If the banner of page not setting, it will show the top_img
 default_top_img:
@@ -112,7 +112,7 @@ category_per_img:
 
 cover:
   # display the cover or not (是否顯示文章封面)
-  index_enable: false
+  index_enable: true
   aside_enable: false
   archives_enable: false
   # the position of cover in home page (封面顯示的位置)
@@ -165,7 +165,7 @@ index_post_content:
 
 # anchor
 # when you scroll in post, the URL will update according to header id.
-anchor: false
+anchor: true
 
 # Post
 # --------------------------------------
@@ -186,20 +186,17 @@ post_copyright:
 
 # Sponsor/reward
 reward:
-  enable: false
+  enable: true
   QR_code:
-    # - img: /img/wechat.jpg
-    #   link:
-    #   text: wechat
-    # - img: /img/alipay.jpg
-    #   link:
-    #   text: alipay
+    - img: /imgs/wechat.jpeg
+      link:
+      text: wechat
 
 # Post edit
 # Easily browse and edit blog source code online.
 post_edit:
   enable: false
-  # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
+  # url: https://github.com/ultravires/ultravies.github.io/edit/hexo-blog/source/
   # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
   url:
 
