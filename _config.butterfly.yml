@@ -7,7 +7,8 @@ menu:
   归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  杂项||fas fa-list:
+  收藏||fas fa-list:
+    图库: /gallery/ || fas fa-images
     音乐: /music/ || fas fa-music
     电影: /movies/ || fas fa-video
   链接: /link/ || fas fa-link
@@ -597,7 +598,9 @@ subtitle:
   # subtitle 會先顯示 source , 再顯示 sub 的內容
   source: 1
   # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
-  sub: 爱生活，爱熊可
+  sub:
+    - 爱生活，爱熊可
+    - 完成比完美更重要
 
 # Loading Animation (加載動畫)
 preloader: true
