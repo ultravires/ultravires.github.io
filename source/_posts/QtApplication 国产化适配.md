@@ -1,3 +1,9 @@
+---
+title: QtApplication 国产化适配
+categories:
+  - QT
+---
+
 ## 安装 QT Creator
 
 官方下载地址：[https://download.qt.io/archive/qt/](https://download.qt.io/archive/qt/)
