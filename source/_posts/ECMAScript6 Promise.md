@@ -8,7 +8,7 @@ tags:
 
 ## Promise
 
-Promise 对象是一个等待处理结果的占位符。它具有三个互斥状态：_fulfilled_, _rejected_, _pending_ 。
+Promise 对象是一个等待处理结果的占位符。它具有三个互斥状态：`fulfilled`, `rejected`, `pending` 。
 
 ```js
 const resolve = (res) => {
