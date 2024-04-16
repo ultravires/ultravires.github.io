@@ -2,6 +2,8 @@
 title: QtApplication 国产化适配
 categories:
   - QT
+cover: https://source.unsplash.com/random
+top_img: https://source.unsplash.com/random
 ---
 
 ## 安装 QT Creator

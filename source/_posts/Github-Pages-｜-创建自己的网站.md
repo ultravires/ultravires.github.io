@@ -2,6 +2,9 @@
 title: Github Pages ｜ 创建自己的网站
 date: 2024-04-12 11:46:47
 tags:
+  - GitHub
+cover: https://source.unsplash.com/random
+top_img: https://source.unsplash.com/random
 ---
 
 > [Github Pages](https://pages.github.com/)
