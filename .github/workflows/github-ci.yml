@@ -22,6 +22,6 @@ jobs:
           npm version
           npm install
           npm run clean
-          npm run algolia
           npm run build
+          npm run algolia
           npm run deploy
