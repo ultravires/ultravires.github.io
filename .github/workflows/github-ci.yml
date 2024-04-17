@@ -12,6 +12,7 @@ jobs:
         env:
           HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
         run: |
+          npm version
           npm install
           npm run clean
           npm run algolia
