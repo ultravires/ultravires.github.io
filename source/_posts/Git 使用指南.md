@@ -4,8 +4,6 @@ categories:
   - Git
 tags:
   - Git
-cover: https://source.unsplash.com/random
-top_img: https://source.unsplash.com/random
 ---
 
 ## 常见问题

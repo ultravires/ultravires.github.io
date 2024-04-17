@@ -4,6 +4,7 @@
   "description": "Blog",
   "private": true,
   "scripts": {
+    "algolia": "hexo algolia",
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
@@ -37,6 +38,7 @@
   "homepage": "https://github.com/ultravires/ultravires.github.io#readme",
   "dependencies": {
     "hexo": "^6.3.0",
+    "hexo-algolia": "^1.3.2",
     "hexo-deployer-git": "^3.0.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",

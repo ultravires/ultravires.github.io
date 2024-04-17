@@ -4,8 +4,6 @@ categories:
   - Front-End
 tags:
   - Promise
-cover: https://source.unsplash.com/random
-top_img: https://source.unsplash.com/random
 ---
 
 ## Promise

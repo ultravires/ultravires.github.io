@@ -65,6 +65,12 @@ gitalk:
   admin: ultravires
   option:
 
+# Search
+algolia:
+  applicationID: AKWVEI7J63
+  indexName: ultravires.github.io
+  apiKey: 7a14faa733a46057d98726e018afe153
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
