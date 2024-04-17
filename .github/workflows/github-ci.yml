@@ -6,7 +6,7 @@ on:
 jobs:
   deployment:
     runs-on: ubuntu-latest
-    environment: production
+    environment: github-pages
     steps:
       - uses: actions/checkout@v4 # 拉取博客最新源文件
 
@@ -17,7 +17,7 @@ jobs:
 
       - name: Deploy
         env:
-          HEXO_ALGOLIA_INDEXING_KEY: ${{ env.HEXO_ALGOLIA_INDEXING_KEY }}
+          HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
         run: |
           npm version
           npm install
