@@ -255,7 +255,7 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus
-  use: Gitalk # Valine,Disqus
+  use: Livere # Valine,Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
@@ -280,13 +280,13 @@ disqusjs:
 # livere (來必力)
 # https://www.livere.com/
 livere:
-  uid:
+  uid: MTAyMC81OTc1OS8zNjIyMQ==
 
 # gitalk
 # https://github.com/gitalk/gitalk
 gitalk:
   client_id: fb0df633eecedc41127e
-  client_secret: 
+  client_secret: ${GITALK_TOKEN}
   repo: ultravires.github.io
   owner: ultravires
   admin: ultravires
