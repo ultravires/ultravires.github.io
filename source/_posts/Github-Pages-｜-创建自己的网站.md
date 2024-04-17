@@ -1,8 +1,9 @@
 ---
 title: Github Pages ｜ 创建自己的网站
-date: 2024-04-12 11:46:47
 tags:
   - GitHub
+abbrlink: 682c0781
+date: 2024-04-12 11:46:47
 ---
 
 > [Github Pages](https://pages.github.com/)

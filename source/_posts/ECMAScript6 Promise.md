@@ -4,6 +4,7 @@ categories:
   - Front-End
 tags:
   - Promise
+abbrlink: 5a6476f0
 ---
 
 ## Promise

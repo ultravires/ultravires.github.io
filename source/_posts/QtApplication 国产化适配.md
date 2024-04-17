@@ -2,6 +2,7 @@
 title: QtApplication 国产化适配
 categories:
   - QT
+abbrlink: 5cc5ed96
 ---
 
 ## 安装 QT Creator
