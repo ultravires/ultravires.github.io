@@ -9,6 +9,8 @@ jobs:
     environment: production
     steps:
       - name: Deploy
+        with:
+          node-version: '20'
         env:
           HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
         run: |
