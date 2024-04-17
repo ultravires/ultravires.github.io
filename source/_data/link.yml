@@ -1,14 +1,17 @@
 - class_name: 网站
   class_desc: 值得推荐的网站
   link_list:
-    - name: Youtube
-      link: https://www.youtube.com/
-      avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
-      descr: 视频网站
-    - name: 微博
-      link: https://www.weibo.com/
-      avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
-      descr: 中国最大社交分享平台
+    - name: PugJS
+      link: https://pugjs.org/zh-cn/api/getting-started.html
+      # avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
+      descr: 前端模板渲染引擎
+    - name: JSTransformers
+      link: https://github.com/jstransformers/jstransformer
+      descr: JSTransformer 将许多优秀的模板编译器和编译器统一为一个标准化的API
+    - name: huggingface | transformers
+      link: https://huggingface.co/docs/transformers/v4.39.3/zh/index
+      # avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
+      descr: 为 PyTorch、TensorFlow 和 JAX 打造的先进的机器学习工具
     - name: 个人简历
       link: https://ultravires.github.io/resume/
       descr: 向成渝的个人简历
