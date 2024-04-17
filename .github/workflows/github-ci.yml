@@ -8,9 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Deploy
+      - uses: actions/checkout@v4 # 拉取博客最新源文件
+
+      - name: Use Node
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Deploy
         env:
           HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
         run: |
