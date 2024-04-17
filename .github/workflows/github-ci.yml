@@ -1,7 +1,7 @@
 name: Deployment
 run-name: ${{ github.actor }}
 on:
-  [push]:
+  push:
     branches:
       - hexo-blog
 jobs:
