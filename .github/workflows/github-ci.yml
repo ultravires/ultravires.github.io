@@ -17,7 +17,7 @@ jobs:
 
       - name: Deploy
         env:
-          HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
+          HEXO_ALGOLIA_INDEXING_KEY: ${{ env.HEXO_ALGOLIA_INDEXING_KEY }}
         run: |
           npm version
           npm install
