@@ -255,7 +255,7 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus
-  use: Livere # Valine,Disqus
+  use: Livere # Valine,Disqus, Livere
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
@@ -341,9 +341,12 @@ twikoo:
 # Giscus
 # https://giscus.app/
 giscus:
-  repo:
-  repo_id:
-  category_id:
+  repo: ultravires/ultravires.github.io
+  repo_id: R_kgDOHMWLag
+  category: General
+  category_id: DIC_kwDOHMWLas4CevT4
+  reactions_enabled: true
+  input_position: top
   theme:
     light: light
     dark: dark
