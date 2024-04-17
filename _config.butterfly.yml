@@ -285,11 +285,11 @@ livere:
 # gitalk
 # https://github.com/gitalk/gitalk
 gitalk:
-  client_id:
-  client_secret:
-  repo:
-  owner:
-  admin:
+  client_id: fb0df633eecedc41127e
+  client_secret: 
+  repo: ultravires.github.io
+  owner: ultravires
+  admin: ultravires
   option:
 
 # valine
