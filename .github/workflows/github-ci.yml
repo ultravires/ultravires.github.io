@@ -1,18 +1,21 @@
-name: Auto deploy when something push request.
+name: Deployment
 run-name: ${{ github.actor }}
-on: [push]
+on:
+  [push]:
+    branches:
+      - hexo-blog
 jobs:
-  check-bats-version:
+  deployment:
     runs-on: ubuntu-latest
+    environment: production
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Deploy
         with:
           node-version: '20'
-      - run: npm install -g bats
-      - run: bats -v
-      - run: npm install
-      - run: npm run clean
-      - run: npm run algolia
-      - run: npm run build
-      - run: npm run deploy
+        env:
+          HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
+        run: npm install
+        run: npm run clean
+        run: npm run algolia
+        run: npm run build
+        run: npm run deploy
