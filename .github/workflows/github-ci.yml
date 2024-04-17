@@ -14,8 +14,8 @@ jobs:
           node-version: '20'
         env:
           HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
-      - run: npm install
-      - run: npm run clean
-      - run: npm run algolia
-      - run: npm run build
-      - run: npm run deploy
+        run: npm install
+        run: npm run clean
+        run: npm run algolia
+        run: npm run build
+        run: npm run deploy
