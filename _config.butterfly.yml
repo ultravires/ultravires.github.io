@@ -14,6 +14,7 @@ menu:
   链接||fas fa-link:
     学习: /link/ || fas fa-link
     友链: /link/friendly/ || fas fa-link
+  时刻: /moment || fas fa-moment
   关于: /about/ || fas fa-heart
 
 # Code Blocks (代碼相關)
@@ -87,10 +88,10 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: https://source.unsplash.com/random
+index_img: false
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: https://source.unsplash.com/random
+default_top_img: false
 
 # The banner image of archive page
 archive_img: https://source.unsplash.com/random
@@ -152,7 +153,7 @@ post_meta:
 
 # wordcount (字數統計)
 wordcount:
-  enable: false
+  enable: true
   post_wordcount: true
   min2read: true
   total_wordcount: true
@@ -191,7 +192,7 @@ post_copyright:
 reward:
   enable: true
   QR_code:
-    - img: /imgs/wechat.jpeg
+    - img: /img/wechat.jpeg
       link:
       text: wechat
 
@@ -210,7 +211,7 @@ related_post:
   date_type: created # or created or updated 文章日期顯示創建日或者更新日
 
 # figcaption (圖片描述文字)
-photofigcaption: false
+photofigcaption: true
 
 # post_pagination (分頁)
 # value: 1 || 2 || false
@@ -255,7 +256,7 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus
-  use: Livere # Valine,Disqus, Livere
+  use: Waline # Valine,Disqus, Livere
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
@@ -306,9 +307,9 @@ valine:
 # waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
 waline:
-  serverURL: # Waline server address url
+  serverURL: https://waline-comment-bay.vercel.app/ # Waline server address url
   bg: # waline background
-  visitor: false
+  visitor: true
   option:
 
 # utterances
@@ -406,7 +407,7 @@ footer:
 
 # Baidu Analytics
 # https://tongji.baidu.com/web/welcome/login
-baidu_analytics:
+baidu_analytics: 62a4c86cff3d70d36ddfbcf12e742575
 
 # Google Analytics
 # https://analytics.google.com/analytics/web/
@@ -563,7 +564,7 @@ display_mode: light
 
 # Beautify (美化頁面顯示)
 beautify:
-  enable: false
+  enable: true
   field: post # site/post
   title-prefix-icon: # '\f0c1'
   title-prefix-icon-color: # '#F47466'
@@ -801,6 +802,8 @@ lazyload:
   field: site # site/post
   placeholder:
   blur: false
+
+rightside_scroll_percent: true
 
 # PWA
 # See https://github.com/JLHwung/hexo-offline
