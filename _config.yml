@@ -133,6 +133,6 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/ultravires/ultravires.github.io.git
+  repo: https://github.com/ultravires/ultravires.github.io.git@${{ GITHUB_TOKEN }}
   branch: main
   # message: Update

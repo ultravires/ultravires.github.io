@@ -21,7 +21,7 @@ jobs:
         env:
           HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPO: https://github.com/ultravires/ultravires.github.io
+          GITHUB_REPO: github.com/ultravires/ultravires.github.io
         run: |
           git config --global user.name "ultravires"
           git config --global user.email "x555666777@qq.com"
@@ -31,7 +31,4 @@ jobs:
           npm run clean
           npm run build
           npm run algolia
-          cd ./public/
-          git add .
-          git commit -m "CI build at `date +"%Y-%m-%d %H:%M:%S"`"
-          git push --force --quiet "${GH_TOKEN}@${GITHUB_REPO}" main:main
+          npm run deploy
