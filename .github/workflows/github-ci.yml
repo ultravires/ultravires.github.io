@@ -25,6 +25,7 @@ jobs:
         run: |
           git config --global user.name "ultravires"
           git config --global user.email "x555666777@qq.com"
+          git config advice.addIgnoredFile false
           npm version
           npm install
           npm run clean
