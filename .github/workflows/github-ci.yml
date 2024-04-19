@@ -20,8 +20,7 @@ jobs:
       - name: Deploy
         env:
           HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPO: github.com/ultravires/ultravires.github.io
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "ultravires"
           git config --global user.email "x555666777@qq.com"
