@@ -480,8 +480,8 @@ index_site_info_top:
 # The height of top_img, eg: 300px/300em/300rem (主頁top_img高度)
 index_top_img_height:
 
-post_site_info_top:
-post_top_img_height:
+post_site_info_top: 40%
+post_top_img_height: 400px
 
 # The user interface setting of category and tag page (category和tag頁的UI設置)
 # index - same as Homepage UI (index 值代表 UI將與首頁的UI一樣)
