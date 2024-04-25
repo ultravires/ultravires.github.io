@@ -14,7 +14,7 @@ menu:
   链接||fas fa-link:
     学习: /link/ || fas fa-link
     友链: /link/friendly/ || fas fa-link
-  时刻: /moment || fas fa-moment
+  时刻: /moment || fas fa-flushed
   关于: /about/ || fas fa-heart
 
 # Code Blocks (代碼相關)
