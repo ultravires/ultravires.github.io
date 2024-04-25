@@ -51,7 +51,17 @@
       newEle.addEventListener('click', clickFn);
       dialog.close();
     }
-  },{
+  }, {
+    label: '切换侧栏',
+    icon: 'fas fa-arrows-alt-h',
+    onClick() {
+      const $htmlDom = document.documentElement.classList;
+      const saveStatus = $htmlDom.contains('hide-aside') ? 'show' : 'hide';
+      window.saveToLocal.set('aside-status', saveStatus, 2);
+      $htmlDom.toggle('hide-aside');
+      dialog.close();
+    }
+  }, {
     divider: true
   }, {
     icon: 'iconfont icon-privacy-policy',

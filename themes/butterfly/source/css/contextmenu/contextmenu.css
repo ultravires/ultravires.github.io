@@ -60,10 +60,10 @@
 .context-menu__icon--prefix {
   display: inline-block;
   margin-right: .5rem;
-  font-size: 16px;
+  font-size: 20px;
+  width: 1.5rem;
 }
 
 .context-menu__icon--prefix.iconfont {
   font-size: 20px;
-  width: 1.5rem;
 }
