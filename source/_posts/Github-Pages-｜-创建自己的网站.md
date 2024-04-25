@@ -1,14 +1,16 @@
 ---
-title: Github Pages ｜ 创建自己的网站
+title: GitHub Pages ｜ 创建自己的网站
+categories:
+  - GitHub Pages
 tags:
   - GitHub
 abbrlink: 682c0781
 date: 2024-04-12 11:46:47
 ---
 
-> [Github Pages](https://pages.github.com/)
+> [GitHub Pages](https://pages.github.com/)
 
-`Github Pages` 可以通过 `Github` 创建个人/组织网站，也可以为 `Github` 项目单独创建网站。
+`GitHub Pages` 可以通过 `GitHub` 创建个人/组织网站，也可以为 `GitHub` 项目单独创建网站。
 
 ## 项目网站
 
