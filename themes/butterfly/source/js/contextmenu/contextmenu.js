@@ -1,8 +1,56 @@
 (() => {
+  const handleThemeChange = (mode) => {
+    const globalFn = window.globalFn || {};
+    const themeChange = globalFn.themeChange || {};
+    if (!themeChange) {
+      return;
+    }
+
+    Object.keys(themeChange).forEach((key) => {
+      const themeChangeFn = themeChange[key];
+      if (['disqus', 'disqusjs'].includes(key)) {
+        setTimeout(() => themeChangeFn(mode), 300);
+      } else {
+        themeChangeFn(mode);
+      }
+    })
+  }
+  const dialog = document.createElement('dialog');
+  const ul = document.createElement('ul');
+  dialog.id = 'context-menu';
+  dialog.classList.add('context-menus__dialog');
+  ul.classList.add('context-menus');
+
   const menus = [{
     icon: 'iconfont icon-book-open',
     label: '阅读模式',
-    onClick() {}
+    hidden: !GLOBAL_CONFIG_SITE.isPost,
+    onClick() {
+      const $body = document.body;
+      $body.classList.add('read-mode');
+      
+      const clickFn = () => {
+        $body.classList.remove('read-mode');
+        newEle.remove();
+        newEle.removeEventListener('click', clickFn);
+      }
+
+      const exitReadmodeButton = document.querySelector('.exit-readmode');
+      if (exitReadmodeButton) {
+        $body.classList.remove('read-mode');
+        exitReadmodeButton.remove();
+        exitReadmodeButton.removeEventListener('click', clickFn);
+        return;
+      }
+
+      const newEle = document.createElement('button');
+      newEle.type = 'button';
+      newEle.className = 'fas fa-sign-out-alt exit-readmode';
+      $body.appendChild(newEle);
+
+      newEle.addEventListener('click', clickFn);
+      dialog.close();
+    }
   },{
     divider: true
   }, {
@@ -15,19 +63,34 @@
     divider: true
   }, {
     icon: 'iconfont icon-theme',
-    label: '切换主题'
+    label: '切换主题',
+    onClick() {
+      const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      if (willChangeMode === 'dark') {
+        window.activateDarkMode();
+        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night);
+      } else {
+        window.activateLightMode();
+        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day);
+      }
+      saveToLocal.set('theme', willChangeMode, 2);
+      handleThemeChange(willChangeMode);
+      dialog.close();
+    }
   }, {
     icon: 'iconfont icon-language',
-    label: '语言转换'
+    label: '简繁转换',
+    onClick() {
+      window.translateFn.translatePage();
+      dialog.close();
+    }
   }];
-  const dialog = document.createElement('dialog');
-  const ul = document.createElement('ul');
-  dialog.id = 'context-menu';
-  dialog.classList.add('context-menus__dialog');
-  ul.classList.add('context-menus');
 
   for (let i = 0, len = menus.length; i < len; i++) {
     const menu = menus[i];
+    if (menu.hidden) {
+      continue;
+    }
     if (menu.divider === true) {
       const hr = document.createElement('hr');
       ul.appendChild(hr);
@@ -39,6 +102,7 @@
       icon.classList.add('context-menu__icon--prefix', ...(menu.icon?.split(' ') || []));
       li.append(icon, span);
       li.classList.add('context-menu');
+      li.onclick = menu.onClick;
       ul.appendChild(li);
     }
   }
