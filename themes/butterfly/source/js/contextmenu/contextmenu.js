@@ -40,6 +40,7 @@
         $body.classList.remove('read-mode');
         exitReadmodeButton.remove();
         exitReadmodeButton.removeEventListener('click', clickFn);
+        dialog.close();
         return;
       }
 
@@ -59,6 +60,15 @@
       const saveStatus = $htmlDom.contains('hide-aside') ? 'show' : 'hide';
       window.saveToLocal.set('aside-status', saveStatus, 2);
       $htmlDom.toggle('hide-aside');
+      dialog.close();
+    }
+  }, {
+    label: '直达评论',
+    icon: 'fas fa-comments',
+    onClick() {
+      const a = document.createElement('a');
+      a.href = '#post-comment';
+      a.click();
       dialog.close();
     }
   }, {
