@@ -65,6 +65,7 @@
   }, {
     label: '直达评论',
     icon: 'fas fa-comments',
+    hidden: !GLOBAL_CONFIG_SITE.isPost,
     onClick() {
       const a = document.createElement('a');
       a.href = '#post-comment';
