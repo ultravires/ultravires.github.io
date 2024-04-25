@@ -1,14 +1,15 @@
 ---
 title: Butterfly 主题修改：增加波浪效果
-date: 2024-04-25 09:40:45
 tags:
   - Butterfly
   - Hexo
+abbrlink: 1c9f23df
+date: 2024-04-25 09:40:45
 ---
 
 在 `themes/butterfly/layout/includes/header` 下新增 `wave.pug` 文件:
 
-```pug [wave.pug]
+```pug
 <svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
   <defs>
     <path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
@@ -24,14 +25,13 @@ tags:
 
 在 `themes/butterfly/layout/includes/header/index.pug` 文件中的指定位置处新增如下代码：
 
-```pug
+```diff
 header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
   !=partial('includes/header/nav', {}, {cache: true})
   if top_img !== false
     if is_post()
       include ./post-info.pug
-      //- 此处新增下面一行代码
-      include ./wave.pug
++     include ./wave.pug
     else if is_home() 
       #site-info
         h1#site-title=site_title
@@ -51,7 +51,7 @@ header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
 
 在 `themes/butterfly/source/css/_layout` 下新增样式文件 `wave.styl`:
 
-```css
+```styl
 @media (max-width: 768px) {
   .waves-svg {
     display: none;
@@ -105,4 +105,30 @@ header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
     transform: translate3d(85px,0,0);
   }
 }
+```
+
+由于新增了波浪效果后，文章的发布信息会被波浪遮挡一部分，所以这里进一步扩展 `butterfly` 主题的配置。
+
+在 `themes/butterfly/sources/css/var.styl` 文件中新增样式变量：
+
+```diff
+$index_top_img_height = hexo-config('index_top_img_height') ? convert(hexo-config('index_top_img_height')) : 100vh
+$index_site_info_top = hexo-config('index_site_info_top') ? convert(hexo-config('index_site_info_top')) : 43%
++ $post_top_img_height = hexo-config('post_top_img_height') ? convert(hexo-config('post_top_img_height')) : 400px
++ $post_site_info_top = hexo-config('post_site_info_top') ? convert(hexo-config('post_site_info_top')) : 30%
+```
+
+修改 `themes/butterfly/source/css/_layout/head.styl` 文件中的样式：
+
+```styl
+  // post
+  &.post-bg
+    height: $post_top_img_height
+```
+
+主题配置文件 `_config.butterfly.yml` 中新增相关配置：
+
+```diff
++ post_site_info_top: 40%
++ post_top_img_height: 400px
 ```
