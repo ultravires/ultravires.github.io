@@ -119,6 +119,35 @@ updated_option: 'mtime'
 per_page: 10
 pagination_dir: page
 
+# https://github.com/mythsman/hexo-douban
+douban:
+  id: 280015385
+  builtin: true
+  item_per_page: 10
+  meta_max_line: 4
+  customize_layout: page
+  book:
+    path: books/index.html
+    title: '开卷有益'
+    quote: '书中自有黄金屋，书中自有颜如玉。'
+    option:
+  movie:
+    path: movies/index.html
+    title: '电影人生'
+    quote: '人生如戏！'
+    option:
+  game:
+    path: games/index.html
+    title: '热爱游戏'
+    quote: '万物皆虚，万事皆允！'
+    option:
+  song:
+    path: songs/index.html
+    title: '歌词鉴赏'
+    quote: ''
+    option:
+  timeout: 10000 
+
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
