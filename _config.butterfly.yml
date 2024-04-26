@@ -495,7 +495,7 @@ tag_ui: # 留空或 index
 background:
 
 # Footer Background
-footer_bg: false
+footer_bg:
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
 rightside-bottom:
@@ -832,7 +832,7 @@ css_prefix: true
 inject:
   head:
     - <link rel="stylesheet" href="/css/contextmenu/contextmenu.css">
-    - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4524063_5y1xigly2tp.css">
+    - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4524063_bsjapv45vc.css">
   bottom:
     # - <script src="xxxx"></script>
     - <script src="/js/contextmenu/contextmenu.js"></script>

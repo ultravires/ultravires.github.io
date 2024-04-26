@@ -23,7 +23,7 @@
   box-sizing: border-box;
   cursor: default;
   z-index: 1000;
-  transition: all .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: border .3s cubic-bezier(0.075, 0.82, 0.165, 1);
   backdrop-filter: blur(4px);
 }
 

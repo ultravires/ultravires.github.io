@@ -54,7 +54,7 @@
     }
   }, {
     label: '切换侧栏',
-    icon: 'fas fa-arrows-alt-h',
+    icon: 'iconfont icon-arrows-alt-h',
     onClick() {
       const $htmlDom = document.documentElement.classList;
       const saveStatus = $htmlDom.contains('hide-aside') ? 'show' : 'hide';
@@ -64,12 +64,19 @@
     }
   }, {
     label: '直达评论',
-    icon: 'fas fa-comments',
+    icon: 'iconfont icon-comment',
     hidden: !GLOBAL_CONFIG_SITE.isPost,
     onClick() {
       const a = document.createElement('a');
       a.href = '#post-comment';
       a.click();
+      dialog.close();
+    }
+  }, {
+    label: '回到顶部',
+    icon: 'iconfont icon-back-top',
+    onClick() {
+      btf.scrollToDest(0, 500);
       dialog.close();
     }
   }, {
@@ -105,6 +112,14 @@
       window.translateFn.translatePage();
       dialog.close();
     }
+  }, {
+    divider: true
+  }, {
+    label: '打印页面',
+    icon: 'iconfont icon-print',
+    onClick() {
+      window.print();
+    }
   }];
 
   for (let i = 0, len = menus.length; i < len; i++) {
@@ -120,7 +135,7 @@
       const icon = document.createElement('i');
       const span = document.createElement('span');
       span.textContent = menu.label;
-      icon.classList.add('context-menu__icon--prefix', ...(menu.icon?.split(' ') || []));
+      icon.classList.add('context-menu__icon--prefix', ...(menu.icon?.split(' ').filter(_ => _) || []));
       li.append(icon, span);
       li.classList.add('context-menu');
       li.onclick = menu.onClick;
@@ -137,9 +152,11 @@
 
   document.addEventListener('contextmenu', (event) => {
     event.preventDefault();
-    ul.style.left = event.clientX + 'px';
-    ul.style.top = event.clientY + 'px';
+    dialog.close();
     document.body.appendChild(dialog);
     dialog.show();
+    // dialog.show() 调用后才能正常获取元素的宽高
+    ul.style.left = Math.min(event.clientX, window.innerWidth - ul.offsetWidth - 30) + 'px';
+    ul.style.top = Math.min(event.clientY, window.innerHeight - ul.offsetHeight - 30) + 'px';
   });
 })();
