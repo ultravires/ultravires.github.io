@@ -81,7 +81,7 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: https://avatars.githubusercontent.com/u/26894991?s=48&v=4
+  img: https://p9-passport.byteacctimg.com/img/user-avatar/217072c51f0c2bb8c080dc567ec17da3~180x180.awebp # https://avatars.githubusercontent.com/u/26894991?s=48&v=4
   effect: false
 
 # Disable all banner image
@@ -626,15 +626,17 @@ aside:
   position: right # left or right
   card_author:
     enable: true
-    description:
+    description: 欢迎来访我的博客！
     button:
-      enable: true
+      enable: false
       icon: fab fa-github
       text: 关注我
       link: https://github.com/ultravires
   card_announcement:
-    enable: true
-    content: 累，不如洗了睡！
+    enable: false
+    content:
+      - 本博客主题基于 Butterfly，但不完全基于 Butterfly.
+      - 完成比完美更重要！
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
