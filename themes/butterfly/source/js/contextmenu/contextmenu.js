@@ -80,6 +80,13 @@
       dialog.close();
     }
   }, {
+    label: GLOBAL_CONFIG_SITE.isPost ? '分享文章' : '分享网址',
+    icon: 'iconfont icon-link-open',
+    onClick() {
+      window.navigator.clipboard.writeText(window.location.href);
+      dialog.close();
+    }
+  }, {
     divider: true
   }, {
     icon: 'iconfont icon-privacy-policy',
@@ -119,6 +126,7 @@
     icon: 'iconfont icon-print',
     onClick() {
       window.print();
+      dialog.close();
     }
   }];
 

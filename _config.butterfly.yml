@@ -834,7 +834,7 @@ css_prefix: true
 inject:
   head:
     - <link rel="stylesheet" href="/css/contextmenu/contextmenu.css">
-    - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4524063_bsjapv45vc.css">
+    - <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4524063_eim0fg0bz1i.css">
   bottom:
     # - <script src="xxxx"></script>
     - <script src="/js/contextmenu/contextmenu.js"></script>
