@@ -199,29 +199,26 @@
 
 #post-info
   .post-base-info
-    display: flex
-    justify-content: start
-    align-items: center
     .post-meta-category
       padding: .5rem
       border-radius: 4px
-      background-color: rgba(255, 255, 255, .2);
+      background-color: rgba(255, 255, 255, .2)
       color: var(--white)
       opacity: .9
       &:hover
-        background-color: var(--white)
-        color: var(--font-color)
+        background-color: rgba(0, 0, 0, .2)
+        color: var(--white)
       & ~ .post-meta-category
         margin-left: .5rem
     .post-meta__tags
       padding: .5rem
       border-radius: 4px
-      color: var(--white)
+      color: var(--white);
       opacity: .9
       margin-left: 1rem
       &::before
         content: "#"
-        color: var(--white)
+        color: var(--white);
         margin-right: .25rem
         opacity: .6
       &:hover
