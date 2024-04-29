@@ -1,10 +1,18 @@
 - class_name: 网站
   class_desc: 值得推荐的网站
   link_list:
+    - name: Vue
+      link: https://cn.vuejs.org/
+      descr: 易学易用，性能出色，适用场景丰富的 Web 前端框架。
+      avatar: https://cn.vuejs.org/logo.svg
     - name: PugJS
-      link: https://pugjs.org/zh-cn/api/getting-started.html
-      # avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
+      link: https://www.pugjs.cn/img/logo.png
       descr: 前端模板渲染引擎
+      avatar: https://pugjs.org/images/favicon.ico
+    - name: NestJS 中文文档
+      link: https://docs.nestjs.cn/
+      descr: 用于构建高效且可伸缩的服务端应用程序的渐进式 Node.js 框架。
+      avatar: https://docs.nestjs.cn/_media/icon.svg
     - name: JSTransformers
       link: https://github.com/jstransformers/jstransformer
       descr: JSTransformer 将许多优秀的模板编译器和编译器统一为一个标准化的API
