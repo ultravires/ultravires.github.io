@@ -1,12 +1,15 @@
 mixin postUI(posts)
   each article , index in page.posts.data
-    .recent-post-item
+    - const direction = theme.cover.direction
+    - let horizontalOrVertical = direction === 'vertical' ? 'vertical' : 'horizontal'
+    .recent-post-item(class=horizontalOrVertical)
       -
         let link = article.link || article.path
         let title = article.title || _p('no_title')
         const position = theme.cover.position
         let leftOrRight = position === 'both'
-          ? index%2 == 0 ? 'left' : 'right'
+          ? (index%2 == 0 ? 'left' : 'right')
+          : position === 'top' ? 'top'
           : position === 'left' ? 'left' : 'right'
         let post_cover = article.cover
         let no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
