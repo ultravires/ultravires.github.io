@@ -123,7 +123,7 @@ cover:
   # top/left/right/both
   position: top
   # horizontal/vertical
-  direction: horizontal
+  direction: vertical
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
     - https://source.unsplash.com/random
@@ -264,7 +264,7 @@ comments:
   # If you set it to true, the comment count will be invalid
   lazyload: false
   count: true # Display comment count in post's top_img
-  card_post_count: true # Display comment count in Home Page
+  card_post_count: false # Display comment count in Home Page
 
 # disqus
 # https://disqus.com/
@@ -577,7 +577,7 @@ beautify:
 # Global font settings
 # Don't modify the following settings unless you know how they work (非必要不要修改)
 font:
-  global-font-size:
+  global-font-size: 16px
   code-font-size:
   font-family:
   code-font-family:
@@ -617,7 +617,8 @@ subtitle:
 # Loading Animation (加載動畫)
 preloader:
   enable: true
-  source: 1
+  source: 2
+  pace_css_url: "https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css"
 
 # aside (側邊欄)
 # --------------------------------------
@@ -679,12 +680,12 @@ busuanzi:
 # Time difference between publish date and now (網頁運行時間)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
 runtimeshow:
-  enable: false
+  enable: true
   publish_date:
 
 # Aside widget - Newest Comments
 newest_comments:
-  enable: false
+  enable: true
   sort_order: # Don't modify the setting unless you know how it works
   limit: 6
   storage: 10 # unit: mins, save data to localStorage

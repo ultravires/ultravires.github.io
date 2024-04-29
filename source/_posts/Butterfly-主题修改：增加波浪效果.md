@@ -11,6 +11,10 @@ abbrlink: 1c9f23df
 date: 2024-04-25 09:40:45
 ---
 
+`Butterfly` 主题的可配置度很高，但主题界面上比较朴素。`Butterfly` 原有的文章页面显得有些生硬，于是想着给页面添加一些动态效果。波浪效果在大多数博客页面都有使用到，个人也比较喜欢，主要是因为波浪动效不会让人感觉到浮躁，还增加了页面的生动性。
+
+## 新增模板
+
 在 `themes/butterfly/layout/includes/header` 下新增 `wave.pug` 文件:
 
 ```pug
@@ -26,6 +30,8 @@ date: 2024-04-25 09:40:45
   </g>
 </svg>
 ```
+
+## 修改页面
 
 在 `themes/butterfly/layout/includes/header/index.pug` 文件中的指定位置处新增如下代码：
 
@@ -52,6 +58,8 @@ header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
       #page-site-info
         h1#site-title=site_title
 ```
+
+## 新增样式
 
 在 `themes/butterfly/source/css/_layout` 下新增样式文件 `wave.styl`:
 
@@ -110,6 +118,8 @@ header#page-header(class=`${isHomeClass+isFixedClass}` style=bg_img)
   }
 }
 ```
+
+## 进一步优化
 
 由于新增了波浪效果后，文章的发布信息会被波浪遮挡一部分，所以这里进一步扩展 `butterfly` 主题的配置。
 
