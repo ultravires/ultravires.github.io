@@ -7,6 +7,7 @@ tags:
   - Hexo
 abbrlink: 1c9f23df
 date: 2024-04-25 09:40:45
+cover: https://th.bing.com/th/id/OIP.JrlwjebJnCgSUZSal2OJSwHaEo?rs=1&pid=ImgDetMain
 ---
 
 `Butterfly` 主题的可配置度很高，但主题界面上比较朴素。`Butterfly` 原有的文章页面显得有些生硬，于是想着给页面添加一些动态效果。波浪效果在大多数博客页面都有使用到，个人也比较喜欢，主要是因为波浪动效不会让人感觉到浮躁，还增加了页面的生动性。

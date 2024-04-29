@@ -6,6 +6,7 @@ tags:
   - GitHub Pages
 abbrlink: 682c0781
 date: 2024-04-12 11:46:47
+cover: https://i0.wp.com/www.diogonunes.com/blog/wp-content/uploads/2016/12/maxresdefault-1.jpg?fit=1200%2C673&ssl=1
 ---
 
 > [GitHub Pages](https://pages.github.com/)

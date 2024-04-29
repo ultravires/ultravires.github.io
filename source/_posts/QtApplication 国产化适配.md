@@ -5,6 +5,7 @@ categories:
 tags:
   - 国产化适配
 abbrlink: 5cc5ed96
+cover: https://th.bing.com/th/id/R.0e8c7cf27902e84bda26151456a0367e?rik=XhNGeHds%2bumtcg&riu=http%3a%2f%2fwww.infedium.com%2fpublic%2fuploads%2fimages%2f20210726%2f27f7102a5a2317a97b38913f0179e1b7.jpg&ehk=R9qGOg7cqQmzfgZGu%2buwCi3DYNUAhULbzAYQoBX33vI%3d&risl=&pid=ImgRaw&r=0
 ---
 
 ## 安装 QT Creator

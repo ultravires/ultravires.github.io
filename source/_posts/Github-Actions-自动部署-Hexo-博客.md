@@ -6,6 +6,7 @@ tags:
   - GitHub Actions
 abbrlink: 3cd07016
 date: 2024-04-19 17:07:35
+cover: https://blog-cdn.everhour.com/blog/wp-content/uploads/2023/02/h2jfrvzrbyh1yff2n3wfu2hkqqps6x_uvqo.jpg
 ---
 
 [在 GitHub Pages 上部署 Hexo](https://hexo.io/zh-cn/docs/github-pages)
