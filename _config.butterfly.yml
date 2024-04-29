@@ -631,7 +631,7 @@ aside:
   position: right # left or right
   card_author:
     enable: true
-    description: 欢迎来访我的博客！
+    description: “前端天花板”
     button:
       enable: false
       icon: fab fa-github
@@ -643,7 +643,7 @@ aside:
       - 本博客主题基于 Butterfly，但不完全基于 Butterfly.
       - 完成比完美更重要！
   card_recent_post:
-    enable: true
+    enable: false
     limit: 5 # if set 0 will show all
     sort: date # date or updated
     sort_order: # Don't modify the setting unless you know how it works
@@ -685,7 +685,7 @@ runtimeshow:
 
 # Aside widget - Newest Comments
 newest_comments:
-  enable: true
+  enable: false
   sort_order: # Don't modify the setting unless you know how it works
   limit: 6
   storage: 10 # unit: mins, save data to localStorage

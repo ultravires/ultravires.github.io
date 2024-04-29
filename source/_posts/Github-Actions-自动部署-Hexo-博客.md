@@ -1,11 +1,11 @@
 ---
 title: GitHub Actions 自动部署 Hexo 博客
+categories:
+  - GitHub
 tags:
   - GitHub Actions
 abbrlink: 3cd07016
 date: 2024-04-19 17:07:35
-categories:
-  - Hexo
 ---
 
 [在 GitHub Pages 上部署 Hexo](https://hexo.io/zh-cn/docs/github-pages)

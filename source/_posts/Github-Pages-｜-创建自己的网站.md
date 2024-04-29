@@ -1,9 +1,9 @@
 ---
 title: GitHub Pages ｜ 创建自己的网站
 categories:
-  - GitHub Pages
-tags:
   - GitHub
+tags:
+  - GitHub Pages
 abbrlink: 682c0781
 date: 2024-04-12 11:46:47
 ---

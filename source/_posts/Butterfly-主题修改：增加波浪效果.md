@@ -1,9 +1,7 @@
 ---
 title: Butterfly 主题修改：增加波浪效果
 categories:
-  - 原创
-  - Hexo
-  - Butterfly 主题
+  - Butterfly
 tags:
   - Butterfly
   - Hexo

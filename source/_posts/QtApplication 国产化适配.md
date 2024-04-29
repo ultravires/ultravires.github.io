@@ -2,6 +2,8 @@
 title: QtApplication 国产化适配
 categories:
   - QT
+tags:
+  - 国产化适配
 abbrlink: 5cc5ed96
 ---
 

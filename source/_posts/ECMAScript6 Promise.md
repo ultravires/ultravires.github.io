@@ -1,7 +1,7 @@
 ---
 title: ECMAScript6 Promise
 categories:
-  - Front-End
+  - 前端
 tags:
   - Promise
 abbrlink: 5a6476f0
