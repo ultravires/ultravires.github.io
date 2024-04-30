@@ -16,7 +16,7 @@
   position: fixed;
   padding: .5rem;
   background-color: rgba(255, 255, 255, .9);
-  border: 1px solid #ececec;
+  border: 1px solid #cecece;
   border-radius: 6px;
   box-shadow: 0 0 12px 4px rgba(0, 0, 0, .05);
   list-style: none;
@@ -53,8 +53,8 @@
 .context-menus > hr {
   margin: .5rem calac(-.5rem + 2px);
   border-style: dashed;
-  border-width: 1px;
-  border-color: #ececec;
+  border-width: .5px;
+  border-color: #cecece;
 }
 
 .context-menu__icon--prefix {

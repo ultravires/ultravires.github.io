@@ -133,6 +133,11 @@
         dialog.close(); // 打印页面前关闭菜单弹窗，避免将菜单添加到打印视图
         window.print();
       }
+    }, {
+      label: '系统菜单',
+      onClick() {
+        dialog.close();
+      }
     }];
     // 如果有选中文本
     const selection = window.getSelection();
@@ -148,7 +153,7 @@
     }
 
     // 如果鼠标右键目标是链接
-    if (event.target instanceof HTMLAnchorElement) {
+    if (event.target instanceof HTMLAnchorElement && event.target.href) {
       menus.unshift(...[
         {
           label: '打开链接',
@@ -157,6 +162,76 @@
             window.open(event.target.href, '__blank');
             dialog.close();
           }
+        }
+      ]);
+    }
+
+    // 如果鼠标右键目标是图像
+    if (event.target instanceof HTMLImageElement && event.target.src) {
+      menus.unshift(...[
+        {
+          label: '复制图像',
+          icon: 'iconfont icon-copy',
+          async onClick() {
+            const blob = await fetch(
+              event.target.src,
+              {
+                referrer: 'same-origin',
+                referrerPolicy: 'no-referrer'
+              }
+            ).then((res) => {
+              return res.blob();
+            }).catch(() => {
+              alert('抱歉，无法复制此图片！');
+            });
+
+            try {
+              // try catch 无法直接捕获 Promise 异常，因为它是异步的。这里需要使用 async/await
+              await writeImage(blob);
+            } catch(err) {
+              const img = document.createElement('img');
+              // 跨域请求
+              img.setAttribute('crossOrigin', 'Anonymous');
+              img.src = window.URL.createObjectURL(blob);
+              img.onload = () => {
+                // Clipboard API 仅支持复制 image/png 的图片，对图片格式进行转换
+                const { naturalWidth: width, naturalHeight: height } = img;
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const context = canvas.getContext('2d');
+                context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                canvas.toBlob(async (blob) => {
+                  if (blob == null) {
+                    throw new Error();
+                  }
+                  await writeImage(blob);
+                }, 'image/png', .9);
+              };
+              img.onerror = (err) => {
+                alert('抱歉，无法复制此图片！');
+              }
+            } finally {
+              dialog.close();
+            }
+            
+            async function writeImage(blob) {
+              const clipboardItem = new ClipboardItem({
+                [`${blob.type}`]: blob
+              });
+              return window.navigator.clipboard.write([clipboardItem]);
+            }
+          }
+        },
+        {
+          label: '复制图像链接',
+          onClick() {
+            window.navigator.clipboard.writeText(event.target.src);
+            dialog.close();
+          }
+        },
+        {
+          divider: true
         }
       ]);
     }
@@ -228,6 +303,10 @@
     if (!event.composedPath().includes(ul)) {
       dialog.close();
     }
+  });
+
+  window.addEventListener('blur', () => {
+    dialog.close();
   });
 
   document.addEventListener('contextmenu', (event) => {
