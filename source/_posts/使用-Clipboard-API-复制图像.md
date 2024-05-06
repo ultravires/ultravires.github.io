@@ -61,6 +61,6 @@ try {
 }
 ```
 
-{% note %}
+{% note info %}
 try/catch 无法捕获异步方法抛出的异常。因为 try/catch 块不会等待异步方法执行完毕，try/catch 块执行完之前，异步方法还没有抛出错误。
 {% endnote %}

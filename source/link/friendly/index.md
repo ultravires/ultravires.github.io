@@ -2,7 +2,7 @@
 title: 友情链接
 date: 2022-04-21 17:04:10
 # type: 'link'
-top_img: https://source.unsplash.com/random
+top_img: https://source.unsplash.com/random/1126x260
 ---
 
 > 君子之交淡若水，小人之交甘若醴。——《庄子·山木》

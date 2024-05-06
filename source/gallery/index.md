@@ -2,7 +2,7 @@
 title: 图库
 date: 2022-04-21 18:09:01
 type: 'gallery'
-top_img: https://source.unsplash.com/random
+top_img: https://source.unsplash.com/random/1126x260
 ---
 
 <div class="gallery-group-main">
