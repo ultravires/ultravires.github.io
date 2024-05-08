@@ -2,8 +2,9 @@ name: Pages
 
 on:
   push:
-    branches:
-      - hexo
+    branches: [hexo]
+    paths-ignore:
+      - README.md
 
 jobs:
   build:
