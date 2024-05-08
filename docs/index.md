@@ -1,3 +1,3 @@
-# Hello World
+# 起步
 
-Hello VitePress
+欢迎使用 VitePress 搭建博客。
