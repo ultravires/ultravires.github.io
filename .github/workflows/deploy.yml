@@ -36,8 +36,8 @@ jobs:
         run: bun run clean
       - name: Algolia
         run: bun run algolia
-        env:
-          HEXO_ALGOLIA_INDEXING_KEY: ${{ secrets.HEXO_ALGOLIA_INDEXING_KEY }}
+        environment:
+          name: github-pages
       - name: Build
         run: bun run build
       - name: Upload Pages artifact
