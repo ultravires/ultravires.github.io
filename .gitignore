@@ -8,3 +8,5 @@ public/
 _multiconfig.yml
 
 .env*.local
+
+dist
