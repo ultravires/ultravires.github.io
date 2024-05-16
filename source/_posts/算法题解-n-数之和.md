@@ -1,14 +1,17 @@
 ---
 title: '算法题解: n 数之和'
+date: 2024-05-16 12:35:00
 categories:
   - 算法
 tags:
   - 算法
   - n 数之和
-date: 2024-05-14 14:53:44
+abbrlink: 49ec49d6
 ---
 
 ## n 数之和
+
+结尾有点小插曲。
 
 > 现给定一个整数数组 (数组长度大于等于 5) nums 和一个整数目标值 target，请你在该数组中找出和为目标值 target 的那 n ( n < nums.length ) 个整数，并返回它们的数组(如果有多个下标组合都满足，则返回下标和最小的那一组)的下标。
 >
@@ -25,93 +28,66 @@ date: 2024-05-14 14:53:44
 1. 找不到 `n` 数之和为 `target`: 输出 `[]`
 2. 找到 `n` 数之和为 `target`: 输出正确的索引数组
 
-程序通过遍历能够很方便的得到 `nums` 数组中的每一个元素，以及 `target` 和 `n` 为已知条件。
+解题思路：固定前 n - 1 项的和，在数组中寻找最后最后一项。
 
 按题例写步骤：
 
->> 程序真是蠢死了，连跳跃思维都不会，还得一步一步来。-- 向成渝
+>> 输入: nums = [3，2，4，5，7]，n = 3, target = 10
 >
-> 3 === 10
+>> 固定前两项，寻找最后一项
 >
-> 3 + 2 === 10
+> 固定 (3, 2)
 >
 > 3 + 2 + 4 === 10
->
-> <strike>3 + 2 + 4 + 5 === 10</strike> 求和数 数量超过 n（按照这个逻辑，后面的数量会越来越多，跳过）
 >
 > 3 + 2 + 5 === 10 符合条件
 >
 > 3 + 2 + 7 === 10
 >
+> 固定 (3, 4)
+>
+> 3 + 4 + 5
+>
+> 3 + 4 + 7
+>
+> 固定 (3, 5)
+>
+> 3 + 5 + 7
+>
+> 固定 (2, 4)
+>
 > 2 + 4 + 5 === 10
 >
 > 2 + 4 + 7 === 10
 >
-> 4 + 5 + 7 === 10
+> 固定 (2, 5)
 >
-> <strike>5 + 7 === 10</strike> 求和数 数量少于 n（按照这个逻辑，后面的数量会越来越少，跳过）
+> 2 + 5 + 7 === 10
+>
+> 固定 (4, 5)
+>
+> 4 + 5 + 7 === 10
 
-### 伪代码
+找条件：
+  1. 索引数组长度为 n 且 `nums[indexes[0]] + nums[indexes[1]] + ... + nums[indexes[n-1]] = target` (这里的 `indexes[i]` 为索引数组中的每一项)
+  2. `nums`、`target` 和 `n` 为已知条件，程序通过遍历能够很方便的得到 `nums` 数组中的每一个元素
 
-这里简单写一下核心思路的代码实现，伪代码逻辑。
+Q: 如何固定前 n - 1 项？
+A: 
+1. 遍历每一种可能的组合
 
-### 解题
+### 解题（解题未完成，待完善）
 
 ```js
-import { strict as assert } from 'node:assert';
-import { it } from 'node:test';
-
-function findIndexes(nums, n, target) {
-  const indexes = [];
-  const temp = [];
-  const helper = (start) => {
-    if (nums.length - start < n) {
-      if (target !== temp.reduce((prev, next) => (prev + next))) {
-        return [];
-      }
-      return indexes;
-    }
-    temp.length = 0;
-    indexes.length = 0;
-    for (let i = start, len = nums.length; i < len; i++) {
-      if (indexes.length === n) {
-        if (target === temp.reduce((prev, next) => (prev + next))) {
-          return indexes;
-        }
-        temp.pop();
-        indexes.pop();
-      }
-      if (indexes.length < n) {
-        temp.push(nums[i]);
-        indexes.push(i);
-        continue;
-      }
-    }
-    return helper(start + 1);
-  };
-  return helper(0);
-}
-
-it("n数之和", () => {
-  assert.deepEqual(findIndexes([3,2,4,5,7], 3, 10), [0, 1, 3]);
-});
-it("n数之和", () => {
-  assert.deepEqual(findIndexes([3,2,4,5,7], 2, 9), [2, 3]);
-});
-it("n数之和", () => {
-  assert.deepEqual(findIndexes([-1,2,-3,4,5,-11], 3, -2), [0, 1, 2]);
-});
-it("n数之和", () => {
-  assert.deepEqual(findIndexes([1,2,-3,4,5,-11], 3, -2), [3, 4, 5]);
-});
-it("n数之和", () => {
-  assert.deepEqual(findIndexes([1,2,-3,4,5,-11], 3, 100), []);
-});
+const nSum = (nums, n, target) => {
+  // TODO
+};
 ```
+### 戏剧性
 
+在思考时，我竟然发现题目出错了，因为可能有多组结果都满足题意。下面举例：
 
+当 `nums = [0, 0, 0, 0, 0]`, `n = 3`, `target = 0` 时：`[0, 1, 4]` 和 `[0, 2, 3]` 都符合题意。
 
-
-
-
+所以输出应该是一个二维数组才对啊！
 

@@ -1,5 +1,6 @@
 ---
 title: ECMAScript6 Promise
+date: 2024-05-16 12:34:45
 cover: https://www.myamericannurse.com/wp-content/uploads/2019/09/promises.jpg
 categories:
   - 前端
