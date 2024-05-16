@@ -1,11 +1,5 @@
-## 分支管理
+## 博客
 
-`hexo-blog`: 项目源码
+当前主题：[Butterfly](https://github.com/jerryc127/hexo-theme-butterfly)
 
-`main`: `bun run build` 打包后的静态文件。
-
-Docs: [https://hexo.io/docs/one-command-deployment](https://hexo.io/docs/one-command-deployment)
-
-## 创建文章
-
-`npx hexo new --help`
+文章领域：大前端
