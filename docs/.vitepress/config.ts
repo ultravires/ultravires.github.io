@@ -59,16 +59,5 @@ export default defineConfig({
     },
     lineNumbers: false
   },
-  themeConfig,
-  vite: {
-    build: {
-      minify: false,
-      rollupOptions: {
-        output: {
-          manualChunks: undefined,
-        },
-      },
-      cssCodeSplit: false,
-    }
-  }
+  themeConfig
 });
