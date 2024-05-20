@@ -2,8 +2,7 @@ import {
   isReactive,
   isRef,
   toRaw
-} from "./chunk-5IE4EELC.js";
-import "./chunk-CSAU5B4Q.js";
+} from "./chunk-LN7JQV4W.js";
 
 // node_modules/.pnpm/@vue+devtools-shared@7.2.0/node_modules/@vue/devtools-shared/dist/index.js
 var __create = Object.create;
