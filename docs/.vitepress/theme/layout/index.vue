@@ -1,0 +1,14 @@
+<script lang="ts" setup>
+import { useData } from 'vitepress';
+import HomeLayout from './HomeLayout.vue';
+import DocLayout from './DocLayout.vue';
+
+const { frontmatter } = useData();
+</script>
+
+<template>
+  <section class="dark:bg-slate-900 dark:text-white min-h-screen bg-slate-50 text-black">
+    <HomeLayout v-if="frontmatter.layout === 'home'" />
+    <DocLayout v-else />
+  </section>
+</template>

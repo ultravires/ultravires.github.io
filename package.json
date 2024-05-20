@@ -8,14 +8,28 @@
     "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
-    "vue": "3.2.44",
-    "vitepress": "1.0.0-alpha.28"
+    "@shikijs/vitepress-twoslash": "^1.6.0",
+    "@tailwindcss/typography": "^0.5.13",
+    "autoprefixer": "^10.4.19",
+    "feed": "^4.2.2",
+    "postcss": "^8.4.38",
+    "shiki": "^1.6.0",
+    "tailwindcss": "^3.4.3",
+    "unplugin-vue-components": "^0.27.0",
+    "vitepress": "1.1.4",
+    "vue": "3.2.44"
   },
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
         "@algolia/client-search"
       ]
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "tailwindcss": {}
     }
   }
 }

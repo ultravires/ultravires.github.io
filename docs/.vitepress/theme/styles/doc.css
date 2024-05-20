@@ -1,0 +1,140 @@
+:root {
+  --web-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
+  --web-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E");
+  --web-code-copy-code-border-color: #eee;
+  --web-code-copy-code-bg: white;
+  --web-code-lang-color: var(var(--web-color-primary));
+  --web-code-copy-code-hover-bg: #f8fafc;
+  --web-code-copy-code-hover-border-color: #eee;
+  --web-code-copy-code-active-text: rgba(128,128,128,1);
+  --web-code-copy-copied-text-content: "已复制";
+}
+
+html.dark {
+  --web-icon-copied: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
+  --web-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='rgba(128,128,128,1)' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3C/svg%3E");
+  --web-code-copy-code-border-color: #030616;
+  --web-code-copy-code-bg: #030616;
+  --web-code-lang-color: var(var(--web-color-primary));
+  --web-code-copy-code-hover-bg: #030616;
+  --web-code-copy-code-hover-border-color: #333;
+  --web-code-copy-code-active-text: rgba(128,128,128,1);
+  --web-code-copy-copied-text-content: "已复制";
+}
+
+.prose div[class*=language-] {
+  position: relative;
+}
+
+.prose [class*=language-]>button.copy.copied:before,
+.prose [class*=language-]>button.copy:hover.copied:before {
+  position: relative;
+  top: -1px;
+  transform: translate(calc(-100% - 1px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--web-code-copy-code-hover-border-color);
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  padding: 0 10px;
+  width: fit-content;
+  height: 40px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--web-code-copy-code-active-text);
+  background-color: var(--web-code-copy-code-hover-bg);
+  white-space: nowrap;
+  content: var(--web-code-copy-copied-text-content);
+}
+
+.prose:hover [class*=language-]>button.copy {
+  opacity: 1;
+}
+
+.prose [class*=language-]>button.copy.copied,
+.prose [class*=language-]>button.copy:hover.copied {
+  border-radius: 0 4px 4px 0;
+  background-color: var(--web-code-copy-code-hover-bg);
+  background-image: var(--web-icon-copied);
+}
+
+.prose [class*=language-]>button.copy:hover,
+.prose [class*=language-]>button.copy.copied {
+  border-color: var(--web-code-copy-code-hover-border-color);
+  background-color: var(--web-code-copy-code-hover-bg);
+}
+
+.prose [class*=language-]>button.copy {
+  direction: ltr;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  border: 1px solid var(--web-code-copy-code-border-color);
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--web-code-copy-code-bg);
+  opacity: 0;
+  cursor: pointer;
+  background-image: var(--web-icon-copy);
+  background-position: 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+}
+
+.prose:hover [class*=language-]>span.lang {
+  opacity: 0;
+}
+
+.prose [class*=language-]>span.lang {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--web-code-lang-color);
+}
+
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}
+
+@media (prefers-color-scheme: light) {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+    font-style: var(--shiki-light-font-style);
+    font-weight: var(--shiki-light-font-weight);
+    text-decoration: var(--shiki-light-text-decoration);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
+  }
+}
