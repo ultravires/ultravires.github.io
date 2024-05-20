@@ -54,8 +54,8 @@ export default defineConfig({
       transformerTwoslash() 
     ],
     theme: {
-      light: 'github-light',
-      dark: 'github-dark'
+      light: 'github-light-default',
+      dark: 'github-dark-default'
     },
     lineNumbers: false
   },

@@ -28,9 +28,10 @@ export default createContentLoader('**/*.md', {
         title: frontmatter.title,
         url,
         excerpt, // 渲染的摘录 HTML（第一个 `---` 上面的内容）
-        date: formatDate(frontmatter.date)
+        date: formatDate(frontmatter.date),
+        hidden: frontmatter.hidden || false
       }))
-      .filter(({ title }) => (!!title))
+      .filter(({ title, hidden }) => (!!title && !hidden))
       .sort((a, b) => b.date.time - a.date.time)
   }
 })

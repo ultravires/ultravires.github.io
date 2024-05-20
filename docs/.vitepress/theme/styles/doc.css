@@ -49,7 +49,7 @@ html.dark {
   content: var(--web-code-copy-copied-text-content);
 }
 
-.prose:hover [class*=language-]>button.copy {
+.prose [class*=language-]:hover>button.copy {
   opacity: 1;
 }
 
@@ -85,7 +85,7 @@ html.dark {
   background-repeat: no-repeat;
 }
 
-.prose:hover [class*=language-]>span.lang {
+.prose [class*=language-]:hover>span.lang {
   opacity: 0;
 }
 

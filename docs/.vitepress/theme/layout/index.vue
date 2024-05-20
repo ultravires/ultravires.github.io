@@ -7,7 +7,7 @@ const { frontmatter } = useData();
 </script>
 
 <template>
-  <section class="dark:bg-slate-900 dark:text-white min-h-screen bg-slate-50 text-black">
+  <section class="dark:bg-neutral-950 dark:text-white min-h-screen bg-neutral-50 text-black">
     <HomeLayout v-if="frontmatter.layout === 'home'" />
     <DocLayout v-else />
   </section>

@@ -28,7 +28,7 @@ const toggleTheme = () => {
 </script>
 
 <template>
-  <div class="cursor-pointer text-lg" @click="toggleTheme">
+  <div class="cursor-pointer" @click="toggleTheme">
     <VIconMoon title="进入暗色主题" v-show="!isDarkTheme" />
     <VIconSun title="进入亮色主题" v-show="isDarkTheme"/>
   </div>

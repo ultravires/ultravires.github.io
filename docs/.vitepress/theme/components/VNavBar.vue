@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress';
 import VNavBarLink from './VNavBarLink.vue';
+import VIconSearch from './icons/VIconSearch.vue';
 
 const { theme } = useData();
 </script>
@@ -10,5 +11,8 @@ const { theme } = useData();
     <template v-for="item in theme.nav" :key="item.text">
       <VNavBarLink :item="item" />
     </template>
+    <span class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer">
+      <VIconSearch title="搜索" />
+    </span>
   </nav>
 </template>

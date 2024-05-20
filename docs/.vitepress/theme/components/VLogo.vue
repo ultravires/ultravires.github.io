@@ -13,7 +13,7 @@ const themeData = theme.value;
       {{ themeData.siteTitle || siteData.title }}
     </a>
     <a class="group-[]:hidden group-hover:flex bg-primary text-reverse absolute flex items-center justify-center w-full h-full rounded-full top-0 left-0" href="/">
-      <VIconHome class="text-lg" />
+      <VIconHome class="text-lg" title="返回首页" />
     </a>
   </div>
 </template>
