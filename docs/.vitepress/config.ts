@@ -59,5 +59,10 @@ export default defineConfig({
     },
     lineNumbers: false
   },
-  themeConfig
+  themeConfig,
+  vite: {
+    build: {
+      minify: false
+    }
+  }
 });
