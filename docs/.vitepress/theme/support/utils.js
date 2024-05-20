@@ -57,3 +57,6 @@ export function normalizeLink(url) {
         : `${pathname.replace(/(\.md)?$/, site.value.cleanUrls === 'disabled' ? '.html' : '')}${search}${hash}`;
     return withBase(normalizedPath);
 }
+export function isSSR() {
+    return import.meta.env.SSR;
+}
