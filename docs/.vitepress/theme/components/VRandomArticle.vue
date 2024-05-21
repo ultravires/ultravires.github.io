@@ -14,6 +14,7 @@ const diceAnimationDuration = computed(() => {
 });
 
 const visiteRandomArticle = () => {
+  if (rotating.value) return;
   rotating.value = true;
   setTimeout(() => {
     rotating.value = false;
@@ -24,7 +25,7 @@ const visiteRandomArticle = () => {
 </script>
 
 <template>
-  <VIconDice :class="['dice', { rotating }]" title="随机访问该站文章" @click="visiteRandomArticle" />
+  <VIconDice :class="['dice cursor-pointer', { rotating }]" title="随机访问该站文章" @click="visiteRandomArticle" />
 </template>
 
 <style scoped>

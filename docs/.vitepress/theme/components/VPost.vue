@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="flex items-start gap-4">
-    <div class="order-1">
+    <div class="order-1 max-md:hidden">
       <span class="dark:text-neutral-400 text-neutral-300 text-lg whitespace-nowrap text-ellipsis overflow-hidden">{{ post.date.string }}</span>
     </div>
     <div class="order-2">

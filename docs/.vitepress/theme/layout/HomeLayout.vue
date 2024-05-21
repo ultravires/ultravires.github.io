@@ -7,7 +7,7 @@ import VPost from '../components/VPost.vue';
 <template>
   <VHeader />
   <main class="container mx-auto">
-    <ul class="mx-auto space-y-8 py-12">
+    <ul class="space-y-8 max-md:px-12 py-12">
       <li v-for="post in posts">
         <VPost :post="post" />
       </li>
