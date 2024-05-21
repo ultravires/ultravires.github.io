@@ -5,6 +5,7 @@ categories:
   - 前端领域
 tags:
   - VitePress
+  - Themes
 ---
 
 别人的主题总是不满意？自己写一个吧！

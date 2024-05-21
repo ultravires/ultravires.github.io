@@ -5,18 +5,16 @@ import { isActive } from '../support/utils';
 
 defineProps<{
   item: DefaultTheme.NavItemWithLink
-}>()
+}>();
 
 const { page } = useData();
-
-const pageData = page.value;
 </script>
 
 <template>
   <a
     :class="{
-      active: isActive(
-        pageData.relativePath,
+      'after:absolute after:w-3 after:h-1 after:bg-primary after:rounded-full after:bottom-0 after:left-1/2 after:-translate-x-1/2 active relative': isActive(
+        page.relativePath,
         item.activeMatch || item.link,
         !!item.activeMatch
       )
@@ -28,6 +26,13 @@ const pageData = page.value;
       <a
         v-for="item in item.items"
         class="dark:hover:text-reverse dark:text-white hover:bg-primary hover:px-5 hover:py-3 hover:text-reverse relative px-4 py-2 decoration-none rounded-full whitespace-nowrap text-black"
+        :class="{
+          'after:absolute after:w-3 after:h-1 after:bg-primary after:rounded-full after:bottom-0 after:left-1/2 after:-translate-x-1/2 active relative': isActive(
+            page.relativePath,
+            item.activeMatch || item.link,
+            !!item.activeMatch
+          )
+        }"
         :href="item.link || 'javascript:void(0)'"
       >
         {{ item.text }}
