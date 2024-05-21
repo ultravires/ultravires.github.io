@@ -1,28 +1,36 @@
 <script setup>
 import { useData } from 'vitepress';
 import VNavBarLink from './VNavBarLink.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const { theme } = useData();
 const isShow = ref(false);
+const toggleRef = ref(null);
 
-const toggleMenu = (event) => {
-  event.currentTarget.classList.toggle('active');
+const toggleMenu = () => {
   isShow.value = !isShow.value;
 };
+
+watch(isShow, (value) => {
+  if (value) {
+    toggleRef.value.classList.add('active');
+  } else {
+    toggleRef.value.classList.remove('active');
+  }
+});
 </script>
 
 <template>
   <div class="flex items-center">
-    <button id="data-menu-toggle" class="data-menu-toggle" @click="toggleMenu">
+    <button ref="toggleRef" id="data-menu-toggle" class="data-menu-toggle" @click="toggleMenu">
       <span class="menu-bar bar"></span>
     </button>
     <div v-if="isShow" class="container fixed top-[calc(60px+1px)] mx-auto left-0 right-0 bottom-0 z-10 bg-neutral-900">
-      <ul class="mx-12 py-12">
-        <li v-for="item in theme.nav" :key="item.text" class="border-b border-solid leading-loose py-2">
-          <VNavBarLink :item="item" />
-        </li>
-      </ul>
+      <nav class="mx-12 py-12">
+        <template v-for="item in theme.nav" :key="item.text">
+          <VNavBarLink class="dark:border-neutral-800 block py-2 h-full border-b border-solid border-neutral-200" :item="item" @click="isShow = false" />
+        </template>
+      </nav>
     </div>
   </div>
 </template>
@@ -53,21 +61,27 @@ const toggleMenu = (event) => {
 }
 .data-menu-toggle .menu-bar.bar:before {
   content: "";
+  width: 80%;
   top: -6px;
+  right: 0;
 }
 .data-menu-toggle .menu-bar.bar:after {
   content: "";
+  width: 80%;
   top: 6px;
+  right: 0;
 }
 /* 激活样式 */
 .data-menu-toggle.active .bar {
   background-color: transparent;
 }
 .data-menu-toggle.active .bar:before {
+  width: 100%;
   top: 0px;
   transform: rotate(405deg);
 }
 .data-menu-toggle.active .bar:after {
+  width: 100%;
   top: 0px;
   transform: rotate(-45deg);
 }

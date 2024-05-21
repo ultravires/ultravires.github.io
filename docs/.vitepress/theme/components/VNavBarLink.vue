@@ -14,7 +14,6 @@ const pageData = page.value;
 
 <template>
   <a
-    class="hover:bg-primary hover:text-reverse group relative px-4 py-2 text-md tracking-8 decoration-none rounded-full whitespace-nowrap font-medium"
     :class="{
       active: isActive(
         pageData.relativePath,
