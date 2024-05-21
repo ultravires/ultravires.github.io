@@ -10,8 +10,7 @@ import VNavBarHamburger from './VNavBarHamburger.vue';
   <header class="max-md:px-4 container flex items-center mx-auto mb-4 h-16">
     <VLogo />
     <VNavBar class="max-md:hidden mx-auto" />
-    <VNavBarHamburger class="max-md:flex hidden ml-auto" />
-    <div class="max-md:hidden flex items-center gap-4 text-xl">
+    <div class="max-md:ml-auto flex items-center gap-4 text-xl">
       <div class="hover:bg-primary hover:text-reverse p-1 rounded-full">
         <VRandomArticle />
       </div>
@@ -19,5 +18,6 @@ import VNavBarHamburger from './VNavBarHamburger.vue';
         <VThemeToggle />
       </div>
     </div>
+    <VNavBarHamburger class="max-md:flex hidden ml-8" />
   </header>
 </template>

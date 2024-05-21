@@ -25,7 +25,7 @@ watch(isShow, (value) => {
     <button ref="toggleRef" id="data-menu-toggle" class="data-menu-toggle" @click="toggleMenu">
       <span class="menu-bar bar"></span>
     </button>
-    <div v-if="isShow" class="container fixed top-[calc(60px+1px)] mx-auto left-0 right-0 bottom-0 z-10 bg-neutral-900">
+    <div v-if="isShow" class="dark:border-neutral-800 container fixed mx-auto bg-neutral-900 border-t border-solid border-neutral-200 top-[calc(60px+1px)]  left-0 right-0 bottom-0 z-10">
       <nav class="mx-12 py-12">
         <template v-for="item in theme.nav" :key="item.text">
           <VNavBarLink class="dark:border-neutral-800 block py-2 h-full border-b border-solid border-neutral-200" :item="item" @click="isShow = false" />
@@ -36,6 +36,14 @@ watch(isShow, (value) => {
 </template>
 
 <style scoped>
+.dark .data-menu-toggle {
+  --web-toggle-menu-color: var(--web-color-white);
+}
+
+.data-menu-toggle {
+  --web-toggle-menu-color: var(--web-color-black);
+}
+
 .data-menu-toggle {
   position: relative;
   width: 16px;
@@ -53,7 +61,7 @@ watch(isShow, (value) => {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: rgba(var(--web-color-white) / 1);
+  background-color: rgba(var(--web-toggle-menu-color) / 1);
   transition: all ease-in-out .3s;
 }
 .data-menu-toggle .menu-bar.bar {
