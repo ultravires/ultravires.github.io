@@ -57,12 +57,30 @@ export default {
               },
               '&:hover': {
                 color: theme('colors.red[500]')
-              }
+              },
+            },
+            h1: {
+              position: 'relative',
+            },
+            h2: {
+              position: 'relative',
+            },
+            h3: {
+              position: 'relative',
+            },
+            h4: {
+              position: 'relative',
+            },
+            h5: {
+              position: 'relative',
+            },
+            h6: {
+              position: 'relative',
             },
             'div[class*=language-].line-numbers-mode': {
               paddingLeft: em(32, 16)
             },
-            '[class~="line-numbers-wrapper"]': {
+            '.line-numbers-wrapper': {
               position: 'absolute',
               top: 0,
               left: 0,
@@ -73,6 +91,18 @@ export default {
               color: 'var(--tw-prose-counters)',
               borderRadius: rem(6)
             },
+            'a.header-anchor': {
+              position: 'absolute',
+              left: 0,
+              marginLeft: em(-12, 14),
+              '&::before': {
+                content: '#'
+              }
+            },
+            '.custom-block.danger': {
+              backgroundColor: 'rgb(var(--tw-prose-block-danger-bg) / .3)',
+              borderRadius: rem(6),
+            }
           }
         },
         sm: {
@@ -162,6 +192,13 @@ export default {
           css: {
             '--tw-prose-pre-bg': colors.neutral[50],
             '--tw-prose-invert-pre-bg': colors.neutral[950]
+          }
+        },
+
+        // Invert (for dark mode)
+        invert: {
+          css: {
+            '--tw-prose-block-danger-bg': hexToRgb(colors.red[600])
           }
         }
       })
