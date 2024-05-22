@@ -99,22 +99,43 @@ export default {
                 content: '#'
               }
             },
-            '.custom-block.danger': {
-              backgroundColor: 'rgb(var(--tw-prose-block-danger-bg) / .3)',
+            '.custom-block.info': {
+              backgroundColor: 'rgb(var(--tw-prose-block-info-bg) / var(--tw-prose-block-bg-opacity))',
               borderRadius: rem(6),
+              border: '1px solid rgb(var(--tw-prose-block-info-border-color) / var(--tw-prose-block-bg-opacity))'
+            },
+            '.custom-block.warning': {
+              backgroundColor: 'rgb(var(--tw-prose-block-warning-bg) / var(--tw-prose-block-bg-opacity))',
+              borderRadius: rem(6),
+              border: '1px solid rgb(var(--tw-prose-block-warning-border-color) / var(--tw-prose-block-bg-opacity))'
+            },
+            '.custom-block.tip': {
+              backgroundColor: 'rgb(var(--tw-prose-block-tip-bg) / var(--tw-prose-block-bg-opacity))',
+              borderRadius: rem(6),
+              border: '1px solid rgb(var(--tw-prose-block-tip-border-color) / var(--tw-prose-block-bg-opacity))'
+            },
+            '.custom-block.danger': {
+              backgroundColor: 'rgb(var(--tw-prose-block-danger-bg) / var(--tw-prose-block-bg-opacity))',
+              borderRadius: rem(6),
+              border: '1px solid rgb(var(--tw-prose-block-danger-border-color) / var(--tw-prose-block-bg-opacity))'
+            },
+            '.custom-block.details': {
+              backgroundColor: 'rgb(var(--tw-prose-block-details-bg) / var(--tw-prose-block-bg-opacity))',
+              borderRadius: rem(6),
+              border: '1px solid rgb(var(--tw-prose-block-details-border-color) / var(--tw-prose-block-bg-opacity))'
             }
           }
         },
         sm: {
           css: [
             {
-              '[class~="line-numbers-wrapper"]': {
+              '.line-numbers-wrapper': {
                 fontSize: em(12, 14),
                 lineHeight: round(20 / 12),
                 paddingTop: em(8, 12),
                 paddingBottom: em(8, 12),
               },
-              '[class~="line-number"]': {
+              '.line-number': {
                 fontSize: em(12, 14)
               }
             }
@@ -123,7 +144,7 @@ export default {
         base: {
           css: [
             {
-              '[class~="line-numbers-wrapper"]': {
+              '.line-numbers-wrapper': {
                 fontSize: em(14, 16),
                 lineHeight: round(24 / 14),
                 paddingTop: em(12, 14),
@@ -131,7 +152,7 @@ export default {
               }
             },
             {
-              '[class~="line-number"]': {
+              '.line-number': {
                 fontSize: em(14, 16)
               }
             }
@@ -140,7 +161,7 @@ export default {
         lg: {
           css: [
             {
-              '[class~="line-numbers-wrapper"]': {
+              '.line-numbers-wrapper': {
                 fontSize: em(16, 18),
                 lineHeight: round(28 / 16),
                 paddingTop: em(16, 16),
@@ -148,7 +169,7 @@ export default {
               }
             },
             {
-              '[class~="line-number"]': {
+              '.line-number': {
                 fontSize: em(16, 18),
               }
             }
@@ -157,7 +178,7 @@ export default {
         xl: {
           css: [
             {
-              '[class~="line-numbers-wrapper"]': {
+              '.line-numbers-wrapper': {
                 fontSize: em(18, 20),
                 lineHeight: round(32 / 18),
                 paddingTop: em(20, 18),
@@ -165,7 +186,7 @@ export default {
               }
             },
             {
-              '[class~="line-number"]': {
+              '.line-number': {
                 fontSize: em(18, 20),
               }
             }
@@ -174,7 +195,7 @@ export default {
         '2xl': {
           css: [
             {
-              '[class~="line-numbers-wrapper"]': {
+              '.line-numbers-wrapper': {
                 fontSize: em(20, 24),
                 lineHeight: round(36 / 20),
                 paddingTop: em(24, 20),
@@ -182,7 +203,7 @@ export default {
               }
             },
             {
-              '[class~="line-number"]': {
+              '.line-number': {
                 fontSize: em(20, 24),
               }
             }
@@ -198,7 +219,17 @@ export default {
         // Invert (for dark mode)
         invert: {
           css: {
-            '--tw-prose-block-danger-bg': hexToRgb(colors.red[600])
+            '--tw-prose-block-bg-opacity': '.16',
+            '--tw-prose-block-info-bg': hexToRgb(colors.slate[500]),
+            '--tw-prose-block-info-border-color': hexToRgb(colors.slate[700]),
+            '--tw-prose-block-warning-bg': hexToRgb(colors.orange[500]),
+            '--tw-prose-block-warning-border-color': hexToRgb(colors.orange[700]),
+            '--tw-prose-block-tip-bg': hexToRgb(colors.blue[500]),
+            '--tw-prose-block-tip-border-color': hexToRgb(colors.blue[700]),
+            '--tw-prose-block-danger-bg': hexToRgb(colors.red[700]),
+            '--tw-prose-block-danger-border-color': hexToRgb(colors.red[500]),
+            '--tw-prose-block-details-bg': hexToRgb(colors.slate[500]),
+            '--tw-prose-block-details-border-color': hexToRgb(colors.slate[700])
           }
         }
       })
