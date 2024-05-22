@@ -2,16 +2,23 @@
 import type { DefaultTheme } from 'vitepress';
 import { useData } from 'vitepress';
 import { isActive } from '../support/utils';
+import { onMounted, ref } from 'vue';
 
 defineProps<{
   item: DefaultTheme.NavItemWithLink
 }>();
 
 const { page } = useData();
+const isShow = ref(false);
+
+onMounted(() => {
+  isShow.value = true;
+});
 </script>
 
 <template>
   <a
+    v-if="isShow"
     :class="{
       'after:absolute after:w-3 after:h-1 after:bg-primary after:rounded-full after:bottom-0 after:left-1/2 after:-translate-x-1/2 active relative': isActive(
         page.relativePath,

@@ -24,17 +24,26 @@ export default {
         '7': '0.175em',
         '8': '0.2em'
       },
-      typography: {
+      typography: ({ theme }) => ({
         DEFAULT: {
           css: {
             pre: {
               code: {
                 padding: 0
               }
+            },
+            a: {
+              color: theme('colors.red[700]'),
+              '&:visited': {
+                color: theme('colors.red[800]')
+              },
+              '&:hover': {
+                color: theme('colors.red[500]')
+              }
             }
           }
         }
-      }
+      })
     },
   },
   plugins: [

@@ -23,6 +23,8 @@ const dom = document.querySelector('.className');
 }
 ```
 
+3. 语意化
+
 用于样式时，出于目的性考虑，如果我们的类仅仅用来控制样式，那是极好的。原子化 CSS 的设计就是如此。
 
 ```HTML
@@ -46,3 +48,6 @@ const dom = document.querySelector('.className');
 1. `style` 的可覆盖性低，根据样式优先级可知，`style` 属性控制样式优先级仅次于 `!important`，我们很难采用其它方式将其覆盖。
 
 2. `style` 的可复用性低，我们不能像 `class` 属性那样进行样式复用。
+
+
+这里有一篇关于 Atomic CSS 更加全面的文章，十分推荐阅读：[atomic-css-and-tailwind-css](https://blog.huli.tw/2022/05/23/atomic-css-and-tailwind-css/)

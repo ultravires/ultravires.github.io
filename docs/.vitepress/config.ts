@@ -38,5 +38,11 @@ export default defineConfig({
     },
     lineNumbers: false
   },
-  themeConfig: zh.themeConfig
+  themeConfig: zh.themeConfig,
+  vite: {
+    define: {
+      // 启用生产环境构建下激活不匹配的详细警告
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
+    }
+  }
 });
