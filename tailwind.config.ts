@@ -50,6 +50,7 @@ export default {
               }
             },
             a: {
+              textUnderlineOffset: '6px',
               color: theme('colors.red[700]'),
               '&:visited': {
                 color: theme('colors.red[800]')
