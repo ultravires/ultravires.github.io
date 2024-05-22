@@ -51,12 +51,12 @@ export default {
             },
             a: {
               textUnderlineOffset: '6px',
-              color: theme('colors.red[700]'),
+              color: theme('colors.blue[700]'),
               '&:visited': {
-                color: theme('colors.red[800]')
+                color: theme('colors.blue[800]')
               },
               '&:hover': {
-                color: theme('colors.red[500]')
+                color: theme('colors.blue[500]')
               },
             },
             h1: {
