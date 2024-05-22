@@ -6,7 +6,7 @@ import VPost from '../components/VPost.vue';
 
 <template>
   <VHeader />
-  <main class="container mx-auto">
+  <main class="container mx-auto flex-grow">
     <ul class="space-y-8 max-md:px-12 py-12">
       <li v-for="post in posts">
         <VPost :post="post" />

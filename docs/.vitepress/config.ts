@@ -36,7 +36,7 @@ export default defineConfig({
       light: 'github-light-default',
       dark: 'github-dark-default'
     },
-    lineNumbers: false
+    lineNumbers: true
   },
   themeConfig: zh.themeConfig,
   vite: {

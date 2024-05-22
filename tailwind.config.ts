@@ -1,4 +1,21 @@
-import Typography from '@tailwindcss/typography'
+import Typography from '@tailwindcss/typography';
+import colors from 'tailwindcss/colors';
+
+const round = (num) =>
+  num
+    .toFixed(7)
+    .replace(/(\.[0-9]+?)0+$/, '$1')
+    .replace(/\.0$/, '')
+const rem = (px) => `${round(px / 16)}rem`
+const em = (px, base) => `${round(px / base)}em`
+const hexToRgb = (hex) => {
+  hex = hex.replace('#', '')
+  hex = hex.length === 3 ? hex.replace(/./g, '$&$&') : hex
+  const r = parseInt(hex.substring(0, 2), 16)
+  const g = parseInt(hex.substring(2, 4), 16)
+  const b = parseInt(hex.substring(4, 6), 16)
+  return `${r} ${g} ${b}`
+}
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -40,7 +57,87 @@ export default {
               '&:hover': {
                 color: theme('colors.red[500]')
               }
+            },
+            'div[class*=language-].line-numbers-mode': {
+              paddingLeft: em(32, 16)
+            },
+            '[class~="line-numbers-wrapper"]': {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: em(32, 16),
+              textAlign: 'center',
+              backgroundColor: 'var(--tw-prose-pre-bg)',
+              color: 'var(--tw-prose-counters)',
+              borderRadius: rem(6)
             }
+          }
+        },
+        sm: {
+          css: [
+            {
+              '[class~="line-numbers-wrapper"]': {
+                fontSize: em(12, 14),
+                lineHeight: round(20 / 12),
+                paddingTop: em(8, 12),
+                paddingBottom: em(8, 12),
+              }
+            }
+          ]
+        },
+        base: {
+          css: [
+            {
+              '[class~="line-numbers-wrapper"]': {
+                fontSize: em(14, 16),
+                lineHeight: round(24 / 14),
+                paddingTop: em(12, 14),
+                paddingBottom: em(12, 14),
+              }
+            }
+          ]
+        },
+        lg: {
+          css: [
+            {
+              '[class~="line-numbers-wrapper"]': {
+                fontSize: em(16, 18),
+                lineHeight: round(28 / 16),
+                paddingTop: em(16, 16),
+                paddingBottom: em(16, 16),
+              }
+            }
+          ]
+        },
+        xl: {
+          css: [
+            {
+              '[class~="line-numbers-wrapper"]': {
+                fontSize: em(18, 20),
+                lineHeight: round(32 / 18),
+                paddingTop: em(20, 18),
+                paddingBottom: em(20, 18),
+              }
+            }
+          ]
+        },
+        '2xl': {
+          css: [
+            {
+              '[class~="line-numbers-wrapper"]': {
+                fontSize: em(20, 24),
+                lineHeight: round(36 / 20),
+                paddingTop: em(24, 20),
+                paddingBottom: em(24, 20),
+              }
+            }
+          ]
+        },
+        neutral: {
+          css: {
+            '--tw-prose-pre-bg': colors.neutral[50],
+            '--tw-prose-invert-pre-bg': colors.neutral[950]
           }
         }
       })

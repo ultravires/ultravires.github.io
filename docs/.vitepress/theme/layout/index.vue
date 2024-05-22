@@ -2,13 +2,15 @@
 import { useData } from 'vitepress';
 import HomeLayout from './HomeLayout.vue';
 import DocLayout from './DocLayout.vue';
+import VFooter from '../components/VFooter.vue';
 
 const { frontmatter } = useData();
 </script>
 
 <template>
-  <section class="dark:bg-neutral-950 dark:text-white min-h-screen bg-neutral-50 text-black">
+  <div class="dark:bg-neutral-950 dark:text-white flex flex-col min-h-screen bg-neutral-50 text-black">
     <HomeLayout v-if="frontmatter.layout === 'home'" />
     <DocLayout v-else />
-  </section>
+    <VFooter />
+  </div>
 </template>

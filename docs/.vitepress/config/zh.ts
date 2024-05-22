@@ -7,7 +7,11 @@ export const zh = defineConfig({
 
   themeConfig: {
     siteTitle: '“前端天花板”',
-    nav: nav()
+    nav: nav(),
+    footer: {
+      message: '基于 MIT 许可发布',
+      copyright: `版权所有 &copy; 2024-${new Date().getFullYear()} 向成渝`
+    }
   }
 });
 
