@@ -71,7 +71,7 @@ export default {
               backgroundColor: 'var(--tw-prose-pre-bg)',
               color: 'var(--tw-prose-counters)',
               borderRadius: rem(6)
-            }
+            },
           }
         },
         sm: {
@@ -82,6 +82,9 @@ export default {
                 lineHeight: round(20 / 12),
                 paddingTop: em(8, 12),
                 paddingBottom: em(8, 12),
+              },
+              '[class~="line-number"]': {
+                fontSize: em(12, 14)
               }
             }
           ]
@@ -95,6 +98,11 @@ export default {
                 paddingTop: em(12, 14),
                 paddingBottom: em(12, 14),
               }
+            },
+            {
+              '[class~="line-number"]': {
+                fontSize: em(14, 16)
+              }
             }
           ]
         },
@@ -106,6 +114,11 @@ export default {
                 lineHeight: round(28 / 16),
                 paddingTop: em(16, 16),
                 paddingBottom: em(16, 16),
+              }
+            },
+            {
+              '[class~="line-number"]': {
+                fontSize: em(16, 18),
               }
             }
           ]
@@ -119,6 +132,11 @@ export default {
                 paddingTop: em(20, 18),
                 paddingBottom: em(20, 18),
               }
+            },
+            {
+              '[class~="line-number"]': {
+                fontSize: em(18, 20),
+              }
             }
           ]
         },
@@ -130,6 +148,11 @@ export default {
                 lineHeight: round(36 / 20),
                 paddingTop: em(24, 20),
                 paddingBottom: em(24, 20),
+              }
+            },
+            {
+              '[class~="line-number"]': {
+                fontSize: em(20, 24),
               }
             }
           ]
