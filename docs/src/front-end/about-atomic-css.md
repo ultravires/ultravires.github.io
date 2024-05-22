@@ -19,7 +19,7 @@ const dom = document.querySelector('.className');
 
 ```CSS
 .className {
-    color: red;
+  color: red;
 }
 ```
 
@@ -49,5 +49,50 @@ const dom = document.querySelector('.className');
 
 2. `style` 的可复用性低，我们不能像 `class` 属性那样进行样式复用。
 
+## 我认为？
+
+### Q: 如果我有多个元素的基础样式相同怎么办？
+
+```HTML
+<!-- 默认按钮 -->
+<button class="border-transparent outline-none bg-default text-black"></button>
+<!-- 主要按钮 -->
+<button class="border-transparent outline-none bg-primary text-white"></button>
+<!-- 危险按钮 -->
+<button class="border-transparent outline-none bg-danger text-white"></button>
+```
+
+VS.
+
+```HTML
+<!-- 默认按钮 -->
+<button class="page-btn page-btn--default"></button>
+<!-- 主要按钮 -->
+<button class="page-btn page-btn--primary"></button>
+<!-- 危险按钮 -->
+<button class="page-btn page-btn--danger"></button>
+```
+
+组件封装后使用
+
+```HTML
+<foo-button type="default"></foo-button>
+<foo-button type="primary"></foo-button>
+<foo-button type="danger"></foo-button>
+```
+
+### Q: 原子化 CSS 打破了语意化命名规则？
+
+```HTML
+<ul class="news">
+  <li class="new"></li>
+</ul>
+```
+
+让人一眼就能看出该元素是用于绘制新闻列表的，它更具有语意化。
+
+如果你仅仅想对元素进一步描述，为何不使用 `data-*` 呢？`data-role="news"`。
+
+## 参考文献
 
 这里有一篇关于 Atomic CSS 更加全面的文章，十分推荐阅读：[atomic-css-and-tailwind-css](https://blog.huli.tw/2022/05/23/atomic-css-and-tailwind-css/)
