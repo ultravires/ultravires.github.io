@@ -32,8 +32,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="cursor-pointer" @click="toggleTheme">
-    <VIconMoon title="进入暗色主题" v-show="!isDarkTheme" />
-    <VIconSun title="进入亮色主题" v-show="isDarkTheme"/>
+  <div class="hover:bg-primary hover:text-reverse p-1 rounded-full cursor-pointer" :title="isDarkTheme ? '进入亮色主题' : '进入暗色主题'" @click="toggleTheme">
+    <VIconMoon v-show="!isDarkTheme" />
+    <VIconSun v-show="isDarkTheme"/>
   </div>
 </template>

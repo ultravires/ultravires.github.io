@@ -25,7 +25,9 @@ const visiteRandomArticle = () => {
 </script>
 
 <template>
-  <VIconDice :class="['dice cursor-pointer', { rotating }]" title="随机访问该站文章" @click="visiteRandomArticle" />
+  <div class="hover:bg-primary hover:text-reverse p-1 rounded-full cursor-pointer" title="随机访问该站文章" @click="visiteRandomArticle">
+    <VIconDice :class="['dice', { rotating }]" />
+  </div>
 </template>
 
 <style scoped>

@@ -9,7 +9,7 @@ const { frontmatter } = useData();
 <template>
   <VHeader />
   <div class="container mx-auto py-12">
-    <article id="article" class="dark:bg-neutral-900 dark:border-neutral-800 dark:prose-pre:border-neutral-800 dark:prose-invert prose-pre:border prose-pre:border-solid prose-pre:border-neutral-200 prose-code:before:content-none prose-code:after:content-none prose-code:px-2 prose-code:py-1 prose-code:text-primary prose-code:text-opacity-90 prose-code:bg-primary prose-code:bg-opacity-10 prose-code:rounded-md prose-blockquote:not-italic prose-blockquote:font-normal md:prose-lg lg:prose-xl prose prose-neutral prose-lg max-w-none p-12 mx-auto bg-white rounded-md border border-solid border-neutral-200">
+    <article id="article" class="dark:bg-neutral-900 dark:border-neutral-800 dark:prose-pre:border-neutral-800 dark:prose-invert prose-pre:border prose-pre:border-solid prose-pre:border-neutral-200 prose-code:px-2 prose-code:py-1 prose-code:bg-primary prose-code:bg-opacity-10 prose-code:text-primary prose-code:rounded-md prose-blockquote:not-italic prose-blockquote:font-normal md:prose-lg lg:prose-xl prose prose-neutral prose-lg max-w-none p-12 mx-auto bg-white rounded-md border border-solid border-neutral-200">
       <div class="flex items-center gap-8">
         <span v-if="Array.isArray(frontmatter.categories) && frontmatter.categories.length > 0">
           <span class="text-sm">分类:</span>

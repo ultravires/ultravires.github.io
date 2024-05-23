@@ -44,11 +44,32 @@ export default {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
-            pre: {
-              code: {
-                padding: 0
-              }
-            },
+            '--tw-prose-block-text-opacity': '.86',
+            '--tw-prose-block-bg-opacity': '.16',
+            '--tw-prose-block-info-bg': hexToRgb(colors.slate[500]),
+            '--tw-prose-block-info-border-color': hexToRgb(colors.slate[700]),
+            '--tw-prose-block-warning-bg': hexToRgb(colors.yellow[500]),
+            '--tw-prose-block-warning-border-color': hexToRgb(colors.yellow[700]),
+            '--tw-prose-block-tip-bg': hexToRgb(colors.blue[500]),
+            '--tw-prose-block-tip-border-color': hexToRgb(colors.blue[700]),
+            '--tw-prose-block-danger-bg': hexToRgb(colors.red[700]),
+            '--tw-prose-block-danger-border-color': hexToRgb(colors.red[500]),
+            '--tw-prose-block-details-bg': hexToRgb(colors.slate[500]),
+            '--tw-prose-block-details-border-color': hexToRgb(colors.slate[700]),
+            '--tw-prose-block-note-bg': hexToRgb(colors.slate[500]),
+            '--tw-prose-block-note-border-color': hexToRgb(colors.slate[700]),
+            '--tw-prose-block-caution-bg': hexToRgb(colors.red[700]),
+            '--tw-prose-block-caution-border-color': hexToRgb(colors.red[500]),
+            '--tw-prose-block-important-bg': hexToRgb(colors.purple[700]),
+            '--tw-prose-block-important-border-color': hexToRgb(colors.purple[500]),
+            '--tw-prose-code-line-highlight-bg': hexToRgb(colors.neutral[500]),
+            '--tw-prose-code-line-diff-remove-color': hexToRgb(colors.red[500]),
+            '--tw-prose-code-line-diff-remove-symbol-color': hexToRgb(colors.red[500]),
+            '--tw-prose-code-line-diff-add-color': hexToRgb(colors.green[500]),
+            '--tw-prose-code-line-diff-add-symbol-color': hexToRgb(colors.green[500]),
+            '--tw-prose-code-line-error-color': hexToRgb(colors.red[700]),
+            '--tw-prose-code-line-warning-color': hexToRgb(colors.yellow[700]),
+            '--tw-prose-line-numbers-wrapper-border-color': hexToRgb(colors.neutral[200]),
             a: {
               textUnderlineOffset: '6px',
               color: theme('colors.blue[700]'),
@@ -58,6 +79,12 @@ export default {
               '&:hover': {
                 color: theme('colors.blue[500]')
               },
+            },
+            'code::before': {
+              content: 'none',
+            },
+            'code::after': {
+              content: 'none',
             },
             h1: {
               position: 'relative',
@@ -77,6 +104,12 @@ export default {
             h6: {
               position: 'relative',
             },
+            pre: {
+              code: {
+                padding: 0,
+                backgroundColor: 'transparent',
+              },
+            },
             'div[class*=language-].line-numbers-mode': {
               paddingLeft: em(32, 16)
             },
@@ -88,6 +121,7 @@ export default {
               width: em(32, 16),
               textAlign: 'center',
               backgroundColor: 'var(--tw-prose-pre-bg)',
+              border: '1px solid rgb(var(--tw-prose-line-numbers-wrapper-border-color) / 1)',
               color: 'var(--tw-prose-counters)',
               borderRadius: rem(6)
             },
@@ -143,6 +177,45 @@ export default {
             },
             '.custom-block-title': {
               margin: 0,
+            },
+            '[class*=language-] code .highlighted': {
+              display: 'inline-block',
+              width: '100%',
+              backgroundColor: 'rgb(var(--tw-prose-code-line-highlight-bg) / .16)',
+            },
+            '[class*=language-] .has-focused-lines .line:not(.has-focus)': {
+              filter: 'blur(0.095rem)',
+            },
+            '[class*=language-]:hover .has-focused-lines .line:not(.has-focus)': {
+              filter: 'none',
+            },
+            '[class*=language-] code .diff.remove': {
+              display: 'inline-block',
+              width: '100%',
+              backgroundColor: 'rgb(var(--tw-prose-code-line-diff-remove-color) / .16)'
+            },
+            '[class*=language-] code .diff.remove::before': {
+              content: '-',
+              color: 'rgb(var(--tw-prose-code-line-diff-remove-symbol-color) / 1)'
+            },
+            '[class*=language-] code .diff.add': {
+              display: 'inline-block',
+              width: '100%',
+              backgroundColor: 'rgb(var(--tw-prose-code-line-diff-add-color) / .16)'
+            },
+            '[class*=language-] code .diff.add::before': {
+              content: '+',
+              color: 'rgb(var(--tw-prose-code-line-diff-add-symbol-color) / 1)'
+            },
+            '[class*=language-] code .highlighted.error': {
+              display: 'inline-block',
+              width: '100%',
+              backgroundColor: 'rgb(var(--tw-prose-code-line-error-color) / .36)'
+            },
+            '[class*=language-] code .highlighted.warning': {
+              display: 'inline-block',
+              width: '100%',
+              backgroundColor: 'rgb(var(--tw-prose-code-line-warning-color) / .36)'
             }
           }
         },
@@ -316,11 +389,12 @@ export default {
         // Invert (for dark mode)
         invert: {
           css: {
+            '--tw-prose-block-text-opacity': '.86',
             '--tw-prose-block-bg-opacity': '.16',
             '--tw-prose-block-info-bg': hexToRgb(colors.slate[500]),
             '--tw-prose-block-info-border-color': hexToRgb(colors.slate[700]),
-            '--tw-prose-block-warning-bg': hexToRgb(colors.orange[500]),
-            '--tw-prose-block-warning-border-color': hexToRgb(colors.orange[700]),
+            '--tw-prose-block-warning-bg': hexToRgb(colors.yellow[500]),
+            '--tw-prose-block-warning-border-color': hexToRgb(colors.yellow[700]),
             '--tw-prose-block-tip-bg': hexToRgb(colors.blue[500]),
             '--tw-prose-block-tip-border-color': hexToRgb(colors.blue[700]),
             '--tw-prose-block-danger-bg': hexToRgb(colors.red[700]),
@@ -333,6 +407,14 @@ export default {
             '--tw-prose-block-caution-border-color': hexToRgb(colors.red[500]),
             '--tw-prose-block-important-bg': hexToRgb(colors.purple[700]),
             '--tw-prose-block-important-border-color': hexToRgb(colors.purple[500]),
+            '--tw-prose-code-line-highlight-bg': hexToRgb(colors.neutral[500]),
+            '--tw-prose-code-line-diff-remove-color': hexToRgb(colors.red[500]),
+            '--tw-prose-code-line-diff-remove-symbol-color': hexToRgb(colors.red[500]),
+            '--tw-prose-code-line-diff-add-color': hexToRgb(colors.green[500]),
+            '--tw-prose-code-line-diff-add-symbol-color': hexToRgb(colors.green[500]),
+            '--tw-prose-code-line-error-color': hexToRgb(colors.red[700]),
+            '--tw-prose-code-line-warning-color': hexToRgb(colors.yellow[700]),
+            '--tw-prose-line-numbers-wrapper-border-color': hexToRgb(colors.neutral[800]),
           }
         }
       })

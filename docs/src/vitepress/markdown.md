@@ -244,6 +244,10 @@ Wraps in a <div class="vp-raw">
 :::
 ```
 
+::: raw
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=54954953&bvid=BV1s4411T7iG&cid=96107566&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+:::
+
 `vp-raw` class 也可以直接用于元素。样式隔离目前是可选的：
 
 - 使用喜欢的包管理器来安装需要的依赖项：
@@ -561,8 +565,8 @@ export default {
 **输入**
 
 ````md
-```ts {1}
-// 默认禁用行号
+```ts:no-line-numbers {1}
+// 禁用行号
 const line2 = 'This is line 2'
 const line3 = 'This is line 3'
 ```
@@ -582,8 +586,8 @@ const line4 = 'This is line 4'
 
 **输出**
 
-```ts {1}
-// 默认禁用行号
+```ts:no-line-numbers {1}
+// 禁用行号
 const line2 = 'This is line 2'
 const line3 = 'This is line 3'
 ```

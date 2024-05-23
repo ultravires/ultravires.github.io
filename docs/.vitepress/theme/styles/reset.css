@@ -1,6 +1,10 @@
 * {
   box-sizing: border-box;
-  transition: all .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+  transition: transform .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+              background .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+              padding .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+              border .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+              filter .4s cubic-bezier(0.075, 0.82, 0.165, 1),
               color .1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 

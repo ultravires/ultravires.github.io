@@ -8,6 +8,13 @@
   --web-code-copy-code-hover-border-color: #eee;
   --web-code-copy-code-active-text: rgba(128,128,128,1);
   --web-code-copy-copied-text-content: "已复制";
+
+  --web-code-tab-bg: #fafafa;
+  --web-code-tab-active-bar-color: #4B58DE;
+  --web-code-tab-divider: #e5e5e5;
+  --web-code-tab-text-color: rgba(128,128,128,1);
+  --web-code-tab-hover-text-color: black;
+  --web-code-tab-active-text-color: black;
 }
 
 html.dark {
@@ -20,6 +27,13 @@ html.dark {
   --web-code-copy-code-hover-border-color: #333;
   --web-code-copy-code-active-text: rgba(128,128,128,1);
   --web-code-copy-copied-text-content: "已复制";
+
+  --web-code-tab-bg: #0a0a0a;
+  --web-code-tab-active-bar-color: #4B58DE;
+  --web-code-tab-divider: #171717;
+  --web-code-tab-text-color: rgba(128,128,128,1);
+  --web-code-tab-hover-text-color: white;
+  --web-code-tab-active-text-color: white;
 }
 
 .prose div[class*=language-] {
@@ -99,46 +113,91 @@ html.dark {
   color: var(--web-code-lang-color);
 }
 
-@media (prefers-color-scheme: light) {
-  .shiki,
-  .shiki span {
-    color: var(--shiki-light);
-    /* background-color: var(--shiki-light-bg); */
-    background-color: var(--tw-prose-pre-bg);
-    font-style: var(--shiki-light-font-style);
-    font-weight: var(--shiki-light-font-weight);
-    text-decoration: var(--shiki-light-text-decoration);
+
+.vp-code-group {
+  margin-top: 16px
+}
+
+.vp-code-group .tabs {
+  position: relative;
+  display: flex;
+  margin-right: -24px;
+  margin-left: -24px;
+  padding: 0 12px;
+  background-color: var(--web-code-tab-bg);
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-shadow: inset 0 -1px var(--web-code-tab-divider),
+              inset 0 1px var(--web-code-tab-divider),
+              inset 1px 0 var(--web-code-tab-divider),
+              inset -1px 0 var(--web-code-tab-divider);
+}
+
+.vp-code-group pre {
+  margin-top: .25em;
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .vp-code-group .tabs {
+      margin-right:0;
+      margin-left: 0;
+      border-radius: 8px 8px 0 0
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .shiki,
-  .shiki span {
-    color: var(--shiki-dark);
-    /* background-color: var(--shiki-dark-bg); */
-    background-color: var(--tw-prose-pre-bg);
-    font-style: var(--shiki-dark-font-style);
-    font-weight: var(--shiki-dark-font-weight);
-    text-decoration: var(--shiki-dark-text-decoration);
-  }
+.vp-code-group .tabs input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none
 }
 
-html.dark .shiki,
-html.dark .shiki span {
-  color: var(--shiki-dark);
-  /* background-color: var(--shiki-dark-bg); */
-  background-color: var(--tw-prose-pre-bg);
-  font-style: var(--shiki-dark-font-style);
-  font-weight: var(--shiki-dark-font-weight);
-  text-decoration: var(--shiki-dark-text-decoration);
+.vp-code-group .tabs label {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px solid transparent;
+  padding: 0 12px;
+  line-height: 48px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--web-code-tab-text-color);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .25s
 }
 
-.shiki,
-.shiki span {
-  color: var(--shiki-light);
-  /* background-color: var(--shiki-light-bg); */
-  background-color: var(--tw-prose-pre-bg);
-  font-style: var(--shiki-light-font-style);
-  font-weight: var(--shiki-light-font-weight);
-  text-decoration: var(--shiki-light-text-decoration);
+.vp-code-group .tabs label:after {
+  position: absolute;
+  right: 8px;
+  bottom: -1px;
+  left: 8px;
+  z-index: 1;
+  height: 2px;
+  border-radius: 2px;
+  content: "";
+  background-color: transparent;
+  transition: background-color .25s;
+}
+
+.vp-code-group label:hover {
+  color: var(--web-code-tab-hover-text-color);
+}
+
+.vp-code-group input:checked+label {
+  color: var(--web-code-tab-active-text-color);
+}
+
+.vp-code-group input:checked+label:after {
+  background-color: var(--web-code-tab-active-bar-color);
+}
+
+.vp-code-group div[class*=language-],.vp-block {
+  display: none;
+  margin-top: 0!important;
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important
+}
+
+.vp-code-group div[class*=language-].active,.vp-block.active {
+  display: block
 }
