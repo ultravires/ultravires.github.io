@@ -5,7 +5,7 @@
               padding .4s cubic-bezier(0.075, 0.82, 0.165, 1),
               border .4s cubic-bezier(0.075, 0.82, 0.165, 1),
               filter .4s cubic-bezier(0.075, 0.82, 0.165, 1),
-              color .1s cubic-bezier(0.075, 0.82, 0.165, 1);
+              color .4s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 html,body {
