@@ -4,6 +4,7 @@ import VNavBar from './VNavBar.vue';
 import VThemeToggle from './VThemeToggle.vue';
 import VRandomArticle from './VRandomArticle.vue';
 import VNavBarHamburger from './VNavBarHamburger.vue';
+import VBackTop from './VBackToTop.vue';
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import VNavBarHamburger from './VNavBarHamburger.vue';
       <div class="max-md:ml-auto flex items-center gap-4 text-xl">
         <VRandomArticle />
         <VThemeToggle />
+        <VBackTop />
       </div>
       <VNavBarHamburger class="max-md:flex hidden ml-8" />
     </div>
