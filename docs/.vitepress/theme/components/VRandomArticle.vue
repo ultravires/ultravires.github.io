@@ -8,10 +8,20 @@ const router = useRouter();
 
 const duration = ref(1); // s
 const rotating = ref(false);
+const oldRandom = ref(-1);
 
 const diceAnimationDuration = computed(() => {
   return duration.value + 's';
 });
+
+const getRandom = (): number => {
+  const random = Math.floor(Math.random() * posts.length);
+  if (oldRandom.value !== random || posts.length === 1) {
+    oldRandom.value = random;
+    return random;
+  }
+  return getRandom();
+};
 
 const visiteRandomArticle = () => {
   if (rotating.value) return;
@@ -19,7 +29,7 @@ const visiteRandomArticle = () => {
   setTimeout(() => {
     rotating.value = false;
   }, duration.value * 1000);
-  const random = Math.floor(Math.random() * posts.length);
+  const random = getRandom();
   router.go(posts[random].url);
 };
 </script>

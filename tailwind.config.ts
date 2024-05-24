@@ -106,9 +106,9 @@ export default {
             },
             pre: {
               code: {
-                padding: 0,
-                backgroundColor: 'transparent',
-              },
+                padding: '0 !important',
+                backgroundColor: 'transparent !important',
+              }
             },
             'div[class*=language-].line-numbers-mode': {
               paddingLeft: em(32, 16)
@@ -222,6 +222,9 @@ export default {
         sm: {
           css: [
             {
+              code: {
+                fontSize: 'inherit',
+              },
               '.line-numbers-wrapper': {
                 fontSize: em(12, 14),
                 lineHeight: round(20 / 12),
@@ -254,6 +257,9 @@ export default {
         base: {
           css: [
             {
+              code: {
+                fontSize: 'inherit',
+              },
               '.line-numbers-wrapper': {
                 fontSize: em(14, 16),
                 lineHeight: round(24 / 14),
@@ -286,6 +292,9 @@ export default {
         lg: {
           css: [
             {
+              code: {
+                fontSize: 'inherit',
+              },
               '.line-numbers-wrapper': {
                 fontSize: em(16, 18),
                 lineHeight: round(28 / 16),
@@ -318,6 +327,9 @@ export default {
         xl: {
           css: [
             {
+              code: {
+                fontSize: 'inherit',
+              },
               '.line-numbers-wrapper': {
                 fontSize: em(18, 20),
                 lineHeight: round(32 / 18),
@@ -350,6 +362,9 @@ export default {
         '2xl': {
           css: [
             {
+              code: {
+                fontSize: 'inherit',
+              },
               '.line-numbers-wrapper': {
                 fontSize: em(20, 24),
                 lineHeight: round(36 / 20),
