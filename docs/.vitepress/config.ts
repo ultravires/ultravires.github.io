@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress';
 import { genFeed } from './genFeed.js';
-import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 import { zh } from './config/zh.js';
 
 // https://vitepress.vuejs.org/config/app-configs
@@ -28,27 +27,7 @@ export default defineConfig({
       ]
     }
   },
-  markdown: {
-    codeTransformers: [
-      transformerTwoslash() 
-    ],
-    theme: {
-      light: 'github-light-default',
-      dark: 'github-dark-default'
-    },
-    lineNumbers: true,
-    math: true, // require `markdown-it-mathjax3`
-    image: {
-      lazyLoading: true
-    },
-    container: {
-      tipLabel: '提示',
-      warningLabel: '警告',
-      dangerLabel: '危险',
-      infoLabel: '信息',
-      detailsLabel: '详细信息'
-    }
-  },
+  markdown: zh.markdown,
   themeConfig: zh.themeConfig,
   vite: {
     define: {

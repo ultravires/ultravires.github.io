@@ -72,12 +72,12 @@ export default {
             '--tw-prose-line-numbers-wrapper-border-color': hexToRgb(colors.neutral[200]),
             a: {
               textUnderlineOffset: '6px',
-              color: theme('colors.blue[700]'),
+              color: theme('colors.green[700]'),
               '&:visited': {
-                color: theme('colors.blue[800]')
+                color: theme('colors.green[800]')
               },
               '&:hover': {
-                color: theme('colors.blue[500]')
+                color: theme('colors.green[500]')
               },
             },
             'code::before': {
@@ -88,21 +88,39 @@ export default {
             },
             h1: {
               position: 'relative',
+              '&:hover a.header-anchor': {
+                opacity: 1,
+              },
             },
             h2: {
               position: 'relative',
+              '&:hover a.header-anchor': {
+                opacity: 1,
+              },
             },
             h3: {
               position: 'relative',
+              '&:hover a.header-anchor': {
+                opacity: 1,
+              },
             },
             h4: {
               position: 'relative',
+              '&:hover a.header-anchor': {
+                opacity: 1,
+              },
             },
             h5: {
               position: 'relative',
+              '&:hover a.header-anchor': {
+                opacity: 1,
+              },
             },
             h6: {
               position: 'relative',
+              '&:hover a.header-anchor': {
+                opacity: 1,
+              },
             },
             pre: {
               code: {
@@ -129,9 +147,11 @@ export default {
               position: 'absolute',
               left: 0,
               marginLeft: em(-12, 14),
-              '&::before': {
-                content: '#'
-              }
+              textDecoration: 'none',
+              opacity: .2,
+            },
+            'a.header-anchor::before': {
+              content: '"#"'
             },
             '.custom-block': {
               '&.info': {

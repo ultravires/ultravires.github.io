@@ -1,4 +1,5 @@
 import { defineConfig, type DefaultTheme } from "vitepress";
+import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 
 export const zh = defineConfig({
   lang: 'zh-Hans',
@@ -11,6 +12,28 @@ export const zh = defineConfig({
     footer: {
       message: '基于 MIT 许可发布',
       copyright: `版权所有 &copy; 2024-${new Date().getFullYear()} 向成渝`
+    }
+  },
+
+  markdown: {
+    codeTransformers: [
+      transformerTwoslash() 
+    ],
+    theme: {
+      light: 'github-light-default',
+      dark: 'github-dark-default'
+    },
+    lineNumbers: true,
+    math: true, // require `markdown-it-mathjax3`
+    image: {
+      lazyLoading: true
+    },
+    container: {
+      tipLabel: '提示',
+      warningLabel: '警告',
+      dangerLabel: '危险',
+      infoLabel: '信息',
+      detailsLabel: '详细信息'
     }
   }
 });
