@@ -145,13 +145,17 @@ export default {
             },
             'a.header-anchor': {
               position: 'absolute',
+              top: '50%',
               left: 0,
               marginLeft: em(-12, 14),
               textDecoration: 'none',
               opacity: .2,
+              fontSize: em(12, 16),
+              transform: 'translateY(-50%)',
             },
             'a.header-anchor::before': {
-              content: '"#"'
+              content: '"#"',
+              verticalAlign: 'middle'
             },
             '.custom-block': {
               '&.info': {
