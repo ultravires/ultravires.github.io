@@ -8,7 +8,7 @@ const themeData = theme.value;
 </script>
 
 <template>
-  <div class="group relative p-2">
+  <div class="group relative p-2 whitespace-nowrap">
     <a class="decoration-none font-medium text-lg" href="/">
       {{ themeData.siteTitle || siteData.title }}
     </a>

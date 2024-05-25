@@ -14,18 +14,19 @@ const scrollToTop = () => {
 
 <style scoped>
 .VBackToTop {
-  animation: opacity-transform auto linear;
+  animation-name: the-animation;
+  animation-timing-function: linear;
   animation-timeline: --page-scroll;
   opacity: 0;
   width: 0;
 }
 
-@keyframes opacity-transform {
+@keyframes the-animation {
   0% {
     width: 0;
     opacity: 0;
   }
-  .1% {
+  .0001% {
     width: 6em;
     opacity: 1;
   }

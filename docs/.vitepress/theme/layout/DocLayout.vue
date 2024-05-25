@@ -10,6 +10,7 @@ const { frontmatter } = useData();
   <VHeader />
   <div class="container mx-auto py-12">
     <article id="article" class="
+      VDoc
       max-md:px-6
       max-sm:px-4
       lg:prose-xl
