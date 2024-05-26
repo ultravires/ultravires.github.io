@@ -8,7 +8,7 @@ const { frontmatter } = useData();
 </script>
 
 <template>
-  <div class="dark:bg-neutral-950 dark:text-white flex flex-col min-h-screen bg-neutral-50 text-black">
+  <div class="dark:bg-neutral-950 flex flex-col min-h-screen bg-neutral-50 text-base">
     <HomeLayout v-if="frontmatter.layout === 'home'" />
     <DocLayout v-else />
     <VFooter />

@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* 基础文字色 */
+    --web-color-base: 0 0 0;
+    /* 主要文字色 */
+    --web-color-primary: 71 89 230;
+    --web-color-white: 255 255 255;
+    --web-color-black: 0 0 0;
+    --web-color-reverse: 255 255 255;
+  
+    --web-header-height: 4rem;
+  }
+  
+  .dark {
+    --web-color-base: 255 255 255;
+    --web-color-primary: 246 202 96;
+    --web-color-reverse: 0 0 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    transition: transform .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+                background .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+                padding .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+                border .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+                filter .4s cubic-bezier(0.075, 0.82, 0.165, 1),
+                color .1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  
+  html,body {
+    width: 100%;
+  }
+  
+  html {
+    scroll-timeline: --page-scroll block;
+  }
+  
+  body {
+    margin: 0;
+  }
+}

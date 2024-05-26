@@ -17,7 +17,7 @@ const isExternal = computed(() => {
 </script>
 
 <template>
-  <component :is="tag" :href="href" :target="target ?? (isExternal ? '_blank' : undefined)">
+  <component :class="{ 'cursor-default': tag !== 'a' }" :is="tag" :href="href" :target="target ?? (isExternal ? '_blank' : undefined)">
     <slot />
   </component>
 </template>
