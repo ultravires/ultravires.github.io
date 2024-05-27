@@ -12,7 +12,7 @@ console.log(frontmatter)
 </script>
 
 <template>
-  <header class="max-md:px-4 dark:border-neutral-700 VHeader sticky top-0 mb-4 w-full h-[var(--web-header-height)] border-b border-solid border-neutral-200 z-10">
+  <header class="max-md:px-4 dark:bg-black dark:border-neutral-700 VHeader sticky top-0 mb-4 w-full h-[var(--web-header-height)] bg-neutral-50 border-b border-solid border-neutral-200 z-10">
     <div class="absolute flex justify-center items-center top-0 right-0 bottom-0 left-0 overflow-hidden">
       <h1 class="h-full text-ellipsis whitespace-nowrap overflow-hidden translate-y-full">{{ frontmatter.title }}</h1>
     </div>

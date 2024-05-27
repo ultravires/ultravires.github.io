@@ -4,8 +4,8 @@ import { zh } from './config/zh.js';
 
 // https://vitepress.vuejs.org/config/app-configs
 export default defineConfig({
-  title: '“前端天花板”',
-  description: '向成渝的个人博客',
+  title: zh.title,
+  description: zh.description,
   srcDir: 'src',
   cleanUrls: true,
   buildEnd: genFeed,
