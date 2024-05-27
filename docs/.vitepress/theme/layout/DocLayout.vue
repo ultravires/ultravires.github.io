@@ -16,8 +16,8 @@ const { frontmatter } = useData();
       lg:prose-xl
       dark:prose-invert
       dark:bg-neutral-900
-      dark:border-neutral-800
-      dark:prose-pre:border-neutral-800
+      dark:border-neutral-700
+      dark:prose-pre:border-neutral-700
       prose-pre:border
       prose-pre:border-solid
       prose-pre:border-neutral-200

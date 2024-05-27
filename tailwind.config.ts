@@ -72,13 +72,15 @@ export default {
             '--tw-prose-code-line-warning-color': hexToRgb(colors.yellow[700]),
             '--tw-prose-line-numbers-wrapper-border-color': hexToRgb(colors.neutral[200]),
             a: {
+              fontWeight: 400,
+              textDecoration: 'none',
               textUnderlineOffset: '6px',
-              color: theme('colors.green[700]'),
+              color: theme('colors.green[600]'),
               '&:visited': {
-                color: theme('colors.green[800]')
+                color: theme('colors.green[600]')
               },
               '&:hover': {
-                color: theme('colors.green[500]')
+                color: theme('colors.green[700]')
               },
             },
             'code::before': {
@@ -454,7 +456,7 @@ export default {
             '--tw-prose-code-line-diff-add-symbol-color': hexToRgb(colors.green[500]),
             '--tw-prose-code-line-error-color': hexToRgb(colors.red[700]),
             '--tw-prose-code-line-warning-color': hexToRgb(colors.yellow[700]),
-            '--tw-prose-line-numbers-wrapper-border-color': hexToRgb(colors.neutral[800]),
+            '--tw-prose-line-numbers-wrapper-border-color': hexToRgb(colors.neutral[700]),
           }
         }
       })

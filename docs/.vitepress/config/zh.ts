@@ -7,7 +7,7 @@ export const zh = defineConfig({
   description: '向成渝的个人博客',
 
   themeConfig: {
-    siteTitle: '“前端天花板”',
+    siteTitle: '浅安。',
     nav: nav(),
     footer: {
       message: '基于 MIT 许可发布',

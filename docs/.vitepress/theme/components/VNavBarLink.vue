@@ -12,7 +12,7 @@ const { page } = useData();
 
 <template>
   <VLink
-    class="transition-colors duration-300"
+    class="px-4 py-2 transition-colors duration-300"
     :class="{
       'after:absolute after:w-3 after:h-1 after:bg-primary after:rounded-full after:bottom-0 after:left-1/2 after:-translate-x-1/2 active relative': isActive(
         page.relativePath,

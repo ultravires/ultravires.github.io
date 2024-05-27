@@ -12,7 +12,7 @@ console.log(frontmatter)
 </script>
 
 <template>
-  <header class="max-md:px-4 VHeader sticky top-0 mb-4 w-full h-[var(--web-header-height)] z-10">
+  <header class="max-md:px-4 dark:border-neutral-700 VHeader sticky top-0 mb-4 w-full h-[var(--web-header-height)] border-b border-solid border-neutral-200 z-10">
     <div class="absolute flex justify-center items-center top-0 right-0 bottom-0 left-0 overflow-hidden">
       <h1 class="h-full text-ellipsis whitespace-nowrap overflow-hidden translate-y-full">{{ frontmatter.title }}</h1>
     </div>
@@ -32,7 +32,6 @@ console.log(frontmatter)
 <style scoped>
 .VHeader {
   --web-main-header-bg: #fff;
-  --web-main-header-border: 1px solid #e5e5e5;
   animation: background-transform auto linear;
   animation-timeline: --page-scroll;
 }
@@ -45,16 +44,15 @@ console.log(frontmatter)
 @keyframes background-transform {
   0% {
     background-color: transparent;
-    border: var(--web-main-header-border);
-    border-width: 0;
+    border-bottom-width: 0;
   }
   .0001% {
     background-color: var(--web-main-header-bg);
-    border-bottom: var(--web-main-header-border);
+    border-bottom-width: 1px;
   }
   100% {
     background-color: var(--web-main-header-bg);
-    border-bottom: var(--web-main-header-border);
+    border-bottom-width: 1px;
   }
 }
 </style>

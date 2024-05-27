@@ -25,10 +25,10 @@ watch(isShow, (value) => {
     <button ref="toggleRef" id="data-menu-toggle" class="data-menu-toggle" @click="toggleMenu">
       <span class="menu-bar bar"></span>
     </button>
-    <div v-if="isShow" class="dark:border-neutral-800 dark:bg-neutral-900 container fixed mx-auto bg-white border-t border-solid border-neutral-200 top-[calc(60px+1px)]  left-0 right-0 bottom-0 z-10">
+    <div v-if="isShow" class="dark:border-neutral-700 dark:bg-neutral-900 container fixed mx-auto bg-white border-t border-solid border-neutral-200 top-[calc(60px+1px)]  left-0 right-0 bottom-0 z-10">
       <nav class="mx-12 py-12">
         <template v-for="item in theme.nav" :key="item.text">
-          <VNavBarLink class="dark:border-neutral-800 block py-2 h-full border-b border-solid border-neutral-200" :item="item" @click="isShow = false" />
+          <VNavBarLink class="dark:border-neutral-700 block py-2 h-full border-b border-solid border-neutral-200" :item="item" @click="isShow = false" />
         </template>
       </nav>
     </div>

@@ -14,6 +14,7 @@ const scrollToTop = () => {
   <div
     class="
       dark:bg-white
+      dark:bg-opacity-90
       dark:hover:bg-primary
       hover:bg-primary
       VBackToTop
@@ -22,19 +23,19 @@ const scrollToTop = () => {
       flex
       items-center
       justify-center
-      px-4
       bg-black
+      bg-opacity-90
       text-reverse
       text-sm
       rounded-full
       whitespace-nowrap
       leading-loose
       cursor-pointer
-      transition-colors
+      transition-all
       duration-300
     "
     @click="scrollToTop">
-    <span class="group-hover:invisible">回到顶部</span>
+    <span class="group-hover:invisible px-3">回到顶部</span>
     <span class="group-hover:visible invisible absolute flex items-center justify-center">
       <VIconBackToTop title="回到顶部" />
     </span>
@@ -43,20 +44,18 @@ const scrollToTop = () => {
 
 <style scoped>
 .VBackToTop {
-  animation-name: the-animation;
-  animation-timing-function: linear;
+  animation: the-animation auto linear;
   animation-timeline: --page-scroll;
+  width: 0;
+  overflow: hidden;
 }
 
 @keyframes the-animation {
-  0% {
-    display: none;
+  from {
+    width: 0;
   }
   .0001% {
-    display: flex;
-  }
-  100% {
-    display: flex;
+    width: auto;
   }
 }
 </style>
