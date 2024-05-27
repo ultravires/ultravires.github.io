@@ -39,8 +39,8 @@ const { frontmatter } = useData();
       rounded-md
       border
       border-solid
-      border-neutral-200"
-    >
+      border-neutral-200
+    ">
       <div class="flex items-center gap-8">
         <span v-if="Array.isArray(frontmatter.categories) && frontmatter.categories.length > 0">
           <span class="text-sm">分类:</span>

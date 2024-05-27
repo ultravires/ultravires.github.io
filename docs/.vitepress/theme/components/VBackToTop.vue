@@ -1,15 +1,44 @@
 <script lang="ts" setup>
+import VIconBackToTop from './icons/VIconBackToTop.vue';
+
 const scrollToTop = () => {
   document.documentElement.scrollTo({
     top: 0,
     left: 0,
-    behavior: 'instant'
+    behavior: 'smooth'
   })
 };
 </script>
 
 <template>
-  <button class="dark:bg-white dark:hover:bg-primary hover:bg-primary VBackToTop text-xs whitespace-nowrap bg-black text-reverse rounded-full leading-loose" @click="scrollToTop">回到顶部</button>
+  <div
+    class="
+      dark:bg-white
+      dark:hover:bg-primary
+      hover:bg-primary
+      VBackToTop
+      group
+      relative
+      flex
+      items-center
+      justify-center
+      px-4
+      bg-black
+      text-reverse
+      text-sm
+      rounded-full
+      whitespace-nowrap
+      leading-loose
+      cursor-pointer
+      transition-colors
+      duration-300
+    "
+    @click="scrollToTop">
+    <span class="group-hover:invisible">回到顶部</span>
+    <span class="group-hover:visible invisible absolute flex items-center justify-center">
+      <VIconBackToTop title="回到顶部" />
+    </span>
+  </div>
 </template>
 
 <style scoped>
@@ -17,22 +46,17 @@ const scrollToTop = () => {
   animation-name: the-animation;
   animation-timing-function: linear;
   animation-timeline: --page-scroll;
-  opacity: 0;
-  width: 0;
 }
 
 @keyframes the-animation {
   0% {
-    width: 0;
-    opacity: 0;
+    display: none;
   }
   .0001% {
-    width: 6em;
-    opacity: 1;
+    display: flex;
   }
   100% {
-    width: 6em;
-    opacity: 1;
+    display: flex;
   }
 }
 </style>

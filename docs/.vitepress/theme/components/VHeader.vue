@@ -19,7 +19,7 @@ console.log(frontmatter)
     <div class="container relative flex items-center h-full mx-auto z-0">
       <VLogo />
       <VNavBar />
-      <div class="max-md:ml-auto flex items-center gap-4 ml-auto text-xl">
+      <div class="max-md:ml-auto flex items-center gap-4 ml-auto">
         <VRandomArticle />
         <VThemeToggle />
         <VBackTop />

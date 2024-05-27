@@ -11,7 +11,7 @@ const { theme } = useData();
     <template v-for="item in theme.nav" :key="item.text">
       <VNavBarLink class="hover:bg-primary hover:text-reverse group relative px-4 py-2 text-md tracking-8 decoration-none rounded-full whitespace-nowrap font-medium" :item="item" />
     </template>
-    <span class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer">
+    <span class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-colors duration-300">
       <VIconSearch title="搜索" />
     </span>
   </nav>
