@@ -11,6 +11,10 @@ export default defineConfig({
   buildEnd: genFeed,
   markdown: zh.markdown,
   themeConfig: zh.themeConfig,
+  head: [
+    ['meta', { name: 'author', content: '向成渝' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;' }]
+  ],
   vite: {
     define: {
       // 启用生产环境构建下激活不匹配的详细警告
