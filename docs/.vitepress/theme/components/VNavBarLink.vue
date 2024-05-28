@@ -68,7 +68,6 @@ const { page } = useData();
           dark:hover:text-reverse
           hover:bg-primary
           hover:px-5
-          hover:py-3
           hover:text-reverse
           relative
           px-4

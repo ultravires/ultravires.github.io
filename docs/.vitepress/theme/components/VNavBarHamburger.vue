@@ -1,28 +1,19 @@
 <script setup>
+import { ref } from 'vue';
 import { useData } from 'vitepress';
 import VNavBarLink from './VNavBarLink.vue';
-import { ref, watch } from 'vue';
 
 const { theme } = useData();
 const isShow = ref(false);
-const toggleRef = ref(null);
 
 const toggleMenu = () => {
   isShow.value = !isShow.value;
 };
-
-watch(isShow, (value) => {
-  if (value) {
-    toggleRef.value.classList.add('active');
-  } else {
-    toggleRef.value.classList.remove('active');
-  }
-});
 </script>
 
 <template>
   <div class="flex items-center">
-    <button ref="toggleRef" id="data-menu-toggle" class="data-menu-toggle" @click="toggleMenu">
+    <button id="data-menu-toggle" :class="['data-menu-toggle', { 'active': isShow }]"  @click="toggleMenu">
       <span class="menu-bar bar"></span>
     </button>
     <Teleport to="body">

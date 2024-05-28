@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { throttleAndDebounce } from '../support/utils';
 import VIconBackToTop from './icons/VIconBackToTop.vue';
 
@@ -21,7 +21,9 @@ const handleScroll = throttleAndDebounce(() => {
   }
 }, 200);
 
-window.addEventListener('scroll', handleScroll);
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
