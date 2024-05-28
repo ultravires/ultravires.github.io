@@ -66,6 +66,7 @@ const { theme } = useData();
   0% {
     background-color: transparent;
     border-bottom-width: 0;
+    backdrop-filter: blur(0px);
   }
   .0001% {
     background-color: var(--web-main-header-bg);
