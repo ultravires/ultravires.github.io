@@ -12,7 +12,9 @@ const { frontmatter } = useData();
     <article id="article" class="
       VDoc
       max-md:px-6
-      max-sm:px-4
+      max-sm:px-6
+      max-sm:border-0
+      max-sm:bg-transparent
       lg:prose-xl
       dark:prose-invert
       dark:bg-neutral-900

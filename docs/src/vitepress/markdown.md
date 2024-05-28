@@ -1,6 +1,10 @@
 ---
 title: 自定义主题：Markdown 扩展
 date: 2024-05-22 17:17:58
+banner: 
+  image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZyERMIvDY1QCjMO2yeSeLygHUDUtnghsV6Q2WmanC1g&s
+  blur: true
+  wave: true
 ---
 
 Markdown 是内容编辑的核心，该主题将主要支持维护 Markdown 语法。
