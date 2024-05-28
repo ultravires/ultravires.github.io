@@ -23,10 +23,10 @@ export const zh = defineConfig({
       light: 'github-light-default',
       dark: 'github-dark-default'
     },
-    lineNumbers: true,
+    lineNumbers: false,
     math: true, // require `markdown-it-mathjax3`
     image: {
-      lazyLoading: true
+      lazyLoading: false
     },
     container: {
       tipLabel: '提示',
