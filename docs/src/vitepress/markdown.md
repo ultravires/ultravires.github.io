@@ -7,6 +7,8 @@ Markdown 是内容编辑的核心，该主题将主要支持维护 Markdown 语�
 
 ---
 
+[[toc]]
+
 # Markdown 扩展 {#markdown-extensions}
 
 VitePress 带有内置的 Markdown 扩展。

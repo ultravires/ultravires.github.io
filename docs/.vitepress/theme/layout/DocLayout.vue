@@ -41,6 +41,12 @@ import VDocFooter from '../components/VDocFooter.vue';
           prose-code:rounded-md
           prose-blockquote:not-italic
           prose-blockquote:font-normal
+          prose-table:block
+          prose-table:overflow-x-auto
+          prose-th:border
+          prose-th:border-solid
+          prose-td:border
+          prose-td:border-solid
           max-w-none
           prose
           prose-lg

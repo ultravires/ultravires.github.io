@@ -3,7 +3,7 @@ import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
 
 export const zh = defineConfig({
   lang: 'zh-Hans',
-  title: '向成渝 - 技术至上',
+  title: '向成渝 | 专注计算机科学与技术',
   description: '向成渝的个人博客',
 
   themeConfig: {

@@ -113,13 +113,6 @@ html.dark {
   color: var(--web-code-lang-color);
 }
 
-.prose table {
-  display: block;
-  border-collapse: collapse;
-  margin: 20px 0;
-  overflow-x: auto;
-}
-
 .vp-code-group {
   margin-top: 16px
 }
