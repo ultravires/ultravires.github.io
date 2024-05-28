@@ -20,12 +20,14 @@ const { frontmatter } = useData();
       before:bg-neutral-50
       before:bg-opacity-30
       relative
-      h-72
+      h-96
+      bg-neutral-200
+      overflow-hidden
       -z-10
     "
     :class="{ 'before:backdrop-blur-md': frontmatter?.banner?.blur }"
     >
-    <img class="object-cover w-full h-full" :src="frontmatter?.banner?.image" />
+    <img v-show="frontmatter?.banner?.image" class="object-cover w-full h-full" :src="frontmatter?.banner?.image" />
     <VWave />
   </div>
 </template>

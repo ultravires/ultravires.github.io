@@ -1,17 +1,7 @@
 ---
 layout: home
-hero:
-  name: VitePress
-  text: Vite & Vue powered static site generator.
-  tagline: Lorem ipsum...
-  image:
-    src: /logo.png
-    alt: VitePress
-  actions:
-    - theme: brand
-      text: Get Started
-      link: /guide/what-is-vitepress
-    - theme: alt
-      text: View on GitHub
-      link: https://github.com/vuejs/vitepress
+banner:
+  image: https://i.pinimg.com/736x/0a/da/8a/0ada8ab9483fc44d88de4d490524f2d8.jpg
+  blur: false
+  wave: false
 ---

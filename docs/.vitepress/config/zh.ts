@@ -8,6 +8,7 @@ export const zh = defineConfig({
 
   themeConfig: {
     siteTitle: '浅安。',
+    avatar: '/minion.png',
     nav: nav(),
     footer: {
       message: '基于 MIT 许可发布',
