@@ -12,7 +12,23 @@ const { theme } = useData();
 </script>
 
 <template>
-  <nav class="dark:border-neutral-700 VNavBar fixed px-4 w-full h-[var(--web-header-height)] bg-transparent bg-opacity-90 border-b border-solid border-neutral-200 top-0 z-10">
+  <nav class="
+    dark:bg-neutral-900
+    dark:bg-opacity-90
+    dark:border-neutral-700
+    VNavBar
+    fixed
+    px-4
+    w-full
+    h-[var(--web-header-height)]
+    bg-white
+    bg-opacity-90
+    border-b
+    border-solid
+    border-neutral-200
+    top-0
+    z-10
+  ">
     <div class="relative container flex justify-center items-center gap-4 mx-auto h-full z-0">
       <VLogo />
       <ul class="max-md:hidden absolute flex gap-4 justify-center items-center mx-auto w-full h-full -z-10">
