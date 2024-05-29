@@ -27,6 +27,7 @@ const { theme } = useData();
     border-solid
     border-neutral-200
     backdrop-blur-sm
+    text-base
     top-0
     z-10
   ">

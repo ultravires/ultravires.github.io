@@ -24,8 +24,10 @@ const { frontmatter } = useData();
       bg-neutral-200
       overflow-hidden
       -z-10
+      select-none
     "
     :class="{ 'before:backdrop-blur-md': frontmatter?.banner?.blur }"
+    draggable="false"
     >
     <img v-show="frontmatter?.banner?.image" class="object-cover w-full h-full" :src="frontmatter?.banner?.image" />
     <VWave />
