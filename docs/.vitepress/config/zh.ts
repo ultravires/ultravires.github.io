@@ -44,35 +44,36 @@ function nav(): DefaultTheme.NavItem[] {
     {
       text: '友链',
       link: '/link/',
-      activeMatch: '/link/'
+      activeMatch: `^/link/`
     },
     {
       text: '专栏',
+      activeMatch: `^/(life|algorithm|front-end|back-end|ai)/`,
       items: [
         {
           text: '程序人生',
           link: '/life/',
-          activeMatch: '/life/'
+          activeMatch: `^/life/`
         },
         {
           text: '算法题解',
           link: '/algorithm/',
-          activeMatch: '/algorithm/'
+          activeMatch: `^/algorithm/`
         },
         {
           text: '前端领域',
           link: '/front-end/',
-          activeMatch: '/front-end/'
+          activeMatch: `^/front-end/`
         },
         {
           text: '后端领域',
           link: '/back-end/',
-          activeMatch: '/back-end/'
+          activeMatch: `^/back-end/`
         },
         {
           text: '人工智能',
           link: '/ai/',
-          activeMatch: '/ai/'
+          activeMatch: `^/ai/`
         }
       ]
     },

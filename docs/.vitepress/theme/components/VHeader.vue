@@ -9,7 +9,6 @@ const { frontmatter } = useData();
 <template>
   <header class="
     VHeader
-    mb-4
     min-h-[var(--web-header-height)]
     top-0
     z-10

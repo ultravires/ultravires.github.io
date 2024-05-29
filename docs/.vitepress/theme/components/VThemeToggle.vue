@@ -37,7 +37,7 @@ onMounted(() => {
     :title="isDarkTheme ? '进入亮色主题' : '进入暗色主题'"
     @click="toggleTheme"
   >
-    <VIconMoon v-show="!isDarkTheme" />
-    <VIconSun v-show="isDarkTheme"/>
+    <VIconMoon v-show="!isDarkTheme" title="进入暗色主题" />
+    <VIconSun v-show="isDarkTheme" title="进入亮色主题" />
   </div>
 </template>

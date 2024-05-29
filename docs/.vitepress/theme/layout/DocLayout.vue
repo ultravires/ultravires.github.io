@@ -1,12 +1,10 @@
 <script lang="ts" setup>
-import VHeader from '../components/VHeader.vue';
 import VDocMeta from '../components/VDocMeta.vue'
 import VDocFooter from '../components/VDocFooter.vue';
 
 </script>
 
 <template>
-  <VHeader />
   <div class="container mx-auto py-12">
     <div class="
       max-md:px-6
@@ -54,9 +52,9 @@ import VDocFooter from '../components/VDocFooter.vue';
         "
       >
         <Content />
-        <VDocMeta />
       </article>
       <VDocFooter />
+      <VDocMeta />
     </div>
   </div>
 </template>
