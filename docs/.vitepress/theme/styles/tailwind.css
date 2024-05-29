@@ -20,15 +20,10 @@
     --web-color-reverse: 0 0 0;
   }
 
-  /* * {
-    box-sizing: border-box;
-    transition: transform .4s cubic-bezier(0.075, 0.82, 0.165, 1),
-                background .4s cubic-bezier(0.075, 0.82, 0.165, 1),
-                padding .4s cubic-bezier(0.075, 0.82, 0.165, 1),
-                border .4s cubic-bezier(0.075, 0.82, 0.165, 1),
-                filter .4s cubic-bezier(0.075, 0.82, 0.165, 1),
-                color .1s cubic-bezier(0.075, 0.82, 0.165, 1);
-  } */
+  *::selection {
+    background-color: #981616;
+    color: #fafafa;
+  }
   
   html,body {
     width: 100%;
