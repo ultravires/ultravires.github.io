@@ -32,5 +32,8 @@
       "autoprefixer": {},
       "tailwindcss": {}
     }
+  },
+  "dependencies": {
+    "dayjs": "^1.11.11"
   }
 }

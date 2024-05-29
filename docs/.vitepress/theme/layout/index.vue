@@ -12,7 +12,7 @@ const { frontmatter, page } = useData();
 
 <template>
   <VHeader />
-  <main class="dark:bg-neutral-950 flex flex-col min-h-screen bg-neutral-50 text-base transition-colors duration-100">
+  <main class="flex flex-col min-h-screen text-base transition-colors duration-100">
     <HomeLayout v-if="frontmatter.layout === 'home'" />
     <ArchiveLayout v-else-if="frontmatter.layout === 'archive'" />
     <NotFound v-else-if="page.isNotFound" />
