@@ -9,7 +9,7 @@ const scrollToTop = () => {
   document.documentElement.scrollTo({
     top: 0,
     left: 0,
-    behavior: 'smooth'
+    behavior: 'instant'
   })
 };
 
@@ -19,7 +19,7 @@ const handleScroll = throttleAndDebounce(() => {
   } else {
     isShow.value = false;
   }
-}, 200);
+}, 500);
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
@@ -68,12 +68,14 @@ onMounted(() => {
 .fade-leave-active {
   width: 5rem;
   height: 1.75rem;
+  opacity: 1;
 }
 
 .fade-enter-from,
 .fade-leave-to {
   width: 0;
   height: 0;
+  opacity: .5;
   overflow: hidden;
 }
 </style>

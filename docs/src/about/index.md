@@ -1,4 +1,5 @@
 ---
+outline: false
 banner:
   image: https://www.16personalities.com/static/images/types/headers/advocate-mobile.svg
   blur: false
