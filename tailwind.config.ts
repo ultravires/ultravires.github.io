@@ -1,4 +1,5 @@
 import Typography from '@tailwindcss/typography';
+import ContainerQueries from '@tailwindcss/container-queries';
 import colors from 'tailwindcss/colors';
 
 const round = (num) =>
@@ -25,6 +26,14 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      container: {
+        padding: {
+          DEFAULT: '1.5rem',
+        },
+      },
+      containers: {
+        '8xl': '90rem',
+      },
       colors: {
         base: 'rgb(var(--web-color-base) / <alpha-value>)',
         primary: 'rgb(var(--web-color-primary) / <alpha-value>)',
@@ -466,6 +475,7 @@ export default {
     Typography({
       target: 'modern',
       className: 'prose'
-    })
+    }),
+    ContainerQueries
   ],
 }

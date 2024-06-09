@@ -7,16 +7,20 @@ import DocLayout from './DocLayout.vue';
 import ArchiveLayout from './ArchiveLayout.vue';
 import VFooter from '../components/VFooter.vue';
 
-const { frontmatter, page } = useData();
+const { frontmatter, page, theme } = useData();
 </script>
 
 <template>
-  <VHeader />
-  <main class="flex flex-col min-h-screen text-base transition-colors duration-100">
-    <HomeLayout v-if="frontmatter.layout === 'home'" />
-    <ArchiveLayout v-else-if="frontmatter.layout === 'archive'" />
-    <NotFound v-else-if="page.isNotFound" />
-    <DocLayout v-else />
+  <section class="flex flex-col text-base">
+    <VHeader />
+    <section class="flex gap-4 w-full">
+      <div class="flex-grow min-h-screen w-full transition-colors duration-100">
+        <HomeLayout v-if="frontmatter.layout === 'home'" />
+        <ArchiveLayout v-else-if="frontmatter.layout === 'archive'" />
+        <NotFound v-else-if="page.isNotFound" />
+        <DocLayout v-else />
+      </div>
+    </section>
     <VFooter />
-  </main>
+  </section>
 </template>

@@ -19,7 +19,7 @@ useActiveAnchor(containerRef, markerRef)
 </script>
 
 <template>
-  <div v-if="headers?.length > 0" ref="containerRef" class="dark:bg-neutral-900 dark:border-neutral-700 max-lg:hidden relative px-4 py-2 bg-white border border-neutral-200 rounded-md">
+  <div v-show="headers?.length > 0" ref="containerRef" class="dark:bg-neutral-900 dark:border-neutral-700 max-lg:hidden relative px-4 py-2 bg-white border border-neutral-200 rounded-md">
     <div aria-level="2" class="flex gap-2 items-center mb-2 leading-[32px] font-medium " role="heading">
       <span>页面导航</span>
     </div>

@@ -13,12 +13,12 @@ const { theme } = useData();
 
 <template>
   <nav class="
+    @container
     dark:bg-neutral-900
     dark:bg-opacity-90
     dark:border-neutral-700
     VNavBar
     fixed
-    px-4
     w-full
     h-[var(--web-header-height)]
     bg-white
@@ -31,7 +31,7 @@ const { theme } = useData();
     top-0
     z-10
   ">
-    <div class="relative container flex justify-center items-center gap-4 mx-auto h-full z-0">
+    <div class="@8xl:max-w-[87.5rem] md:px-6 max-md:container relative flex justify-center items-center gap-4 mx-auto h-full z-0">
       <VLogo />
       <ul class="max-md:hidden absolute flex gap-4 justify-center items-center mx-auto w-full h-full -z-10">
         <li v-for="item in theme.nav" :key="item.text">

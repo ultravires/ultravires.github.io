@@ -10,6 +10,7 @@ const { frontmatter } = useData();
   <header class="
     VHeader
     min-h-[var(--web-header-height)]
+    mb-4
     top-0
     z-10
   ">

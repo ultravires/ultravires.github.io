@@ -14,7 +14,8 @@ export const zh = defineConfig({
       message: '基于 MIT 许可发布',
       copyright: `版权所有 &copy; 2024-${new Date().getFullYear()} 向成渝`
     },
-    outline: 'deep'
+    outline: 'deep',
+    aside: 'left',
   },
 
   markdown: {
