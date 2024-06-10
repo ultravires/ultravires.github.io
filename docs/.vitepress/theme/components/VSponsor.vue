@@ -9,7 +9,7 @@ import VIconHandHeart from './icons/VIconHandHeart.vue';
       <VIconHandHeart class="mr-2 text-lg" />
       <span>鼓励作者</span>
     </div>
-    <div class="peer-hover:block hover:block hidden absolute bottom-full left-1/2 -translate-x-1/2 z-10">
+    <div class="peer-hover:block peer-hover:opacity-100 peer-hover:translate-y-0 peer-hover:pointer-events-auto hover:block hover:opacity-100 hover:translate-y-0 hover:pointer-events-auto absolute bottom-full opacity-0 translate-y-4 pointer-events-none left-1/2 -translate-x-1/2 z-10 transition-all duration-300">
       <div class="dark:bg-neutral-900 dark:border-neutral-600 p-8 mb-4 w-max bg-white border border-solid border-neutral-200 rounded-lg ">
         <p class="mb-2 whitespace-nowrap text-center text-red-500 text-lg font-medium">感谢你赐予我前进的动力！</p>
         <img class="w-52 h-52 object-contain" :src="withBase('/wechat.jpeg')" />

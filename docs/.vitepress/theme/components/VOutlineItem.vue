@@ -16,7 +16,7 @@ function onClick({ target: el }: Event) {
     <li v-for="{ children, link, title } in headers" :key="link">
       <a
         :href="link"
-        class="group/link hover:text-green-600 [&.active]:text-lg [&.active]:text-green-600 [&.active]:font-medium block text-base text-opacity-60 h-[32px] leading-[32px] whitespace-nowrap text-ellipsis overflow-hidden transition-all"
+        class="group/link hover:text-green-600 [&.active]:text-lg [&.active]:text-green-600 [&.active]:font-medium block text-base text-opacity-60 h-[32px] leading-[32px] whitespace-nowrap text-ellipsis overflow-hidden transition-all duration-300"
         :title="title"
         @click="onClick"
       >
