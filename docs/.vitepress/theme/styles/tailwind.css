@@ -11,6 +11,9 @@
     --web-color-black: 0 0 0;
     --web-color-reverse: 255 255 255;
     --web-header-height: 4rem;
+    --docsearch-searchbox-background: #fff;
+    --docsearch-searchbox-focus-background: transparent;
+    --docsearch-text-color: rgb(var(--web-color-base) / .8);
   }
   
   .dark {
@@ -18,6 +21,7 @@
     --web-color-base: 255 255 255;
     --web-color-primary: 246 202 96;
     --web-color-reverse: 0 0 0;
+    --docsearch-searchbox-background: #171717;
   }
 
   *::selection {
@@ -37,4 +41,12 @@
   body {
     margin: 0;
   }
+}
+
+.DocSearch-Button {
+  box-shadow: inset 0 0 0 2px #e5e5e5;
+}
+
+.dark .DocSearch-Button {
+  box-shadow: inset 0 0 0 2px #404040;
 }

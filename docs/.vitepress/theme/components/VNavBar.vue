@@ -7,8 +7,20 @@ import VNavBarHamburger from './VNavBarHamburger.vue';
 import VBackTop from './VBackToTop.vue';
 import VNavBarLink from './VNavBarLink.vue';
 import VIconSearch from './icons/VIconSearch.vue';
+import docsearch from '@docsearch/js';
+import '@docsearch/css';
+import { onMounted } from 'vue';
 
 const { theme } = useData();
+
+onMounted(() => {
+  docsearch({
+    container: '#docsearch',
+    appId: 'YOUR_APP_ID',
+    indexName: 'YOUR_INDEX_NAME',
+    apiKey: 'YOUR_SEARCH_API_KEY',
+  });
+});
 </script>
 
 <template>
@@ -37,11 +49,12 @@ const { theme } = useData();
         <li v-for="item in theme.nav" :key="item.text">
           <VNavBarLink class="hover:bg-primary hover:text-reverse group relative text-md tracking-8 decoration-none rounded-full whitespace-nowrap font-medium" :item="item" />
         </li>
-        <li class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-colors duration-300">
+        <!-- <li class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-colors duration-300">
           <VIconSearch title="搜索" />
-        </li>
+        </li> -->
       </ul>
       <div class="max-md:ml-auto flex items-center gap-4 ml-auto">
+        <div id="docsearch"></div>
         <VRandomArticle />
         <VThemeToggle />
         <VBackTop />

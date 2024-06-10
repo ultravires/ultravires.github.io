@@ -35,6 +35,8 @@
     }
   },
   "dependencies": {
+    "@docsearch/css": "^3.6.0",
+    "@docsearch/js": "^3.6.0",
     "dayjs": "^1.11.11"
   }
 }

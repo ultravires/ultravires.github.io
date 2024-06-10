@@ -16,6 +16,14 @@ export const zh = defineConfig({
     },
     outline: 'deep',
     aside: 'left',
+    search: {
+      provider: 'algolia',
+      options: {
+        appId: '',
+        apiKey: '',
+        indexName: ''
+      }
+    }
   },
 
   markdown: {

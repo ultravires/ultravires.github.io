@@ -14,11 +14,11 @@ import VIconHandHeart from './icons/VIconHandHeart.vue';
         <p class="mb-2 whitespace-nowrap text-center text-red-500 text-lg font-medium">感谢你赐予我前进的动力！</p>
         <div class="flex gap-4">
           <div class="flex flex-col justify-center">
-            <img class="w-40 h-40 object-contain" :src="withBase('/WeChatPay.jpg')" />
+            <img class="w-40 h-40 object-contain rounded-sm" :src="withBase('/WeChatPay.jpg')" />
             <div class="text-center">微信</div>
           </div>
           <div class="flex flex-col justify-center">
-            <img class="w-40 h-40 object-contain" :src="withBase('/AliPay.jpg')" />
+            <img class="w-40 h-40 object-contain rounded-sm" :src="withBase('/AliPay.jpg')" />
             <div class="text-center">支付宝</div>
           </div>
         </div>
