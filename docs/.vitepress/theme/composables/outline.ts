@@ -154,6 +154,7 @@ export function useActiveAnchor(container, marker) {
     const activeLink = prevActiveLink;
     if (activeLink) {
       activeLink.classList.add('active');
+      activeLink.scrollIntoViewIfNeeded();
       marker.value.style.top = activeLink.offsetTop + 4 + 'px';
       marker.value.style.opacity = '1';
     }

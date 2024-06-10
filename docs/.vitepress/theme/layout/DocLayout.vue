@@ -12,7 +12,7 @@ import VIconGithub from '../components/icons/VIconGithub.vue';
       <div class="max-lg:flex-col flex gap-2 justify-center w-full">
         <aside class="order-2 flex-grow-1 flex-shrink-0 relative pl-4 w-80">
           <div class="flex flex-col gap-4 justify-center items-center p-4 mb-2 w-full bg-gradient-to-t from-blue-700 to-blue-600 rounded-md">
-            <div class="px-2 py-1 bg-white bg-opacity-20 text-white text-sm rounded-xl">完成比完美更重要！</div>
+            <div class="px-2 py-1 bg-white bg-opacity-20 text-white text-sm rounded-xl">完成比完美更重要</div>
             <!-- <VAvatar class="bg-blue-800" /> -->
             <div class="w-full text-white">
               <p>我也不知道怎么介绍自己！前端天花板，男，长得还可以。喜欢捣鼓技术，什么都略知一二。</p>
