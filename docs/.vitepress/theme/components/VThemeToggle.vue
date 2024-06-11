@@ -9,6 +9,7 @@ const toggleTheme = () => {
   const root = document.documentElement;
   root.classList.toggle('dark');
   isDarkTheme.value = root.classList.contains('dark');
+  root.dataset.theme = isDarkTheme.value ? 'dark' : 'light';
   window.localStorage.setItem('isDark', `${isDarkTheme.value}`);
 };
 
@@ -19,9 +20,11 @@ onMounted(() => {
   if (window.localStorage.getItem('isDark') === 'true') {
     isDarkTheme.value = true;
     root.classList.add('dark');
+    root.dataset.theme = 'dark';
   } else if (window.localStorage.getItem('isDark') === 'false') {
     isDarkTheme.value = false;
     root.classList.remove('dark');
+    root.dataset.theme = 'light';
   } else {
     isDarkTheme.value = themeMedia.matches;
     themeMedia.addEventListener('change', (e) => {
