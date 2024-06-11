@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue';
+import { defineAsyncComponent, onMounted, onUnmounted, ref } from 'vue';
 import { useData } from 'vitepress';
 import VLogo from './VLogo.vue';
 import VThemeToggle from './VThemeToggle.vue';
@@ -8,24 +8,102 @@ import VNavBarHamburger from './VNavBarHamburger.vue';
 import VBackTop from './VBackToTop.vue';
 import VNavBarLink from './VNavBarLink.vue';
 import VIconSearch from './icons/VIconSearch.vue';
-import docsearch from '@docsearch/js';
 import '@docsearch/css';
+
+const VPAlgoliaSearchBox = __ALGOLIA__
+  ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue'))
+  : () => null
 
 const { theme } = useData();
 
-const handleSearch = () => {
-  document.getElementById('docsearch')?.querySelector('button')?.click();
-};
+const loaded = ref(false);
+
+const actuallyLoaded = ref(false)
+
+const preconnect = () => {
+  const id = 'VPAlgoliaPreconnect'
+
+  const rIC = window.requestIdleCallback || setTimeout
+  rIC(() => {
+    const preconnect = document.createElement('link')
+    preconnect.id = id
+    preconnect.rel = 'preconnect'
+    preconnect.href = `https://${
+      ((theme.value.search?.options as DefaultTheme.AlgoliaSearchOptions) ??
+        theme.value.algolia)!.appId
+    }-dsn.algolia.net`
+    preconnect.crossOrigin = ''
+    document.head.appendChild(preconnect)
+  })
+}
 
 onMounted(() => {
-  docsearch({
-    container: '#docsearch',
-    appId: 'AKWVEI7J63',
-    indexName: 'ultravires.github.io',
-    apiKey: '7a14faa733a46057d98726e018afe153',
-    insights: true,
-  });
-});
+  if (!__ALGOLIA__) {
+    return
+  }
+
+  preconnect()
+
+  const handleSearchHotKey = (event: KeyboardEvent) => {
+    if (
+      (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) ||
+      (!isEditingContent(event) && event.key === '/')
+    ) {
+      event.preventDefault()
+      load()
+      remove()
+    }
+  }
+
+  const remove = () => {
+    window.removeEventListener('keydown', handleSearchHotKey)
+  }
+
+  window.addEventListener('keydown', handleSearchHotKey)
+
+  onUnmounted(remove)
+})
+
+function load() {
+  if (!loaded.value) {
+    loaded.value = true
+    setTimeout(poll, 16)
+  }
+}
+
+function poll() {
+  // programmatically open the search box after initialize
+  const e = new Event('keydown') as any
+
+  e.key = 'k'
+  e.metaKey = true
+
+  window.dispatchEvent(e)
+
+  setTimeout(() => {
+    if (!document.querySelector('.DocSearch-Modal')) {
+      poll()
+    }
+  }, 16)
+}
+
+function isEditingContent(event: KeyboardEvent): boolean {
+  const element = event.target as HTMLElement
+  const tagName = element.tagName
+
+  return (
+    element.isContentEditable ||
+    tagName === 'INPUT' ||
+    tagName === 'SELECT' ||
+    tagName === 'TEXTAREA'
+  )
+}
+
+function handleSearch() {
+  document.getElementById('docsearch')?.querySelector('button')?.click();
+}
+
+const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : ''
 </script>
 
 <template>
@@ -55,8 +133,16 @@ onMounted(() => {
           <VNavBarLink class="hover:bg-primary hover:text-reverse group relative text-md tracking-8 decoration-none rounded-full whitespace-nowrap font-medium" :item="item" />
         </li>
         <li class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-colors duration-300" @click="handleSearch">
-          <VIconSearch title="搜索" />
-          <div id="docsearch" class="hidden"></div>
+          <template v-if="provider === 'algolia'">
+            <VPAlgoliaSearchBox
+              v-if="loaded"
+              :algolia="theme.search?.options ?? theme.algolia"
+              @vue:beforeMount="actuallyLoaded = true"
+            />
+            <div v-if="!actuallyLoaded" id="docsearch">
+              <VIconSearch title="搜索" @click="load"/>
+            </div>
+          </template>
         </li>
       </ul>
       <div class="max-md:ml-auto flex items-center gap-4 ml-auto">
