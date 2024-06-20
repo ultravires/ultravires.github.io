@@ -94,8 +94,7 @@ function getSideList(side, isStart, rtl) {
   switch (side) {
     case "top":
     case "bottom":
-      if (rtl)
-        return isStart ? rl : lr;
+      if (rtl) return isStart ? rl : lr;
       return isStart ? lr : rl;
     case "left":
     case "right":
@@ -1309,7 +1308,7 @@ var computePosition2 = (reference, floating, options) => {
   });
 };
 
-// node_modules/.pnpm/floating-vue@5.2.2_vue@3.4.27_typescript@5.4.5_/node_modules/floating-vue/dist/floating-vue.mjs
+// node_modules/.pnpm/floating-vue@5.2.2_vue@3.4.29/node_modules/floating-vue/dist/floating-vue.mjs
 function ye(e, t) {
   for (const o in t)
     Object.prototype.hasOwnProperty.call(t, o) && (typeof t[o] == "object" && e[o] ? ye(e[o], t[o]) : e[o] = t[o]);
@@ -2887,7 +2886,7 @@ var Gt = {
   options: h2
 };
 
-// node_modules/.pnpm/@shikijs+vitepress-twoslash@1.6.0_typescript@5.4.5/node_modules/@shikijs/vitepress-twoslash/dist/client.mjs
+// node_modules/.pnpm/@shikijs+vitepress-twoslash@1.7.0_typescript@5.4.5/node_modules/@shikijs/vitepress-twoslash/dist/client.mjs
 var isMobile = typeof navigator !== "undefined" && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 var TwoslashFloatingVue = {
   install: (app, options = {}) => {
