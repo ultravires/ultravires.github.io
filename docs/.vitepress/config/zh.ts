@@ -23,7 +23,7 @@ export const zh = defineConfig({
         indexName: 'ultravires.github.io',
         apiKey: '7a14faa733a46057d98726e018afe153',
         locales: {
-          zh: {
+          'zh-Hans': {
             placeholder: '搜索文档',
             translations: {
               button: {

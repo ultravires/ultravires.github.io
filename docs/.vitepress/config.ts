@@ -4,6 +4,7 @@ import { zh } from './config/zh.js';
 
 // https://vitepress.vuejs.org/config/app-configs
 export default defineConfig({
+  lang: zh.lang,
   title: zh.title,
   description: zh.description,
   srcDir: 'src',
