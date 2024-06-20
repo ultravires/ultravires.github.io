@@ -9,9 +9,9 @@
     "strict": true,
     "jsx": "preserve",
     "paths": {
-      "@theme/*": ["./.vitepress/theme/*"]
+      "@theme/*": ["./docs/.vitepress/theme/*"]
     },
-    "types": ["vitepress"]
+    "types": ["vitepress", "@types/node"]
   },
-  "include": ["./.vitepress/**/*", "src/**/*"]
+  "include": ["./docs/.vitepress/**/*", "./docs/src/**/*"]
 }

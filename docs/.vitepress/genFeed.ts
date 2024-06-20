@@ -1,9 +1,9 @@
 import path from 'node:path';
 import { writeFileSync } from 'node:fs';
-import { Feed } from 'feed'
-import { createContentLoader, type SiteConfig } from 'vitepress'
+import { Feed } from 'feed';
+import { createContentLoader, type SiteConfig } from 'vitepress';
 
-const baseUrl = `https://ultravires.github.io`
+const baseUrl = `https://ultravires.github.io`;
 
 export async function genFeed(config: SiteConfig) {
   const feed = new Feed({
@@ -14,20 +14,19 @@ export async function genFeed(config: SiteConfig) {
     language: 'en',
     image: 'https://ultravires.github.io/images/logo.png',
     favicon: `${baseUrl}/favicon.ico`,
-    copyright:
-      'Copyright (c) 2021-present, 向成渝 and blog contributors'
-  })
+    copyright: 'Copyright (c) 2021-present, 向成渝 and blog contributors',
+  });
 
   const posts = await createContentLoader('posts/*.md', {
     excerpt: true,
-    render: true
-  }).load()
+    render: true,
+  }).load();
 
   posts.sort(
     (a, b) =>
       +new Date(b.frontmatter.date as string) -
       +new Date(a.frontmatter.date as string)
-  )
+  );
 
   for (const { url, excerpt, frontmatter, html } of posts) {
     feed.addItem({
@@ -41,12 +40,12 @@ export async function genFeed(config: SiteConfig) {
           name: frontmatter.author,
           link: frontmatter.twitter
             ? `https://twitter.com/${frontmatter.twitter}`
-            : undefined
-        }
+            : undefined,
+        },
       ],
-      date: frontmatter.date
-    })
+      date: frontmatter.date,
+    });
   }
 
-  writeFileSync(path.join(config.outDir, 'feed.rss'), feed.rss2())
+  writeFileSync(path.join(config.outDir, 'feed.rss'), feed.rss2());
 }

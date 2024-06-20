@@ -7,16 +7,17 @@
     background-color: #981616;
     color: #fafafa;
   }
-  
-  html,body {
+
+  html,
+  body {
     width: 100%;
   }
-  
+
   html {
     scroll-timeline: --page-scroll block;
     background-color: var(--web-bg);
   }
-  
+
   body {
     margin: 0;
   }
