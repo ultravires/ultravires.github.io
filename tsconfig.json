@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "jsx": "preserve",
+    "paths": {
+      "@theme/*": ["./docs/.vitepress/theme/*"]
+    },
+    "types": ["vitepress", "@types/node"]
+  },
+  "include": ["./docs/.vitepress/**/*", "./docs/src/**/*"]
+}

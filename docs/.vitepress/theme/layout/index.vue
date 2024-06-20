@@ -4,10 +4,9 @@ import VHeader from '../components/VHeader.vue';
 import NotFound from '../NotFound.vue';
 import HomeLayout from './HomeLayout.vue';
 import DocLayout from './DocLayout.vue';
-import ArchiveLayout from './ArchiveLayout.vue';
 import VFooter from '../components/VFooter.vue';
 
-const { frontmatter, page, theme } = useData();
+const { frontmatter, page } = useData();
 </script>
 
 <template>
@@ -16,7 +15,6 @@ const { frontmatter, page, theme } = useData();
     <section class="flex gap-4 w-full">
       <div class="flex-grow min-h-screen w-full transition-colors duration-100">
         <HomeLayout v-if="frontmatter.layout === 'home'" />
-        <ArchiveLayout v-else-if="frontmatter.layout === 'archive'" />
         <NotFound v-else-if="page.isNotFound" />
         <DocLayout v-else />
       </div>
