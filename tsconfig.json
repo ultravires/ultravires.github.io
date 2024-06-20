@@ -5,13 +5,22 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "strict": true,
     "jsx": "preserve",
     "paths": {
-      "@theme/*": ["./docs/.vitepress/theme/*"]
+      "@theme/*": [
+        "./docs/.vitepress/theme/*"
+      ]
     },
-    "types": ["vitepress", "@types/node"]
+    "types": [
+      "vitepress",
+      "@types/node"
+    ]
   },
-  "include": ["./docs/.vitepress/**/*", "./docs/src/**/*"]
+  "include": [
+    "./docs/.vitepress/**/*",
+    "./docs/src/**/*"
+  ]
 }
