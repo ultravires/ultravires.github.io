@@ -12,127 +12,121 @@ import '@docsearch/css';
 
 const VPAlgoliaSearchBox = __ALGOLIA__
   ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue'))
-  : () => null
+  : () => null;
 
 const { theme } = useData();
 
 const loaded = ref(false);
 
-const actuallyLoaded = ref(false)
+const actuallyLoaded = ref(false);
 
 const preconnect = () => {
-  const id = 'VPAlgoliaPreconnect'
+  const id = 'VPAlgoliaPreconnect';
 
-  const rIC = window.requestIdleCallback || setTimeout
+  const rIC = window.requestIdleCallback || setTimeout;
   rIC(() => {
-    const preconnect = document.createElement('link')
-    preconnect.id = id
-    preconnect.rel = 'preconnect'
+    const preconnect = document.createElement('link');
+    preconnect.id = id;
+    preconnect.rel = 'preconnect';
     preconnect.href = `https://${
       ((theme.value.search?.options as DefaultTheme.AlgoliaSearchOptions) ??
         theme.value.algolia)!.appId
-    }-dsn.algolia.net`
-    preconnect.crossOrigin = ''
-    document.head.appendChild(preconnect)
-  })
-}
+    }-dsn.algolia.net`;
+    preconnect.crossOrigin = '';
+    document.head.appendChild(preconnect);
+  });
+};
 
 onMounted(() => {
   if (!__ALGOLIA__) {
-    return
+    return;
   }
 
-  preconnect()
+  preconnect();
 
   const handleSearchHotKey = (event: KeyboardEvent) => {
     if (
       (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) ||
       (!isEditingContent(event) && event.key === '/')
     ) {
-      event.preventDefault()
-      load()
-      remove()
+      event.preventDefault();
+      load();
+      remove();
     }
-  }
+  };
 
   const remove = () => {
-    window.removeEventListener('keydown', handleSearchHotKey)
-  }
+    window.removeEventListener('keydown', handleSearchHotKey);
+  };
 
-  window.addEventListener('keydown', handleSearchHotKey)
+  window.addEventListener('keydown', handleSearchHotKey);
 
-  onUnmounted(remove)
-})
+  onUnmounted(remove);
+});
 
 function load() {
   if (!loaded.value) {
-    loaded.value = true
-    setTimeout(poll, 16)
+    loaded.value = true;
+    setTimeout(poll, 16);
   }
 }
 
 function poll() {
   // programmatically open the search box after initialize
-  const e = new Event('keydown') as any
+  const e = new Event('keydown') as any;
 
-  e.key = 'k'
-  e.metaKey = true
+  e.key = 'k';
+  e.metaKey = true;
 
-  window.dispatchEvent(e)
+  window.dispatchEvent(e);
 
   setTimeout(() => {
     if (!document.querySelector('.DocSearch-Modal')) {
-      poll()
+      poll();
     }
-  }, 16)
+  }, 16);
 }
 
 function isEditingContent(event: KeyboardEvent): boolean {
-  const element = event.target as HTMLElement
-  const tagName = element.tagName
+  const element = event.target as HTMLElement;
+  const tagName = element.tagName;
 
   return (
     element.isContentEditable ||
     tagName === 'INPUT' ||
     tagName === 'SELECT' ||
     tagName === 'TEXTAREA'
-  )
+  );
 }
 
 function handleSearch() {
   document.getElementById('docsearch')?.querySelector('button')?.click();
 }
 
-const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : ''
+const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 </script>
 
 <template>
-  <nav class="
-    @container
-    dark:bg-neutral-900
-    dark:bg-opacity-90
-    dark:border-neutral-700
-    VNavBar
-    fixed
-    w-full
-    h-[var(--web-header-height)]
-    bg-white
-    bg-opacity-90
-    border-b
-    border-solid
-    border-neutral-200
-    backdrop-blur-sm
-    text-base
-    top-0
-    z-10
-  ">
-    <div class="@8xl:max-w-[87.5rem] md:px-6 max-md:container relative flex justify-center items-center gap-4 mx-auto h-full z-0">
+  <nav
+    class="dark:bg-neutral-900 dark:bg-opacity-90 dark:border-neutral-700 VNavBar fixed w-full h-[var(--web-header-height)] bg-white bg-opacity-90 border-b border-solid border-neutral-200 backdrop-blur-sm text-base top-0 z-10"
+  >
+    <div
+      class="@8xl:max-w-[87.5rem] md:px-8 relative flex justify-center items-center gap-4 mx-auto h-full z-0"
+    >
       <VLogo />
-      <ul class="max-md:hidden absolute flex gap-4 justify-center items-center mx-auto w-full h-full -z-10">
+      <ul
+        class="max-md:hidden absolute flex gap-4 justify-center items-center mx-auto w-full h-full -z-10"
+      >
         <li v-for="item in theme.nav" :key="item.text">
-          <VNavBarLink class="hover:bg-primary hover:text-reverse group relative text-md tracking-8 decoration-none rounded-full whitespace-nowrap font-medium" :item="item" />
+          <VNavBarLink
+            class="hover:bg-primary hover:text-reverse group relative text-md tracking-8 decoration-none rounded-full whitespace-nowrap font-medium"
+            :item="item"
+          />
         </li>
-        <li class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-colors duration-300" @click="handleSearch">
+        <li
+          class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-colors duration-300"
+          @click="handleSearch"
+        >
           <template v-if="provider === 'algolia'">
             <VPAlgoliaSearchBox
               v-if="loaded"
@@ -140,7 +134,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : ''
               @vue:beforeMount="actuallyLoaded = true"
             />
             <div v-if="!actuallyLoaded" id="docsearch">
-              <VIconSearch title="搜索" @click="load"/>
+              <VIconSearch title="搜索" @click="load" />
             </div>
           </template>
         </li>

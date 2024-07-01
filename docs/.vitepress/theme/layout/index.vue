@@ -10,7 +10,7 @@ const { frontmatter, page } = useData();
 </script>
 
 <template>
-  <section class="flex flex-col text-base">
+  <section class="@container flex flex-col text-base">
     <VHeader />
     <section class="flex gap-4 w-full">
       <div class="flex-grow min-h-screen w-full transition-colors duration-100">

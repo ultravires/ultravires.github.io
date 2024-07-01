@@ -4,7 +4,7 @@ import VPostList from '../components/VPostList.vue';
 
 <template>
   <div class="@container">
-    <div class="@8xl:max-w-[87.5rem] md:px-6 max-md:container mx-auto">
+    <div class="@8xl:max-w-[87.5rem] max-md:container md:px-6 mx-auto">
       <VPostList />
     </div>
   </div>
