@@ -111,7 +111,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
     class="dark:bg-neutral-900 dark:bg-opacity-90 dark:border-neutral-700 VNavBar fixed w-full h-[var(--web-header-height)] bg-white bg-opacity-90 border-b border-solid border-neutral-200 backdrop-blur-sm text-base top-0 z-10"
   >
     <div
-      class="@8xl:max-w-[87.5rem] md:px-8 relative flex justify-center items-center gap-4 mx-auto h-full z-0"
+      class="@8xl:max-w-[87.5rem] max-md:px-2 px-8 relative flex justify-center items-center gap-4 mx-auto h-full z-0"
     >
       <VLogo />
       <ul

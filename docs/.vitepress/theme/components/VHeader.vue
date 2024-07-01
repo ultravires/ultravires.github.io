@@ -13,16 +13,16 @@ const { frontmatter } = useData();
     <VNavBar />
     <div
       v-show="frontmatter?.banner ?? frontmatter?.title"
-      class="@8xl:max-w-[87.5rem] md:px-10 absolute top-[var(--web-header-height)] left-0 right-0 flex flex-col justify-center items-center mx-auto w-full h-[calc(100%-60px-var(--web-header-height))]"
+      class="@8xl:max-w-[87.5rem] max-md:items-center max-md:px-2 px-8 absolute flex flex-col justify-center items-start mx-auto w-full h-[calc(100%-60px-var(--web-header-height))] top-[var(--web-header-height)] left-0 right-0"
     >
-      <div class="w-full">
+      <div>
         <span v-for="item in frontmatter?.tags" :item="item" class="text-lg">
           <span class="text-white text-opacity-50">#</span>
           <span class="text-white text-opacity-90">{{ item }}</span>
         </span>
       </div>
       <h1
-        class="my-2 w-full text-white text-3xl font-bold text-ellipsis whitespace-nowrap overflow-hidden"
+        class="my-2 text-white text-3xl font-bold text-ellipsis whitespace-nowrap overflow-hidden"
       >
         {{ frontmatter?.title }}
       </h1>

@@ -5,7 +5,7 @@ const { frontmatter } = useData();
 </script>
 
 <template>
-  <svg v-show="frontmatter?.banner?.wave" class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+  <svg v-show="frontmatter?.banner?.wave" class="waves-svg max-md:hidden" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
     <defs>
       <path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
     </defs>
@@ -19,12 +19,6 @@ const { frontmatter } = useData();
 </template>
 
 <style scoped>
-@media (max-width: 768px) {
-  .waves-svg {
-    display: none;
-  }
-}
-
 .waves-svg {
   --wave-background: #fafafa;
   position: absolute;

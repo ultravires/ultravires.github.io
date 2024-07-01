@@ -17,7 +17,7 @@ const toggleMenu = () => {
       <span class="menu-bar bar"></span>
     </button>
     <Teleport to="body">
-      <div v-show="isShow" class="dark:border-neutral-700 dark:bg-neutral-900 container fixed mx-auto bg-white border-t border-solid border-neutral-200 text-base top-[calc(60px+1px)] left-0 right-0 bottom-0 z-10">
+      <div v-show="isShow" class="dark:border-neutral-700 dark:bg-neutral-900 fixed mx-auto bg-white border-t border-solid border-neutral-200 text-base top-[calc(60px+1px)] left-0 right-0 bottom-0 z-10">
         <ul class="mx-12 py-12">
           <li v-for="item in theme.nav" :key="item.text">
             <VNavBarLink class="dark:border-neutral-700 block py-2 h-full border-b border-solid border-neutral-200" :item="item" @click="isShow = false" />
