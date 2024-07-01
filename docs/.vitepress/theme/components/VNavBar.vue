@@ -14,7 +14,7 @@ const VPAlgoliaSearchBox = __ALGOLIA__
   ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue'))
   : () => null;
 
-const { theme } = useData();
+const { theme, frontmatter } = useData();
 
 const loaded = ref(false);
 
@@ -108,7 +108,8 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 
 <template>
   <nav
-    class="dark:bg-neutral-900 dark:bg-opacity-90 dark:border-neutral-700 VNavBar fixed w-full h-[var(--web-header-height)] bg-white bg-opacity-90 border-b border-solid border-neutral-200 backdrop-blur-sm text-base top-0 z-10"
+    class="dark:bg-neutral-900 dark:bg-opacity-90 dark:border-neutral-700 VNavBar fixed w-full h-[var(--web-header-height)] bg-white bg-opacity-90 border-b border-solid border-neutral-200 backdrop-blur-sm transition-colors duration-300 top-0 z-10"
+    :class="frontmatter?.layout !== 'home' && frontmatter?.banner ? 'text-white' : 'text-base'"
   >
     <div
       class="@8xl:max-w-[87.5rem] max-md:px-2 px-8 relative flex justify-center items-center gap-4 mx-auto h-full z-0"
@@ -152,7 +153,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 <style scoped>
 .VNavBar {
   --web-main-header-bg: rgb(255 255 255 / var(--tw-bg-opacity));
-  animation: background-transform auto linear;
+  animation: background-transform auto linear 300ms;
   animation-timeline: --page-scroll;
 }
 
@@ -171,11 +172,13 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
     background-color: var(--web-main-header-bg);
     border-bottom-width: 1px;
     backdrop-filter: blur(10px);
+    color: rgb(var(--web-color-base) / 1);
   }
   100% {
     background-color: var(--web-main-header-bg);
     border-bottom-width: 1px;
     backdrop-filter: blur(10px);
+    color: rgb(var(--web-color-base) / 1);
   }
 }
 </style>
