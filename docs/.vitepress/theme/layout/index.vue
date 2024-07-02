@@ -13,7 +13,9 @@ const { frontmatter, page } = useData();
   <section class="flex flex-col text-base">
     <VHeader />
     <section class="flex gap-4 w-full">
-      <div class="flex-grow min-h-screen w-full transition-colors duration-100">
+      <div
+        class="@container flex-grow min-h-screen w-full transition-colors duration-100"
+      >
         <HomeLayout v-if="frontmatter.layout === 'home'" />
         <NotFound v-else-if="page.isNotFound" />
         <DocLayout v-else />
