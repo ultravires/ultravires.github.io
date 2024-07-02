@@ -13,10 +13,10 @@ const { frontmatter } = useData();
     <VNavBar />
 
     <div
+      v-show="frontmatter?.banner ?? frontmatter?.title"
       class="@container absolute w-full h-full top-[var(--web-header-height)] left-0 right-0"
     >
       <div
-        v-show="frontmatter?.banner ?? frontmatter?.title"
         class="@8xl:max-w-[87.5rem] max-md:items-center max-md:px-4 px-10 flex flex-col justify-center items-start mx-auto w-full h-[calc(100%-60px-var(--web-header-height))]"
       >
         <div class="flex gap-2">
