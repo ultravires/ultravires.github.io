@@ -8,7 +8,7 @@ const { frontmatter } = useData();
 <template>
   <div
     v-show="frontmatter?.banner"
-    class="before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:bg-neutral-900 before:bg-opacity-30 relative h-96 bg-neutral-200 overflow-hidden -z-10 select-none"
+    class="before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:bg-neutral-900 before:bg-opacity-30 relative h-[30rem] bg-neutral-200 overflow-hidden -z-10 select-none"
     :class="{ 'before:backdrop-blur-lg': frontmatter?.banner?.blur }"
     draggable="false"
   >

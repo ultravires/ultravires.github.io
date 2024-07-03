@@ -108,7 +108,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 
 <template>
   <nav
-    class="dark:bg-neutral-900 dark:bg-opacity-90 dark:border-neutral-700 VNavBar @container fixed w-full h-[var(--web-header-height)] bg-white bg-opacity-90 border-b border-solid border-neutral-200 backdrop-blur-sm transition-colors duration-300 top-0 z-10"
+    class="dark:bg-neutral-900 dark:bg-opacity-90 dark:border-neutral-700 VNavBar @container fixed w-full h-[var(--web-header-height)] bg-white bg-opacity-90 border-b border-solid border-neutral-200 backdrop-blur-sm transition-all duration-300 top-0 z-10"
     :class="
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'
@@ -129,7 +129,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
           />
         </li>
         <li
-          class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-colors duration-300"
+          class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-all duration-300"
           @click="handleSearch"
         >
           <template v-if="provider === 'algolia'">

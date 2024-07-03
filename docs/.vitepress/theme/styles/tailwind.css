@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: rgb(var(--web-border-color) / 1);
+  }
+
   *::selection {
     background-color: #981616;
     color: #fafafa;

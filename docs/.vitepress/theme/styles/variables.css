@@ -6,10 +6,11 @@
   --web-color-white: 255 255 255;
   --web-color-black: 0 0 0;
   --web-color-reverse: 255 255 255;
+  --web-border-color: 229, 229, 229;
   --web-header-height: 4rem;
   --docsearch-searchbox-background: #fff;
   --docsearch-searchbox-focus-background: transparent;
-  --docsearch-text-color: rgb(var(--web-color-base) / .8);
+  --docsearch-text-color: rgb(var(--web-color-base) / 0.8);
 }
 
 html.dark {
@@ -18,5 +19,6 @@ html.dark {
   --web-color-base: 255 255 255;
   --web-color-primary: 246 202 96;
   --web-color-reverse: 0 0 0;
+  --web-border-color: 64 64 64;
   --docsearch-searchbox-background: #171717;
 }

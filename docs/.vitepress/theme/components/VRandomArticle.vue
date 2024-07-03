@@ -35,14 +35,18 @@ const visiteRandomArticle = () => {
 </script>
 
 <template>
-  <div class="hover:bg-primary hover:text-reverse p-1 text-xl rounded-full cursor-pointer transition-colors duration-300" @click="visiteRandomArticle">
+  <div
+    class="hover:bg-primary hover:text-reverse p-1 text-xl rounded-full cursor-pointer transition-all duration-300"
+    @click="visiteRandomArticle"
+  >
     <VIconDice :class="['dice', { rotating }]" title="随机访问该站文章" />
   </div>
 </template>
 
 <style scoped>
 .dice.rotating {
-  animation: rotate v-bind(diceAnimationDuration) cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: rotate v-bind(diceAnimationDuration)
+    cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @keyframes rotate {
