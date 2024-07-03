@@ -9,7 +9,7 @@ import VPostCard from '../components/VPostCard.vue';
     <li
       v-for="post in posts"
       :key="post.title"
-      class="even:mr-0 w-[calc(calc(100%-1rem)/2)] mr-4 mb-4"
+      class="max-md:w-full max-md:mr-0 even:mr-0 w-[calc(calc(100%-1rem)/2)] mr-4 mb-4"
     >
       <!-- <VPost :post="post" /> -->
       <VPostCard :post="post" />
