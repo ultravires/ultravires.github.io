@@ -1,17 +1,18 @@
-import { createContentLoader } from 'vitepress'
+import { createContentLoader } from 'vitepress';
 
 export interface Post {
-  title: string
-  url: string
+  title: string;
+  url: string;
   date: {
-    time: number
-    string: string
-  }
-  excerpt: string | undefined
+    time: number;
+    string: string;
+  };
+  excerpt: string | undefined;
+  cover: string | undefined;
 }
 
-declare const data: Post[]
-export { data }
+declare const data: Post[];
+export { data };
 
 /**
  * @link https://vitepress.dev/zh/guide/data-loading#createcontentloader
@@ -26,21 +27,26 @@ export default createContentLoader('**/*.md', {
     return raw
       .map(({ url, frontmatter, excerpt }) => ({
         title: frontmatter.title,
+        cover: frontmatter.cover,
+        categories: frontmatter.categories,
+        tags: frontmatter.tags,
         url,
         excerpt, // 渲染的摘录 HTML（第一个 `---` 上面的内容）
         date: formatDate(frontmatter.date),
-        hidden: frontmatter.hidden || false
+        hidden: frontmatter.hidden || false,
       }))
-      .filter(({ title, hidden }) => (!!title && !hidden))
-      .sort((a, b) => b.date.time - a.date.time)
-  }
-})
+      .filter(({ title, hidden }) => !!title && !hidden)
+      .sort((a, b) => b.date.time - a.date.time);
+  },
+});
 
 function formatDate(raw: string): Post['date'] {
-  const date = new Date(raw)
-  date.setUTCHours(8)
+  const date = new Date(raw);
+  date.setUTCHours(8);
   return {
     time: +date,
-    string: `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${(date.getDate().toString().padStart(2, '0'))}`
-  }
+    string: `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`,
+  };
 }

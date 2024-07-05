@@ -17,24 +17,37 @@ function handleImageError(event) {
   >
     <VLink class="block h-[calc(100%-9rem)]" :href="post.url">
       <img
-        class="w-full h-full bg-transparent border-0 outline-0 object-cover"
-        src=""
+        class="group-hover/post-card:scale-105 w-full h-full bg-transparent border-0 outline-0 object-cover transition-transform duration-300"
+        :src="post.cover"
         alt=""
         loading="lazy"
         @error="handleImageError"
       />
     </VLink>
-    <VLink class="flex px-4 w-full h-36 items-center" :href="post.url">
-      <div>
-        <div
-          class="group-hover/post-card:text-[rgb(var(--web-color-primary)/1)] text-xl mb-4 transition-all duration-300"
-        >
-          {{ post.title }}
+    <VLink
+      class="flex flex-col justify-center px-4 w-full h-36"
+      :href="post.url"
+    >
+      <div
+        class="group-hover/post-card:text-[rgb(var(--web-color-primary)/1)] text-xl mb-4 transition-all duration-300"
+      >
+        {{ post.title }}
+      </div>
+      <div
+        v-html="post.excerpt"
+        class="text-sm text-neutral-600 dark:text-neutral-400"
+      ></div>
+      <div class="flex justify-between w-full">
+        <div>
+          <span
+            v-for="tag in post.tags"
+            :key="tag"
+            class="dark:text-neutral-400 text-neutral-500"
+          >
+            {{ tag }}
+          </span>
         </div>
-        <div
-          v-html="post.excerpt"
-          class="text-sm text-neutral-600 dark:text-neutral-400"
-        ></div>
+        <div>{{ post.date.string }}</div>
       </div>
     </VLink>
   </div>
