@@ -11,7 +11,7 @@ defineProps({
 
 <template>
   <div
-    class="group-hover/post-card:scale-105 relative flex justify-center items-center w-full h-full bg-[#1f2122] transition-transform duration-300"
+    class="group-hover/post-card:scale-105 dark:bg-neutral-800 relative flex justify-center items-center w-full h-full bg-slate-700 transition-transform duration-300"
   >
     <img
       v-if="post.cover"

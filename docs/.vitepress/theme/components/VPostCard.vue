@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { withBase } from 'vitepress';
 import type { Post } from '../posts.data';
 import VLink from './VLink.vue';
 import VPostCover from './VPostCover.vue';
@@ -7,10 +6,6 @@ import VPostCover from './VPostCover.vue';
 defineProps<{
   post: Post;
 }>();
-
-function handleImageError(event) {
-  event.target.src = 'https://via.placeholder.com/340x200';
-}
 </script>
 
 <template>
@@ -25,7 +20,7 @@ function handleImageError(event) {
       :href="post.url"
     >
       <div
-        class="group-hover/post-card:text-[rgb(var(--web-color-primary)/1)] text-xl mb-4 transition-all duration-300"
+        class="group-hover/post-card:text-[rgb(var(--web-color-primary)/1)] text-xl mb-4"
       >
         {{ post.title }}
       </div>
@@ -36,7 +31,7 @@ function handleImageError(event) {
       <div class="flex justify-between mt-4">
         <div>
           <span
-            v-for="tag in post.tags"
+            v-for="tag in post?.tags ?? []"
             :key="tag"
             class="dark:text-neutral-400 text-neutral-500"
           >

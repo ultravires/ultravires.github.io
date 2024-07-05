@@ -3,6 +3,8 @@ import { createContentLoader } from 'vitepress';
 export interface Post {
   title: string;
   url: string;
+  categories: string[];
+  tags: string[];
   date: {
     time: number;
     string: string;
@@ -28,8 +30,8 @@ export default createContentLoader('**/*.md', {
       .map(({ url, frontmatter, excerpt }) => ({
         title: frontmatter.title,
         cover: frontmatter.cover,
-        categories: frontmatter.categories,
-        tags: frontmatter.tags,
+        categories: frontmatter.categories ?? [],
+        tags: frontmatter.tags ?? [],
         url,
         excerpt, // 渲染的摘录 HTML（第一个 `---` 上面的内容）
         date: formatDate(frontmatter.date),
