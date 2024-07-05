@@ -16,6 +16,7 @@ const { frontmatter } = useData();
       v-show="frontmatter?.banner?.image"
       class="object-cover w-full h-full"
       :src="withBase(frontmatter?.banner?.image ?? '')"
+      alt=""
     />
     <VWave />
   </div>
