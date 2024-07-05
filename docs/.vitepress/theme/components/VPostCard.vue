@@ -2,6 +2,7 @@
 import { withBase } from 'vitepress';
 import type { Post } from '../posts.data';
 import VLink from './VLink.vue';
+import VPostCover from './VPostCover.vue';
 
 defineProps<{
   post: Post;
@@ -17,12 +18,7 @@ function handleImageError(event) {
     class="dark:bg-neutral-900 hover:border-[rgb(var(--web-color-primary)/1)] group/post-card w-full h-[340px] bg-white border border-solid rounded-lg overflow-hidden transition-all duration-300"
   >
     <VLink class="block h-[calc(100%-9rem)]" :href="post.url">
-      <img
-        class="group-hover/post-card:scale-105 w-full h-full bg-transparent border-0 outline-0 object-cover transition-transform duration-300"
-        :src="withBase(post.cover || 'https://via.placeholder.com/340x200')"
-        loading="lazy"
-        @error="handleImageError"
-      />
+      <VPostCover :post="post" />
     </VLink>
     <VLink
       class="flex flex-col justify-center px-4 w-full h-36"
