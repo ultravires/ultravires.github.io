@@ -34,7 +34,7 @@ defineProps({
       <span
         v-for="item in post.cover.text.split('|')"
         :key="item"
-        class="text-white text-6xl font-black tracking-wider"
+        class="text-white text-6xl font-black tracking-wider drop-shadow-2xl"
       >
         {{ item }}
       </span>
