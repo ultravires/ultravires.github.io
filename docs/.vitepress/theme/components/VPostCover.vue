@@ -17,7 +17,9 @@ defineProps({
       v-if="post.cover"
       class="absolute min-w-24 w-auto h-auto bg-transparent border-0 outline-0 object-contain drop-shadow-[0_25px_25px_rgb(0_0_0_/_1)] z-10"
       :src="
-        withBase(typeof post.cover === 'string' ? post.cover : post.cover.url)
+        withBase(
+          typeof post.cover === 'string' ? post.cover : post.cover.url || ''
+        )
       "
       loading="lazy"
     />
