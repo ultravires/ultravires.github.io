@@ -1,6 +1,8 @@
 ---
 title: 自定义 VitePress 主题
 date: 2024-05-20 14:26:26
+cover:
+  text: VitePress 主题
 categories:
   - 前端领域
 tags:

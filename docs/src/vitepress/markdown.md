@@ -1,6 +1,10 @@
 ---
 title: 自定义主题：Markdown 扩展
 date: 2024-05-22 17:17:58
+cover:
+  text: Markdown 扩展
+tags:
+  - Markdown
 ---
 
 Markdown 是内容编辑的核心，该主题将主要支持维护 Markdown 语法。
@@ -195,9 +199,11 @@ This is a details block.
 :::
 
 ::: details 点我查看代码
+
 ```js
-console.log('Hello, VitePress!')
+console.log('Hello, VitePress!');
 ```
+
 :::
 ````
 
@@ -208,9 +214,11 @@ console.log('Hello, VitePress!')
 :::
 
 ::: details 点我查看代码
+
 ```js
-console.log('Hello, VitePress!')
+console.log('Hello, VitePress!');
 ```
+
 :::
 
 此外，可以通过在站点配置中添加以下内容来全局设置自定义标题，如果不是用英语书写，这会很有帮助：
@@ -225,11 +233,11 @@ export default defineConfig({
       warningLabel: '警告',
       dangerLabel: '危险',
       infoLabel: '信息',
-      detailsLabel: '详细信息'
-    }
-  }
+      detailsLabel: '详细信息',
+    },
+  },
   // ...
-})
+});
 ```
 
 ### `raw`
@@ -245,6 +253,7 @@ Wraps in a <div class="vp-raw">
 ```
 
 ::: raw
+
 <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=54954953&bvid=BV1s4411T7iG&cid=96107566&p=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
 :::
 
@@ -259,19 +268,19 @@ Wraps in a <div class="vp-raw">
 - 创建 `docs/.postcssrc.cjs` 文件并将以下内容添加到其中：
 
   ```js
-  import { postcssIsolateStyles } from 'vitepress'
+  import { postcssIsolateStyles } from 'vitepress';
 
   export default {
-    plugins: [postcssIsolateStyles()]
-  }
+    plugins: [postcssIsolateStyles()],
+  };
   ```
 
   它在底层使用 [`postcss-prefix-selector`](https://github.com/postcss/postcss-load-config)。你可以像这样传递它的选项：
 
   ```js
   postcssIsolateStyles({
-    includeFiles: [/vp-doc\.css/] // 默认为 /base\.css/
-  })
+    includeFiles: [/vp-doc\.css/], // 默认为 /base\.css/
+  });
   ```
 
 ## GitHub 风格的警报 {#github-flavored-alerts}
@@ -339,16 +348,14 @@ export default {
 
 ```js
 export default {
-  name: 'MyComponent'
+  name: 'MyComponent',
   // ...
-}
+};
 ```
 
 ```html
 <ul>
-  <li v-for="todo in todos" :key="todo.id">
-    {{ todo.text }}
-  </li>
+  <li v-for="todo in todos" :key="todo.id">{{ todo.text }}</li>
 </ul>
 ```
 
@@ -444,10 +451,10 @@ export default {
 export default {
   data() {
     return {
-      msg: 'Highlighted!' // [!code highlight]
-    }
-  }
-}
+      msg: 'Highlighted!', // [!code highlight]
+    };
+  },
+};
 ```
 
 ## 代码块中聚焦 {#focus-in-code-blocks}
@@ -476,10 +483,10 @@ export default {
 export default {
   data() {
     return {
-      msg: 'Focused!' // [!code focus]
-    }
-  }
-}
+      msg: 'Focused!', // [!code focus]
+    };
+  },
+};
 ```
 
 ## 代码块中的颜色差异 {#colored-diffs-in-code-blocks}
@@ -540,10 +547,10 @@ export default {
   data() {
     return {
       msg: 'Error', // [!code error]
-      msg: 'Warning' // [!code warning]
-    }
-  }
-}
+      msg: 'Warning', // [!code warning]
+    };
+  },
+};
 ```
 
 ## 行号 {#line-numbers}
@@ -553,9 +560,9 @@ export default {
 ```js
 export default {
   markdown: {
-    lineNumbers: true
-  }
-}
+    lineNumbers: true,
+  },
+};
 ```
 
 可以在代码块中添加 `:line-numbers` / `:no-line-numbers` 标记来覆盖在配置中的设置。
@@ -688,19 +695,19 @@ const line4 = 'This is line 4'
  */
 const config = {
   // ...
-}
+};
 
-export default config
+export default config;
 ```
 
 ```ts [config.ts]
-import type { UserConfig } from 'vitepress'
+import type { UserConfig } from 'vitepress';
 
 const config: UserConfig = {
   // ...
-}
+};
 
-export default config
+export default config;
 ```
 
 :::
@@ -716,19 +723,19 @@ export default config
  */
 const config = {
   // ...
-}
+};
 
-export default config
+export default config;
 ```
 
 ```ts [config.ts]
-import type { UserConfig } from 'vitepress'
+import type { UserConfig } from 'vitepress';
 
 const config: UserConfig = {
   // ...
-}
+};
 
-export default config
+export default config;
 ```
 
 :::
@@ -857,9 +864,9 @@ npm add -D markdown-it-mathjax3
 // .vitepress/config.ts
 export default {
   markdown: {
-    math: true
-  }
-}
+    math: true,
+  },
+};
 ```
 
 **输入**
@@ -899,10 +906,10 @@ export default {
   markdown: {
     image: {
       // 默认禁用图片懒加载
-      lazyLoading: true
-    }
-  }
-}
+      lazyLoading: true,
+    },
+  },
+};
 ```
 
 ## 高级配置 {#advanced-configuration}
@@ -910,24 +917,24 @@ export default {
 VitePress 使用 [markdown-it](https://github.com/markdown-it/markdown-it) 作为 Markdown 渲染器。上面提到的很多扩展功能都是通过自定义插件实现的。可以使用 `.vitepress/config.js` 中的 `markdown` 选项来进一步自定义 `markdown-it` 实例。
 
 ```js
-import { defineConfig } from 'vitepress'
-import markdownItAnchor from 'markdown-it-anchor'
-import markdownItFoo from 'markdown-it-foo'
+import { defineConfig } from 'vitepress';
+import markdownItAnchor from 'markdown-it-anchor';
+import markdownItFoo from 'markdown-it-foo';
 
 export default defineConfig({
   markdown: {
     // markdown-it-anchor 的选项
     // https://github.com/valeriangalliat/markdown-it-anchor#usage
     anchor: {
-      permalink: markdownItAnchor.permalink.headerLink()
+      permalink: markdownItAnchor.permalink.headerLink(),
     },
     // @mdit-vue/plugin-toc 的选项
     // https://github.com/mdit-vue/mdit-vue/tree/main/packages/plugin-toc#options
     toc: { level: [1, 2] },
     config: (md) => {
       // 使用更多的 Markdown-it 插件！
-      md.use(markdownItFoo)
-    }
-  }
-})
+      md.use(markdownItFoo);
+    },
+  },
+});
 ```
