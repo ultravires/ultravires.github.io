@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { withBase } from 'vitepress';
 import type { Post } from '../posts.data';
 import VLink from './VLink.vue';
 
@@ -18,8 +19,7 @@ function handleImageError(event) {
     <VLink class="block h-[calc(100%-9rem)]" :href="post.url">
       <img
         class="group-hover/post-card:scale-105 w-full h-full bg-transparent border-0 outline-0 object-cover transition-transform duration-300"
-        :src="post.cover"
-        alt=""
+        :src="withBase(post.cover || 'https://via.placeholder.com/340x200')"
         loading="lazy"
         @error="handleImageError"
       />
@@ -35,9 +35,9 @@ function handleImageError(event) {
       </div>
       <div
         v-html="post.excerpt"
-        class="text-sm text-neutral-600 dark:text-neutral-400"
+        class="max-sm:hidden text-sm text-neutral-600 dark:text-neutral-400"
       ></div>
-      <div class="flex justify-between w-full">
+      <div class="flex justify-between mt-4">
         <div>
           <span
             v-for="tag in post.tags"

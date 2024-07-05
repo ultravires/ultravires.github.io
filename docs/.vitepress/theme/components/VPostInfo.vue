@@ -30,9 +30,7 @@ const { frontmatter } = useData();
           <span class="text-white text-opacity-80">{{ item }}</span>
         </span>
       </div>
-      <h1
-        class="mt-4 mb-8 text-white text-5xl font-bold text-ellipsis whitespace-nowrap overflow-hidden"
-      >
+      <h1 class="max-md:text-3xl mt-4 mb-8 text-white text-5xl font-bold">
         {{ frontmatter?.title }}
       </h1>
       <div>

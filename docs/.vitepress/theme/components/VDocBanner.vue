@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useData } from 'vitepress';
+import { useData, withBase } from 'vitepress';
 import VWave from './VWave.vue';
 
 const { frontmatter } = useData();
@@ -15,7 +15,7 @@ const { frontmatter } = useData();
     <img
       v-show="frontmatter?.banner?.image"
       class="object-cover w-full h-full"
-      :src="frontmatter?.banner?.image"
+      :src="withBase(frontmatter?.banner?.image ?? '')"
     />
     <VWave />
   </div>
