@@ -36,6 +36,8 @@ const { frontmatter } = useData();
   bottom: -10px;
   width: 100%;
   height: 60px;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .dark .waves-svg {

@@ -1,4 +1,5 @@
 ---
+layout: page
 outline: false
 banner:
   image: https://www.16personalities.com/static/images/types/headers/advocate-mobile.svg
@@ -19,4 +20,3 @@ banner:
 ## 游戏爱好
 
 ![PUBG](https://wstatic-prod-boc.krafton.com/PUBG_OFFICIAL/20230328/rB4AGkaV/Season7_Key_Art.jpg)
-

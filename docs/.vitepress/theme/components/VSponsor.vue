@@ -15,7 +15,7 @@ import VIconHandHeart from './icons/VIconHandHeart.vue';
       class="peer-hover:block peer-hover:opacity-100 peer-hover:translate-y-0 peer-hover:pointer-events-auto hover:block hover:opacity-100 hover:translate-y-0 hover:pointer-events-auto absolute bottom-full opacity-0 translate-y-4 pointer-events-none left-1/2 -translate-x-1/2 z-10 transition-all duration-300"
     >
       <div
-        class="dark:bg-neutral-900 dark:border-neutral-600 p-8 mb-4 w-max bg-white border border-solid border-neutral-200 rounded-lg"
+        class="dark:bg-neutral-900 p-8 mb-4 w-max bg-white border border-solid border-[rgb(var(--web-border-color)/1)] rounded-lg"
       >
         <p
           class="mb-2 whitespace-nowrap text-center text-red-500 text-lg font-medium"

@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <div
-    class="dark:bg-neutral-900 hover:border-[rgb(var(--web-color-primary)/1)] group/post-card w-full h-[340px] bg-white border border-solid rounded-lg overflow-hidden transition-all duration-300"
+    class="dark:bg-neutral-900 hover:border-[rgb(var(--web-color-primary)/1)] group/post-card w-full h-[340px] bg-white border border-solid rounded-lg overflow-hidden transition-colors duration-300"
   >
     <VLink class="block h-[calc(100%-9rem)]" :href="post.url">
       <VPostCover :post="post" />
@@ -38,7 +38,11 @@ defineProps<{
             {{ tag }}
           </span>
         </div>
-        <div>{{ post.date.string }}</div>
+        <div
+          class="group-hover/post-card:text-base group-hover/post-card:text-opacity-60 text-neutral-600"
+        >
+          {{ post.date.string }}
+        </div>
       </div>
     </VLink>
   </div>

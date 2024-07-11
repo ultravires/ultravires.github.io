@@ -1,8 +1,18 @@
 <script lang="ts" setup>
 import { useData, withBase } from 'vitepress';
+import { getImageColor } from '@theme/support/utils';
 import VWave from './VWave.vue';
 
 const { frontmatter } = useData();
+
+function handleImageLoaded(event: Event) {
+  // const color = getImageColor(event.currentTarget);
+  // document.documentElement.style.setProperty(
+  //   '--web-color-primary',
+  //   color.join(' ')
+  // );
+  // console.log(color.join(' '));
+}
 </script>
 
 <template>
@@ -17,6 +27,7 @@ const { frontmatter } = useData();
       class="object-cover w-full h-full"
       :src="withBase(frontmatter?.banner?.image ?? '')"
       alt=""
+      @load="handleImageLoaded"
     />
     <VWave />
   </div>

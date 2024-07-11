@@ -8,10 +8,10 @@ const { frontmatter } = useData();
 <template>
   <div
     v-show="frontmatter?.banner && frontmatter?.title"
-    class="@container absolute w-full h-full top-[var(--web-header-height)] left-0 right-0"
+    class="@container absolute w-full h-[calc(100%-60px-var(--web-header-height))] top-[var(--web-header-height)] left-0 right-0"
   >
     <div
-      class="@8xl:max-w-[87.5rem] max-md:items-center max-md:px-4 px-10 flex flex-col justify-center items-start gap-2 mx-auto w-full h-[calc(100%-60px-var(--web-header-height))]"
+      class="@8xl:max-w-[87.5rem] max-md:items-center max-md:px-4 px-10 flex flex-col justify-center items-start gap-2 mx-auto w-full h-full"
     >
       <div class="flex gap-2 items-center">
         <span

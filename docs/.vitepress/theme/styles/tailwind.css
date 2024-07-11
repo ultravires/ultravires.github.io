@@ -7,6 +7,8 @@
   ::before,
   ::after {
     border-color: rgb(var(--web-border-color) / 1);
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--web-border-color) / 0.8) transparent;
   }
 
   *::selection {

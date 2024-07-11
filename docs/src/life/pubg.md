@@ -15,5 +15,6 @@ banner:
 
 ::: raw
 
-<iframe src="//player.bilibili.com/player.html?bvid=BV1s4411T7iG&cid=96107566&high_quality=112&autoplay=false" width="80%" height="400px" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<iframe src="//player.bilibili.com/player.html?bvid=BV1s4411T7iG&cid=96107566&high_quality=112&autoplay=false" width="100%" height="500px" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+
 :::

@@ -22,6 +22,7 @@ defineProps({
         )
       "
       loading="lazy"
+      @load="handleImageLoaded"
     />
     <div v-else class="text-white text-6xl font-black tracking-wider">
       暂无封面

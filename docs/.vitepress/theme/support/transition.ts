@@ -1,4 +1,4 @@
-import { useData } from 'vitepress'
+import { useData } from 'vitepress';
 
 /**
  * @param themeObject Can be an object with `translations` and `locales` properties
@@ -6,46 +6,46 @@ import { useData } from 'vitepress'
 export function createSearchTranslate(
   defaultTranslations: Record<string, any>
 ): (key: string) => string {
-  const { localeIndex, theme } = useData()
+  const { localeIndex, theme } = useData();
 
   function translate(key: string): string {
-    const keyPath = key.split('.')
-    const themeObject = theme.value.search?.options
+    const keyPath = key.split('.');
+    const themeObject = theme.value.search?.options;
 
-    const isObject = themeObject && typeof themeObject === 'object'
+    const isObject = themeObject && typeof themeObject === 'object';
     const locales =
       (isObject && themeObject.locales?.[localeIndex.value]?.translations) ||
-      null
-    const translations = (isObject && themeObject.translations) || null
+      null;
+    const translations = (isObject && themeObject.translations) || null;
 
-    let localeResult: Record<string, any> | null = locales
-    let translationResult: Record<string, any> | null = translations
-    let defaultResult: Record<string, any> | null = defaultTranslations
+    let localeResult: Record<string, any> | null = locales;
+    let translationResult: Record<string, any> | null = translations;
+    let defaultResult: Record<string, any> | null = defaultTranslations;
 
-    const lastKey = keyPath.pop()!
+    const lastKey = keyPath.pop()!;
     for (const k of keyPath) {
-      let fallbackResult: Record<string, any> | null = null
-      const foundInFallback: any = defaultResult?.[k]
+      let fallbackResult: Record<string, any> | null = null;
+      const foundInFallback: any = defaultResult?.[k];
       if (foundInFallback) {
-        fallbackResult = defaultResult = foundInFallback
+        fallbackResult = defaultResult = foundInFallback;
       }
-      const foundInTranslation: any = translationResult?.[k]
+      const foundInTranslation: any = translationResult?.[k];
       if (foundInTranslation) {
-        fallbackResult = translationResult = foundInTranslation
+        fallbackResult = translationResult = foundInTranslation;
       }
-      const foundInLocale: any = localeResult?.[k]
+      const foundInLocale: any = localeResult?.[k];
       if (foundInLocale) {
-        fallbackResult = localeResult = foundInLocale
+        fallbackResult = localeResult = foundInLocale;
       }
       // Put fallback into unresolved results
       if (!foundInFallback) {
-        defaultResult = fallbackResult
+        defaultResult = fallbackResult;
       }
       if (!foundInTranslation) {
-        translationResult = fallbackResult
+        translationResult = fallbackResult;
       }
       if (!foundInLocale) {
-        localeResult = fallbackResult
+        localeResult = fallbackResult;
       }
     }
     return (
@@ -53,8 +53,8 @@ export function createSearchTranslate(
       translationResult?.[lastKey] ??
       defaultResult?.[lastKey] ??
       ''
-    )
+    );
   }
 
-  return translate
+  return translate;
 }
