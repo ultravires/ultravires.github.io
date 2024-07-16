@@ -5,11 +5,18 @@ import VIconSun from './icons/VIconSun.vue';
 
 const isDarkTheme = ref(false);
 
+const ThemeConfig = {
+  THEME_CLASS_DARK: 'dark',
+  THEME_CLASS_LIGHT: 'light',
+};
+
 const toggleTheme = () => {
   const root = document.documentElement;
-  root.classList.toggle('dark');
-  isDarkTheme.value = root.classList.contains('dark');
-  root.dataset.theme = isDarkTheme.value ? 'dark' : 'light';
+  root.classList.toggle(ThemeConfig.THEME_CLASS_DARK);
+  isDarkTheme.value = root.classList.contains(ThemeConfig.THEME_CLASS_DARK);
+  root.dataset.theme = isDarkTheme.value
+    ? ThemeConfig.THEME_CLASS_DARK
+    : ThemeConfig.THEME_CLASS_LIGHT;
   window.localStorage.setItem('isDark', `${isDarkTheme.value}`);
 };
 
@@ -19,12 +26,12 @@ onMounted(() => {
 
   if (window.localStorage.getItem('isDark') === 'true') {
     isDarkTheme.value = true;
-    root.classList.add('dark');
-    root.dataset.theme = 'dark';
+    root.classList.add(ThemeConfig.THEME_CLASS_DARK);
+    root.dataset.theme = ThemeConfig.THEME_CLASS_DARK;
   } else if (window.localStorage.getItem('isDark') === 'false') {
     isDarkTheme.value = false;
-    root.classList.remove('dark');
-    root.dataset.theme = 'light';
+    root.classList.remove(ThemeConfig.THEME_CLASS_DARK);
+    root.dataset.theme = ThemeConfig.THEME_CLASS_LIGHT;
   } else {
     isDarkTheme.value = themeMedia.matches;
     themeMedia.addEventListener('change', (e) => {
