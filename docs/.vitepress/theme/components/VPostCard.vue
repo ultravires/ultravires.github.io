@@ -12,7 +12,7 @@ defineProps<{
   <div
     class="dark:bg-neutral-900 hover:border-[rgb(var(--web-color-primary)/1)] group/post-card w-full h-[340px] bg-white border border-solid rounded-lg overflow-hidden transition-colors duration-300"
   >
-    <VLink class="block h-[calc(100%-9rem)]" :href="post.url">
+    <VLink class="block h-[calc(100%-9rem)] overflow-hidden" :href="post.url">
       <VPostCover :post="post" />
     </VLink>
     <VLink

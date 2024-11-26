@@ -146,7 +146,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
       </ul>
       <div class="max-md:ml-auto flex items-center gap-4 ml-auto">
         <VRandomArticle />
-        <VThemeToggle />
+        <VThemeToggle class="hover:bg-primary hover:text-reverse p-1 text-xl rounded-full cursor-pointer transition-all duration-300" :theme-config="{ dark: 'dark', light: 'light' }" />
         <VBackTop />
         <VNavBarHamburger class="max-md:flex hidden ml-4" />
       </div>
