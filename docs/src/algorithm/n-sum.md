@@ -2,7 +2,7 @@
 title: '算法题解: n 数之和'
 date: 2024-05-16 12:35:00
 cover:
-  text: n 数之和
+  url: https://s2.loli.net/2024/11/27/w1VZ9DzXEo82hln.webp
 categories:
   - 算法题解
 tags:

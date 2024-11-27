@@ -2,7 +2,7 @@
 title: Monorepo 讲解
 date: 2024-05-29 17:19:05
 cover:
-  text: Monorepo
+  url: https://s2.loli.net/2024/11/27/profXcH31QbmT9E.webp
 tags:
   - Monorepo
 ---
