@@ -33,13 +33,14 @@ defineProps<{
           <span
             v-for="tag in post?.tags ?? []"
             :key="tag"
-            class="dark:text-neutral-400 text-neutral-500"
+            class="dark:text-neutral-400 mx-2 text-neutral-500 text-sm"
           >
-            {{ tag }}
+            <span>#</span>
+            <span>{{ tag }}</span>
           </span>
         </div>
         <div
-          class="group-hover/post-card:text-base group-hover/post-card:text-opacity-60 text-neutral-600"
+          class="text-sm"
         >
           {{ post.date.string }}
         </div>
