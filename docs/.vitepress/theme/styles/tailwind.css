@@ -16,6 +16,10 @@
     color: #fafafa;
   }
 
+  svg {
+    display: initial;
+  }
+
   html,
   body {
     width: 100%;
