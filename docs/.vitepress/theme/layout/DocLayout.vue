@@ -30,7 +30,7 @@ const { frontmatter } = useData();
         <article
           ref="docRef"
           id="article"
-          class="VPDoc lg:prose-xl dark:prose-invert dark:prose-pre:border-neutral-700 prose-pre:border prose-pre:border-solid prose-pre:border-[rgb(var(--web-border-color)/1)] prose-code:px-2 prose-code:py-1 prose-code:bg-primary prose-code:bg-opacity-10 prose-code:text-primary prose-code:rounded-md prose-blockquote:not-italic prose-blockquote:font-normal prose-table:block prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none prose prose-lg prose-neutral transition-all duration-300"
+          class="VPDoc lg:prose-xl dark:prose-invert dark:prose-pre:border-neutral-700 prose-pre:border prose-pre:border-solid prose-pre:border-[rgb(var(--web-border-color)/1)] prose-code:px-2 prose-code:py-1 prose-code:bg-primary prose-code:bg-opacity-10 prose-code:text-primary prose-code:rounded-md prose-blockquote:not-italic prose-blockquote:font-normal prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none prose prose-lg prose-neutral transition-all duration-300"
         >
           <Content />
         </article>
