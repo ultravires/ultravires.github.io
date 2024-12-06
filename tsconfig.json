@@ -17,10 +17,12 @@
     "types": [
       "vitepress",
       "@types/node"
-    ]
+    ],
+    "outDir": "./docs/.vitepress/"
   },
   "include": [
     "./docs/.vitepress/**/*",
     "./docs/src/**/*"
-  ]
+  ],
+  "exclude": ["node_modules", "dist"]
 }

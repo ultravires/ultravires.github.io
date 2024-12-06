@@ -4,3 +4,11 @@
 @import url(./doc.css);
 @import url(./highlight.css);
 @import url(./docsearch.css);
+
+svg.icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  fill: currentColor;
+}

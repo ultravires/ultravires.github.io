@@ -7,7 +7,7 @@ import VRandomArticle from './VRandomArticle.vue';
 import VNavBarHamburger from './VNavBarHamburger.vue';
 import VBackTop from './VBackToTop.vue';
 import VNavBarLink from './VNavBarLink.vue';
-import VIconSearch from './icons/VIconSearch.vue';
+import VIconSearch from '../assets/svg/search.svg?component';
 import '@docsearch/css';
 
 const VPAlgoliaSearchBox = __ALGOLIA__
@@ -124,12 +124,12 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
       >
         <li v-for="item in theme.nav" :key="item.text">
           <VNavBarLink
-            class="hover:bg-primary hover:text-reverse group relative text-md tracking-8 decoration-none rounded-full whitespace-nowrap font-medium"
+            class="hover:bg-primary hover:text-reverse group relative text-md tracking-8 leading-none decoration-none rounded-full whitespace-nowrap font-AlibabaPuHuiTiBold"
             :item="item"
           />
         </li>
         <li
-          class="hover:bg-primary hover:text-reverse rounded-full p-2 cursor-pointer transition-all duration-300"
+          class="hover:bg-primary hover:text-reverse rounded-full p-2 leading-none cursor-pointer transition-all duration-300"
           @click="handleSearch"
         >
           <template v-if="provider === 'algolia'">

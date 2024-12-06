@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "阿里巴巴普惠体 3.0 Regular";
+  src: url(./fonts/AlibabaPuHuiTi-3-55-Regular.ttf);
+}
+
+@font-face {
+  font-family: "阿里巴巴普惠体 3.0 Medium";
+  src: url(./fonts/AlibabaPuHuiTi-3-65-Medium.ttf);
+}
+
+@font-face {
+  font-family: "阿里巴巴普惠体 3.0 SemiBold";
+  src: url(./fonts/AlibabaPuHuiTi-3-75-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: "阿里巴巴普惠体 3.0 Bold";
+  src: url(./fonts/AlibabaPuHuiTi-3-85-Bold.ttf);
+}
+
 @layer base {
   *,
   ::before,
@@ -16,8 +36,8 @@
     color: #fafafa;
   }
 
-  svg {
-    display: initial;
+  *:focus {
+    outline: none;
   }
 
   html,
@@ -29,6 +49,8 @@
     scroll-timeline: --page-scroll block;
     background-color: var(--web-bg);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: "阿里巴巴普惠体 3.0 Regular";
+    font-size: large;
   }
 
   body {

@@ -1,5 +1,5 @@
 <script setup>
-import VIconGithub from '../components/icons/VIconGithub.vue';
+import VIconGithub from '../assets/svg/github.svg?component';
 
 const profile = {
   name: '向成渝',

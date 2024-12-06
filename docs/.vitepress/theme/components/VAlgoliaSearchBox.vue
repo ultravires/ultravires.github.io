@@ -3,7 +3,7 @@ import docsearch from '@docsearch/js'
 import { useRoute, useRouter, useData } from 'vitepress'
 import type { DefaultTheme } from 'vitepress/theme'
 import { nextTick, onMounted, watch } from 'vue'
-import VIconSearch from './icons/VIconSearch.vue'
+import VIconSearch from '../assets/svg/search.svg?component'
 
 const props = defineProps<{
   algolia: DefaultTheme.AlgoliaSearchOptions

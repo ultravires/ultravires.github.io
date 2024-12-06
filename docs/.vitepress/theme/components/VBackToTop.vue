@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
 import { throttleAndDebounce } from '../support/utils';
-import VIconBackToTop from './icons/VIconBackToTop.vue';
+import VIconBackToTop from '../assets/svg/top.svg?component';
 
 const isShow = ref(false);
 

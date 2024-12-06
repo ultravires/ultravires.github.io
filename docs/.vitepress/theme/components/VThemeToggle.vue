@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onUnmounted, computed, watch, toRefs } from 'vue';
-import VIconSun from './icons/VIconSun.vue';
-import VIconMoon from './icons/VIconMoon.vue';
+import VIconSun from '../assets/svg/sun.svg?component';
+import VIconMoon from '../assets/svg/moon.svg?component';
 
 interface Props {
   themeConfig: {

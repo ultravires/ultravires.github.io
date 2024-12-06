@@ -18,7 +18,7 @@ const hexToRgb = (hex) => {
   return `${r} ${g} ${b}`
 }
 
-/** @type {import('tailwindcss').Config} */
+/** @type { import('tailwindcss').Config } */
 export default {
   content: [
     './docs/.vitepress/theme/**/*.{js,ts,vue}'
@@ -50,6 +50,12 @@ export default {
         '6': '0.15em',
         '7': '0.175em',
         '8': '0.2em'
+      },
+      fontFamily: {
+        AlibabaPuHuiTiRegular: ['"阿里巴巴普惠体 3.0 Regular"'],
+        AlibabaPuHuiTiMedium: ['"阿里巴巴普惠体 3.0 Medium"'],
+        AlibabaPuHuiTiSemiBold: ['"阿里巴巴普惠体 3.0 SemiBold"'],
+        AlibabaPuHuiTiBold: ['"阿里巴巴普惠体 3.0 Bold"']
       },
       typography: ({ theme }) => ({
         DEFAULT: {

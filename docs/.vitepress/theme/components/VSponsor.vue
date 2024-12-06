@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { withBase } from 'vitepress';
-import VIconHandHeart from './icons/VIconHandHeart.vue';
+import VIconHandHeart from '../assets/svg/handheart.svg?component';
 </script>
 
 <template>

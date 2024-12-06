@@ -22,6 +22,7 @@ defineProps({
         )
       "
       loading="lazy"
+      draggable="false"
       @load="handleImageLoaded"
     />
     <div v-else class="text-white text-6xl font-black tracking-wider">

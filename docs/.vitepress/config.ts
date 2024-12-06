@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 import { genFeed } from './genFeed.js';
 import { zh } from './config/zh.js';
+import svgLoader from 'vite-svg-loader';
 
 // https://vitepress.vuejs.org/config/app-configs
 export default defineConfig({
@@ -36,5 +37,11 @@ export default defineConfig({
       // 启用生产环境构建下激活不匹配的详细警告
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
     },
+    plugins: [
+      svgLoader({
+        svgo: false,
+        defaultImport: 'component'
+      })
+    ]
   },
 });

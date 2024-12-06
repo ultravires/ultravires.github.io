@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRouter } from 'vitepress';
-import VIconDice from './icons/VIconDice.vue';
+import VIconDice from '../assets/svg/dice.svg?component';
 import { data as posts } from '../posts.data.js';
 import { computed, ref } from 'vue';
 
