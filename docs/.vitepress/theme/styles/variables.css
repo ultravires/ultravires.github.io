@@ -1,3 +1,9 @@
+/* https://tailwindcss.com/docs/theme */
+@theme {
+  /* 主题色 */
+  --color-primary: rgb(71 89 230);
+}
+
 :root {
   --web-bg: #fafafa;
   --web-content-bg: #fff;
@@ -9,7 +15,6 @@
   --web-color-reverse: 255 255 255;
   --web-border-color: 229 229 229;
   --web-header-height: 4rem;
-
   --docsearch-searchbox-background: #fff;
   --docsearch-searchbox-focus-background: transparent;
   --docsearch-text-color: rgb(var(--web-color-base) / 0.8);
@@ -20,9 +25,8 @@ html.dark {
   --web-content-bg: #171717;
   --web-color-main: 23 23 23;
   --web-color-base: 255 255 255;
-  --web-color-primary: 246 202 96;
+  --color-primary: rgb(246 202 96);
   --web-color-reverse: 0 0 0;
   --web-border-color: 64 64 64;
-
   --docsearch-searchbox-background: #171717;
 }

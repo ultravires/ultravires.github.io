@@ -11,11 +11,6 @@ console.log(
   'padding: 0 6px; background-color: transparent; border: 1px solid green;'
 );
 
-console.log(
-  '%c ',
-  'padding: 100px; font-size: 0; background: url("/WeChatPay.jpg") no-repeat contain;'
-);
-
 export default {
   Layout,
 } satisfies Theme;
