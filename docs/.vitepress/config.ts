@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress';
 import { genFeed } from './genFeed.js';
 import { zh } from './config/zh.js';
 import svgLoader from 'vite-svg-loader';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vitepress.vuejs.org/config/app-configs
 export default defineConfig({
@@ -41,7 +42,8 @@ export default defineConfig({
       svgLoader({
         svgo: false,
         defaultImport: 'component'
-      })
+      }),
+      tailwindcss()
     ]
   },
 });

@@ -8,16 +8,17 @@
     "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
-    "@shikijs/vitepress-twoslash": "^1.24.0",
+    "@shikijs/vitepress-twoslash": "^1.29.1",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "0.5.13",
-    "@types/node": "^20.17.9",
-    "autoprefixer": "^10.4.20",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^20.17.16",
     "feed": "^4.2.2",
     "markdown-it-mathjax3": "^4.3.2",
-    "postcss": "^8.4.49",
-    "shiki": "^1.24.0",
-    "tailwindcss": "^3.4.16",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.10",
+    "shiki": "^1.29.1",
+    "tailwindcss": "^4.0.0",
     "unplugin-vue-components": "^0.27.5",
     "vite-svg-loader": "^5.1.0",
     "vitepress": "1.1.4",
@@ -31,15 +32,9 @@
       ]
     }
   },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {},
-      "tailwindcss": {}
-    }
-  },
   "dependencies": {
-    "@docsearch/css": "^3.8.0",
-    "@docsearch/js": "^3.8.0",
+    "@docsearch/css": "^3.8.3",
+    "@docsearch/js": "^3.8.3",
     "dayjs": "^1.11.13"
   }
 }
