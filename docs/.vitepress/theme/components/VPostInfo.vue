@@ -17,17 +17,17 @@ const { frontmatter } = useData();
         <span
           v-for="item in frontmatter?.categories"
           :key="item"
-          class="hover:bg-opacity-100 hover:text-white hover:text-opacity-30 px-2 bg-white bg-opacity-30 text-white rounded-md leading-6"
+          class="hover:bg-white hover:text-white/30 px-2 bg-white/30 text-white rounded-md leading-6"
         >
           {{ item }}
         </span>
         <span
           v-for="item in frontmatter?.tags"
           :key="item"
-          class="hover:bg-white hover:bg-opacity-30 hover:text-white px-2 rounded-md leading-6 transition-all duration-300"
+          class="hover:bg-white/30 hover:text-white px-2 rounded-md leading-6 transition-all duration-300"
         >
-          <span class="text-white text-opacity-50"># </span>
-          <span class="text-white text-opacity-80">{{ item }}</span>
+          <span class="text-white/50"># </span>
+          <span class="text-white/80">{{ item }}</span>
         </span>
       </div>
       <h1 class="max-md:text-3xl mt-4 mb-8 text-white text-5xl font-bold">
@@ -35,7 +35,7 @@ const { frontmatter } = useData();
       </h1>
       <div>
         <div
-          class="inline-flex items-center gap-2 text-white text-opacity-80"
+          class="inline-flex items-center gap-2 text-white/80"
           :datetime="frontmatter?.date"
         >
           <span> </span>

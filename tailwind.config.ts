@@ -35,7 +35,7 @@ export default {
         '8xl': '90rem',
       },
       colors: {
-        base: 'rgb(var(--web-color-base) / <alpha-value>)',
+        normal: 'rgb(var(--web-color-base) / <alpha-value>)',
         primary: 'rgb(var(--web-color-primary) / <alpha-value>)',
         reverse: 'rgb(var(--web-color-reverse) / <alpha-value>)',
         black: 'rgb(var(--web-color-black) / <alpha-value>)',

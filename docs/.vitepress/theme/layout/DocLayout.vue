@@ -14,7 +14,7 @@ const { frontmatter } = useData();
     <div class="max-xl:flex-col flex gap-6 justify-center w-full">
       <aside
         v-if="frontmatter.aside !== false"
-        class="max-xl:hidden order-2 flex-grow-1 flex-shrink-0 flex flex-col gap-3 relative w-80"
+        class="max-xl:hidden order-2 grow-1 shrink-0 flex flex-col gap-3 relative w-80"
       >
         <VProfileCard />
         <div
@@ -30,7 +30,7 @@ const { frontmatter } = useData();
         <article
           ref="docRef"
           id="article"
-          class="VPDoc lg:prose-xl dark:prose-invert dark:prose-pre:border-neutral-700 prose-pre:border prose-pre:border-solid prose-pre:border-[rgb(var(--web-border-color)/1)] prose-code:px-2 prose-code:py-1 prose-code:bg-primary prose-code:bg-opacity-10 prose-code:text-primary prose-code:rounded-md prose-blockquote:not-italic prose-blockquote:font-normal prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none prose prose-lg prose-neutral transition-all duration-300"
+          class="VPDoc lg:prose-xl dark:prose-invert dark:prose-pre:border-neutral-700 prose-pre:border prose-pre:border-solid prose-pre:border-[rgb(var(--web-border-color)/1)] prose-code:px-2 prose-code:py-1 prose-code:bg-primary/10 prose-code:text-primary prose-code:rounded-md prose-blockquote:not-italic prose-blockquote:font-normal prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none prose prose-lg prose-neutral transition-all duration-300"
         >
           <Content />
         </article>

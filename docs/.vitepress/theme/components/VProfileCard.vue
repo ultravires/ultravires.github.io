@@ -14,7 +14,7 @@ const profile = {
   <div
     class="flex flex-col gap-4 justify-center items-center p-4 w-full bg-[rgb(var(--web-color-main)/1)] border border-solid rounded-md"
   >
-    <div class="px-2 py-1 bg-white bg-opacity-20 text-white text-sm rounded-xl">
+    <div class="px-2 py-1 bg-white/20 text-white text-sm rounded-xl">
       {{ profile.geyan }}
     </div>
     <div class="w-full text-white">
@@ -25,13 +25,13 @@ const profile = {
     <div class="flex gap-4 items-center w-full">
       <div>
         <div class="text-white text-lg font-medium">{{ profile.name }}</div>
-        <div class="text-white text-sm text-opacity-70">
+        <div class="text-white/70 text-sm">
           {{ profile.skill }}
         </div>
       </div>
       <div>
         <a
-          class="hover:bg-opacity-90 hover:scale-110 hover:text-blue-800 inline-flex justify-center items-center p-2 bg-white bg-opacity-20 text-white text-2xl rounded-full transition-all origin-center"
+          class="hover:bg-white/90 hover:scale-110 hover:text-blue-800 inline-flex justify-center items-center p-2 bg-white/20 text-white text-2xl rounded-full transition-all origin-center"
           href="https://github.com/ultravires"
           target="_blank"
         >

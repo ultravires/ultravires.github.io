@@ -11,7 +11,7 @@ const { frontmatter, page } = useData();
 </script>
 
 <template>
-  <section v-if="frontmatter.layout !== false" class="flex flex-col text-base">
+  <section v-if="frontmatter.layout !== false" class="flex flex-col text-normal">
     <VHeader />
 
     <section class="flex gap-4 w-full">

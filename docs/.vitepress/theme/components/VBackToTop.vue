@@ -31,8 +31,7 @@ onMounted(() => {
     <div
       v-show="isShow"
       class="
-        dark:bg-white
-        dark:bg-opacity-90
+        dark:bg-white/90
         dark:hover:bg-primary
         hover:bg-primary
         VBackToTop
@@ -43,8 +42,7 @@ onMounted(() => {
         justify-center
         w-20
         h-7
-        bg-black
-        bg-opacity-90
+        bg-black/90
         text-reverse
         text-sm
         rounded-full
