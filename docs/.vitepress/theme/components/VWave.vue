@@ -40,7 +40,7 @@ const { frontmatter } = useData();
   pointer-events: none;
 }
 
-.dark .waves-svg {
+[data-theme="dark"] .waves-svg {
   --wave-background: #0a0a0a;
 }
 

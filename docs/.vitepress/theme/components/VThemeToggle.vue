@@ -5,8 +5,8 @@ import VIconMoon from '../assets/svg/moon.svg?component';
 
 interface Props {
   themeConfig: {
-    dark: string,
-    light: string
+    dark: 'dark',
+    light: 'light'
   }
 }
 
@@ -42,8 +42,8 @@ function useDark() {
     }
   });
   watch(dark, (val) => {
-    document.documentElement.classList.remove(themeConfig.value.dark, themeConfig.value.light);
-    document.documentElement.classList.add(val ? themeConfig.value.dark : themeConfig.value.light);
+    const root = document.documentElement;
+    root.dataset.theme = val ? themeConfig.value.dark : themeConfig.value.light;
   }, {
     immediate: true
   });
@@ -61,14 +61,14 @@ function usePreferDark() {
   return dark;
 }
 
-function useLocalStorage(key, defaultValue) {
+function useLocalStorage(key: string, defaultValue: string) {
   const data = ref(localStorage.getItem(key) ?? defaultValue);
   watch(data, () => localStorage.setItem(key, data.value));
   return data;
 }
 
 // 惰性函数
-let toggleTheme = (event) => {
+let toggleTheme = (event: MouseEvent) => {
   if (!document.startViewTransition) {
     toggleTheme = () => {
       dark.value = !dark.value;
@@ -104,7 +104,7 @@ let toggleTheme = (event) => {
       });
     };
   }
-  toggleTheme();
+  toggleTheme(event);
 };
 </script>
 

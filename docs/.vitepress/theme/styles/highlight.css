@@ -26,8 +26,8 @@
   }
 }
 
-html.dark .shiki,
-html.dark .shiki span {
+[data-theme="dark"] .shiki,
+[data-theme="dark"] .shiki span {
   color: var(--shiki-dark);
   font-style: var(--shiki-dark-font-style);
   font-weight: var(--shiki-dark-font-weight);
@@ -35,7 +35,7 @@ html.dark .shiki span {
   text-underline-offset: 6px;
 }
 
-html.dark .shiki {
+[data-theme="dark"] .shiki {
   background-color: var(--tw-prose-pre-bg);
 }
 

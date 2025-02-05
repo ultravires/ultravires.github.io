@@ -3,7 +3,7 @@
 @import "./variables.css" layer(theme);
 
 /* https://tailwindcss.com/docs/dark-mode */
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @font-face {
   font-family: "阿里巴巴普惠体 3.0 Regular";
@@ -55,7 +55,7 @@
     font-size: large;
   }
 
-  html.dark {
+  [data-theme="dark"] {
     color: #fff;
   }
 

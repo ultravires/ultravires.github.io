@@ -9,6 +9,7 @@ import VBackTop from './VBackToTop.vue';
 import VNavBarLink from './VNavBarLink.vue';
 import VIconSearch from '../assets/svg/search.svg?component';
 import '@docsearch/css';
+import type { DefaultTheme } from 'vitepress';
 
 const VPAlgoliaSearchBox = __ALGOLIA__
   ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue'))
@@ -161,7 +162,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
   animation-timeline: --page-scroll;
 }
 
-.dark .VNavBar {
+[data-theme="dark"] .VNavBar {
   --web-main-header-bg: rgb(23 23 23 / var(--tw-bg-opacity));
   --web-main-header-border: 1px solid #262626;
 }
