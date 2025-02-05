@@ -3,6 +3,7 @@
 @import "./variables.css" layer(theme);
 
 @plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
 
 /* https://tailwindcss.com/docs/dark-mode */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
