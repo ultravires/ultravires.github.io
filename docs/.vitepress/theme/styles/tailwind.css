@@ -2,6 +2,8 @@
 
 @import "./variables.css" layer(theme);
 
+@plugin "@tailwindcss/typography";
+
 /* https://tailwindcss.com/docs/dark-mode */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
