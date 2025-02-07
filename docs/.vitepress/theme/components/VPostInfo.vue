@@ -1,6 +1,7 @@
 <script setup>
 import { useData } from 'vitepress';
 import { formatDate } from '@theme/support/utils';
+import VIconTime from '../assets/svg/time.svg?component';
 
 const { frontmatter } = useData();
 </script>
@@ -30,7 +31,7 @@ const { frontmatter } = useData();
           <span class="text-white/80">{{ item }}</span>
         </span>
       </div>
-      <h1 class="max-md:text-3xl mt-4 mb-8 text-white text-5xl font-bold">
+      <h1 class="max-md:text-3xl mt-4 mb-8 text-white text-5xl font-bold drop-shadow-md">
         {{ frontmatter?.title }}
       </h1>
       <div>
@@ -38,7 +39,9 @@ const { frontmatter } = useData();
           class="inline-flex items-center gap-2 text-white/80"
           :datetime="frontmatter?.date"
         >
-          <span> </span>
+          <span>
+            <VIconTime />
+          </span>
           <span>{{ formatDate(frontmatter?.date)?.string }}</span>
         </div>
       </div>

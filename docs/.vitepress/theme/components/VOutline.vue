@@ -34,7 +34,7 @@ useActiveAnchor(containerRef, markerRef);
     <div class="relative max-h-64 pl-4 -ml-4 overflow-y-auto">
       <div
         ref="markerRef"
-        class="absolute -left-[1px] w-1 h-5 bg-green-600 transition-all duration-300"
+        class="absolute -left-[1px] w-1 h-5 bg-primary transition-all duration-300"
       ></div>
       <VOutlineItem :headers="headers" :root="true" />
     </div>

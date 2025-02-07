@@ -3,6 +3,10 @@ title: Monorepo 讲解
 date: 2024-05-29 17:19:05
 cover:
   url: https://s2.loli.net/2024/11/27/profXcH31QbmT9E.webp
+banner:
+  image: https://s2.loli.net/2024/11/27/profXcH31QbmT9E.webp
+  blur: true
+  wave: true
 tags:
   - Monorepo
 ---

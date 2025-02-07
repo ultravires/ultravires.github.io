@@ -12,7 +12,7 @@ const profile = {
 
 <template>
   <div
-    class="flex flex-col gap-4 justify-center items-center p-4 w-full bg-[rgb(var(--web-color-main)/1)] border border-solid rounded-md"
+    class="flex flex-col gap-4 justify-center items-center p-4 w-full bg-[var(--color-primary)] border border-solid rounded-md"
   >
     <div class="px-2 py-1 bg-white/20 text-white text-sm rounded-xl">
       {{ profile.geyan }}

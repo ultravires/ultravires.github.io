@@ -8,15 +8,15 @@
 
 :root {
   --docsearch-modal-background: var(--web-content-bg);
-  --docsearch-primary-color: rgb(var(--web-color-primary) / 1);
-  --docsearch-logo-color: rgb(var(--web-color-primary) / 1);
+  --docsearch-primary-color: rgb(var(--color-primary) / 1);
+  --docsearch-logo-color: rgb(var(--color-primary) / 1);
   --docsearch-searchbox-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
 }
 
 [data-theme="dark"] {
   --docsearch-modal-background: var(--web-content-bg);
   --docsearch-footer-background: #292929;
-  --docsearch-logo-color: rgb(var(--web-color-primary) / 1);
+  --docsearch-logo-color: rgb(var(--color-primary) / 1);
   --docsearch-searchbox-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
 }
 

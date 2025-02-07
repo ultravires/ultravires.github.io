@@ -3,7 +3,11 @@ title: Windows 系统激活
 date: 2024-07-08 22:35:00
 cover:
   url: https://s2.loli.net/2024/11/27/ueFv9nyc2NKmZoO.webp
-aside: false
+banner:
+  image: https://s2.loli.net/2024/11/27/ueFv9nyc2NKmZoO.webp
+  blur: true
+  wave: true
+aside: true
 ---
 
 Win10 KMS 客户端安装序列号，支持 1511-1809-1903-1909 等全系列 Win10 版本。

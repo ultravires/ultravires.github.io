@@ -16,9 +16,7 @@ const VPAlgoliaSearchBox = __ALGOLIA__
   : () => null;
 
 const { theme, frontmatter } = useData();
-
 const loaded = ref(false);
-
 const actuallyLoaded = ref(false);
 
 const preconnect = () => {
@@ -109,7 +107,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 
 <template>
   <nav
-    class="dark:bg-neutral-900/90 VNavBar @container fixed w-full h-[var(--web-header-height)] bg-white/90 border-b border-solid border-[rgb(var(--web-border-color)/1)] backdrop-blur-sm transition-all duration-300 top-0 z-10"
+    class="VNavBar @container fixed w-full h-[var(--web-header-height)] bg-white/90 border-b border-solid border-[rgb(var(--web-border-color)/1)] backdrop-blur-sm transition-all duration-300 top-0 z-10 dark:bg-neutral-900/90 "
     :class="
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'
@@ -145,45 +143,12 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
           </template>
         </li>
       </ul>
-      <div class="max-md:ml-auto flex items-center gap-4 ml-auto">
+      <div class="max-md:ml-auto flex items-center ml-auto">
         <VRandomArticle />
-        <VThemeToggle class="hover:bg-primary hover:text-reverse p-1 text-xl rounded-full cursor-pointer transition-all duration-300" :theme-config="{ dark: 'dark', light: 'light' }" />
-        <VBackTop />
+        <VThemeToggle class="hover:bg-primary hover:text-reverse p-1 ml-4 text-xl rounded-full cursor-pointer transition-all duration-300" :theme-config="{ dark: 'dark', light: 'light' }" />
+        <VBackTop class="ml-4" />
         <VNavBarHamburger class="max-md:flex hidden ml-4" />
       </div>
     </div>
   </nav>
 </template>
-
-<style scoped>
-.VNavBar {
-  --web-main-header-bg: rgb(255 255 255 / var(--tw-bg-opacity));
-  animation: background-transform auto linear 300ms;
-  animation-timeline: --page-scroll;
-}
-
-[data-theme="dark"] .VNavBar {
-  --web-main-header-bg: rgb(23 23 23 / var(--tw-bg-opacity));
-  --web-main-header-border: 1px solid #262626;
-}
-
-@keyframes background-transform {
-  0% {
-    background-color: transparent;
-    border-bottom-width: 0;
-    backdrop-filter: blur(0px);
-  }
-  .0001% {
-    background-color: var(--web-main-header-bg);
-    border-bottom-width: 1px;
-    backdrop-filter: blur(10px);
-    color: rgb(var(--web-color-base) / 1);
-  }
-  100% {
-    background-color: var(--web-main-header-bg);
-    border-bottom-width: 1px;
-    backdrop-filter: blur(10px);
-    color: rgb(var(--web-color-base) / 1);
-  }
-}
-</style>

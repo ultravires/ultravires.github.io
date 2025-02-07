@@ -35,6 +35,7 @@
   "dependencies": {
     "@docsearch/css": "^3.8.3",
     "@docsearch/js": "^3.8.3",
+    "colorthief": "^2.6.0",
     "dayjs": "^1.11.13"
   }
 }

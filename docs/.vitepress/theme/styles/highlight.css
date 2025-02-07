@@ -7,9 +7,9 @@
     text-decoration: var(--shiki-light-text-decoration);
   }
 
-  .shiki {
+  /* .shiki {
     background-color: var(--tw-prose-pre-bg);
-  }
+  } */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,10 +19,6 @@
     font-style: var(--shiki-dark-font-style);
     font-weight: var(--shiki-dark-font-weight);
     text-decoration: var(--shiki-dark-text-decoration);
-  }
-
-  .shiki {
-    background-color: var(--tw-prose-pre-bg);
   }
 }
 
@@ -35,18 +31,10 @@
   text-underline-offset: 6px;
 }
 
-[data-theme="dark"] .shiki {
-  background-color: var(--tw-prose-pre-bg);
-}
-
 .shiki,
 .shiki span {
   color: var(--shiki-light);
   font-style: var(--shiki-light-font-style);
   font-weight: var(--shiki-light-font-weight);
   text-decoration: var(--shiki-light-text-decoration);
-}
-
-.shiki {
-  background-color: var(--tw-prose-pre-bg);
 }
