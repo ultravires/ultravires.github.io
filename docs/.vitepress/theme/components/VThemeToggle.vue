@@ -70,11 +70,11 @@ function useLocalStorage(key: string, defaultValue: string) {
 // 惰性函数
 let toggleTheme = (event: MouseEvent) => {
   if (!document.startViewTransition) {
-    toggleTheme = () => {
+    toggleTheme = (event) => {
       dark.value = !dark.value;
     };
   } else {
-    toggleTheme = () => {
+    toggleTheme = (event) => {
       const x = event.clientX;
       const y = event.clientY;
       const endRadius = Math.hypot(
@@ -129,7 +129,7 @@ let toggleTheme = (event: MouseEvent) => {
 
   @layer light {
     html.light::view-transition-old(root) {
-      z-index: 999
+      z-index: 9999
     }
 
     html.light::view-transition-new(root) {
@@ -143,7 +143,7 @@ let toggleTheme = (event: MouseEvent) => {
     }
 
     html.dark::view-transition-new(root) {
-      z-index: 999
+      z-index: 9999
     }
   }
 }
