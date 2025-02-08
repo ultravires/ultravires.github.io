@@ -25,7 +25,7 @@ const { frontmatter } = useData();
         </div>
       </aside>
       <div
-        class="dark:bg-neutral-900 dark:max-md:bg-transparent max-md:px-6 max-md:border-0 max-md:bg-transparent order-1 p-12 w-full mx-auto bg-white rounded-md border border-solid border-[rgb(var(--web-border-color)/1)] overflow-auto transition-all duration-300"
+        class="dark:bg-neutral-900 dark:max-md:bg-transparent max-md:px-6 max-md:border-0 max-md:bg-transparent order-1 p-12 w-full mx-auto bg-white rounded-md border border-solid border-line overflow-auto transition-all duration-300"
       >
         <article
           ref="docRef"

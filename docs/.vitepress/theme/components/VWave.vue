@@ -31,7 +31,7 @@ const { frontmatter } = useData();
 
 <style scoped>
 .waves-svg {
-  --wave-background: #fafafa;
+  --wave-background: var(--color-muted);
   position: absolute;
   bottom: -10px;
   width: 100%;

@@ -23,12 +23,12 @@ const toggleMenu = () => {
     <Teleport to="body">
       <div
         v-show="isShow"
-        class="dark:bg-neutral-900 fixed mx-auto bg-white border-t border-solid border-[rgb(var(--web-border-color)/1)] text-normal top-[calc(60px+1px)] left-0 right-0 bottom-0 z-10"
+        class="dark:bg-neutral-900 fixed mx-auto bg-white border-t border-solid border-line text-normal top-[calc(60px+1px)] left-0 right-0 bottom-0 z-10"
       >
         <ul class="mx-12 py-12">
           <li v-for="item in theme.nav" :key="item.text">
             <VNavBarLink
-              class="block py-2 h-full border-b border-solid border-[rgb(var(--web-border-color)/1)]"
+              class="block py-2 h-full border-b border-solid border-line"
               :item="item"
               @click="isShow = false"
             />

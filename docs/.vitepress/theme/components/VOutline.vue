@@ -22,7 +22,7 @@ useActiveAnchor(containerRef, markerRef);
   <div
     v-show="headers?.length > 0"
     ref="containerRef"
-    class="dark:bg-neutral-900 max-lg:hidden relative px-4 py-2 bg-white border border-[rgb(var(--web-border-color)/1)] rounded-md"
+    class="dark:bg-neutral-900 max-lg:hidden relative px-4 py-2 bg-white border border-line rounded-md"
   >
     <div
       aria-level="2"

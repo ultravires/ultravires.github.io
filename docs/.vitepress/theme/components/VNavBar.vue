@@ -10,6 +10,7 @@ import VNavBarLink from './VNavBarLink.vue';
 import VIconSearch from '../assets/svg/search.svg?component';
 import '@docsearch/css';
 import type { DefaultTheme } from 'vitepress';
+import { throttleAndDebounce } from '@theme/support/utils';
 
 const VPAlgoliaSearchBox = __ALGOLIA__
   ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue'))
@@ -18,6 +19,7 @@ const VPAlgoliaSearchBox = __ALGOLIA__
 const { theme, frontmatter } = useData();
 const loaded = ref(false);
 const actuallyLoaded = ref(false);
+const navBarRef = ref<HTMLElement | null>(null);
 
 const preconnect = () => {
   const id = 'VPAlgoliaPreconnect';
@@ -103,11 +105,24 @@ function handleSearch() {
 }
 
 const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
+
+const handleScroll = throttleAndDebounce(() => {
+  if (document.documentElement.scrollTop > 0) {
+    navBarRef.value?.classList.add('fixed');
+  } else {
+    navBarRef.value?.classList.remove('fixed');
+  }
+}, 500);
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
 </script>
 
 <template>
   <nav
-    class="VNavBar @container fixed w-full h-[var(--web-header-height)] bg-white/90 border-b border-solid border-[rgb(var(--web-border-color)/1)] backdrop-blur-sm transition-all duration-300 top-0 z-10 dark:bg-neutral-900/90 "
+    ref="navBarRef"
+    class="VNavBar @container dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white [&.fixed]:bg-white/90 [&.fixed]:text-black [&.fixed]:border-b [&.fixed]:border-line/90 w-full h-[var(--web-header-height)] backdrop-blur-sm top-0 z-10"
     :class="
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'
@@ -123,7 +138,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
       >
         <li v-for="item in theme.nav" :key="item.text">
           <VNavBarLink
-            class="hover:bg-primary hover:text-reverse group relative text-md tracking-8 leading-none decoration-none rounded-full whitespace-nowrap font-AlibabaPuHuiTiBold"
+            class="group relative text-md tracking-8 leading-none decoration-none rounded-full whitespace-nowrap font-AlibabaPuHuiTiBold hover:bg-primary hover:text-white dark:hover:text-black"
             :item="item"
           />
         </li>

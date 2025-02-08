@@ -11,11 +11,14 @@ const imageRef = ref<HTMLImageElement | null>(null);
 onMounted(() => {
   const colorThief = new ColorThief();
   if (imageRef.value?.complete) {
+    console.log('complete');
     const [r, g, b] = colorThief.getColor(imageRef.value);
     document.documentElement.style.setProperty('--color-primary', `rgb(${r}, ${g}, ${b})`);
   } else {
     imageRef.value?.addEventListener('load', function() {
+      console.log('load');
       const [r, g, b] = colorThief.getColor(imageRef.value);
+      console.log(r,g,b)
       document.documentElement.style.setProperty('--color-primary', `rgb(${r}, ${g}, ${b})`);
     });
   }
@@ -25,8 +28,8 @@ onMounted(() => {
 <template>
   <div
     v-show="frontmatter?.banner"
-    class="before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:bg-neutral-900/30 relative h-[30rem] bg-primary overflow-hidden -z-10 select-none"
-    :class="{ 'before:backdrop-blur-lg': frontmatter?.banner?.blur }"
+    class="before:content-normal before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:bg-neutral-900/30 relative w-full h-full bg-primary overflow-hidden -z-10 select-none"
+    :class="{ 'before:backdrop-blur-lg before:bg-primary before:opacity-90 is-blur': frontmatter?.banner?.blur }"
     draggable="false"
   >
     <img
@@ -40,3 +43,12 @@ onMounted(() => {
     <VWave />
   </div>
 </template>
+
+<style scoped>
+.is-blur > img {
+  transform: rotate(30deg);
+  opacity: .1;
+  filter: blur(10px);
+  margin-left: 20%;
+}
+</style>

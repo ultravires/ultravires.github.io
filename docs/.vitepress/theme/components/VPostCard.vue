@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <div
-    class="dark:bg-neutral-900 hover:border-primary group/post-card w-full h-[340px] bg-white border border-solid rounded-lg shadow-sm overflow-hidden"
+    class="dark:bg-neutral-900 hover:border-primary group/post-card w-full h-[340px] bg-white border border-solid border-line rounded-lg shadow-card shadow-line/80 overflow-hidden"
   >
     <VLink class="block h-[calc(100%-9rem)] overflow-hidden select-none" :href="post.url" draggable="false">
       <VPostCover :post="post" />
