@@ -96,7 +96,7 @@ let toggleTheme = (event: MouseEvent) => {
             clipPath: dark.value ? clipPath : clipPath.reverse(),
           },
           {
-            duration: 300,
+            duration: 1000,
             easing: "ease-in",
             pseudoElement: dark.value ? "::view-transition-new(root)" : "::view-transition-old(root)",
           }
@@ -128,21 +128,21 @@ let toggleTheme = (event: MouseEvent) => {
   }
 
   @layer light {
-    html.light::view-transition-old(root) {
+    [data-theme="light"]::view-transition-old(root) {
       z-index: 9999
     }
 
-    html.light::view-transition-new(root) {
+    [data-theme="light"]::view-transition-new(root) {
       z-index: 1
     }
   }
 
   @layer dark {
-    html.dark::view-transition-old(root) {
+    [data-theme="dark"]::view-transition-old(root) {
       z-index: 1
     }
 
-    html.dark::view-transition-new(root) {
+    [data-theme="dark"]::view-transition-new(root) {
       z-index: 9999
     }
   }
