@@ -10,7 +10,7 @@
   --animate-progress-timeline: progress-timeline 1s linear forwards;
   /* 颜色 */
   --color-primary-light: rgb(71 89 230);
-  --color-primary-dark: rgb(246 202 96);
+  --color-primary-dark: rgb(255 107 107);
   --color-primary: var(--color-primary-light);
   --color-muted-light: rgb(247 249 254);
   --color-muted-dark: rgb(23 23 23);
