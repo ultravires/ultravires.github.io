@@ -130,7 +130,16 @@
 }
 
 @layer timelines {
+  @keyframes page-scroll-animation {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
   html {
-    scroll-timeline: --page-scroll block;
+    scroll-timeline: --page-scroll-timeline y;
   }
 }

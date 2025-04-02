@@ -6,11 +6,13 @@ import HomeLayout from './HomeLayout.vue';
 import DocLayout from './DocLayout.vue';
 import PageLayout from './PageLayout.vue';
 import VFooter from '../components/VFooter.vue';
+import VPageProgress from '@theme/components/VPageProgress.vue';
 
 const { frontmatter, page } = useData();
 </script>
 
 <template>
+  <VPageProgress />
   <section v-if="frontmatter.layout !== false" class="flex flex-col text-normal">
     <VHeader />
 

@@ -3,9 +3,8 @@ import { onMounted, ref } from 'vue';
 import { throttleAndDebounce } from '../support/utils';
 import VIconBackToTop from '../assets/svg/top.svg?component';
 
-const isShow = ref(false);
-const backToTopRef = ref(null);
-const progress = ref(0);
+const isShow = ref<boolean>(false);
+const backToTopRef = ref<HTMLElement | null>(null);
 
 const scrollToTop = () => {
   document.documentElement.scrollTo({
@@ -23,24 +22,13 @@ const handleScroll = throttleAndDebounce(() => {
   }
 }, 500);
 
-const handleEnter = () => {
-  if (backToTopRef.value) {
-    const animation = (backToTopRef.value as HTMLDivElement).getAnimations()[0];
-    const updateValue = () => {
-      progress.value = animation?.currentTime?.value?.toFixed(0);
-      requestAnimationFrame(updateValue);
-    }
-    requestAnimationFrame(updateValue);
-  }
-}
-
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
 });
 </script>
 
 <template>
-  <Transition name="fade" @enter="handleEnter">
+  <Transition name="fade">
     <div
       ref="backToTopRef"
       v-show="isShow"
@@ -70,7 +58,6 @@ onMounted(() => {
       "
       @click="scrollToTop"
     >
-      <span class="group-hover:invisible">{{ progress }}</span>
       <span class="group-hover:visible invisible absolute flex items-center justify-center">
         <VIconBackToTop title="回到顶部" />
       </span>
@@ -80,7 +67,6 @@ onMounted(() => {
 
 <style scoped>
 .VBackToTop {
-  animation-timeline: --page-scroll;
   overflow: hidden;
 }
 
