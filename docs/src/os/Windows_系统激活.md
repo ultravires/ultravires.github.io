@@ -2,7 +2,8 @@
 title: Windows 系统激活
 date: 2024-07-08 22:35:00
 cover:
-  url: https://s2.loli.net/2024/11/27/ueFv9nyc2NKmZoO.webp
+   text: 系统激活
+#   url: https://s2.loli.net/2024/11/27/ueFv9nyc2NKmZoO.webp
 banner:
   image: https://s2.loli.net/2024/11/27/ueFv9nyc2NKmZoO.webp
   blur: true
