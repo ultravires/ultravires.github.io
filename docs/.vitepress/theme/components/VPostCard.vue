@@ -19,11 +19,11 @@ defineProps<{
       class="flex flex-col justify-center px-4 w-full h-36"
       :href="post.url"
     >
-      <div
-        class="group-hover/post-card:text-primary group-hover/post-card:underline group-hover/post-card:underline-offset-2 group-hover/post-card:decoration-wavy text-xl mb-4 font-AlibabaPuHuiTiSemiBold dark:text-white"
+      <h2
+        class="group-hover/post-card:text-primary group-hover/post-card:underline group-hover/post-card:underline-offset-6 group-hover/post-card:decoration-wavy wave-text text-xl mb-4 font-AlibabaPuHuiTiSemiBold dark:text-white"
       >
         {{ post.title }}
-      </div>
+      </h2>
       <div
         v-html="post.excerpt"
         class="max-sm:hidden text-sm text-neutral-600 dark:text-neutral-400"
@@ -48,3 +48,34 @@ defineProps<{
     </VLink>
   </div>
 </template>
+
+<style scoped>
+.wave-text {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  padding-bottom: 4px;
+  font-size: 24px;
+}
+
+.group\/post-card:hover .wave-text::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='rgb(255 107 107)' stroke-width='2' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E");
+  background-size: 20px 4px;
+  animation: wave 1.5s infinite linear;
+}
+
+@keyframes wave {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 0;
+  }
+}
+</style>
