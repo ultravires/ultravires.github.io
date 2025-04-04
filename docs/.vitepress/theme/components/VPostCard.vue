@@ -20,7 +20,7 @@ defineProps<{
       :href="post.url"
     >
       <h2
-        class="mb-4 text-xl group-hover/post-card:text-primary group-hover/post-card:underline group-hover/post-card:underline-offset-6 group-hover/post-card:decoration-wavy wave-text font-AlibabaPuHuiTiSemiBold dark:text-white"
+        class="mb-4 text-xl whitespace-nowrap overflow-hidden text-ellipsis group-hover/post-card:text-primary group-hover/post-card:underline group-hover/post-card:underline-offset-6 group-hover/post-card:decoration-wavy wave-text font-AlibabaPuHuiTiSemiBold dark:text-white"
       >
         {{ post.title }}
       </h2>

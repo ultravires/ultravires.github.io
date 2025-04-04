@@ -40,10 +40,6 @@ const { frontmatter } = useData();
   pointer-events: none;
 }
 
-[data-theme="dark"] .waves-svg {
-  --wave-background: #0a0a0a;
-}
-
 .parallax > use {
   animation: move-forever 30s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
