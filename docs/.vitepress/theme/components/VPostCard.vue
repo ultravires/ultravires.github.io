@@ -29,14 +29,13 @@ defineProps<{
         class="text-sm max-sm:hidden text-neutral-600 dark:text-neutral-400"
       ></div>
       <div class="flex justify-between mt-4">
-        <div>
+        <div class="space-x-2">
           <span
             v-for="tag in post?.tags ?? []"
             :key="tag"
-            class="mx-2 text-sm dark:text-neutral-400 text-neutral-500"
+            class="text-sm"
           >
-            <span>#</span>
-            <span>{{ tag }}</span>
+            <span class="before:content-['#'] before:font-bold before:text-neutral-500">{{ tag }}</span>
           </span>
         </div>
         <div

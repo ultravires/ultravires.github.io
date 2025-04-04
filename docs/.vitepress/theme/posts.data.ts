@@ -47,8 +47,8 @@ function formatDate(raw: string): Post['date'] {
   date.setUTCHours(8);
   return {
     time: +date,
-    string: `${date.getFullYear()}-${(date.getMonth() + 1)
+    string: `${date.getFullYear()}/${(date.getMonth() + 1)
       .toString()
-      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`,
+      .padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`,
   };
 }
