@@ -16,24 +16,24 @@ defineProps<{
       <VPostCover :post="post" />
     </VLink>
     <VLink
-      class="flex flex-col justify-center px-4 w-full h-36"
+      class="flex flex-col justify-center w-full px-4 h-36"
       :href="post.url"
     >
       <h2
-        class="group-hover/post-card:text-primary group-hover/post-card:underline group-hover/post-card:underline-offset-6 group-hover/post-card:decoration-wavy wave-text text-xl mb-4 font-AlibabaPuHuiTiSemiBold dark:text-white"
+        class="mb-4 text-xl group-hover/post-card:text-primary group-hover/post-card:underline group-hover/post-card:underline-offset-6 group-hover/post-card:decoration-wavy wave-text font-AlibabaPuHuiTiSemiBold dark:text-white"
       >
         {{ post.title }}
       </h2>
       <div
         v-html="post.excerpt"
-        class="max-sm:hidden text-sm text-neutral-600 dark:text-neutral-400"
+        class="text-sm max-sm:hidden text-neutral-600 dark:text-neutral-400"
       ></div>
       <div class="flex justify-between mt-4">
         <div>
           <span
             v-for="tag in post?.tags ?? []"
             :key="tag"
-            class="dark:text-neutral-400 mx-2 text-neutral-500 text-sm"
+            class="mx-2 text-sm dark:text-neutral-400 text-neutral-500"
           >
             <span>#</span>
             <span>{{ tag }}</span>

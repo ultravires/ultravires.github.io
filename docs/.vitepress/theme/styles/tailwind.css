@@ -37,15 +37,6 @@
     to {
     }
   }
-
-  @keyframes wave {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 20px 0;
-    }
-  }
 }
 
 @font-face {
