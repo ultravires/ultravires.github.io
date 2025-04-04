@@ -48,73 +48,79 @@ onMounted(() => {
     :class="{ 'before:backdrop-blur-lg before:opacity-90 is-blur': frontmatter?.banner?.blur }"
     draggable="false"
   >
-    <div class="icon-circle"></div>
-    <div class="icon-triangle"></div>
-    <div class="icon-circle small"></div>
+    <div class="triangle1"></div>
+    <div class="triangle2"></div>
+    <div class="circle"></div>
+    <div class="rectangle"></div>
     <VWave />
   </div>
 </template>
 
 <style scoped>
-.is-blur > img {
-  transform: rotate(30deg);
-  opacity: .1;
-  filter: blur(10px);
-  margin-left: 20%;
-}
-
-.icon-circle {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  top: 30%;
-  left: 15px;
-  animation: float 4s ease-in-out infinite;
-}
-
-.icon-circle.small {
-  width: 25px;
-  height: 25px;
-  top: 110px;
-  left: calc(100% - 50px);
-  animation: float 3s ease-in-out infinite reverse;
-}
-
-.icon-triangle {
+/* 几何图形 - 三角形1 */
+.triangle1 {
   position: absolute;
   width: 0;
   height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 25px solid rgba(255, 255, 255, 0.3);
-  bottom: 20%;
-  right: 15px;
-  animation: float 5s ease-in-out infinite;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-bottom: 300px solid rgba(255, 255, 255, 0.1);
+  top: -50px;
+  left: -50px;
+  transform: rotate(45deg);
+  animation: float 6s ease-in-out infinite;
 }
 
+/* 几何图形 - 三角形2 */
+.triangle2 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-top: 200px solid rgba(255, 255, 255, 0.08);
+  bottom: -50px;
+  right: 50px;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+/* 几何图形 - 圆形 */
+.circle {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  bottom: -100px;
+  right: -50px;
+  animation: pulse 5s ease-in-out infinite;
+}
+
+/* 几何图形 - 矩形 */
+.rectangle {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.12);
+  top: 20px;
+  right: 150px;
+  transform: rotate(15deg);
+  animation: rotate 10s linear infinite;
+}
+
+/* 动画定义 */
 @keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(-20px) rotate(45deg); }
 }
 
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(15deg); }
+  100% { transform: rotate(375deg); }
 }
 </style>
