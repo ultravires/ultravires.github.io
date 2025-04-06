@@ -4,7 +4,9 @@ import { throttleAndDebounce } from '../support/utils';
 import VIconBackToTop from '../assets/svg/top.svg?component';
 
 const isShow = ref<boolean>(false);
+const isBottom = ref(false);
 const backToTopRef = ref<HTMLElement | null>(null);
+const progress = ref(0);
 
 const scrollToTop = () => {
   document.documentElement.scrollTo({
@@ -22,64 +24,61 @@ const handleScroll = throttleAndDebounce(() => {
   }
 }, 500);
 
+function updateProgress() {
+  // 获取文档总高度
+  const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  // 获取当前滚动位置
+  const scrollPosition = window.scrollY;
+  // 更新百分比显示
+  progress.value = Math.round((scrollPosition / totalHeight) * 100);
+}
+
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', updateProgress);
 });
 </script>
 
 <template>
-  <Transition name="fade">
-    <div
-      ref="backToTopRef"
-      v-show="isShow"
-      class="
-        VBackToTop
-        group
-        relative
-        flex
-        items-center
-        justify-center
-        w-[32px]
-        h-[32px]
-        bg-black/90
-        text-white
-        text-xs
-        rounded-full
-        whitespace-nowrap
-        leading-loose
-        cursor-pointer
-        box-content
-        duration-300
-        animate-progress-timeline
-        dark:bg-white/90
-        dark:text-black
-        dark:hover:bg-primary
-        hover:bg-primary
-      "
-      @click="scrollToTop"
-    >
-      <span class="group-hover:visible invisible absolute flex items-center justify-center">
-        <VIconBackToTop title="回到顶部" />
-      </span>
-    </div>
-  </Transition>
+  <div
+    ref="backToTopRef"
+    v-show="isShow"
+    class="
+      VBackToTop
+      group
+      relative
+      flex
+      items-center
+      justify-center
+      min-w-6
+      min-h-6
+      bg-black/90
+      text-white
+      text-xs
+      rounded-full
+      whitespace-nowrap
+      leading-loose
+      cursor-pointer
+      box-content
+      duration-300
+      animate-progress-timeline
+      dark:bg-white/90
+      dark:text-black
+      dark:hover:bg-primary
+      hover:bg-primary
+    "
+    @click="scrollToTop"
+  >
+    <span class="group-hover:invisible" :class="{ 'px-2': progress === 100 }">{{ progress === 100 ? '回到顶部' : progress }}</span>
+    <span class="group-hover:visible invisible absolute flex items-center justify-center">
+      <VIconBackToTop title="回到顶部" />
+    </span>
+  </div>
 </template>
 
 <style scoped>
 .VBackToTop {
   overflow: hidden;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  width: 32px;
-  height: 32px;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  width: 0;
-  height: 0;
-  margin: 0;
 }
 </style>
