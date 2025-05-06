@@ -20,7 +20,7 @@ defineProps<{
       :href="post.url"
     >
       <h2
-        class="mb-4 text-xl whitespace-nowrap overflow-hidden text-ellipsis group-hover/post-card:text-primary group-hover/post-card:underline group-hover/post-card:underline-offset-6 group-hover/post-card:decoration-wavy wave-text font-AlibabaPuHuiTiSemiBold dark:text-white"
+        class="mb-4 text-xl whitespace-nowrap overflow-hidden text-ellipsis group-hover/post-card:text-primary wave-text font-AlibabaPuHuiTiSemiBold dark:text-white"
       >
         {{ post.title }}
       </h2>
@@ -64,17 +64,37 @@ defineProps<{
   left: 0;
   width: 100%;
   height: 4px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='rgb(255 107 107)' stroke-width='2' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E");
-  background-size: 20px 4px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='rgb(71 89 230)' stroke-width='2' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='rgb(71 89 230)' stroke-width='2' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E");
+  background-size:
+    20px 4px,
+    20px 4px;
+  animation: wave 1.5s infinite linear;
+}
+
+[data-theme="dark"] .group\/post-card:hover .wave-text::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='rgb(255 107 107)' stroke-width='2' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 4'%3E%3Cpath fill='none' stroke='rgb(255 107 107)' stroke-width='2' d='M0 3.5c5 0 5-3 10-3s5 3 10 3 5-3 10-3 5 3 10 3'/%3E%3C/svg%3E");
+  background-size:
+    20px 4px,
+    20px 4px;
   animation: wave 1.5s infinite linear;
 }
 
 @keyframes wave {
   0% {
-    background-position: 0 0;
+    background-position: 0 0, -10px 0;
   }
   100% {
-    background-position: 20px 0;
+    background-position: 20px 0, 10px 0;
   }
 }
 </style>
