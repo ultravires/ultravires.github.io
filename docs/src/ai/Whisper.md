@@ -1,5 +1,6 @@
 ---
 title: Whisper
+date: 2025-05-07 12:00:00
 cover:
   text: 语音识别
 ---
