@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 import { throttleAndDebounce } from '../support/utils';
 import VIconBackToTop from '../assets/svg/top.svg?component';
 
-const isShow = ref<boolean>(false);
+const isShow = ref(false);
 const isBottom = ref(false);
 const backToTopRef = ref<HTMLElement | null>(null);
 const progress = ref(0);
@@ -41,44 +41,59 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    ref="backToTopRef"
-    v-show="isShow"
-    class="
-      VBackToTop
-      group
-      relative
-      flex
-      items-center
-      justify-center
-      min-w-6
-      min-h-6
-      bg-black/90
-      text-white
-      text-xs
-      rounded-full
-      whitespace-nowrap
-      leading-loose
-      cursor-pointer
-      box-content
-      duration-300
-      animate-progress-timeline
-      dark:bg-white/90
-      dark:text-black
-      dark:hover:bg-primary
-      hover:bg-primary
-    "
-    @click="scrollToTop"
-  >
-    <span class="group-hover:invisible" :class="{ 'px-2': progress === 100 }">{{ progress === 100 ? '回到顶部' : progress }}</span>
-    <span class="group-hover:visible invisible absolute flex items-center justify-center">
-      <VIconBackToTop title="回到顶部" />
-    </span>
-  </div>
+  <Transition name="v-scale" :duration="{ enter: 0, leave: 300 }">
+    <div
+      ref="backToTopRef"
+      v-show="isShow"
+      class="
+        VBackToTop
+        group
+        relative
+        flex
+        items-center
+        justify-center
+        min-w-6
+        min-h-6
+        bg-black/90
+        text-white
+        text-xs
+        rounded-full
+        whitespace-nowrap
+        leading-loose
+        cursor-pointer
+        box-content
+        duration-300
+        animate-progress-timeline
+        dark:bg-white/90
+        dark:text-black
+        dark:hover:bg-primary
+        hover:bg-primary
+      "
+      @click="scrollToTop"
+    >
+      <span class="group-hover:invisible" :class="{ 'px-2': progress > 90 }">
+        {{ progress > 90 ? '回到顶部' : progress }}
+      </span>
+      <span class="group-hover:visible invisible absolute flex items-center justify-center">
+        <VIconBackToTop title="回到顶部" />
+      </span>
+    </div>
+  </Transition>
 </template>
 
 <style scoped>
 .VBackToTop {
   overflow: hidden;
+}
+
+.v-scale-enter-active,
+.v-scale-leave-active {
+  transform-origin: right center;
+  transition: all 0.3s ease-in-out;
+}
+
+.v-scale-enter-from,
+.v-scale-leave-to {
+  transform: scale(0);
 }
 </style>
