@@ -36,6 +36,8 @@
     "@docsearch/css": "^3.8.3",
     "@docsearch/js": "^3.8.3",
     "colorthief": "^2.6.0",
-    "dayjs": "^1.11.13"
-  }
+    "dayjs": "^1.11.13",
+    "typeit": "^8.8.7"
+  },
+  "packageManager": "pnpm@9.12.1+sha512.e5a7e52a4183a02d5931057f7a0dbff9d5e9ce3161e33fa68ae392125b79282a8a8a470a51dfc8a0ed86221442eb2fb57019b0990ed24fab519bf0e1bc5ccfc4"
 }

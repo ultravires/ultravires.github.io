@@ -1,10 +1,6 @@
 ---
-layout: page
+layout: about
 outline: false
-banner:
-  image: https://www.16personalities.com/static/images/types/headers/advocate-mobile.svg
-  blur: false
-  wave: true
 ---
 
 ## 向成渝

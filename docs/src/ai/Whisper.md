@@ -11,7 +11,52 @@ cover:
 
 [Whisper](https://github.com/openai/whisper) 是一种通用语音识别模型。它能够帮我们将音视频中的语音识别为文字。
 
-## 安装 Whisper
+---
+
+## 方式一、使用虚拟环境
+
+### 安装 uv
+
+```sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+### 换源
+
+```sh
+echo 'export UV_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple' >> ~/.bashrc
+source ~/.bashrc  # 立即生效
+```
+
+### 创建虚拟环境
+
+```sh
+uv venv
+```
+
+### 激活虚拟环境
+
+```sh
+source .venv/bin/activate
+```
+
+### 虚拟环境中安装 Whisper
+
+```sh
+uv pip install git+https://github.com/openai/whisper.git
+```
+
+### 退出虚拟环境
+
+```sh
+deactivate
+```
+
+---
+
+## 方式二、不使用虚拟环境
+
+### 安装 Whisper
 
 我使用的是 `WSL2` 安装环境。
 
