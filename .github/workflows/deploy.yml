@@ -33,7 +33,7 @@ jobs:
         with:
           fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4 # 如果使用 pnpm，请取消注释
+        uses: pnpm/action-setup@v4
         with:
           version: 10.12.2
       # - uses: oven-sh/setup-bun@v1 # 如果使用 Bun，请取消注释
