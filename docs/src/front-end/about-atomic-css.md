@@ -3,6 +3,8 @@ title: 关于原子化 CSS
 date: 2024-05-21 14:22:47
 cover:
   text: 原子化 CSS
+banner:
+  wave: true
 categories:
   - 前端领域
 tags:

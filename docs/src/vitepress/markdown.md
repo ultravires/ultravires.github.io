@@ -3,6 +3,8 @@ title: 自定义主题：Markdown 扩展
 date: 2024-05-22 17:17:58
 cover:
   text: Markdown 扩展
+banner:
+  wave: true
 tags:
   - Markdown
 ---

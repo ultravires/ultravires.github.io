@@ -31,7 +31,7 @@ const { frontmatter } = useData();
           <span class="text-white/80">{{ item }}</span>
         </span>
       </div>
-      <h1 class="mt-4 mb-8 text-white text-3xl font-bold drop-shadow-md">
+      <h1 class="mt-4 mb-8 text-white text-6xl font-bold drop-shadow-md">
         {{ frontmatter?.title }}
       </h1>
       <div>

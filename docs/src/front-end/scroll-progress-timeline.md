@@ -3,6 +3,8 @@ title: 滚动驱动动画：获取页面滚动进度
 date: 2025-03-20 14:26:26
 cover:
   text: 滚动动画
+banner:
+  wave: true
 categories:
   - 前端领域
 tags:
