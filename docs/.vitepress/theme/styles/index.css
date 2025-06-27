@@ -1,13 +1,21 @@
-@charset "UTF-8";
+.line-numbers-wrapper {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 27px;
+  padding-top: 20px;
+  background-color: var(--vp-code-line-number-background-color);
+  border-right: 1px solid var(--vp-code-block-divider-color);
+  text-align: center;
+  font-family: var(--vp-font-family-mono);
+  font-size: var(--vp-code-font-size);
+  line-height: var(--vp-code-line-height);
+  color: var(--vp-code-line-number-color);
+  transition: border-color .5s, color .5s;
+}
 
-@import url(./doc.css);
-@import url(./highlight.css);
-@import url(./docsearch.css);
-
-svg.icon {
-  display: block;
-  width: 1em;
-  height: 1em;
-  line-height: 1;
-  fill: currentColor;
+.line-number {
+  font-size: small;
 }

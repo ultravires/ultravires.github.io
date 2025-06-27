@@ -31,12 +31,15 @@ export default defineConfig({
         href: 'https://AKWVEI7J63-dsn.algolia.net',
         crossorigin: '',
       },
-    ],
+    ]
   ],
   vite: {
     define: {
       // 启用生产环境构建下激活不匹配的详细警告
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
+    },
+    build: {
+      cssCodeSplit: false
     },
     plugins: [
       svgLoader({

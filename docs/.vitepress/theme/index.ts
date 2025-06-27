@@ -1,15 +1,12 @@
 import '@shikijs/vitepress-twoslash/style.css';
 import './styles/tailwind.css';
+import './styles/doc.css';
+import './styles/highlight.css';
 import './styles/index.css';
+import './styles/docsearch.css';
 
 import type { Theme } from 'vitepress';
 import Layout from './layout/index.vue';
-
-console.log(
-  '%c 邮箱 %c x555666777@qq.com',
-  "background-color: green; border: 1px solid green;",
-  'padding: 0 6px; background-color: transparent; border: 1px solid green;'
-);
 
 export default {
   Layout,

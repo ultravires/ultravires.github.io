@@ -25,11 +25,12 @@ export const zh = defineConfig({
       light: 'github-light-default',
       dark: 'github-dark-default',
     },
-    lineNumbers: false,
+    lineNumbers: true,
     math: true, // require `markdown-it-mathjax3`
     image: {
-      lazyLoading: false,
+      lazyLoading: true,
     },
+    codeCopyButtonTitle: '复制代码',
     container: {
       tipLabel: '提示',
       warningLabel: '警告',

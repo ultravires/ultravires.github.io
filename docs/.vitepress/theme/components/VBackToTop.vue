@@ -4,7 +4,6 @@ import { throttleAndDebounce } from '../support/utils';
 import VIconBackToTop from '../assets/svg/top.svg?component';
 
 const isShow = ref(false);
-const isBottom = ref(false);
 const backToTopRef = ref<HTMLElement | null>(null);
 const progress = ref(0);
 
@@ -63,7 +62,6 @@ onMounted(() => {
         cursor-pointer
         box-content
         duration-300
-        animate-progress-timeline
         dark:bg-white/90
         dark:text-black
         dark:hover:bg-primary
