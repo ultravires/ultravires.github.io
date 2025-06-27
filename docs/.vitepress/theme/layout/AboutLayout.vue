@@ -1,16 +1,10 @@
 <script setup>
-import { reactive } from 'vue';
+import { useData } from 'vitepress';
 import SvgInfj from '@theme/assets/svg/INFJ.svg?component';
 
-const user = reactive({
-  name: '向成渝',
-  bio: '前端开发者，热爱编程和技术分享',
-  location: '中国',
-  avatar: 'https://0.gravatar.com/avatar/83ced4a3fc134e727c30cc30834f64a7183c65cebd81c9821260b0628e7ebad0?size=100',
-  socialLinks: [
-    { platform: 'GitHub', url: 'https://github.com/ultravires' }
-  ]
-});
+const { frontmatter } = useData();
+
+const user = frontmatter.value?.self ?? {};
 </script>
 
 
@@ -34,16 +28,16 @@ const user = reactive({
           <SvgInfj  />
         </div>
         
-        <div class="flex flex-col gap-2 h-full">
+        <div v-for="personality in user.personalities"  class="flex flex-col gap-2 h-full">
           <div>
-            <span class="text-6xl font-bold text-green-600">提倡者</span>
+            <span class="text-6xl font-bold text-green-600">{{ personality.text }}</span>
           </div>
           <div>
-            <span class="text-neutral-700 text-3xl font-bold">INFJ-A</span>
+            <span class="text-neutral-700 text-3xl font-bold">{{ personality.flag }}</span>
           </div>
-          <p>倡导者是讷言敏行的梦想家，他们时常化身为循循善诱、不知疲倦且志存高远的理想主义者。</p>
+          <p>{{ personality.desc }}</p>
           <div class="mt-auto">
-            <a class="text-sm text-green-800" href="https://www.16personalities.com/ch/%E7%B1%BB%E5%9E%8B%E6%8F%8F%E8%BF%B0" target="_blank">
+            <a class="text-sm text-green-800" :href="personality.link" target="_blank">
               了解人格类型描述 &gt;
             </a>
           </div>
