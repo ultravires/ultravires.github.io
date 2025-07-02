@@ -16,7 +16,7 @@ export const zh = defineConfig({
     search: {
       provider: 'algolia',
       options: algoliaSearchOptions(),
-    },
+    }
   },
 
   markdown: {

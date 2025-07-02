@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import VCopyright from '@theme/components/VCopyright.vue';
 import VPostList from '@theme/components/VPostList.vue';
 import VProfileCard from '@theme/components/VProfileCard.vue';
 </script>

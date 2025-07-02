@@ -26,7 +26,7 @@ defineProps<{
       </h2>
       <div
         v-html="post.excerpt"
-        class="text-sm max-sm:hidden text-neutral-600 dark:text-neutral-400"
+        class="max-sm:hidden text-sm line-clamp-2 text-neutral-600 dark:text-neutral-400"
       ></div>
       <div class="flex justify-between mt-4">
         <div class="space-x-2">
