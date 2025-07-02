@@ -122,7 +122,7 @@ onMounted(() => {
 <template>
   <nav
     ref="navBarRef"
-    class="VNavBar @container dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white [&.fixed]:bg-white/90 [&.fixed]:text-black [&.fixed]:border-b [&.fixed]:border-line/90 w-full h-[var(--web-header-height)] backdrop-blur-sm top-0 z-10"
+    class="VNavBar @container dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white [&.fixed]:bg-white/90 [&.fixed]:text-black [&.fixed]:border-b [&.fixed]:border-line/90 w-full h-[var(--web-header-height)] [&.fixed]:h-[50px] backdrop-blur-sm top-0 z-10 transition-[height] duration-500"
     :class="
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'

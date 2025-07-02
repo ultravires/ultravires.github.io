@@ -8,7 +8,7 @@
       <article
         ref="docRef"
         id="article"
-        class="prose prose-lg transition-all duration-300 VPDoc lg:prose-xl dark:prose-invert prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none"
+        class="lg:prose-xl prose prose-lg prose-pre:bg-inherit transition-all duration-300 VPDoc prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none dark:prose-invert"
       >
         <Content />
       </article>
@@ -17,9 +17,3 @@
     </div>
   </div>
 </template>
-
-<style>
-.VPDoc.prose pre {
-  background-color: inherit;
-}
-</style>
