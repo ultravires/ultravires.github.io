@@ -31,6 +31,7 @@ const { frontmatter, page } = useData();
         <div
           class="@container min-h-screen w-full flex-grow transition-all duration-100"
         >
+          <!-- 首页 -->
           <HomeLayout v-if="frontmatter.layout === 'home'" />
           <PageLayout v-else-if="frontmatter.layout === 'page'" />
           <ColumnLayout v-else-if="frontmatter.layout === 'column'" />

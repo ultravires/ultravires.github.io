@@ -1,4 +1,7 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import VDocMeta from '@theme/components/VDocMeta.vue';
+import VDocFooter from '@theme/components/VDocFooter.vue';
+</script>
 
 <template>
   <div class="@8xl:max-w-[87.5rem] max-md:px-2 px-8 mx-auto">

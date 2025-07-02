@@ -1,7 +1,6 @@
 import '@shikijs/vitepress-twoslash/style.css';
 import './styles/tailwind.css';
 import './styles/doc.css';
-import './styles/highlight.css';
 import './styles/index.css';
 import './styles/docsearch.css';
 

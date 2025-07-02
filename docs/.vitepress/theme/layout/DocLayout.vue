@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress';
-import VDocMeta from '@theme/components/VDocMeta.vue';
-import VDocFooter from '@theme/components/VDocFooter.vue';
 import VOutline from '@theme/components/VOutline.vue';
 import VProfileCard from '@theme/components/VProfileCard.vue';
 import VCopyright from '@theme/components/VCopyright.vue';
+import VContent from '@theme/components/VContent.vue';
 
 const { frontmatter } = useData();
 </script>
@@ -24,19 +23,7 @@ const { frontmatter } = useData();
           <VCopyright />
         </div>
       </aside>
-      <div
-        class="dark:bg-neutral-900 dark:max-md:bg-transparent max-md:px-6 max-md:border-0 max-md:bg-transparent order-1 p-12 w-full mx-auto bg-white rounded-md border border-solid border-line overflow-auto transition-all duration-300"
-      >
-        <article
-          ref="docRef"
-          id="article"
-          class="VPDoc lg:prose-xl dark:prose-invert dark:prose-pre:border-neutral-700 prose-pre:border prose-pre:border-solid prose-pre:border-[rgb(var(--web-border-color)/1)] prose-blockquote:not-italic prose-blockquote:font-normal prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none prose prose-lg prose-neutral transition-all duration-300"
-        >
-          <Content />
-        </article>
-        <VDocFooter />
-        <VDocMeta />
-      </div>
+      <VContent />
     </div>
   </div>
 </template>
