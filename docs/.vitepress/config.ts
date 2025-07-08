@@ -3,6 +3,8 @@ import { genFeed } from './genFeed.js';
 import { zh } from './config/zh.js';
 import svgLoader from 'vite-svg-loader';
 import tailwindcss from '@tailwindcss/vite';
+import vueDevTools from 'vite-plugin-vue-devtools';
+import { VueMcp } from 'vite-plugin-vue-mcp';
 
 // https://vitepress.vuejs.org/config/app-configs
 export default defineConfig({
@@ -46,7 +48,9 @@ export default defineConfig({
         svgo: false,
         defaultImport: 'component'
       }),
-      tailwindcss()
+      tailwindcss(),
+      vueDevTools(),
+      VueMcp()
     ]
   },
 });
