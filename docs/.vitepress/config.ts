@@ -16,6 +16,7 @@ export default defineConfig({
   buildEnd: genFeed,
   markdown: zh.markdown,
   themeConfig: zh.themeConfig,
+  lastUpdated: true,
   head: [
     ['meta', { name: 'author', content: '向成渝' }],
     [

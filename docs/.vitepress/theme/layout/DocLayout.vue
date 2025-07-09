@@ -13,7 +13,8 @@ const { frontmatter } = useData();
     <div class="max-xl:flex-col flex gap-6 justify-center w-full">
       <aside
         v-if="frontmatter.aside !== false"
-        class="max-xl:hidden order-2 grow-1 shrink-0 flex flex-col gap-3 relative w-80"
+        class="max-xl:hidden order-2 grow-1 shrink-0 flex flex-col gap-3 relative w-80 min-w-[20rem]"
+        style="min-width: 16rem;"
       >
         <VProfileCard />
         <div

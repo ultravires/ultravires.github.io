@@ -1,6 +1,8 @@
 ---
 title: Windows 调节显示器亮度
 date: 2025-06-07
+banner:
+  wave: true
 cover:
   text: 调节亮度
 ---

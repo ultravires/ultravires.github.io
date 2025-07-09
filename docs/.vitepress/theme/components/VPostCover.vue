@@ -25,7 +25,7 @@ function applyRandomGradient() {
 </script>
 
 <template>
-  <div
+  <figure
     :style="applyRandomGradient()"
     class="cover group-hover/post-card:scale-105 dark:bg-neutral-800 relative flex justify-center items-center w-full h-full bg-slate-700 transition-transform duration-300"
   >
@@ -41,17 +41,17 @@ function applyRandomGradient() {
       draggable="false"
       @load="handleImageLoaded"
     />
-    <div
+    <figcaption
       v-else-if="typeof post.cover === 'object' && post.cover.text"
       class="absolute flex justify-center items-center gap-14 w-full h-full whitespace-nowrap z-0"
     >
       <h1 class="text-white text-2xl font-black tracking-wider drop-shadow-2xl">
         {{ post.cover.text }}
       </h1>
-      <div class="icon-circle"></div>
-      <div class="icon-triangle"></div>
-      <div class="icon-circle small"></div>
-    </div>
+      <span class="icon-circle"></span>
+      <span class="icon-triangle"></span>
+      <span class="icon-circle small"></span>
+    </figcaption>
     <div
       v-else
       class="absolute flex justify-center items-center gap-14 w-full h-full whitespace-nowrap z-0"
@@ -63,8 +63,7 @@ function applyRandomGradient() {
       <div class="icon-triangle"></div>
       <div class="icon-circle small"></div>
     </div>
-
-  </div>
+  </figure>
 </template>
 
 <style scoped>

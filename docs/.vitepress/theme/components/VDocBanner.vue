@@ -44,8 +44,8 @@ onMounted(() => {
   <div
     v-show="frontmatter?.banner"
     :style="applyRandomGradient()"
-    class="before:content-normal before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:bg-neutral-900/30 relative w-full h-full bg-primary overflow-hidden -z-10 select-none"
-    :class="{ 'before:backdrop-blur-lg before:opacity-90 is-blur': frontmatter?.banner?.blur }"
+    class="before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:left-0 before:bg-neutral-900/30 relative w-full h-full bg-primary overflow-hidden -z-10 select-none"
+    :class="{ 'before:backdrop-blur-lg before:bg-black/70 is-blur': frontmatter?.banner?.blur }"
     draggable="false"
   >
     <div class="triangle1"></div>

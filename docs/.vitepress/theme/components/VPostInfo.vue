@@ -3,7 +3,7 @@ import { useData } from 'vitepress';
 import { formatDate } from '@theme/support/utils';
 import VIconTime from '../assets/svg/time.svg?component';
 
-const { frontmatter } = useData();
+const { frontmatter, page } = useData();
 </script>
 
 <template>
@@ -42,7 +42,7 @@ const { frontmatter } = useData();
           <span>
             <VIconTime />
           </span>
-          <span>{{ formatDate(frontmatter?.date)?.string }}</span>
+          <span>{{ formatDate(frontmatter?.date)?.string }} · 修改于 {{ formatDate(page.lastUpdated)?.string }}</span>
         </div>
       </div>
     </div>
