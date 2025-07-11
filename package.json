@@ -43,6 +43,7 @@
     "@docsearch/js": "^3.9.0",
     "colorthief": "^2.6.0",
     "dayjs": "^1.11.13",
+    "js-sha256": "^0.11.1",
     "typeit": "^8.8.7"
   },
   "packageManager": "pnpm@10.12.2"

@@ -1,3 +1,5 @@
+import "./chunk-BUSYA2B4.js";
+
 // node_modules/.pnpm/colorthief@2.6.0/node_modules/colorthief/dist/color-thief.mjs
 var t = function(t2, r2) {
   return t2 < r2 ? -1 : t2 > r2 ? 1 : 0;
