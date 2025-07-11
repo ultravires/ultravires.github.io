@@ -1,8 +1,8 @@
 ---
 layout: about
 self:
-  avatar: https://0.gravatar.com/avatar/83ced4a3fc134e727c30cc30834f64a7183c65cebd81c9821260b0628e7ebad0?size=100
   name: 向成渝
+  email: x555666777@qq.com
   nickname: 丞相
   bio: '前端开发者，热爱编程和技术分享'
   location: 武汉，中国

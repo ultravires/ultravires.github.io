@@ -1,6 +1,7 @@
 <script setup>
 import { useData } from 'vitepress';
 import SvgInfj from '@theme/assets/svg/INFJ.svg?component';
+import { getAvatarUrl } from '@theme/composables/useGravatar';
 
 const { frontmatter } = useData();
 
@@ -15,7 +16,7 @@ const user = frontmatter.value?.self ?? {};
 
       <!-- 基础信息 -->
       <div class="flex items-center mb-4">
-        <img :src="user.avatar" alt="Avatar" class="w-16 h-16 rounded-full mr-4">
+        <img :src="getAvatarUrl(user.email)" alt="Avatar" class="w-16 h-16 rounded-full mr-4">
         <div>
           <h2 class="text-xl font-semibold">{{ user.name }}</h2>
           <p class="text-gray-600">{{ user.bio }}</p>
