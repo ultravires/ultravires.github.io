@@ -105,6 +105,7 @@
 
   .shiki,
   .shiki span {
+    background-color: var(--shiki-light-bg) !important;
     color: var(--shiki-light);
     font-style: var(--shiki-light-font-style);
     font-weight: var(--shiki-light-font-weight);
@@ -121,6 +122,9 @@
   --web-color-reverse: 0 0 0;
   --web-border-color: 64 64 64;
   --docsearch-searchbox-background: #171717;
+  --vp-code-line-number-background-color: #0d1117;
+  --vp-code-block-divider-color: #1c1c1c;
+  --vp-code-line-number-color: #aaa;
 
   color: #fff;
 
@@ -133,6 +137,7 @@
   }
 
   .shiki, .shiki span {
+    background-color: var(--shiki-dark-bg) !important;
     color: var(--shiki-dark);
     font-style: var(--shiki-dark-font-style);
     font-weight: var(--shiki-dark-font-weight);
@@ -191,6 +196,28 @@ svg.icon {
   height: 1em;
   line-height: 1;
   fill: currentColor;
+}
+
+.line-numbers-wrapper {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 27px;
+  padding-top: 20px;
+  background-color: var(--vp-code-line-number-background-color);
+  border-right: 1px solid var(--vp-code-block-divider-color);
+  text-align: center;
+  font-family: var(--vp-font-family-mono);
+  font-size: var(--vp-code-font-size);
+  line-height: var(--vp-code-line-height);
+  color: var(--vp-code-line-number-color);
+  transition: border-color .5s, color .5s;
+}
+
+.line-number {
+  font-size: small;
 }
 
 @keyframes page-scroll-animation {
