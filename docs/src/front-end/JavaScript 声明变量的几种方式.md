@@ -16,7 +16,7 @@ author:
 
 ## 未定义
 
-不声明，直接使用的情况：
+在未声明变量时直接使用
 
 ```javascript
 console.log(x); // Uncaught ReferenceError: x is not defined
@@ -24,81 +24,111 @@ console.log(x); // Uncaught ReferenceError: x is not defined
 
 ## var
 
-用于函数作用域内声明变量，支持变量提升。
+在函数作用域内声明变量，存在变量提升，且可以重复定义。
 
 ```javascript
+// console.log(a); // 函数作用域外，运行时报错 Uncaught ReferenceError: a is not defined
 function example() {
-  console.log(x); // undefined
-  var x = 5;
-  console.log(x); // 5
+  var a = 1;
+  if (true) {
+    var a = 2; // 同一函数作用域下，覆盖前面的a
+    console.log(a); // 输出2
+  }
+  console.log(a); // 输出2
 }
 example();
 ```
 
-引擎执行流程类似于：
-
-1. 创建变量环境记录。
-
-2. 在编译阶段处理变量名。
-
-3. 设置默认值为 undefined。
-
-4. 执行赋值表达式。
-
-与之类似可提升的声明方式（HoistableDeclaration）还有：
-
-```js
-HoistableDeclaration :
-  FunctionDeclaration
-  GeneratorDeclaration
-  AsyncFunctionDeclaration
-  AsyncGeneratorDeclaration
-```
-
-| 类型                       | 语法示例                                  | 特性                           |
-|--------------------------|-------------------------------------------|--------------------------------|
-| FunctionDeclaration      | `function foo() {}`                       | 提升，函数对象预先绑定         |
-| GeneratorDeclaration     | `function* gen() {}`                      | 语法上类似函数，但生成迭代器     |
-| AsyncFunctionDeclaration | `async function fetchData() {}`          | 异步函数，返回 Promise         |
-| AsyncGeneratorDeclaration| `async function* stream() {}`            | 异步生成器，结合 async + iterator |
-
-这些都属于语法树中能在早期阶段就确定、绑定的结构，因此命名为 HoistableDeclaration。
-
-HoistableDeclaration 是 ECMAScript 规范中对可以**提前处理并绑定的函数声明类型**的统称，主要用于描述那些**在语法分析阶段就能被“提升”处理**的声明结构。
-
 ## let
 
-块级作用域变量声明，支持暂时性死区（TDZ），不可重复声明。
+在块级作用域内声明变量，存在变量提升，但存在暂时性死区（TDZ），不可重复声明。
 
-执行流程：
+```javascript
+// console.log(x); // 块级作用域外使用， ReferenceError: x is not defined
+{ // 用 `{}` 添加块级作用域
+  console.log(x); // ReferenceError: Cannot access 'x' before initialization
+  let x = 10;
+}
+```
 
-1. 编译阶段记录变量名，但不初始化。
-
-2. 在执行到声明行前，变量处于 TDZ。
-
-3. 进入声明行时，初始化为初始值。
+为了排除浏览器与 node 环境的差异，这里手动添加块级作用域，如果不加 `{}`，你在浏览器中可能看到 `Uncaught ReferenceError: x is not defined` 错误。原因是因为浏览器在全局作用域中：优先检查 window 对象是否存在该属性；若不存在，则抛出与未声明变量相同的错误信息。
 
 ## const
 
-块级作用域常量声明，支持暂时性死区（TDZ），不可重复声明，必须初始化，不能被重新赋值，但对象内部属性仍可变（浅不可变）。
+在块级作用域内声明常量，存在变量提升，支持暂时性死区（TDZ），不可重复声明，必须初始化，不能被重新赋值，但对象内部属性仍可变（浅不可变）。
 
-引擎执行流程：
-
-1. 创建绑定时就必须提供初始值。
-
-2. 引擎将标记该绑定为不可修改（immutable）。
-
-3. 如果重新赋值，抛出错误。
-
+```javascript
+// console.log(a); // 块级作用域外，运行时报错 Uncaught ReferenceError: a is not defined
+{
+  // console.log(a); // ReferenceError: Cannot access 'a' before initialization
+  // const a; // 这里没有初始化，会导致报错 SyntaxError: Missing initializer in const declaration
+  const user = { name: 'Alice' };
+  user.name = 'Bob'; // 可以修改对象内部属性
+  console.log(user); // 输出 { name: 'Bob' }
+  user = { name: 'Xenon' }; // TypeError: Assignment to constant variable.
+}
+```
 
 ## var、let 和 const 的对比
 
 | 声明方式 | 作用域类型     | 是否变量提升 | 是否可重复声明 | 是否必须初始化 | 是否可重新赋值 | 是否存在 TDZ（暂时性死区） |
 |----------|----------------|----------------|------------------|------------------|------------------|-----------------------------|
-| `var`    | 函数级作用域   | ✅ 是           | ✅ 是             | ❌ 否             | ✅ 是             | ❌ 否                        |
-| `let`    | 块级作用域     | ❌ 否           | ❌ 否             | ❌ 否             | ✅ 是             | ✅ 是                        |
-| `const`  | 块级作用域     | ❌ 否           | ❌ 否             | ✅ 是             | ❌ 否             | ✅ 是                        |
+| `var`    | 函数级作用域    | ✅ 完全提升           | ✅ 是             | ❌ 否             | ✅ 是             | ❌ 否                        |
+| `let`    | 块级作用域     | ❌ 部分提升           | ❌ 否             | ❌ 否             | ✅ 是             | ✅ 是                        |
+| `const`  | 块级作用域     | ❌ 部分提升           | ❌ 否             | ✅ 是             | ❌ 否（浅不可变）             | ✅ 是                        |
 
+
+## 除 var、let、const 之外
+
+函数声明
+
+形式：通过function关键字声明函数，会创建一个函数变量。
+
+作用域：函数作用域或块级作用域（在块内声明时）。
+
+变量提升：函数整体会被提升到作用域顶部，可以在声明前调用。
+
+示例：
+
+```javascript
+example(); // 可以在声明前调用
+function example() {
+  console.log("函数声明");
+}
+```
+
+类声明
+
+形式：通过class关键字声明类，会创建一个类变量。
+
+作用域：块级作用域。
+
+变量提升：存在提升，但也有暂时性死区，在声明前访问会报错。
+
+示例：
+```javascript
+// const instance = new MyClass(); // 报错，处于暂时性死区
+class MyClass {
+  constructor() {
+    this.value = 1;
+  }
+}
+const instance = new MyClass();
+console.log(instance.value); // 输出1
+```
+
+模块中的 import 声明
+
+作用域：模块作用域，仅在当前模块内有效。
+
+用途：从其他模块导入变量、函数、类等。
+
+示例：
+
+```javascript
+import { myVar } from './otherModule.js';
+console.log(myVar); // 使用导入的变量
+```
 
 ## 参考
 

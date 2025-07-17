@@ -11,7 +11,7 @@ import VDocFooter from '@theme/components/VDocFooter.vue';
       <article
         ref="docRef"
         id="article"
-        class="lg:prose-xl prose prose-lg prose-pre:bg-inherit transition-all duration-300 VPDoc prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none dark:prose-invert"
+        class="lg:prose-xl prose prose-lg prose-pre:bg-inherit transition-all duration-300 VPDoc prose-table:rounded-2xl prose-table:overflow-x-auto prose-th:border prose-th:border-solid prose-td:border prose-td:border-solid max-w-none dark:prose-invert dark:prose-th:border-neutral-700 dark:prose-td:border-neutral-700"
       >
         <Content />
       </article>

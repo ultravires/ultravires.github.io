@@ -73,6 +73,15 @@
   --vp-code-font-size: 0.9em;
   --vp-code-line-number-color: #444;
   --vp-code-line-height: inherit;
+
+  .prose-lg {
+    :where(tbody td:first-child, tfoot td:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+      padding-inline-start: 0.75rem;
+    }
+    :where(thead th:first-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+      padding-inline-start: 0.75rem;
+    }
+  }
 }
 
 [data-theme="light"] {
