@@ -14,7 +14,7 @@ const { frontmatter } = useData();
   >
     <VAvatar class="absolute top-0 -translate-y-1/2" />
     <div class="text-center">
-      <p class="text-xl">向成渝</p>
+      <p class="text-xl">{{ frontmatter?.author?.name }}</p>
       <p class="text-sm text-neutral-400 mt-2">专注计算机科学与技术</p>
     </div>
     <VSponsor />

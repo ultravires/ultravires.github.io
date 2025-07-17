@@ -11,7 +11,7 @@ export function getGravatarHash(email: string): string {
   return hash;
 }
 
-export function getAvatarUrl(email: string, size: number = 100): string {
+export function getAvatarUrl(email: string = '', size: number = 100): string {
   // This single hash is used for BOTH avatars AND profile data
   const hash = getGravatarHash(email);
   return `https://0.gravatar.com/avatar/${hash}?size=${size}`;

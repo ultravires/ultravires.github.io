@@ -1,13 +1,14 @@
-import { defineConfig } from 'vitepress';
+import { defineConfigWithTheme } from 'vitepress';
 import { genFeed } from './genFeed.js';
 import { zh } from './config/zh.js';
 import svgLoader from 'vite-svg-loader';
 import tailwindcss from '@tailwindcss/vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import { VueMcp } from 'vite-plugin-vue-mcp';
+import { CustomTheme } from '@theme/types/custom-vitepress-theme.js';
 
 // https://vitepress.vuejs.org/config/app-configs
-export default defineConfig({
+export default defineConfigWithTheme<CustomTheme>({
   lang: zh.lang,
   title: zh.title,
   description: zh.description,

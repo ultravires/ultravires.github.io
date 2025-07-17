@@ -1,14 +1,14 @@
-import { defineConfig, type DefaultTheme } from 'vitepress';
+import { defineConfigWithTheme, type DefaultTheme } from 'vitepress';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
+import { CustomTheme } from '@theme/types/custom-vitepress-theme';
 
-export const zh = defineConfig({
+export const zh = defineConfigWithTheme<CustomTheme>({
   lang: 'zh-Hans',
   title: '浅安。 | 专注计算机科学与技术',
   description: '向成渝的个人博客',
 
   themeConfig: {
     siteTitle: '浅安。',
-    avatar: '/minion.png',
     nav: nav(),
     footer: footer(),
     outline: 'deep',

@@ -1,10 +1,11 @@
 <script setup>
-import VPostList from '@theme/components/VPostList.vue';
-
+import { data as posts } from '../posts.data.ts';
 </script>
 
 <template>
   <div class="container mx-auto">
-    <VPostList />
+    <ul>
+      <li v-for="post in posts">{{ post.title }}</li>
+    </ul>
   </div>
 </template>

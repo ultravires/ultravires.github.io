@@ -1,0 +1,8 @@
+name: Docs
+version: 0.0.1
+schema: v1
+docs:
+  - name: continue docs
+    startUrl: https://docs.continue.dev
+  - name: vitepress
+    startUrl: https://vitepress.dev/zh/

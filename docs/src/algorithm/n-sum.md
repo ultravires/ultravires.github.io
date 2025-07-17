@@ -1,5 +1,8 @@
 ---
 title: '算法题解: n 数之和'
+author:
+  name: 向成渝
+  email: x555666777@qq.com
 date: 2024-05-16 12:35:00
 cover:
   text: n 数之和

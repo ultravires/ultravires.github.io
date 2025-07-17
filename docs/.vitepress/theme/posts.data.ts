@@ -1,4 +1,10 @@
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { createContentLoader } from 'vitepress';
+
+dayjs.extend(relativeTime);
+dayjs.locale('zh-cn')
 
 export interface Post {
   title: string;
@@ -11,6 +17,7 @@ export interface Post {
   };
   excerpt: string | undefined;
   cover: string | undefined;
+  frontmatter: Record<string, any>;
 }
 
 declare const data: Post[];
@@ -36,10 +43,11 @@ export default createContentLoader('**/*.md', {
         excerpt, // 渲染的摘录 HTML（第一个 `---` 上面的内容）
         date: formatDate(frontmatter.date),
         hidden: frontmatter.hidden || false,
+        frontmatter: frontmatter, // 原始 frontmatter 对象
       }))
       .filter(({ title, hidden }) => !!title && !hidden)
       .sort((a, b) => b.date.time - a.date.time);
-  },
+  }
 });
 
 function formatDate(raw: string): Post['date'] {
@@ -47,8 +55,6 @@ function formatDate(raw: string): Post['date'] {
   date.setUTCHours(8);
   return {
     time: +date,
-    string: `${date.getFullYear()}/${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`,
+    string: dayjs(date).fromNow(),
   };
 }
