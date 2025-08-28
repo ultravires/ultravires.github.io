@@ -1,37 +1,37 @@
 {
-  "hash": "e656d29f",
-  "configHash": "582d4f1a",
+  "hash": "cfa1dde0",
+  "configHash": "0384bdc0",
   "lockfileHash": "d8ab2417",
-  "browserHash": "302a6ecd",
+  "browserHash": "89ddef07",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.5.17_typescript@5.8.3/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "74b95acf",
+      "fileHash": "c23b699a",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../node_modules/.pnpm/@vue+devtools-api@7.7.7/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "e07b3497",
+      "fileHash": "b780f0e1",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/.pnpm/@vueuse+core@12.8.2_typescript@5.8.3/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "fdec58ad",
+      "fileHash": "bd2be784",
       "needsInterop": false
     },
     "js-sha256": {
       "src": "../../../../node_modules/.pnpm/js-sha256@0.11.1/node_modules/js-sha256/src/sha256.js",
       "file": "js-sha256.js",
-      "fileHash": "d467bb40",
+      "fileHash": "ff73399a",
       "needsInterop": true
     },
     "colorthief": {
       "src": "../../../../node_modules/.pnpm/colorthief@2.6.0/node_modules/colorthief/dist/color-thief.mjs",
       "file": "colorthief.js",
-      "fileHash": "d0cd7a17",
+      "fileHash": "aeff6995",
       "needsInterop": false
     }
   },
