@@ -5,6 +5,8 @@ cover:
   text: 原型继承
 banner:
   wave: true
+categories:
+  - 前端领域
 ---
 
 > 龙生龙、凤生凤，老鼠的孩子会打洞。

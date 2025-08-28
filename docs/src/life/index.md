@@ -1,1 +1,5 @@
-# 程序人生
+---
+layout: column
+categories:
+  - 程序人生
+---

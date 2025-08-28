@@ -5,6 +5,8 @@ cover:
   text: 页面渲染
 banner:
   wave: true
+categories:
+  - 前端领域
 ---
 
 使用 `SSR` 和直接写 `HTML` 然后部署到服务器上有什么区别？

@@ -7,6 +7,8 @@ banner:
   wave: true
 tags:
   - Markdown
+categories:
+  - 前端领域
 ---
 
 Markdown 是内容编辑的核心，该主题将主要支持维护 Markdown 语法。

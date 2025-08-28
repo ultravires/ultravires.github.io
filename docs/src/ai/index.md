@@ -1,7 +1,5 @@
 ---
-author:
-  name: 向成渝
-  email: x555666777@qq.com
+layout: column
+categories:
+  - 人工智能
 ---
-
-# 人工智能

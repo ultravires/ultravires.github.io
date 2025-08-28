@@ -5,6 +5,8 @@ banner:
   wave: true
 cover:
   text: 调节亮度
+categories:
+  - 系统工具
 ---
 
 一直很好奇为什么我的台式机接显示器无法通过滑块调节显示器亮度，甚至 Windows11 都没有调节亮度的入口。（PS：我的笔记本是有这个功能的）。

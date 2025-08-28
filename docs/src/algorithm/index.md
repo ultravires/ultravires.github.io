@@ -1,7 +1,5 @@
 ---
-author:
-  name: 向成渝
-  email: x555666777@qq.com
+layout: column
+categories:
+  - 算法题解
 ---
-
-# 算法题解

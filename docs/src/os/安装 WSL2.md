@@ -5,6 +5,8 @@ cover:
   text: Windows 子系统
 banner:
   wave: true
+categories:
+  - 系统工具
 ---
 
 安装适用于 Linux 的 Windows 子系统。
