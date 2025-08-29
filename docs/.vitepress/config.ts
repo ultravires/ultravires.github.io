@@ -18,6 +18,7 @@ export default defineConfigWithTheme<CustomTheme>({
   markdown: zh.markdown,
   themeConfig: zh.themeConfig,
   lastUpdated: true,
+  ignoreDeadLinks: true,
   head: [
     ['meta', { name: 'author', content: '向成渝' }],
     [
