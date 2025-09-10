@@ -1,6 +1,6 @@
 import { defineConfigWithTheme, type DefaultTheme } from 'vitepress';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
-import { CustomTheme } from '@theme/types/custom-vitepress-theme';
+import type { CustomTheme } from '../theme/types/custom-vitepress-theme.d.ts';
 
 export const zh = defineConfigWithTheme<CustomTheme>({
   lang: 'zh-Hans',

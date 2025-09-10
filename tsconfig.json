@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -9,20 +10,25 @@
     "allowJs": true,
     "strict": true,
     "jsx": "preserve",
+    "baseUrl": ".",
     "paths": {
       "@theme/*": [
         "./docs/.vitepress/theme/*"
       ]
     },
     "types": [
-      "vitepress",
       "@types/node"
     ],
-    "outDir": "./docs/.vitepress/"
+    "outDir": "./docs/.vitepress/",
+    "verbatimModuleSyntax": true
+  },
+  "vueCompilerOptions": {
+    "target": "esnext"
   },
   "include": [
     "./docs/.vitepress/**/*",
-    "./docs/src/**/*"
+    "./docs/src/**/*",
+    "./node_modules/vitepress/**/*"
   ],
   "exclude": ["node_modules", "dist"]
 }

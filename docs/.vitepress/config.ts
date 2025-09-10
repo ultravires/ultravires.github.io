@@ -5,10 +5,11 @@ import svgLoader from 'vite-svg-loader';
 import tailwindcss from '@tailwindcss/vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import { VueMcp } from 'vite-plugin-vue-mcp';
-import { CustomTheme } from '@theme/types/custom-vitepress-theme.js';
+import { withMermaid } from 'vitepress-plugin-mermaid';
+import type { CustomTheme } from './theme/types/custom-vitepress-theme.d.js';
 
 // https://vitepress.vuejs.org/config/app-configs
-export default defineConfigWithTheme<CustomTheme>({
+export default defineConfigWithTheme<CustomTheme>(withMermaid({
   lang: zh.lang,
   title: zh.title,
   description: zh.description,
@@ -55,5 +56,5 @@ export default defineConfigWithTheme<CustomTheme>({
       vueDevTools(),
       VueMcp()
     ]
-  },
-});
+  }
+}));
