@@ -68,10 +68,10 @@
 :root {
   --web-header-height: 4rem;
 
-  --vp-code-line-number-background-color: #f5f6f7;
-  --vp-code-block-divider-color: #f1f1f1;
+  --vp-code-line-number-background-color: #282A35;
+  --vp-code-block-divider-color: #888;
   --vp-code-font-size: 0.9em;
-  --vp-code-line-number-color: #444;
+  --vp-code-line-number-color: #999;
   --vp-code-line-height: 1.7777778;
 
   .prose-lg {
@@ -216,13 +216,14 @@ svg.icon {
   width: 35px;
   background-color: var(--vp-code-line-number-background-color);
   border-right: 1px solid var(--vp-code-block-divider-color);
+  opacity: .6;
   text-align: center;
   font-family: var(--vp-font-family-mono);
   font-size: var(--vp-code-font-size);
   line-height: var(--vp-code-line-height);
   color: var(--vp-code-line-number-color);
   transition: border-color .5s, color .5s;
-  border-radius: 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
   padding-top: 1.1111111em;
   padding-bottom: 1.1111111em;
 }

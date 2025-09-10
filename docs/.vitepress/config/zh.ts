@@ -22,7 +22,7 @@ export const zh = defineConfigWithTheme<CustomTheme>({
   markdown: {
     codeTransformers: [transformerTwoslash()],
     theme: {
-      light: 'github-light-default',
+      light: 'dracula-soft',
       dark: 'github-dark-default',
     },
     lineNumbers: true,
