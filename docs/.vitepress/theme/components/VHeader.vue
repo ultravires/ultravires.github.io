@@ -8,15 +8,12 @@ const { frontmatter } = useData();
 </script>
 
 <template>
-  <header
-    class="VHeader relative mb-4 top-0 z-10"
-    :class="frontmatter?.layout !== 'home' && frontmatter?.banner ? 'h-96' : 'h-16'"
-  >
+  <header class="VHeader relative top-0 z-10 mb-4" :class="frontmatter?.layout !== 'home' && frontmatter?.banner ? 'h-96' : 'h-16'">
     <!-- 导航栏 -->
     <VNavBar />
 
     <!-- 文章横幅 -->
-    <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center -z-10">
+    <div class="absolute top-0 left-0 -z-10 flex h-full w-full flex-col items-center justify-center">
       <!-- 横幅中文章信息 -->
       <VPostInfo />
       <!-- 横幅背景 -->

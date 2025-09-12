@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import { useData } from 'vitepress';
 import type { Post } from '../posts.data';
 import VLink from './VLink.vue';
 import VPostCover from './VPostCover.vue';
 
-defineProps<{
+const { page } = useData();
+
+const { post } = defineProps<{
   post: Post;
 }>();
 </script>

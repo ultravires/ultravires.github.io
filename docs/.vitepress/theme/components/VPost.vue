@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Post } from '../posts.data';
 
-defineProps<{
+const { post } = defineProps<{
   post: Post
 }>();
 </script>

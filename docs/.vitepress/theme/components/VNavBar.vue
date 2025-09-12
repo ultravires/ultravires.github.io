@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineAsyncComponent, onMounted, onUnmounted, ref } from 'vue';
+import { defineAsyncComponent, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useData } from 'vitepress';
 import VLogo from './VLogo.vue';
 import VThemeToggle from './VThemeToggle.vue';
@@ -10,16 +10,29 @@ import VNavBarLink from './VNavBarLink.vue';
 import VIconSearch from '../assets/svg/search.svg?component';
 import '@docsearch/css';
 import type { DefaultTheme } from 'vitepress';
-import { throttleAndDebounce } from '@theme/support/utils';
+import { useScroll } from '@vueuse/core';
 
-const VPAlgoliaSearchBox = __ALGOLIA__
-  ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue'))
-  : () => null;
+const VPAlgoliaSearchBox = __ALGOLIA__ ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue')) : () => null;
 
-const { theme, frontmatter } = useData();
+const { theme, frontmatter, page } = useData();
 const loaded = ref(false);
 const actuallyLoaded = ref(false);
 const navBarRef = ref<HTMLElement | null>(null);
+const { arrivedState } = useScroll(document);
+
+const showTitle = useShowTitle();
+function useShowTitle() {
+  const showTitle = ref(false);
+  const { y } = useScroll(document);
+  watch(y, (lastY, currentY) => {
+    if (currentY < lastY) {
+      showTitle.value = true;
+    } else {
+      showTitle.value = false;
+    }
+  });
+  return showTitle;
+}
 
 const preconnect = () => {
   const id = 'VPAlgoliaPreconnect';
@@ -29,10 +42,7 @@ const preconnect = () => {
     const preconnect = document.createElement('link');
     preconnect.id = id;
     preconnect.rel = 'preconnect';
-    preconnect.href = `https://${
-      ((theme.value.search?.options as DefaultTheme.AlgoliaSearchOptions) ??
-        theme.value.algolia)!.appId
-    }-dsn.algolia.net`;
+    preconnect.href = `https://${((theme.value.search?.options as DefaultTheme.AlgoliaSearchOptions) ?? theme.value.algolia)!.appId}-dsn.algolia.net`;
     preconnect.crossOrigin = '';
     document.head.appendChild(preconnect);
   });
@@ -46,10 +56,7 @@ onMounted(() => {
   preconnect();
 
   const handleSearchHotKey = (event: KeyboardEvent) => {
-    if (
-      (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) ||
-      (!isEditingContent(event) && event.key === '/')
-    ) {
+    if ((event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) || (!isEditingContent(event) && event.key === '/')) {
       event.preventDefault();
       load();
       remove();
@@ -92,12 +99,7 @@ function isEditingContent(event: KeyboardEvent): boolean {
   const element = event.target as HTMLElement;
   const tagName = element.tagName;
 
-  return (
-    element.isContentEditable ||
-    tagName === 'INPUT' ||
-    tagName === 'SELECT' ||
-    tagName === 'TEXTAREA'
-  );
+  return element.isContentEditable || tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA';
 }
 
 function handleSearch() {
@@ -105,64 +107,49 @@ function handleSearch() {
 }
 
 const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
-
-const handleScroll = throttleAndDebounce(() => {
-  if (document.documentElement.scrollTop > 0) {
-    navBarRef.value?.classList.add('fixed');
-  } else {
-    navBarRef.value?.classList.remove('fixed');
-  }
-}, 500);
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-});
 </script>
 
 <template>
   <nav
     ref="navBarRef"
-    class="VNavBar @container dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white [&.fixed]:bg-white/90 [&.fixed]:text-black [&.fixed]:border-b [&.fixed]:border-line/90 w-full h-[var(--web-header-height)] [&.fixed]:h-[55px] backdrop-blur-sm top-0 z-10 transition-[height] duration-500"
-    :class="
-      frontmatter?.layout !== 'home' && frontmatter?.banner
-        ? 'text-white'
-        : 'text-normal'
-    "
+    class="VNavBar @container top-0 z-10 h-[var(--web-header-height)] w-full backdrop-blur-sm transition-[height] duration-500 [&.fixed]:h-[55px] [&.fixed]:border-b [&.fixed]:border-line/90 [&.fixed]:bg-white/90 [&.fixed]:text-black dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white"
+    :class="[frontmatter?.layout !== 'home' && frontmatter?.banner ? 'text-white' : 'text-normal', { fixed: !arrivedState.top }]"
   >
-    <div
-      class="@8xl:max-w-[87.5rem] max-md:px-2 px-8 relative flex justify-center items-center gap-4 mx-auto h-full z-0"
-    >
+    <div class="@8xl:max-w-[87.5rem] relative z-0 mx-auto flex h-full items-center justify-center gap-4 px-8 max-md:px-2">
+      <!-- Logo -->
       <VLogo />
-      <ul
-        class="max-md:hidden absolute flex gap-4 justify-center items-center mx-auto w-full h-full -z-10"
-      >
+
+      <!-- Nav -->
+      <ul v-show="!showTitle" class="absolute -z-10 mx-auto flex h-full w-full items-center justify-center gap-4 max-md:hidden">
         <li v-for="item in theme.nav" :key="item.text">
           <VNavBarLink
-            class="group relative text-md tracking-8 leading-none decoration-none rounded-full whitespace-nowrap font-AlibabaPuHuiTiBold hover:bg-primary hover:text-white dark:hover:text-black"
+            class="group text-md tracking-8 decoration-none relative rounded-full font-AlibabaPuHuiTiBold leading-none whitespace-nowrap hover:bg-primary hover:text-white dark:hover:text-black"
             :item="item"
           />
         </li>
         <li
-          class="hover:bg-primary hover:text-reverse rounded-full p-2 leading-none cursor-pointer transition-all duration-300"
+          class="hover:text-reverse cursor-pointer rounded-full p-2 leading-none transition-all duration-300 hover:bg-primary"
           @click="handleSearch"
         >
           <template v-if="provider === 'algolia'">
-            <VPAlgoliaSearchBox
-              v-if="loaded"
-              :algolia="theme.search?.options ?? theme.algolia"
-              @vue:beforeMount="actuallyLoaded = true"
-            />
+            <VPAlgoliaSearchBox v-if="loaded" :algolia="theme.search?.options ?? theme.algolia" @vue:beforeMount="actuallyLoaded = true" />
             <div v-if="!actuallyLoaded" id="docsearch">
               <VIconSearch title="搜索" @click="load" />
             </div>
           </template>
         </li>
       </ul>
-      <div class="max-md:ml-auto flex items-center ml-auto">
+
+      <div v-show="showTitle" class="absolute font-bold">{{ page.title || '向成渝 —— 专注于计算机科学与技术' }}</div>
+
+      <div class="ml-auto flex items-center max-md:ml-auto">
         <VRandomArticle />
-        <VThemeToggle class="hover:bg-primary hover:text-reverse p-1 ml-4 text-xl rounded-full cursor-pointer transition-all duration-300" :theme-config="{ dark: 'dark', light: 'light' }" />
+        <VThemeToggle
+          class="hover:text-reverse ml-4 cursor-pointer rounded-full p-1 text-xl transition-all duration-300 hover:bg-primary"
+          :theme-config="{ dark: 'dark', light: 'light' }"
+        />
         <VBackTop class="ml-4" />
-        <VNavBarHamburger class="max-md:flex hidden ml-4" />
+        <VNavBarHamburger class="ml-4 hidden max-md:flex" />
       </div>
     </div>
   </nav>

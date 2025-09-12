@@ -37,12 +37,12 @@ const { frontmatter, page } = useData();
       <div>
         <div
           class="inline-flex items-center gap-2 text-white/80"
-          :datetime="frontmatter?.date"
+          :datetime="page.lastUpdated"
         >
           <span>
             <VIconTime />
           </span>
-          <span>{{ formatDate(frontmatter?.date)?.string }} · 修改于 {{ formatDate(page.lastUpdated)?.string }}</span>
+          <span>更新于 {{ formatDate(page.lastUpdated)?.string }}</span>
         </div>
       </div>
     </div>
