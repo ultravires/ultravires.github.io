@@ -120,27 +120,31 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
       <VLogo />
 
       <!-- Nav -->
-      <ul v-show="!showTitle" class="absolute -z-10 mx-auto flex h-full w-full items-center justify-center gap-4 max-md:hidden">
-        <li v-for="item in theme.nav" :key="item.text">
-          <VNavBarLink
-            class="group text-md tracking-8 decoration-none relative rounded-full font-AlibabaPuHuiTiBold leading-none whitespace-nowrap hover:bg-primary hover:text-white dark:hover:text-black"
-            :item="item"
-          />
-        </li>
-        <li
-          class="hover:text-reverse cursor-pointer rounded-full p-2 leading-none transition-all duration-300 hover:bg-primary"
-          @click="handleSearch"
-        >
-          <template v-if="provider === 'algolia'">
-            <VPAlgoliaSearchBox v-if="loaded" :algolia="theme.search?.options ?? theme.algolia" @vue:beforeMount="actuallyLoaded = true" />
-            <div v-if="!actuallyLoaded" id="docsearch">
-              <VIconSearch title="搜索" @click="load" />
-            </div>
-          </template>
-        </li>
-      </ul>
+      <Transition name="slide-fade-reverse">
+        <ul v-show="!showTitle" class="absolute -z-10 mx-auto flex h-full w-full items-center justify-center gap-4 max-md:hidden">
+          <li v-for="item in theme.nav" :key="item.text">
+            <VNavBarLink
+              class="group text-md tracking-8 decoration-none relative rounded-full font-AlibabaPuHuiTiBold leading-none whitespace-nowrap hover:bg-primary hover:text-white dark:hover:text-black"
+              :item="item"
+            />
+          </li>
+          <li
+            class="hover:text-reverse cursor-pointer rounded-full p-2 leading-none transition-all duration-300 hover:bg-primary"
+            @click="handleSearch"
+          >
+            <template v-if="provider === 'algolia'">
+              <VPAlgoliaSearchBox v-if="loaded" :algolia="theme.search?.options ?? theme.algolia" @vue:beforeMount="actuallyLoaded = true" />
+              <div v-if="!actuallyLoaded" id="docsearch">
+                <VIconSearch title="搜索" @click="load" />
+              </div>
+            </template>
+          </li>
+        </ul>
+      </Transition>
 
-      <div v-show="showTitle" class="absolute font-bold">{{ page.title || '向成渝 —— 专注于计算机科学与技术' }}</div>
+      <Transition name="slide-fade">
+        <div v-show="showTitle" class="absolute mx-auto font-bold">{{ page.title || '向成渝 —— 专注于计算机科学与技术' }}</div>
+      </Transition>
 
       <div class="ml-auto flex items-center max-md:ml-auto">
         <VRandomArticle />
@@ -154,3 +158,30 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
     </div>
   </nav>
 </template>
+
+<style scoped>
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  scale: 1.2;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* 反向 */
+.slide-fade-reverse-enter-active,
+.slide-fade-reverse-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-reverse-enter-from,
+.slide-fade-reverse-leave-to {
+  scale: 1.2;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+</style>
