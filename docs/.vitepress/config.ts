@@ -1,11 +1,11 @@
-import { defineConfigWithTheme } from 'vitepress';
-import { genFeed } from './genFeed.js';
-import { zh } from './config/zh.js';
-import svgLoader from 'vite-svg-loader';
 import tailwindcss from '@tailwindcss/vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import { VueMcp } from 'vite-plugin-vue-mcp';
+import svgLoader from 'vite-svg-loader';
+import { defineConfigWithTheme } from 'vitepress';
 import { withMermaid } from 'vitepress-plugin-mermaid';
+import { zh } from './config/zh.js';
+import { genFeed } from './genFeed.js';
 import type { CustomTheme } from './theme/types/custom-vitepress-theme.d.js';
 
 // https://vitepress.vuejs.org/config/app-configs

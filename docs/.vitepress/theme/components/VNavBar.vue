@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { defineAsyncComponent, onMounted, onUnmounted, ref, watch } from 'vue';
-import { useData } from 'vitepress';
-import VLogo from './VLogo.vue';
-import VThemeToggle from './VThemeToggle.vue';
-import VRandomArticle from './VRandomArticle.vue';
-import VNavBarHamburger from './VNavBarHamburger.vue';
-import VBackTop from './VBackToTop.vue';
-import VNavBarLink from './VNavBarLink.vue';
-import VIconSearch from '../assets/svg/search.svg?component';
 import '@docsearch/css';
-import type { DefaultTheme } from 'vitepress';
 import { useScroll } from '@vueuse/core';
+import type { DefaultTheme } from 'vitepress';
+import { useData } from 'vitepress';
+import { defineAsyncComponent, onMounted, onUnmounted, ref, watch } from 'vue';
+import VIconSearch from '../assets/svg/search.svg?component';
+import VBackTop from './VBackToTop.vue';
+import VLogo from './VLogo.vue';
+import VNavBarHamburger from './VNavBarHamburger.vue';
+import VNavBarLink from './VNavBarLink.vue';
+import VRandomArticle from './VRandomArticle.vue';
+import VThemeToggle from './VThemeToggle.vue';
 
 const VPAlgoliaSearchBox = __ALGOLIA__ ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue')) : () => null;
 
