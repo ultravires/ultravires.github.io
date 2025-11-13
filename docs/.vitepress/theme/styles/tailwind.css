@@ -4,7 +4,6 @@
 @import './docsearch.css';
 @source "../../theme";
 @plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/container-queries";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @theme {
   /* 颜色 */
@@ -43,20 +42,33 @@
   }
 }
 
+@layer utilities {
+  .ellipsis {
+    @apply overflow-hidden text-ellipsis whitespace-nowrap;
+  }
+  .gutter {
+    @apply row-span-5 row-start-1 border-x border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed [--pattern-fg:var(--color-gray-950)]/5 max-lg:hidden dark:[--pattern-fg:var(--color-white)]/10;
+  }
+}
+
 :root {
   --web-header-height: 4rem;
 
-  --vp-code-line-number-background-color: #282a35;
-  --vp-code-block-divider-color: #888;
+  --vp-code-line-number-background-color: transparent;
+  --vp-code-block-divider-color: rgb(136 136 136 / 50%);
   --vp-code-font-size: 0.9em;
   --vp-code-line-number-color: #999;
   --vp-code-line-height: 1.7777778;
 
   .prose-lg {
-    :where(tbody td:first-child, tfoot td:first-child):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    :where(tbody td:first-child, tfoot td:first-child):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    ) {
       padding-inline-start: 0.75rem;
     }
-    :where(thead th:first-child):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    :where(thead th:first-child):not(
+      :where([class~='not-prose'], [class~='not-prose'] *)
+    ) {
       padding-inline-start: 0.75rem;
     }
   }
@@ -81,11 +93,15 @@
       padding: 0.15rem 0.5rem;
     }
 
-    :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::before {
+    :where(code):not(
+        :where([class~='not-prose'], [class~='not-prose'] *)
+      )::before {
       content: none;
     }
 
-    :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::after {
+    :where(code):not(
+        :where([class~='not-prose'], [class~='not-prose'] *)
+      )::after {
       content: none;
     }
   }
@@ -109,8 +125,8 @@
   --web-color-reverse: 0 0 0;
   --web-border-color: 64 64 64;
   --docsearch-searchbox-background: #171717;
-  --vp-code-line-number-background-color: #0d1117;
-  --vp-code-block-divider-color: #313131;
+  --vp-code-line-number-background-color: transparent;
+  --vp-code-block-divider-color: rgb(49 49 49 / 50%);
   --vp-code-line-number-color: #444;
 
   color: #fff;
@@ -179,7 +195,7 @@ html {
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: large;
+  font-size: 16px;
   overflow: overlay;
 }
 

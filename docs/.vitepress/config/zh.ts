@@ -1,5 +1,5 @@
-import { defineConfigWithTheme, type DefaultTheme } from 'vitepress';
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash';
+import { defineConfigWithTheme, type DefaultTheme } from 'vitepress';
 import type { CustomTheme } from '../theme/types/custom-vitepress-theme.d.ts';
 
 export const zh = defineConfigWithTheme<CustomTheme>({
@@ -23,7 +23,7 @@ export const zh = defineConfigWithTheme<CustomTheme>({
     codeTransformers: [transformerTwoslash()],
     theme: {
       light: 'dracula-soft',
-      dark: 'github-dark-default'
+      dark: 'dark-plus'
     },
     lineNumbers: true,
     math: true, // require `markdown-it-mathjax3`

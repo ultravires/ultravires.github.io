@@ -2,22 +2,35 @@
 import type { Post } from '../posts.data';
 
 const { post } = defineProps<{
-  post: Post
+  post: Post;
 }>();
 </script>
 
 <template>
-  <div class="flex items-start gap-4">
-    <div class="order-1 max-md:hidden">
-      <span class="dark:text-neutral-400 text-neutral-300 text-lg whitespace-nowrap text-ellipsis overflow-hidden">{{ post.date.string }}</span>
-    </div>
-    <div class="order-2">
-      <a class="hover:text-primary whitespace-nowrap text-ellipsis overflow-hidden" :href="post.url">
-        <h2 :id="post.title" class="text-lg" :title="post.title">
+  <a
+    class="group block rounded-2xl p-4 hover:bg-neutral-50 dark:hover:bg-neutral-700"
+    :href="post.url"
+  >
+    <div class="flex flex-col items-start">
+      <div class="order-1 max-md:hidden">
+        <span class="ellipsis text-sm text-neutral-400 dark:text-neutral-400">
+          {{ post.date.string }}
+        </span>
+      </div>
+      <div class="order-2">
+        <h2
+          :id="post.title"
+          class="font-bold group-hover:text-primary"
+          :title="post.title"
+        >
           {{ post.title }}
         </h2>
-      </a>
-      <div v-if="post.excerpt" v-html="post.excerpt" class="dark:text-neutral-400 text-neutral-300"></div>
+        <div
+          v-if="post.excerpt"
+          v-html="post.excerpt"
+          class="font-thin text-neutral-600 dark:text-neutral-400"
+        ></div>
+      </div>
     </div>
-  </div>
+  </a>
 </template>

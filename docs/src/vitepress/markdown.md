@@ -27,7 +27,7 @@ VitePress 带有内置的 Markdown 扩展。
 
 要为标题指定自定义锚点而不是使用自动生成的锚点，请向标题添加后缀：
 
-```
+```markdown
 # 使用自定义锚点 {#my-anchor}
 ```
 
@@ -43,22 +43,23 @@ VitePress 带有内置的 Markdown 扩展。
 
 例如，给定以下目录结构：
 
-```
+```plaintext
 .
-├─ index.md
-├─ foo
-│  ├─ index.md
-│  ├─ one.md
-│  └─ two.md
-└─ bar
-   ├─ index.md
-   ├─ three.md
-   └─ four.md
+ ├─ index.md
+ ├─ foo
+ │  ├─ index.md
+ │  ├─ one.md
+ │  └─ two.md
+ └─ bar
+    ├─ index.md
+    ├─ three.md
+    └─ four.md
 ```
+
 
 假设现在处于 `foo/one.md` 文件中：
 
-```md
+```markdown
 [Home](/) <!-- 将用户导航至根目录下的 index.html -->
 [foo](/foo/) <!-- 将用户导航至目录 foo 下的 index.html -->
 [foo heading](./#heading) <!-- 将用户锚定到目录 foo 下的index文件中的一个标题上 -->
@@ -95,7 +96,7 @@ lang: en-US
 
 **输入**
 
-```
+```markdown
 | Tables        |      Are      |  Cool |
 | ------------- | :-----------: | ----: |
 | col 3 is      | right-aligned | $1600 |
@@ -115,7 +116,7 @@ lang: en-US
 
 **输入**
 
-```
+```markdown
 :tada: :100:
 ```
 
@@ -129,7 +130,7 @@ lang: en-US
 
 **输入**
 
-```
+```markdown
 [[toc]]
 ```
 
@@ -147,7 +148,7 @@ lang: en-US
 
 **输入**
 
-```md
+```markdown
 ::: info
 This is an info box.
 :::
@@ -197,7 +198,7 @@ This is a details block.
 
 **输入**
 
-````md
+````markdown
 ::: danger STOP
 危险区域，请勿继续
 :::
@@ -250,7 +251,7 @@ export default defineConfig({
 
 **语法**
 
-```md
+```markdown
 ::: raw
 Wraps in a <div class="vp-raw">
 :::
@@ -273,7 +274,7 @@ Wraps in a <div class="vp-raw">
 
   ```js
   import { postcssIsolateStyles } from 'vitepress';
-
+  
   export default {
     plugins: [postcssIsolateStyles()],
   };
@@ -291,7 +292,7 @@ Wraps in a <div class="vp-raw">
 
 VitePress 同样支持以标注的方式渲染 [GitHub 风格的警报](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)。它们和[自定义容器](#custom-containers)的渲染方式相同。
 
-```md
+```markdown
 > [!NOTE]
 > 强调用户在快速浏览文档时也不应忽略的重要信息。
 
@@ -329,7 +330,7 @@ VitePress 使用 [Shiki](https://github.com/shikijs/shiki) 在 Markdown 代码�
 
 **输入**
 
-````
+````markdown
 ```js
 export default {
   name: 'MyComponent',
@@ -338,7 +339,7 @@ export default {
 ```
 ````
 
-````
+````markdown
 ```html
 <ul>
   <li v-for="todo in todos" :key="todo.id">
@@ -369,7 +370,7 @@ export default {
 
 **输入**
 
-````
+````markdown
 ```js{4}
 export default {
   data () {
@@ -401,7 +402,7 @@ export default {
 
 **输入**
 
-````
+````markdown
 ```js{1,4,6-8}
 export default { // Highlighted
   data () {
@@ -437,7 +438,7 @@ export default { // Highlighted
 
 **输入**
 
-````
+````markdown
 ```js
 export default {
   data () {
@@ -469,7 +470,7 @@ export default {
 
 **输入**
 
-````
+````markdown
 ```js
 export default {
   data () {
@@ -499,7 +500,7 @@ export default {
 
 **输入**
 
-````
+````markdown
 ```js
 export default {
   data () {
@@ -531,7 +532,7 @@ export default {
 
 **输入**
 
-````
+````markdown
 ```js
 export default {
   data () {
@@ -575,7 +576,7 @@ export default {
 
 **输入**
 
-````md
+````markdown
 ```ts:no-line-numbers {1}
 // 禁用行号
 const line2 = 'This is line 2'
@@ -619,19 +620,19 @@ const line4 = 'This is line 4'
 
 可以通过下面的语法来从现有文件中导入代码片段：
 
-```md
+```markdown
 <<< @/filepath
 ```
 
 此语法同时支持[行高亮](#line-highlighting-in-code-blocks)：
 
-```md
+```markdown
 <<< @/filepath{highlightLines}
 ```
 
 **输入**
 
-```md
+```markdown
 <<< @/snippets/snippet.js{2}
 ```
 
@@ -646,7 +647,7 @@ const line4 = 'This is line 4'
 ::: tip
 `@` 的值对应于源代码根目录，默认情况下是 VitePress 项目根目录，除非配置了 `srcDir`。或者也可以从相对路径导入：
 
-```md
+```markdown
 <<< ../snippets/snippet.js
 ```
 
@@ -656,7 +657,7 @@ const line4 = 'This is line 4'
 
 **输入**
 
-```md
+```markdown
 <<< @/snippets/snippet-with-region.js#snippet{1}
 ```
 
@@ -670,7 +671,7 @@ const line4 = 'This is line 4'
 
 也可以像这样在大括号内(`{}`)指定语言：
 
-```md
+```markdown
 <<< @/snippets/snippet.cs{c#}
 
 <!-- 带行高亮: -->
@@ -690,7 +691,7 @@ const line4 = 'This is line 4'
 
 **输入**
 
-````md
+````markdown
 ::: code-group
 
 ```js [config.js]
@@ -748,7 +749,7 @@ export default config;
 
 **输入**
 
-```md
+```markdown
 ::: code-group
 
 <!-- 文件名默认用作标题 -->
@@ -784,7 +785,7 @@ export default config;
 
 **输入**
 
-```md
+```markdown
 # Docs
 
 ## Basics
@@ -794,7 +795,7 @@ export default config;
 
 **Part file** (`parts/basics.md`)
 
-```md
+```markdown
 Some getting started stuff.
 
 ### Configuration
@@ -804,7 +805,7 @@ Can be created using `.foorc.json`.
 
 **等价代码**
 
-```md
+```markdown
 # Docs
 
 ## Basics
@@ -820,7 +821,7 @@ Can be created using `.foorc.json`.
 
 **输入**
 
-```md
+```markdown
 # Docs
 
 ## Basics
@@ -830,7 +831,7 @@ Can be created using `.foorc.json`.
 
 **Part file** (`parts/basics.md`)
 
-```md
+```markdown
 Some getting started stuff.
 
 ### Configuration
@@ -840,7 +841,7 @@ Can be created using `.foorc.json`.
 
 **等价代码**
 
-```md
+```markdown
 # Docs
 
 ## Basics
@@ -875,7 +876,7 @@ export default {
 
 **输入**
 
-```md
+```markdown
 When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are
 $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
 

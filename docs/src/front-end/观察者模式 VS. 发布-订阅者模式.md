@@ -11,7 +11,7 @@ tags:
   - 设计模式
 ---
 
-**观察者模式**和**发布-订阅者模式**总是让人傻傻分不清。
+观察者模式和发布-订阅者模式总是让人傻傻分不清。
 
 ---
 
@@ -85,7 +85,7 @@ class Cosplayer {
 
   notify() {
     let index = this.observers.length - 1;
-    while(-1 !== index) {
+    while (-1 !== index) {
       const observer = this.observers[index];
       observer.capture();
       index -= 1;
@@ -122,7 +122,7 @@ class Cosplayer {
   // ...
   notify() {
     let index = this.observers.length - 1;
-    while(-1 !== index) {
+    while (-1 !== index) {
       const observer = this.observers[index];
       observer.capture(); // 这里 capture 方法是 Photographer 特有的
       index -= 1;
@@ -171,7 +171,7 @@ class Cosplayer {
 
   notify() {
     let index = this.observers.length - 1;
-    while(-1 !== index) {
+    while (-1 !== index) {
       const observer = this.observers[index];
       observer.update();
       index -= 1;
@@ -213,24 +213,24 @@ class Photographer extends Observer {
     super();
     this.name = name;
   }
-  
+
   capture() {
     console.log(`📷 ${this.name}拍到了！`);
   }
-  
+
   update() {
     this.capture();
   }
 }
 
 class Subject {
-	observers = [];
-  
+  observers = [];
+
   constructor() {}
 
   notify() {
     let index = this.observers.length - 1;
-    while(-1 !== index) {
+    while (-1 !== index) {
       const observer = this.observers[index];
       observer.update();
       index -= 1;
@@ -248,12 +248,12 @@ class Subject {
 
 class Cosplayer extends Subject {
   name = '角色扮演者';
-  
+
   constructor(name) {
     super();
     this.name = name;
   }
-  
+
   move() {
     console.log(`💃🏻 ${this.name}换姿势！`);
     this.notify();
@@ -283,7 +283,8 @@ class EventBus {
   }
 
   on(eventName, callback) {
-    if (typeof callback !== 'function') throw new Error('Callback must be function.');
+    if (typeof callback !== 'function')
+      throw new Error('Callback must be function.');
     const handlers = this.listeners.get(eventName);
     if (handlers) {
       handlers.push(callback);
@@ -295,7 +296,7 @@ class EventBus {
   off(eventName, callback) {
     const handlers = this.listeners.get(eventName);
     if (handlers) {
-	    handlers.splice(handlers.indexOf(callback), 1); 
+      handlers.splice(handlers.indexOf(callback), 1);
     }
   }
 
