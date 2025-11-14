@@ -1,6 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
-import { VueMcp } from 'vite-plugin-vue-mcp';
 import svgLoader from 'vite-svg-loader';
 import { defineConfigWithTheme } from 'vitepress';
 import { withMermaid } from 'vitepress-plugin-mermaid';
@@ -61,8 +60,7 @@ export default defineConfigWithTheme<CustomTheme>(
           defaultImport: 'component'
         }),
         tailwindcss(),
-        vueDevTools(),
-        VueMcp()
+        vueDevTools()
       ]
     }
   })

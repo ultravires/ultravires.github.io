@@ -13,6 +13,12 @@ export const zh = defineConfigWithTheme<CustomTheme>({
     footer: footer(),
     outline: 'deep',
     aside: 'left',
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'full'
+      }
+    },
     search: {
       provider: 'algolia',
       options: algoliaSearchOptions()

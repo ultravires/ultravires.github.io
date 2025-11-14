@@ -43,9 +43,7 @@ export default createContentLoader('**/*.md', {
         tags: frontmatter.tags ?? [],
         url,
         excerpt, // 渲染的摘录 HTML（第一个 `---` 上面的内容）
-        date: frontmatter.date
-          ? formatDate(frontmatter.date)
-          : (getGitLastUpdatedTime(src) ?? formatDate(frontmatter.date)),
+        date: formatDate(frontmatter.date),
         hidden: frontmatter.hidden || false,
         frontmatter: frontmatter // 原始 frontmatter 对象
       }))

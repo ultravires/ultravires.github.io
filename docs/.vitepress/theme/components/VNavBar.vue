@@ -12,7 +12,9 @@ import VNavBarLink from './VNavBarLink.vue';
 import VRandomArticle from './VRandomArticle.vue';
 import VThemeToggle from './VThemeToggle.vue';
 
-const VPAlgoliaSearchBox = __ALGOLIA__ ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue')) : () => null;
+const VPAlgoliaSearchBox = __ALGOLIA__
+  ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue'))
+  : () => null;
 
 const { theme, frontmatter, page } = useData();
 const loaded = ref(false);
@@ -56,7 +58,10 @@ onMounted(() => {
   preconnect();
 
   const handleSearchHotKey = (event: KeyboardEvent) => {
-    if ((event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) || (!isEditingContent(event) && event.key === '/')) {
+    if (
+      (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) ||
+      (!isEditingContent(event) && event.key === '/')
+    ) {
       event.preventDefault();
       load();
       remove();
@@ -99,7 +104,12 @@ function isEditingContent(event: KeyboardEvent): boolean {
   const element = event.target as HTMLElement;
   const tagName = element.tagName;
 
-  return element.isContentEditable || tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA';
+  return (
+    element.isContentEditable ||
+    tagName === 'INPUT' ||
+    tagName === 'SELECT' ||
+    tagName === 'TEXTAREA'
+  );
 }
 
 function handleSearch() {
@@ -113,16 +123,29 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
   <nav
     ref="navBarRef"
     class="VNavBar @container top-0 z-10 h-[var(--web-header-height)] w-full backdrop-blur-sm transition-[height] duration-500 [&.fixed]:h-[55px] [&.fixed]:border-b [&.fixed]:border-line/90 [&.fixed]:bg-white/90 [&.fixed]:text-black dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white"
-    :class="[frontmatter?.layout !== 'home' && frontmatter?.banner ? 'text-white' : 'text-normal', { fixed: !arrivedState.top }]"
+    :class="[
+      frontmatter?.layout !== 'home' && frontmatter?.banner
+        ? 'text-white'
+        : 'text-normal',
+      { fixed: !arrivedState.top }
+    ]"
   >
-    <div class="@8xl:max-w-[87.5rem] relative z-0 mx-auto flex h-full items-center justify-center gap-4 px-8 max-md:px-2">
+    <div
+      class="@8xl:max-w-[87.5rem] relative z-0 mx-auto flex h-full items-center justify-center gap-4 px-8 max-md:px-2"
+    >
       <!-- Logo -->
       <VLogo />
 
       <!-- Nav -->
       <Transition name="slide-fade-reverse">
-        <ul v-show="!showTitle" class="absolute -z-10 mx-auto flex h-full w-full items-center justify-center gap-4 max-md:hidden">
-          <li v-for="item in theme.nav" :key="item.text">
+        <ul
+          v-show="!showTitle"
+          class="absolute -z-10 mx-auto flex h-full w-full items-center justify-center gap-4 max-md:hidden"
+        >
+          <li
+            v-for="item in theme.nav"
+            :key="item.text"
+          >
             <VNavBarLink
               class="group text-md tracking-8 decoration-none relative rounded-full font-AlibabaPuHuiTiBold leading-none whitespace-nowrap hover:bg-primary hover:text-white dark:hover:text-black"
               :item="item"
@@ -133,9 +156,19 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
             @click="handleSearch"
           >
             <template v-if="provider === 'algolia'">
-              <VPAlgoliaSearchBox v-if="loaded" :algolia="theme.search?.options ?? theme.algolia" @vue:beforeMount="actuallyLoaded = true" />
-              <div v-if="!actuallyLoaded" id="docsearch">
-                <VIconSearch title="搜索" @click="load" />
+              <VPAlgoliaSearchBox
+                v-if="loaded"
+                :algolia="theme.search?.options ?? theme.algolia"
+                @vue:beforeMount="actuallyLoaded = true"
+              />
+              <div
+                v-if="!actuallyLoaded"
+                id="docsearch"
+              >
+                <VIconSearch
+                  title="搜索"
+                  @click="load"
+                />
               </div>
             </template>
           </li>
@@ -143,7 +176,12 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
       </Transition>
 
       <Transition name="slide-fade">
-        <div v-show="showTitle" class="absolute mx-auto font-bold">{{ page.title || '向成渝 —— 专注于计算机科学与技术' }}</div>
+        <div
+          v-show="showTitle"
+          class="absolute mx-auto font-bold"
+        >
+          {{ page.title || '向成渝 —— 专注于计算机科学与技术' }}
+        </div>
       </Transition>
 
       <div class="ml-auto flex items-center max-md:ml-auto">
