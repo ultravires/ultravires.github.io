@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import VPostList from '@theme/components/VPostList.vue';
+import { data as posts } from '../posts.data.js';
 </script>
 
 <template>
@@ -8,7 +9,7 @@ import VPostList from '@theme/components/VPostList.vue';
       <div
         class="mx-auto rounded-xl border border-slate-200 bg-white px-8 py-4 dark:border-neutral-700 dark:bg-neutral-800"
       >
-        <VPostList />
+        <VPostList :posts="posts" />
       </div>
     </main>
   </section>
