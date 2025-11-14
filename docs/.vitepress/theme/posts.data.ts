@@ -43,7 +43,9 @@ export default createContentLoader('**/*.md', {
         tags: frontmatter.tags ?? [],
         url,
         excerpt, // 渲染的摘录 HTML（第一个 `---` 上面的内容）
-        date: getGitLastUpdatedTime(src) || formatDate(frontmatter.date),
+        date: frontmatter.date
+          ? formatDate(frontmatter.date)
+          : (getGitLastUpdatedTime(src) ?? formatDate(frontmatter.date)),
         hidden: frontmatter.hidden || false,
         frontmatter: frontmatter // 原始 frontmatter 对象
       }))
@@ -92,26 +94,6 @@ function getGitLastUpdatedTime(
     };
   } catch (error) {
     console.warn(`无法获取文件 ${filePath} 的Git最后更新时间:`, error);
-    return null;
-  }
-}
-
-// 获取本地文件最后修改时间
-function getLatestModifiedTime(
-  filePath: string | undefined
-): Post['date'] | null {
-  if (!filePath) return null;
-
-  try {
-    // 获取文件的最后修改时间
-    const { mtime } = require('fs').statSync(filePath);
-
-    return {
-      time: +mtime,
-      string: dayjs(mtime).fromNow()
-    };
-  } catch (error) {
-    console.warn(`无法获取文件 ${filePath} 的最后修改时间:`);
     return null;
   }
 }
