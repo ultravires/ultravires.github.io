@@ -28,7 +28,7 @@ export const zh = defineConfigWithTheme<CustomTheme>({
   markdown: {
     codeTransformers: [transformerTwoslash()],
     theme: {
-      light: 'dracula-soft',
+      light: 'one-light',
       dark: 'dark-plus'
     },
     lineNumbers: true,

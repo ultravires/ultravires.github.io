@@ -9,6 +9,7 @@
   --web-code-copy-code-active-text: rgba(128, 128, 128, 1);
   --web-code-copy-copied-text-content: '已复制';
 
+  --web-code-block-bg: #fafafa;
   --web-code-tab-bg: #fafafa;
   --web-code-tab-active-bar-color: #4b58de;
   --web-code-tab-divider: #e5e5e5;
@@ -28,6 +29,7 @@
   --web-code-copy-code-active-text: rgba(128, 128, 128, 1);
   --web-code-copy-copied-text-content: '已复制';
 
+  --web-code-block-bg: #1e1e1e;
   --web-code-tab-bg: #0a0a0a;
   --web-code-tab-active-bar-color: #4b58de;
   --web-code-tab-divider: #262626;
@@ -36,8 +38,19 @@
   --web-code-tab-active-text-color: white;
 }
 
+.prose div[class*='language-'].line-numbers-mode {
+  padding-left: 32px;
+  background-color: var(--web-code-block-bg);
+  border: 1px solid var(--web-code-tab-divider);
+}
+
 .prose div[class*='language-'] {
   position: relative;
+  border-radius: 0.25rem;
+}
+
+.prose div[class*='language-'] pre {
+  margin: 0;
 }
 
 .prose [class*='language-'] > button.copy.copied:before,

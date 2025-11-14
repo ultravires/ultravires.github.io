@@ -1,7 +1,6 @@
 import tailwindcss from '@tailwindcss/vite';
-import vueDevTools from 'vite-plugin-vue-devtools';
 import svgLoader from 'vite-svg-loader';
-import { defineConfigWithTheme } from 'vitepress';
+import { defineConfigWithTheme, type Plugin } from 'vitepress';
 import { withMermaid } from 'vitepress-plugin-mermaid';
 import { zh } from './config/zh.js';
 import { genFeed } from './genFeed.js';
@@ -59,8 +58,7 @@ export default defineConfigWithTheme<CustomTheme>(
           svgo: false,
           defaultImport: 'component'
         }),
-        tailwindcss(),
-        vueDevTools()
+        tailwindcss() as Plugin[]
       ]
     }
   })
