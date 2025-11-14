@@ -7,11 +7,21 @@ self:
   name: 向成渝
   email: x555666777@qq.com
   nickname: 丞相
-  bio: '前端开发者，热爱编程和技术分享'
+  bio: '👋，我是向成渝，现已定居中国湖北武汉，在达观数据担任前端工程师。'
   location: 武汉，中国
+  works:
+    - company: 达观数据
+      position: 前端工程师
+      time: 2025.07 - 至今
+      logo: https://liguo.run/_next/static/media/datagrand.a06b05db.png
+    - company: 中宏立达
+      position: 前端工程师
+      time: 2018.09 - 2025.07
+      logo: https://leadal.com/images/logo.png
   links:
     - text: Github
       link: https://github.com/ultravires
+      icon: mdi:github
   personalities:
     - text: 倡导者
       flag: INFJ-A

@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@braintree/sanitize-url": "^7.1.1",
+    "@iconify/vue": "^5.0.0",
     "@shikijs/vitepress-twoslash": "^1.29.2",
     "@tailwindcss/typography": "0.5.16",
     "@tailwindcss/vite": "^4.1.17",
