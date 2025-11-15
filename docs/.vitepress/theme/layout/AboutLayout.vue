@@ -20,14 +20,14 @@ const user = frontmatter.value?.self ?? {};
       />
       <div class="mt-6">
         <h2 class="my-4 text-4xl font-semibold">前端工程师</h2>
-        <p class="text-gray-600">{{ user.bio }}</p>
+        <p class="text-gray-600 dark:text-gray-200">{{ user.bio }}</p>
       </div>
       <div class="mt-4">
         <a
           v-for="link in user.links"
           :href="link.link"
           target="_blank"
-          class="inline-block text-gray-600 hover:text-black"
+          class="inline-block text-gray-600 hover:text-black dark:text-gray-200 dark:hover:text-white"
         >
           <Icon
             :icon="link.icon"
@@ -39,11 +39,11 @@ const user = frontmatter.value?.self ?? {};
 
     <div class="mt-12 flex w-full gap-4">
       <div class="flex-1">
-        <Content class="prose max-w-none" />
+        <Content class="prose max-w-none dark:prose-invert" />
       </div>
 
       <div
-        class="max-w-96 shrink-0 rounded-2xl border border-neutral-100/10 bg-white p-4 shadow"
+        class="w-96 shrink-0 rounded-2xl border border-neutral-100/10 bg-white p-4 shadow dark:bg-neutral-700"
       >
         <h3 class="flex items-center">
           <Icon
@@ -58,13 +58,13 @@ const user = frontmatter.value?.self ?? {};
             class="flex w-full items-center gap-2 p-4"
           >
             <img
-              class="h-12 w-12 rounded-full border border-neutral-100/20 object-contain p-2 shadow"
+              class="h-12 w-12 rounded-full bg-white border border-neutral-100/20 object-contain p-2 shadow"
               :src="work.logo"
             />
             <div class="flex-1">
               <p class="font-bold">{{ work.company }}</p>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-600">{{ work.position }}</span>
+                <span class="text-gray-600 dark:text-gray-200">{{ work.position }}</span>
                 <span class="text-gray-400">{{ work.time }}</span>
               </div>
             </div>
