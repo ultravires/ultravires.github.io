@@ -122,7 +122,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 <template>
   <nav
     ref="navBarRef"
-    class="VNavBar @container top-0 z-10 h-[var(--web-header-height)] w-full backdrop-blur-sm transition-[height] duration-500 [&.fixed]:h-[55px] [&.fixed]:border-b [&.fixed]:border-line/90 [&.fixed]:bg-white/90 [&.fixed]:text-black dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white"
+    class="VNavBar @container top-0 z-10 h-(--web-header-height) w-full backdrop-blur-sm transition-[height] duration-500 [&.fixed]:h-[55px] [&.fixed]:border-b [&.fixed]:border-line/90 [&.fixed]:bg-white/90 [&.fixed]:text-black dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white"
     :class="[
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'

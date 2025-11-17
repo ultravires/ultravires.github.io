@@ -19,7 +19,7 @@ const user = frontmatter.value?.self ?? {};
         class="block h-16 w-16 rounded-full shadow"
       />
       <div class="mt-6">
-        <h2 class="my-4 text-4xl font-semibold">前端工程师</h2>
+        <h2 class="my-4 text-4xl font-semibold">{{ user.name }}</h2>
         <p class="text-gray-600 dark:text-gray-200">{{ user.bio }}</p>
       </div>
       <div class="mt-4">
@@ -58,13 +58,15 @@ const user = frontmatter.value?.self ?? {};
             class="flex w-full items-center gap-2 p-4"
           >
             <img
-              class="h-12 w-12 rounded-full bg-white border border-neutral-100/20 object-contain p-2 shadow"
+              class="h-12 w-12 rounded-full border border-neutral-100/20 bg-white object-contain p-2 shadow"
               :src="work.logo"
             />
             <div class="flex-1">
               <p class="font-bold">{{ work.company }}</p>
               <div class="mb-2 flex justify-between">
-                <span class="text-gray-600 dark:text-gray-200">{{ work.position }}</span>
+                <span class="text-gray-600 dark:text-gray-200">
+                  {{ work.position }}
+                </span>
                 <span class="text-gray-400">{{ work.time }}</span>
               </div>
             </div>

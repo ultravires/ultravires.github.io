@@ -4,7 +4,8 @@ author:
   name: 向成渝
   email: x555666777@qq.com
 self:
-  name: 向成渝
+  name: 前端工程师
+  birth: 1997-10-01
   email: x555666777@qq.com
   nickname: 丞相
   bio: '👋，我是向成渝，现已定居中国湖北武汉，在达观数据担任前端工程师。'
@@ -29,4 +30,4 @@ self:
       link: https://www.16personalities.com/ch/%E7%B1%BB%E5%9E%8B%E6%8F%8F%E8%BF%B0
 ---
 
-欢迎访问我的个人博客，这里是我记录一些学习笔记和项目经验。
+欢迎访问我的个人博客，这里是我记录一些学习笔记和项目经验的地方。
