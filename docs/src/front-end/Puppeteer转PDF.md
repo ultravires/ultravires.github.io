@@ -1,5 +1,6 @@
 ---
 title: 利用 Puppeteer 实现 HTML 转 PDF
+date: 2025-10-09 15:13:50
 ---
 
 Puppeteer 可以实现服务端渲染 HTML 并将其转为 PDF。
