@@ -56,7 +56,6 @@ VitePress 带有内置的 Markdown 扩展。
     └─ four.md
 ```
 
-
 假设现在处于 `foo/one.md` 文件中：
 
 ```markdown
@@ -238,9 +237,9 @@ export default defineConfig({
       warningLabel: '警告',
       dangerLabel: '危险',
       infoLabel: '信息',
-      detailsLabel: '详细信息',
-    },
-  },
+      detailsLabel: '详细信息'
+    }
+  }
   // ...
 });
 ```
@@ -274,9 +273,9 @@ Wraps in a <div class="vp-raw">
 
   ```js
   import { postcssIsolateStyles } from 'vitepress';
-  
+
   export default {
-    plugins: [postcssIsolateStyles()],
+    plugins: [postcssIsolateStyles()]
   };
   ```
 
@@ -284,7 +283,7 @@ Wraps in a <div class="vp-raw">
 
   ```js
   postcssIsolateStyles({
-    includeFiles: [/vp-doc\.css/], // 默认为 /base\.css/
+    includeFiles: [/vp-doc\.css/] // 默认为 /base\.css/
   });
   ```
 
@@ -333,16 +332,19 @@ VitePress 使用 [Shiki](https://github.com/shikijs/shiki) 在 Markdown 代码�
 ````markdown
 ```js
 export default {
-  name: 'MyComponent',
+  name: 'MyComponent'
   // ...
-}
+};
 ```
 ````
 
 ````markdown
 ```html
 <ul>
-  <li v-for="todo in todos" :key="todo.id">
+  <li
+    v-for="todo in todos"
+    :key="todo.id"
+  >
     {{ todo.text }}
   </li>
 </ul>
@@ -353,14 +355,19 @@ export default {
 
 ```js
 export default {
-  name: 'MyComponent',
+  name: 'MyComponent'
   // ...
 };
 ```
 
 ```html
 <ul>
-  <li v-for="todo in todos" :key="todo.id">{{ todo.text }}</li>
+  <li
+    v-for="todo in todos"
+    :key="todo.id"
+  >
+    {{ todo.text }}
+  </li>
 </ul>
 ```
 
@@ -441,12 +448,12 @@ export default { // Highlighted
 ````markdown
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Highlighted!' // [!!code highlight]
-    }
+    };
   }
-}
+};
 ```
 ````
 
@@ -456,9 +463,9 @@ export default {
 export default {
   data() {
     return {
-      msg: 'Highlighted!', // [!code highlight]
+      msg: 'Highlighted!' // [!code highlight]
     };
-  },
+  }
 };
 ```
 
@@ -473,12 +480,12 @@ export default {
 ````markdown
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Focused!' // [!!code focus]
-    }
+    };
   }
-}
+};
 ```
 ````
 
@@ -488,9 +495,9 @@ export default {
 export default {
   data() {
     return {
-      msg: 'Focused!', // [!code focus]
+      msg: 'Focused!' // [!code focus]
     };
-  },
+  }
 };
 ```
 
@@ -535,13 +542,13 @@ export default {
 ````markdown
 ```js
 export default {
-  data () {
+  data() {
     return {
       msg: 'Error', // [!!code error]
       msg: 'Warning' // [!!code warning]
-    }
+    };
   }
-}
+};
 ```
 ````
 
@@ -552,9 +559,9 @@ export default {
   data() {
     return {
       msg: 'Error', // [!code error]
-      msg: 'Warning', // [!code warning]
+      msg: 'Warning' // [!code warning]
     };
-  },
+  }
 };
 ```
 
@@ -565,8 +572,8 @@ export default {
 ```js
 export default {
   markdown: {
-    lineNumbers: true,
-  },
+    lineNumbers: true
+  }
 };
 ```
 
@@ -869,8 +876,8 @@ npm add -D markdown-it-mathjax3
 // .vitepress/config.ts
 export default {
   markdown: {
-    math: true,
-  },
+    math: true
+  }
 };
 ```
 
@@ -911,9 +918,9 @@ export default {
   markdown: {
     image: {
       // 默认禁用图片懒加载
-      lazyLoading: true,
-    },
-  },
+      lazyLoading: true
+    }
+  }
 };
 ```
 
@@ -931,7 +938,7 @@ export default defineConfig({
     // markdown-it-anchor 的选项
     // https://github.com/valeriangalliat/markdown-it-anchor#usage
     anchor: {
-      permalink: markdownItAnchor.permalink.headerLink(),
+      permalink: markdownItAnchor.permalink.headerLink()
     },
     // @mdit-vue/plugin-toc 的选项
     // https://github.com/mdit-vue/mdit-vue/tree/main/packages/plugin-toc#options
@@ -939,7 +946,7 @@ export default defineConfig({
     config: (md) => {
       // 使用更多的 Markdown-it 插件！
       md.use(markdownItFoo);
-    },
-  },
+    }
+  }
 });
 ```

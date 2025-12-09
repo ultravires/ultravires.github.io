@@ -147,7 +147,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
             :key="item.text"
           >
             <VNavBarLink
-              class="group text-md tracking-8 decoration-none relative rounded-full font-AlibabaPuHuiTiBold leading-none whitespace-nowrap hover:bg-primary hover:text-white dark:hover:text-black"
+              class="group text-md tracking-8 decoration-none relative rounded-full leading-none whitespace-nowrap hover:bg-primary hover:text-white dark:hover:text-black"
               :item="item"
             />
           </li>

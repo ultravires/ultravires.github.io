@@ -13,37 +13,43 @@ const { post } = defineProps<{
 
 <template>
   <article
-    class="dark:bg-neutral-900 hover:border-primary group/post-card w-full h-[340px] bg-white border border-solid border-line rounded-lg overflow-hidden"
+    class="group/post-card h-[340px] w-full overflow-hidden rounded-lg border border-solid border-line bg-white hover:border-primary dark:bg-neutral-900"
   >
-    <VLink class="block h-[calc(100%-9rem)] overflow-hidden select-none" :href="post.url" draggable="false">
+    <VLink
+      class="block h-[calc(100%-9rem)] overflow-hidden select-none"
+      :href="post.url"
+      draggable="false"
+    >
       <VPostCover :post="post" />
     </VLink>
     <VLink
-      class="flex flex-col justify-center w-full px-4 h-36"
+      class="flex h-36 w-full flex-col justify-center px-4"
       :href="post.url"
     >
       <h2
-        class="mb-4 text-xl whitespace-nowrap overflow-hidden text-ellipsis group-hover/post-card:text-primary wave-text font-AlibabaPuHuiTiSemiBold dark:text-white"
+        class="wave-text mb-4 overflow-hidden text-xl text-ellipsis whitespace-nowrap group-hover/post-card:text-primary dark:text-white"
       >
         {{ post.title }}
       </h2>
       <div
         v-html="post.excerpt"
-        class="max-sm:hidden text-sm line-clamp-2 text-neutral-600 dark:text-neutral-400"
+        class="line-clamp-2 text-sm text-neutral-600 max-sm:hidden dark:text-neutral-400"
       ></div>
-      <div class="flex justify-between mt-4">
+      <div class="mt-4 flex justify-between">
         <div class="space-x-2">
           <span
             v-for="tag in post?.tags ?? []"
             :key="tag"
             class="text-sm"
           >
-            <span class="before:content-['#'] before:font-bold before:text-neutral-500">{{ tag }}</span>
+            <span
+              class="before:font-bold before:text-neutral-500 before:content-['#']"
+            >
+              {{ tag }}
+            </span>
           </span>
         </div>
-        <div
-          class="text-sm"
-        >
+        <div class="text-sm">
           {{ post.date.string }}
         </div>
       </div>
@@ -61,7 +67,7 @@ const { post } = defineProps<{
 }
 
 .group\/post-card:hover .wave-text::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -76,8 +82,8 @@ const { post } = defineProps<{
   animation: wave 1.5s infinite linear;
 }
 
-[data-theme="dark"] .group\/post-card:hover .wave-text::after {
-  content: "";
+[data-theme='dark'] .group\/post-card:hover .wave-text::after {
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -94,10 +100,14 @@ const { post } = defineProps<{
 
 @keyframes wave {
   0% {
-    background-position: 0 0, -10px 0;
+    background-position:
+      0 0,
+      -10px 0;
   }
   100% {
-    background-position: 20px 0, 10px 0;
+    background-position:
+      20px 0,
+      10px 0;
   }
 }
 </style>
