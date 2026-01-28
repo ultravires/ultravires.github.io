@@ -45,6 +45,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.1.17
         version: 4.1.17(vite@7.2.2(@types/node@20.19.25)(jiti@2.6.1)(lightningcss@1.30.2))
+      '@types/colorthief':
+        specifier: ^2.6.1
+        version: 2.6.1
       '@types/node':
         specifier: ^20.19.25
         version: 20.19.25
@@ -1197,6 +1200,9 @@ packages:
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
+
+  '@types/colorthief@2.6.1':
+    resolution: {integrity: sha512-3hlRky7ybPuQDNx3RV29P/CTvuC7zkk//Xt/NyOwNg5RhL/y54a0q4aW7MNMkvBkGJqX2g2igNCoCh3ZtK4gZQ==}
 
   '@types/d3-array@3.2.2':
     resolution: {integrity: sha512-hOLWVbm7uRza0BYXpIIW5pxfrKe0W+D5lrFiAEYR+pb6w3N2SwSMaJbXdUfSEv+dT4MfHBLtn5js0LAWaO6otw==}
@@ -4124,6 +4130,10 @@ snapshots:
   '@tokenizer/token@0.3.0': {}
 
   '@trysound/sax@0.2.0': {}
+
+  '@types/colorthief@2.6.1':
+    dependencies:
+      '@types/node': 20.19.25
 
   '@types/d3-array@3.2.2': {}
 
