@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress';
+import GlitchArtText from './GlitchArtText.vue';
 
 const { site, theme } = useData();
 const siteData = site.value;
@@ -8,9 +9,9 @@ const themeData = theme.value;
 
 <template>
   <a
-    class="decoration-none text-md text-xl leading-none whitespace-nowrap"
+    class="decoration-none text-md whitespace-nowrap text-xl leading-none"
     href="/"
   >
-    {{ themeData.siteTitle || siteData.title }}
+    <GlitchArtText :text="themeData.siteTitle || siteData.title" />
   </a>
 </template>

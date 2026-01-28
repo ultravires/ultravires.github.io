@@ -16,6 +16,43 @@
   --web-code-tab-text-color: rgba(128, 128, 128, 1);
   --web-code-tab-hover-text-color: black;
   --web-code-tab-active-text-color: black;
+
+  --vp-code-line-number-background-color: transparent;
+  --vp-code-block-divider-color: rgb(136 136 136 / 50%);
+  --vp-code-font-size: 0.9em;
+  --vp-code-line-number-color: #999;
+  --vp-code-line-height: 1.7777778;
+}
+
+[data-theme='light'] {
+  .prose {
+    :not(pre) > code:not(:where([class~='not-prose'], [class~='not-prose'])) {
+      background-color: #f1f1f1;
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+    }
+
+    :where(code):not(
+        :where([class~='not-prose'], [class~='not-prose'] *)
+      )::before {
+      content: none;
+    }
+
+    :where(code):not(
+        :where([class~='not-prose'], [class~='not-prose'] *)
+      )::after {
+      content: none;
+    }
+  }
+
+  .shiki,
+  .shiki span {
+    background-color: var(--shiki-light-bg) !important;
+    color: var(--shiki-light);
+    font-style: var(--shiki-light-font-style);
+    font-weight: var(--shiki-light-font-weight);
+    text-decoration: var(--shiki-light-text-decoration);
+  }
 }
 
 [data-theme='dark'] {
@@ -36,6 +73,28 @@
   --web-code-tab-text-color: rgba(128, 128, 128, 1);
   --web-code-tab-hover-text-color: white;
   --web-code-tab-active-text-color: white;
+
+  --vp-code-line-number-background-color: transparent;
+  --vp-code-block-divider-color: rgb(49 49 49 / 50%);
+  --vp-code-line-number-color: #444;
+
+  .prose {
+    :not(pre) > code:not(:where([class~='not-prose'], [class~='not-prose'])) {
+      background-color: #2f2f2f;
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+    }
+  }
+
+  .shiki,
+  .shiki span {
+    background-color: var(--shiki-dark-bg) !important;
+    color: var(--shiki-dark);
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
+    text-underline-offset: 6px;
+  }
 }
 
 .prose div[class*='language-'].line-numbers-mode {
@@ -211,4 +270,27 @@
 .vp-code-group div[class*='language-'].active,
 .vp-block.active {
   display: block;
+}
+
+.line-numbers-wrapper {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 32px;
+  background-color: var(--vp-code-line-number-background-color);
+  border-right: 1px solid var(--vp-code-block-divider-color);
+  opacity: 0.6;
+  text-align: center;
+  font-family: var(--vp-font-family-mono);
+  font-size: var(--vp-code-font-size);
+  line-height: var(--vp-code-line-height);
+  color: var(--vp-code-line-number-color);
+  transition:
+    border-color 0.5s,
+    color 0.5s;
+  border-radius: 0.5rem 0 0 0.5rem;
+  padding-top: 1.1111111em;
+  padding-bottom: 1.1111111em;
 }

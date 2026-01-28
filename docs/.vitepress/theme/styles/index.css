@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+@import './vars.css';
+@import './base.css';
+@import './code.css';
+@import './docsearch.css';
+
+@source "../../theme";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  /* 颜色 */
+  --color-primary-light: rgb(71 89 230);
+  --color-primary-dark: rgb(255 107 107);
+  --color-primary: var(--color-primary-light);
+  --color-muted-light: rgb(247 249 254);
+  --color-muted-dark: rgb(23 23 23);
+  --color-muted: var(--color-muted-light);
+
+  --color-line-light: var(--color-slate-200);
+  --color-line-dark: var(--color-neutral-800);
+  --color-line: var(--color-line-light);
+
+  /* 字体 */
+  --font-AlibabaPuHuiTiRegular: '阿里巴巴普惠体 3.0 Regular';
+  --font-AlibabaPuHuiTiMedium: '阿里巴巴普惠体 3.0 Medium';
+  --font-AlibabaPuHuiTiSemiBold: '阿里巴巴普惠体 3.0 SemiBold';
+  --font-AlibabaPuHuiTiBold: '阿里巴巴普惠体 3.0 Bold';
+
+  /* 宽 */
+  --width-em: 1em;
+
+  /* 高 */
+  --height-em: 1em;
+
+  --shadow-card: 0 8px 16px -4px;
+
+  --animate-progress-timeline: progress-timeline 1s linear forwards;
+
+  @keyframes progress-timeline {
+    from {
+    }
+    to {
+    }
+  }
+}
+
+@layer utilities {
+  .ellipsis {
+    @apply overflow-hidden text-ellipsis whitespace-nowrap;
+  }
+  .gutter {
+    @apply border-x-(--pattern-fg) bg-size-[10px_10px] [--pattern-fg:var(--color-gray-950)]/5 dark:[--pattern-fg:var(--color-white)]/10 row-span-5 row-start-1 border-x bg-[repeating-linear-gradient(315deg,var(--pattern-fg)_0,var(--pattern-fg)_1px,transparent_0,transparent_50%)] bg-fixed max-lg:hidden;
+  }
+  /* 基础表格样式重置 */
+  .prose :where(table):not(:where([class~='not-prose'] *)) {
+    @apply mx-6 w-full border-collapse;
+  }
+
+  /* 表头样式 */
+  .prose :where(thead):not(:where([class~='not-prose'] *)) {
+    @apply border-b-2 border-[#e5e7eb];
+  }
+
+  .prose :where(th):not(:where([class~='not-prose'] *)) {
+    @apply px-3 py-4 text-left font-semibold;
+  }
+
+  /* 表格内容样式 */
+  .prose :where(td):not(:where([class~='not-prose'] *)) {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb; /* 浅色分隔线 */
+    vertical-align: middle;
+  }
+}

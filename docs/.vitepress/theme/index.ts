@@ -1,5 +1,5 @@
 import '@shikijs/vitepress-twoslash/style.css';
-import './styles/tailwind.css';
+import './styles/index.css';
 
 import type { Theme } from 'vitepress';
 import Layout from './layout/index.vue';
