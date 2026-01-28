@@ -1,7 +1,7 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 import PageContainer from '@theme/components/PageContainer.vue';
-import { getAvatarUrl } from '@theme/composables/useGravatar';
+import VAvatar from '@theme/components/VAvatar.vue';
 import { Content, useData } from 'vitepress';
 
 const { frontmatter } = useData();
@@ -13,11 +13,6 @@ const user = frontmatter.value?.self ?? {};
   <PageContainer>
     <!-- 基础信息 -->
     <div class="mb-4">
-      <img
-        :src="getAvatarUrl(user.email)"
-        alt="Avatar"
-        class="block h-16 w-16 rounded-full shadow"
-      />
       <div class="mt-6">
         <h2 class="my-4 text-4xl font-semibold">{{ user.name }}</h2>
         <p class="text-gray-600 dark:text-gray-200">{{ user.bio }}</p>
@@ -39,12 +34,13 @@ const user = frontmatter.value?.self ?? {};
 
     <div class="mt-12 flex w-full gap-4">
       <div class="flex-1">
-        <Content class="prose max-w-none dark:prose-invert" />
+        <Content class="prose dark:prose-invert max-w-none" />
       </div>
 
       <div
         class="w-96 shrink-0 rounded-2xl border border-neutral-100/10 bg-white p-4 shadow dark:bg-neutral-700"
       >
+        <VAvatar />
         <h3 class="flex items-center">
           <Icon
             icon="mdi:briefcase-variant-outline"

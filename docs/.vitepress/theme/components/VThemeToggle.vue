@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onUnmounted, ref, toRefs, watch } from 'vue';
+import { computed, nextTick, onUnmounted, ref, toRefs, watch } from 'vue';
 import VIconMoon from '../assets/svg/moon.svg?component';
 import VIconSun from '../assets/svg/sun.svg?component';
 
@@ -90,11 +90,12 @@ let toggleTheme = (event: MouseEvent) => {
         Math.max(y, innerHeight - y)
       );
 
-      const transition = document.startViewTransition(() => {
+      const transition = document.startViewTransition?.(async () => {
         dark.value = !dark.value;
+        await nextTick();
       });
 
-      transition.ready.then(() => {
+      transition?.ready.then(() => {
         const clipPath = [
           `circle(0px at ${x}px ${y}px)`,
           `circle(${endRadius}px at ${x}px ${y}px)`

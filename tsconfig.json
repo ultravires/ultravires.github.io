@@ -12,13 +12,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@theme/*": [
-        "./docs/.vitepress/theme/*"
-      ]
+      "@theme/*": ["./docs/.vitepress/theme/*"]
     },
-    "types": [
-      "@types/node"
-    ],
+    "types": ["@types/node", "./docs/.vitepress/theme/types/global.d.ts"],
     "outDir": "./docs/.vitepress/",
     "verbatimModuleSyntax": true
   },
