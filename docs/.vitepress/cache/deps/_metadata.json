@@ -1,80 +1,74 @@
 {
-  "hash": "31900c96",
-  "configHash": "e31742a4",
-  "lockfileHash": "580d43d7",
-  "browserHash": "0c419805",
+  "hash": "bd8a8e41",
+  "configHash": "1a103c61",
+  "lockfileHash": "8e43a38b",
+  "browserHash": "940f9bfb",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/vue@3.5.17_typescript@5.9.3/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "01d7c773",
+      "fileHash": "f1fb6cb2",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
-      "src": "../../../../node_modules/.pnpm/@vue+devtools-api@7.7.8/node_modules/@vue/devtools-api/dist/index.js",
+      "src": "../../../../node_modules/.pnpm/@vue+devtools-api@7.7.9/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "5e77af14",
+      "fileHash": "fe20a159",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
       "src": "../../../../node_modules/.pnpm/@vueuse+core@12.8.2_typescript@5.9.3/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "b9824808",
+      "fileHash": "30e58e48",
       "needsInterop": false
     },
     "@braintree/sanitize-url": {
       "src": "../../../../node_modules/.pnpm/@braintree+sanitize-url@7.1.1/node_modules/@braintree/sanitize-url/dist/index.js",
       "file": "@braintree_sanitize-url.js",
-      "fileHash": "7ff1c53b",
+      "fileHash": "63667bc7",
       "needsInterop": true
     },
     "dayjs": {
       "src": "../../../../node_modules/.pnpm/dayjs@1.11.19/node_modules/dayjs/dayjs.min.js",
       "file": "dayjs.js",
-      "fileHash": "be0df14a",
+      "fileHash": "99e74c0c",
       "needsInterop": true
     },
     "debug": {
       "src": "../../../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/browser.js",
       "file": "debug.js",
-      "fileHash": "d40363d8",
+      "fileHash": "722f5b87",
       "needsInterop": true
     },
     "cytoscape-cose-bilkent": {
       "src": "../../../../node_modules/.pnpm/cytoscape-cose-bilkent@4.1.0_cytoscape@3.33.1/node_modules/cytoscape-cose-bilkent/cytoscape-cose-bilkent.js",
       "file": "cytoscape-cose-bilkent.js",
-      "fileHash": "3b7ab1d4",
+      "fileHash": "13c592b1",
       "needsInterop": true
     },
     "cytoscape": {
       "src": "../../../../node_modules/.pnpm/cytoscape@3.33.1/node_modules/cytoscape/dist/cytoscape.esm.mjs",
       "file": "cytoscape.js",
-      "fileHash": "2fb4721a",
+      "fileHash": "b480108d",
       "needsInterop": false
     },
     "@iconify/vue": {
       "src": "../../../../node_modules/.pnpm/@iconify+vue@5.0.0_vue@3.5.17_typescript@5.9.3_/node_modules/@iconify/vue/dist/iconify.mjs",
       "file": "@iconify_vue.js",
-      "fileHash": "ce37d1c2",
-      "needsInterop": false
-    },
-    "js-sha256": {
-      "src": "../../../../node_modules/.pnpm/js-sha256@0.11.1/node_modules/js-sha256/src/sha256.js",
-      "file": "js-sha256.js",
-      "fileHash": "42978c39",
-      "needsInterop": true
-    },
-    "colorthief": {
-      "src": "../../../../node_modules/.pnpm/colorthief@2.6.0/node_modules/colorthief/dist/color-thief.mjs",
-      "file": "colorthief.js",
-      "fileHash": "97f69dac",
+      "fileHash": "9bf47de2",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../node_modules/.pnpm/@vueuse+core@13.9.0_vue@3.5.17_typescript@5.9.3_/node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "299870fb",
+      "fileHash": "195f20db",
       "needsInterop": false
+    },
+    "js-sha256": {
+      "src": "../../../../node_modules/.pnpm/js-sha256@0.11.1/node_modules/js-sha256/src/sha256.js",
+      "file": "js-sha256.js",
+      "fileHash": "ff8191ce",
+      "needsInterop": true
     }
   },
   "chunks": {
