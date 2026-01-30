@@ -5,6 +5,7 @@ import type { DefaultTheme } from 'vitepress';
 import { useData } from 'vitepress';
 import { defineAsyncComponent, onMounted, onUnmounted, ref, watch } from 'vue';
 import VIconSearch from '../assets/svg/search.svg?component';
+import VIconTrain from '../assets/svg/train.svg?component';
 import VBackTop from './VBackToTop.vue';
 import VLogo from './VLogo.vue';
 import VNavBarHamburger from './VNavBarHamburger.vue';
@@ -122,7 +123,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 <template>
   <nav
     ref="navBarRef"
-    class="VNavBar @container top-0 z-10 h-(--web-header-height) w-full backdrop-blur-sm transition-[height] duration-500 [&.fixed]:h-[55px] [&.fixed]:border-b [&.fixed]:border-line/90 [&.fixed]:bg-white/90 [&.fixed]:text-black dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white"
+    class="VNavBar @container h-(--web-header-height) [&.fixed]:border-line/90 top-0 z-10 w-full backdrop-blur-sm transition-[height] duration-500 [&.fixed]:h-[55px] [&.fixed]:border-b [&.fixed]:bg-white/90 [&.fixed]:text-black dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white"
     :class="[
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'
@@ -147,12 +148,12 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
             :key="item.text"
           >
             <VNavBarLink
-              class="group text-md tracking-8 decoration-none relative rounded-full leading-none whitespace-nowrap hover:bg-primary hover:text-white dark:hover:text-black"
+              class="text-md tracking-8 decoration-none hover:bg-primary group relative whitespace-nowrap rounded-full leading-none hover:text-white dark:hover:text-black"
               :item="item"
             />
           </li>
           <li
-            class="hover:text-reverse cursor-pointer rounded-full p-2 leading-none transition-all duration-300 hover:bg-primary"
+            class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-2 leading-none transition-all duration-300"
             @click="handleSearch"
           >
             <template v-if="provider === 'algolia'">
@@ -184,14 +185,21 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
         </div>
       </Transition>
 
-      <div class="ml-auto flex items-center max-md:ml-auto">
+      <div class="ml-auto flex items-center space-x-4 max-md:ml-auto">
+        <a
+          class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
+          href="https://www.travellings.cn/go.html"
+          target="__blank"
+        >
+          <VIconTrain />
+        </a>
         <VRandomArticle />
         <VThemeToggle
-          class="hover:text-reverse ml-4 cursor-pointer rounded-full p-1 text-xl transition-all duration-300 hover:bg-primary"
+          class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
           :theme-config="{ dark: 'dark', light: 'light' }"
         />
-        <VBackTop class="ml-4" />
-        <VNavBarHamburger class="ml-4 hidden max-md:flex" />
+        <VBackTop />
+        <VNavBarHamburger class="hidden max-md:flex" />
       </div>
     </div>
   </nav>
