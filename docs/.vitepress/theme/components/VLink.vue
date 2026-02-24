@@ -14,6 +14,15 @@ const tag = computed(() => {
 const isExternal = computed(() => {
   return props.target === '_blank';
 });
+
+const handleClick = () => {
+  if (props.href && props.tag && props.tag !== 'a') {
+    window.open(
+      props.href,
+      props.target ?? (isExternal ? '_blank' : undefined)
+    );
+  }
+};
 </script>
 
 <template>
@@ -22,6 +31,7 @@ const isExternal = computed(() => {
     :is="tag"
     :href="href"
     :target="target ?? (isExternal ? '_blank' : undefined)"
+    @click="handleClick"
   >
     <slot />
   </component>
