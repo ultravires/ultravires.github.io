@@ -112,7 +112,44 @@ whisper 培训视频.mp4 --language Chinese
 
 完整的使用方法还得去 github 查看详细使用文档。
 
-
 ## AI 总结
 
 下面我们就可以让大语言模型帮我们生成总结，非常的 nice。
+
+## FFmpeg
+
+### 查看本地音频输入设备
+
+1. Mac 系统
+
+~~Mac 无法直接录制系统声音，需要安装 [BlackHole](https://github.com/ExistentialAudio/BlackHole)~~（现在已经有官方的 API 可以支持了 [ScreenCaptureKit](https://developer.apple.com/documentation/screencapturekit/)）。
+
+```sh
+brew install blackhole-2ch
+```
+
+安装后需要重启音频服务，否则 `ffmpeg` 无法识别 `BlackHole` 设备：
+
+```sh
+sudo killall coreaudiod
+```
+
+重启后，使用以下命令查看设备列表：
+
+```sh
+ffmpeg -f avfoundation -list_devices true -i ""
+```
+
+[AVFoundation](https://developer.apple.com/documentation/avfoundation/)
+
+2. Windows 系统
+
+```sh
+ffmpeg -list_devices true -f dshow -i dummy
+```
+
+### 录制音频
+
+```sh
+ffmpeg -f avfoundation -i "BlackHole 2ch:0" -t 10 output.wav
+```
