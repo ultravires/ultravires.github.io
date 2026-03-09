@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue';
 import { computed, ref } from 'vue';
 import VPost from '../components/VPost.vue';
 import VPostCard from '../components/VPostCard.vue';
@@ -91,9 +92,10 @@ const pageNumbers = computed(() => {
       <button
         @click="changePage(currentPage - 1)"
         :disabled="currentPage === 1"
-        class="border-primary text-primary hover:bg-primary cursor-pointer rounded-full border border-solid px-4 py-2 transition-all duration-300 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
+        class="border-primary text-primary hover:bg-primary group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid px-4 py-2 transition-all duration-300 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
       >
-        Prev
+        <Icon icon="mdi:arrow-left" />
+        <span>上一页</span>
       </button>
 
       <div class="mx-2 flex items-center gap-1">
@@ -125,9 +127,10 @@ const pageNumbers = computed(() => {
       <button
         @click="changePage(currentPage + 1)"
         :disabled="currentPage === totalPages"
-        class="border-primary text-primary hover:bg-primary cursor-pointer rounded-full border border-solid px-4 py-2 transition-all duration-300 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
+        class="border-primary text-primary hover:bg-primary group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid px-4 py-2 transition-all duration-300 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
       >
-        Next
+        <span>下一页</span>
+        <Icon icon="mdi:arrow-right" />
       </button>
     </div>
   </div>

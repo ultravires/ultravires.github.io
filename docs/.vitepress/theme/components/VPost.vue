@@ -12,15 +12,18 @@ const { post } = defineProps<{
     :href="post.url"
   >
     <div class="flex flex-col items-start">
-      <div class="order-1 max-md:hidden">
-        <span class="ellipsis text-sm text-neutral-400 dark:text-neutral-400">
-          {{ post.date.string }}
+      <div class="order-1 flex flex-col gap-0.5 max-md:hidden">
+        <span
+          v-if="post.lastUpdatedTime"
+          class="ellipsis text-sm text-neutral-400/80 dark:text-neutral-400/80"
+        >
+          {{ post.lastUpdatedTime.string }}
         </span>
       </div>
       <div class="order-2">
         <h2
           :id="post.title"
-          class="font-bold group-hover:text-primary"
+          class="group-hover:text-primary font-bold"
           :title="post.title"
         >
           {{ post.title }}

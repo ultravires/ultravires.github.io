@@ -57,7 +57,7 @@ export default defineConfigWithTheme<CustomTheme>(
         svgLoader({
           svgo: false,
           defaultImport: 'component'
-        }),
+        }) as Plugin,
         tailwindcss() as Plugin[]
       ]
     }

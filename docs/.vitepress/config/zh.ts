@@ -14,7 +14,7 @@ export const zh = defineConfigWithTheme<CustomTheme>({
     outline: 'deep',
     aside: 'left',
     lastUpdated: {
-      text: '最后更新于',
+      text: '更新于',
       formatOptions: {
         dateStyle: 'full'
       }
