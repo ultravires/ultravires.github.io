@@ -17,7 +17,15 @@ brew install oath-toolkit
 
 `oathtool --totp -b "<your_secret>"`
 
-`secret` 的获取方式也很简单，用手机扫描二维码即可（先拍照，再识别二维码）。
+`secret` 的获取方式也很简单，用手机扫描二维码即可（先拍照，再识别二维码），或者使用 `zbar` 工具扫描二维码。
+
+## 解码工具
+
+- [zbar](https://github.com/mchehab/zbar)
+
+```bash
+brew install zbar
+```
 
 ## 自定义
 
