@@ -2,6 +2,10 @@
 title: 如何正确使用 AI？
 ---
 
+## 短信接收
+
+[hero-sms](https://hero-sms.com/cn/profile/personal-information)
+
 ## 音乐创作
 
 [suno](https://suno.com/)
