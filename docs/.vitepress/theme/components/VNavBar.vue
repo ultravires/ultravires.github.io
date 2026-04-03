@@ -137,7 +137,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
     >
       <!-- Logo -->
       <LiquidClassCard class="rounded-full">
-        <div class="flex h-[40px] items-center justify-center px-4">
+        <div class="flex h-[40px] items-center justify-center pl-8 pr-4">
           <VLogo />
         </div>
       </LiquidClassCard>
