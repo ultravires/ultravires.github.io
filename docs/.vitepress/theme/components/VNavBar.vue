@@ -6,6 +6,7 @@ import { useData } from 'vitepress';
 import { defineAsyncComponent, onMounted, onUnmounted, ref, watch } from 'vue';
 import VIconSearch from '../assets/svg/search.svg?component';
 import VIconTrain from '../assets/svg/train.svg?component';
+import LiquidClassCard from './LiquidClassCard.vue';
 import VBackTop from './VBackToTop.vue';
 import VLogo from './VLogo.vue';
 import VNavBarHamburger from './VNavBarHamburger.vue';
@@ -179,28 +180,30 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
       <Transition name="slide-fade">
         <div
           v-show="showTitle"
-          class="absolute mx-auto font-bold"
+          class="absolute font-bold leading-none"
         >
           {{ page.title || '向成渝 —— 专注于计算机科学与技术' }}
         </div>
       </Transition>
 
-      <div class="ml-auto flex items-center space-x-4 max-md:ml-auto">
-        <a
-          class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
-          href="https://www.travellings.cn/go.html"
-          target="__blank"
-        >
-          <VIconTrain />
-        </a>
-        <VRandomArticle />
-        <VThemeToggle
-          class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
-          :theme-config="{ dark: 'dark', light: 'light' }"
-        />
-        <VBackTop />
-        <VNavBarHamburger class="hidden max-md:flex" />
-      </div>
+      <LiquidClassCard class="ml-auto rounded-full px-4">
+        <div class="flex h-[40px] items-center space-x-4">
+          <a
+            class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
+            href="https://www.travellings.cn/go.html"
+            target="__blank"
+          >
+            <VIconTrain />
+          </a>
+          <VRandomArticle />
+          <VThemeToggle
+            class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
+            :theme-config="{ dark: 'dark', light: 'light' }"
+          />
+          <VBackTop />
+          <VNavBarHamburger class="hidden max-md:flex" />
+        </div>
+      </LiquidClassCard>
     </div>
   </nav>
 </template>
@@ -218,8 +221,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
   ) !important;
 
   /* 核心毛玻璃：高模糊度 + 高饱和度 + 亮度微调 */
-  backdrop-filter: blur(40px) saturate(210%) brightness(1.1) !important;
-  -webkit-backdrop-filter: blur(40px) saturate(210%) brightness(1.1) !important;
+  backdrop-filter: blur(40px) saturate(10%) brightness(1.1) !important;
 
   /* 阴影与内部反光 */
   box-shadow:

@@ -47,25 +47,9 @@ const glassStyles = computed(() => ({
     <!-- 顶部边缘高光 -->
     <div class="edge-highlight"></div>
 
-    <!-- 图标插槽 -->
-    <div
-      v-if="$slots.icon"
-      class="icon-wrapper"
-    >
-      <slot name="icon" />
-    </div>
-
     <!-- 内容区 -->
     <div class="content-wrapper">
       <slot />
-    </div>
-
-    <!-- 底部操作区 -->
-    <div
-      v-if="$slots.footer"
-      class="footer-wrapper"
-    >
-      <slot name="footer" />
     </div>
   </div>
 </template>
@@ -93,9 +77,6 @@ const glassStyles = computed(() => ({
     box-shadow 0.3s ease;
   transform-style: preserve-3d;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* 噪点纹理渲染 */
@@ -123,13 +104,7 @@ const glassStyles = computed(() => ({
   z-index: 2;
 }
 
-.icon-wrapper {
-  margin-bottom: 24px;
-  transform: translateZ(30px); /* 视差提升高度 */
-}
-
 .content-wrapper {
-  color: rgba(255, 255, 255, 0.95);
   transform: translateZ(15px);
   z-index: 3;
 }
@@ -140,11 +115,5 @@ const glassStyles = computed(() => ({
   mix-blend-mode: plus-lighter;
   text-shadow: 0 1px 10px rgba(255, 255, 255, 0.1);
   letter-spacing: -0.02em;
-}
-
-.footer-wrapper {
-  width: 100%;
-  margin-top: 32px;
-  transform: translateZ(40px);
 }
 </style>
