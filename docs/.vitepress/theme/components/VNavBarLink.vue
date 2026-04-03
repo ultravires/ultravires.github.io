@@ -12,35 +12,35 @@ const { page } = useData();
 
 <template>
   <VLink
-    class="px-4 py-2 transition-all duration-300"
+    class="px-4 py-2"
     :class="{
-      'after:absolute after:w-3 after:h-1 after:bg-primary after:rounded-full after:bottom-0 after:left-1/2 after:-translate-x-1/2 active relative':
+      'after:bg-primary active relative after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-3 after:-translate-x-1/2 after:rounded-full':
         isActive(
           page.relativePath,
           item.activeMatch || item.link,
           !!item.activeMatch
-        ),
+        )
     }"
     :href="item.link"
   >
     {{ item.text }}
     <div
       v-if="item.items && item.items.length > 0"
-      class="group-hover:pointer-events-auto group-hover:opacity-100 group-hover:scale-100 absolute opacity-0 scale-75 -translate-x-1/2 left-1/2 top-full z-10 transition-all duration-300 pointer-events-none"
+      class="pointer-events-none absolute left-1/2 top-full z-10 -translate-x-1/2 scale-75 opacity-0 transition-all duration-300 group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100"
     >
       <div
-        class="dark:bg-neutral-900 dark:text-white flex items-center gap-2 p-2 mt-3 bg-white/90 text-black border border-solid border-primary rounded-full text-normal tracking-wide cursor-default backdrop-blur-md"
+        class="border-primary text-normal mt-3 flex cursor-default items-center gap-2 rounded-full border border-solid bg-white/90 p-2 tracking-wide text-black backdrop-blur-md dark:bg-neutral-900 dark:text-white"
       >
         <VLink
           v-for="item in item.items"
-          class="relative px-4 py-3 decoration-none rounded-full whitespace-nowrap text-normal transition-all duration-300 hover:bg-primary hover:px-5 hover:text-white dark:hover:text-black"
+          class="decoration-none text-normal hover:bg-primary relative whitespace-nowrap rounded-full px-4 py-3 transition-all duration-300 hover:px-5 hover:text-white dark:hover:text-black"
           :class="{
-            'after:absolute after:w-3 after:h-1 after:bg-primary after:rounded-full after:bottom-0 after:left-1/2 after:-translate-x-1/2 active relative':
+            'after:bg-primary active relative after:absolute after:bottom-0 after:left-1/2 after:h-1 after:w-3 after:-translate-x-1/2 after:rounded-full':
               isActive(
                 page.relativePath,
                 item.activeMatch || item.link,
                 !!item.activeMatch
-              ),
+              )
           }"
           :href="item.link || 'javascript:void(0)'"
         >

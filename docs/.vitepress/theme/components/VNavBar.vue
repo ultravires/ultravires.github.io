@@ -123,7 +123,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 <template>
   <nav
     ref="navBarRef"
-    class="VNavBar @container h-(--web-header-height) top-0 z-10 w-full backdrop-blur-sm transition-all duration-500 [&.fixed]:h-[55px] [&.fixed]:text-black dark:[&.fixed]:text-white"
+    class="VNavBar @container h-(--web-header-height) top-0 z-10 w-full backdrop-blur-sm [&.fixed]:h-[55px] [&.fixed]:text-black dark:[&.fixed]:text-white"
     :class="[
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'
@@ -210,30 +210,40 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 .VNavBar.fixed {
   /* 基础边框和背景 */
   border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
-  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.1) 100%) !important;
-  
+  background: radial-gradient(
+    circle at 20% 0%,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  ) !important;
+
   /* 核心毛玻璃：高模糊度 + 高饱和度 + 亮度微调 */
   backdrop-filter: blur(40px) saturate(210%) brightness(1.1) !important;
   -webkit-backdrop-filter: blur(40px) saturate(210%) brightness(1.1) !important;
-  
+
   /* 阴影与内部反光 */
-  box-shadow: 
+  box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.05),
     inset 0 1px 1px rgba(255, 255, 255, 0.5) !important;
 }
 
 :global(.dark) .VNavBar.fixed {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.01) 100%) !important;
-  
-  box-shadow: 
+  background: radial-gradient(
+    circle at 20% 0%,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.01) 100%
+  ) !important;
+
+  box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.5),
     inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
 }
 
 /* 物理噪点纹理：提升质感的关键 */
 .VNavBar.fixed::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   opacity: 0.03;
