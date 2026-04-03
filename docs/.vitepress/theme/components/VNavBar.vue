@@ -123,7 +123,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 <template>
   <nav
     ref="navBarRef"
-    class="VNavBar @container h-(--web-header-height) [&.fixed]:border-line/90 top-0 z-10 w-full backdrop-blur-sm transition-[height] duration-500 [&.fixed]:h-[55px] [&.fixed]:border-b [&.fixed]:bg-white/90 [&.fixed]:text-black dark:[&.fixed]:bg-black/90 dark:[&.fixed]:text-white"
+    class="VNavBar @container h-(--web-header-height) top-0 z-10 w-full backdrop-blur-sm transition-all duration-500 [&.fixed]:h-[55px] [&.fixed]:text-black dark:[&.fixed]:text-white"
     :class="[
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'
@@ -206,6 +206,42 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 </template>
 
 <style scoped>
+/* 液态毛玻璃效果 (Liquid Glass) */
+.VNavBar.fixed {
+  /* 基础边框和背景 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.1) 100%) !important;
+  
+  /* 核心毛玻璃：高模糊度 + 高饱和度 + 亮度微调 */
+  backdrop-filter: blur(40px) saturate(210%) brightness(1.1) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(210%) brightness(1.1) !important;
+  
+  /* 阴影与内部反光 */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5) !important;
+}
+
+:global(.dark) .VNavBar.fixed {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.01) 100%) !important;
+  
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 物理噪点纹理：提升质感的关键 */
+.VNavBar.fixed::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: -1;
+}
+
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.3s ease-out;
