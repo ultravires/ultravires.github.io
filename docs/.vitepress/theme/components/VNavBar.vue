@@ -187,7 +187,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
       </Transition>
 
       <LiquidClassCard class="ml-auto rounded-full px-4">
-        <div class="flex h-[40px] items-center space-x-4">
+        <div class="flex h-[40px] items-center gap-4">
           <a
             class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
             href="https://www.travellings.cn/go.html"

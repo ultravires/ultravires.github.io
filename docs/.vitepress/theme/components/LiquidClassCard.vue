@@ -8,10 +8,6 @@ const props = defineProps({
   saturation: { type: Number, default: 210 },
   // 亮度
   brightness: { type: Number, default: 1.1 },
-  // 是否开启鼠标视差倾斜
-  interactive: { type: Boolean, default: true },
-  // 倾斜灵敏度
-  tiltIntensity: { type: Number, default: 30 },
   // 是否显示噪点纹理
   showGrain: { type: Boolean, default: true }
 });
