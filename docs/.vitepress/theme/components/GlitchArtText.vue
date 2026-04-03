@@ -53,12 +53,6 @@ if (glitchTextRef.value) {
   position: relative;
 }
 
-/* 扫描线效果叠加层 */
-.glitch-container {
-  position: relative;
-  padding: 20px;
-}
-
 .glitch-text {
   position: relative;
   font-size: 2rem;

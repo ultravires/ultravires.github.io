@@ -12,6 +12,8 @@ const themeData = theme.value;
     class="decoration-none text-md whitespace-nowrap text-xl leading-none"
     href="/"
   >
-    <GlitchArtText :text="themeData.siteTitle || siteData.title" />
+    <div class="scale-70">
+      <GlitchArtText :text="themeData.siteTitle || siteData.title" />
+    </div>
   </a>
 </template>

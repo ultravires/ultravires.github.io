@@ -124,7 +124,7 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 <template>
   <nav
     ref="navBarRef"
-    class="VNavBar @container h-(--web-header-height) top-0 z-10 w-full backdrop-blur-sm [&.fixed]:h-[55px] [&.fixed]:text-black dark:[&.fixed]:text-white"
+    class="VNavBar @container h-(--web-header-height) top-0 z-10 w-full [&.fixed]:h-[55px] [&.fixed]:text-black dark:[&.fixed]:text-white"
     :class="[
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'
@@ -133,57 +133,71 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
     ]"
   >
     <div
-      class="@8xl:max-w-[87.5rem] relative z-0 mx-auto flex h-full items-center justify-center gap-4 px-8 max-md:px-2"
+      class="relative z-0 mx-auto flex h-full items-center justify-center gap-4 px-8"
     >
       <!-- Logo -->
-      <VLogo />
+      <LiquidClassCard class="rounded-full">
+        <div class="flex h-[40px] items-center justify-center px-4">
+          <VLogo />
+        </div>
+      </LiquidClassCard>
 
       <!-- Nav -->
       <Transition name="slide-fade-reverse">
-        <ul
+        <LiquidClassCard
           v-show="!showTitle"
-          class="absolute -z-10 mx-auto flex h-full w-full items-center justify-center gap-4 max-md:hidden"
+          class="-z-10 mx-auto rounded-full max-md:hidden"
+          style="position: absolute"
         >
-          <li
-            v-for="item in theme.nav"
-            :key="item.text"
+          <ul
+            class="flex h-[40px] w-full items-center justify-center gap-4 px-1"
           >
-            <VNavBarLink
-              class="text-md tracking-8 decoration-none hover:bg-primary group relative whitespace-nowrap rounded-full leading-none hover:text-white dark:hover:text-black"
-              :item="item"
-            />
-          </li>
-          <li
-            class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-2 leading-none transition-all duration-300"
-            @click="handleSearch"
-          >
-            <template v-if="provider === 'algolia'">
-              <VPAlgoliaSearchBox
-                v-if="loaded"
-                :algolia="theme.search?.options ?? theme.algolia"
-                @vue:beforeMount="actuallyLoaded = true"
+            <li
+              v-for="item in theme.nav"
+              :key="item.text"
+            >
+              <VNavBarLink
+                class="text-md tracking-8 decoration-none hover:bg-primary group relative whitespace-nowrap rounded-full leading-none hover:text-white dark:hover:text-black"
+                :item="item"
               />
-              <div
-                v-if="!actuallyLoaded"
-                id="docsearch"
-              >
-                <VIconSearch
-                  title="搜索"
-                  @click="load"
+            </li>
+            <li
+              class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-2 leading-none transition-all duration-300"
+              @click="handleSearch"
+            >
+              <template v-if="provider === 'algolia'">
+                <VPAlgoliaSearchBox
+                  v-if="loaded"
+                  :algolia="theme.search?.options ?? theme.algolia"
+                  @vue:beforeMount="actuallyLoaded = true"
                 />
-              </div>
-            </template>
-          </li>
-        </ul>
+                <div
+                  v-if="!actuallyLoaded"
+                  id="docsearch"
+                >
+                  <VIconSearch
+                    title="搜索"
+                    @click="load"
+                  />
+                </div>
+              </template>
+            </li>
+          </ul>
+        </LiquidClassCard>
       </Transition>
 
       <Transition name="slide-fade">
-        <div
+        <LiquidClassCard
           v-show="showTitle"
-          class="absolute font-bold leading-none"
+          class="rounded-full"
+          style="position: absolute"
         >
-          {{ page.title || '向成渝 —— 专注于计算机科学与技术' }}
-        </div>
+          <div
+            class="flex h-[40px] items-center justify-center px-4 font-bold leading-none"
+          >
+            {{ page.title || '向成渝 —— 专注于计算机科学与技术' }}
+          </div>
+        </LiquidClassCard>
       </Transition>
 
       <LiquidClassCard class="ml-auto rounded-full px-4">
@@ -209,51 +223,6 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 </template>
 
 <style scoped>
-/* 液态毛玻璃效果 (Liquid Glass) */
-.VNavBar.fixed {
-  /* 基础边框和背景 */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
-  background: radial-gradient(
-    circle at 20% 0%,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0.1) 100%
-  ) !important;
-
-  /* 核心毛玻璃：高模糊度 + 高饱和度 + 亮度微调 */
-  backdrop-filter: blur(40px) saturate(10%) brightness(1.1) !important;
-
-  /* 阴影与内部反光 */
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.5) !important;
-}
-
-:global(.dark) .VNavBar.fixed {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  background: radial-gradient(
-    circle at 20% 0%,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.01) 100%
-  ) !important;
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
-}
-
-/* 物理噪点纹理：提升质感的关键 */
-.VNavBar.fixed::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  z-index: -1;
-}
-
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.3s ease-out;

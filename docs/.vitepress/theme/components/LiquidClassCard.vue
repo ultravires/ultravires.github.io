@@ -72,7 +72,6 @@ const glassStyles = computed(() => ({
     transform 0.1s ease-out,
     box-shadow 0.3s ease;
   transform-style: preserve-3d;
-  overflow: hidden;
 }
 
 /* 噪点纹理渲染 */
