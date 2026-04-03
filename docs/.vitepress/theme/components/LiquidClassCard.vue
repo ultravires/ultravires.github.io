@@ -3,11 +3,11 @@ import { computed, ref } from 'vue';
 
 const props = defineProps({
   // 模糊强度
-  blur: { type: Number, default: 40 },
+  blur: { type: Number, default: 30 },
   // 饱和度 (iOS 风格建议 150% - 250%)
-  saturation: { type: Number, default: 210 },
+  saturation: { type: Number, default: 200 },
   // 亮度
-  brightness: { type: Number, default: 1.1 },
+  brightness: { type: Number, default: 0.9 },
   // 是否显示噪点纹理
   showGrain: { type: Boolean, default: true }
 });
@@ -65,7 +65,7 @@ const glassStyles = computed(() => ({
 
   /* 分层阴影 */
   box-shadow:
-    0 40px 80px rgba(0, 0, 0, 0.4),
+    0 40px 100px rgba(0, 0, 0, 0.2),
     inset 0 1px 1px rgba(255, 255, 255, 0.1);
 
   transition:
