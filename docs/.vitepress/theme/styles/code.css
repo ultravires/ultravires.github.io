@@ -24,24 +24,20 @@
   --vp-code-line-height: 1.7777778;
 }
 
+:where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::before {
+  content: none;
+}
+
+:where(code):not(:where([class~='not-prose'], [class~='not-prose'] *))::after {
+  content: none;
+}
+
 [data-theme='light'] {
   .prose {
     :not(pre) > code:not(:where([class~='not-prose'], [class~='not-prose'])) {
       background-color: #f1f1f1;
       border-radius: 4px;
       padding: 0.15rem 0.5rem;
-    }
-
-    :where(code):not(
-        :where([class~='not-prose'], [class~='not-prose'] *)
-      )::before {
-      content: none;
-    }
-
-    :where(code):not(
-        :where([class~='not-prose'], [class~='not-prose'] *)
-      )::after {
-      content: none;
     }
   }
 
