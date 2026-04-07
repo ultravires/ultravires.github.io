@@ -57,11 +57,6 @@
     @apply mx-6 w-full border-collapse;
   }
 
-  /* 表头样式 */
-  .prose :where(thead):not(:where([class~='not-prose'] *)) {
-    @apply border-b-2 border-[#e5e7eb];
-  }
-
   .prose :where(th):not(:where([class~='not-prose'] *)) {
     @apply px-3 py-4 text-left font-semibold;
   }
@@ -69,7 +64,6 @@
   /* 表格内容样式 */
   .prose :where(td):not(:where([class~='not-prose'] *)) {
     padding: 0.75rem 1rem;
-    border: 1px solid #e5e7eb; /* 浅色分隔线 */
     vertical-align: middle;
   }
 }
