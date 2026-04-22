@@ -2,6 +2,7 @@
 import { useData } from 'vitepress';
 import VFooter from '../components/VFooter.vue';
 import VHeader from '../components/VHeader.vue';
+import VWeatherParticleBackground from '../components/VWeatherParticleBackground.vue';
 import NotFound from '../NotFound.vue';
 import AboutLayout from './AboutLayout.vue';
 import ColumnLayout from './ColumnLayout.vue';
@@ -19,6 +20,7 @@ const { frontmatter, page } = useData();
   </template>
 
   <template v-else>
+    <VWeatherParticleBackground />
     <div
       v-if="frontmatter.layout !== false"
       class="text-normal flex flex-col"
