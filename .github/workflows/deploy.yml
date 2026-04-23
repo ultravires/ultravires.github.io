@@ -53,7 +53,7 @@ jobs:
         with:
           path: docs/.vitepress/dist
       - name: Trigger Vercel Deployment
-        uses: amondnet/vercel-action@v41.1.4
+        uses: amondnet/vercel-action@v42.2.0
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
