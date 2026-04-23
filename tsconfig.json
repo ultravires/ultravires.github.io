@@ -8,13 +8,18 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
+    "skipLibCheck": true,
     "strict": true,
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@theme/*": ["./docs/.vitepress/theme/*"]
     },
-    "types": ["@types/node", "./docs/.vitepress/theme/types/global.d.ts"],
+    "types": [
+      "vite/client",
+      "@types/node",
+      "./docs/.vitepress/theme/types/global.d.ts"
+    ],
     "outDir": "./docs/.vitepress/",
     "verbatimModuleSyntax": true
   },
