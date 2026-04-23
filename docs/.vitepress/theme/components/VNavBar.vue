@@ -22,12 +22,14 @@ const { theme, frontmatter, page } = useData();
 const loaded = ref(false);
 const actuallyLoaded = ref(false);
 const navBarRef = ref<HTMLElement | null>(null);
-const { arrivedState } = useScroll(document);
+/** SSR 下无 document，避免在 setup 顶层直接引用全局 document */
+const docScrollTarget = import.meta.env.SSR ? undefined : document;
+const { arrivedState } = useScroll(docScrollTarget);
 
 const showTitle = useShowTitle();
 function useShowTitle() {
   const showTitle = ref(false);
-  const { y } = useScroll(document);
+  const { y } = useScroll(docScrollTarget);
   watch(y, (lastY, currentY) => {
     if (currentY < lastY) {
       showTitle.value = true;
