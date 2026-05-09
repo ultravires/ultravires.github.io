@@ -43,6 +43,15 @@ export default defineConfigWithTheme<CustomTheme>(
           href: 'https://AKWVEI7J63-dsn.algolia.net',
           crossorigin: ''
         }
+      ],
+      [
+        'link',
+        {
+          rel: 'alternate',
+          type: 'application/rss+xml',
+          title: `${zh.themeConfig.siteTitle ?? zh.title} RSS`,
+          href: '/feed.rss'
+        }
       ]
     ],
     vite: {
