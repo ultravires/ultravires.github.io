@@ -12,7 +12,7 @@ type ParticleType =
   | 'thunder';
 
 type Particle = {
-  kind: 'ambient' | 'rainDrop' | 'rainSplash';
+  kind: 'ambient' | 'rainDrop' | 'rainSplash' | 'sunMote';
   x: number;
   y: number;
   vx: number;
@@ -20,14 +20,30 @@ type Particle = {
   size: number;
   alpha: number;
   life: number;
+  maxLife?: number;
+  twinklePhase?: number;
+};
+
+type Cloud = {
+  layer: 'back' | 'front';
+  x: number;
+  y: number;
+  vx: number;
+  width: number;
+  height: number;
+  alpha: number;
 };
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 let ctx: CanvasRenderingContext2D | null = null;
 let animationId = 0;
 let particles: Particle[] = [];
+let clouds: Cloud[] = [];
 let spawnTicker = 0;
 let currentType: ParticleType = 'clear';
+let frameCounter = 0;
+let sunMoteSprite: HTMLCanvasElement | null = null;
+let cloudSprite: HTMLCanvasElement | null = null;
 
 const getCurrentPosition = () =>
   new Promise<GeolocationPosition>((resolve, reject) => {
@@ -45,6 +61,100 @@ const getCurrentPosition = () =>
 
 const isRainType = (type: ParticleType) =>
   type === 'drizzle' || type === 'rainModerate' || type === 'rainHeavy';
+
+// 离屏预渲染一颗暖色光点，避免在每帧为每个粒子重复创建径向渐变
+const createSunMoteSprite = () => {
+  const sprite = document.createElement('canvas');
+  const spriteSize = 64;
+  sprite.width = spriteSize;
+  sprite.height = spriteSize;
+
+  const spriteCtx = sprite.getContext('2d');
+  if (!spriteCtx) return sprite;
+
+  const center = spriteSize / 2;
+  const gradient = spriteCtx.createRadialGradient(center, center, 0, center, center, center);
+  gradient.addColorStop(0, 'rgba(255, 250, 220, 1)');
+  gradient.addColorStop(0.18, 'rgba(255, 236, 188, 0.85)');
+  gradient.addColorStop(0.45, 'rgba(255, 214, 150, 0.32)');
+  gradient.addColorStop(1, 'rgba(255, 214, 150, 0)');
+  spriteCtx.fillStyle = gradient;
+  spriteCtx.fillRect(0, 0, spriteSize, spriteSize);
+
+  return sprite;
+};
+
+// 离屏预渲染一朵蓬松的云：用多层柔和径向渐变堆叠出"棉花糖"剪影
+const createCloudSprite = () => {
+  const sprite = document.createElement('canvas');
+  const spriteWidth = 320;
+  const spriteHeight = 160;
+  sprite.width = spriteWidth;
+  sprite.height = spriteHeight;
+
+  const spriteCtx = sprite.getContext('2d');
+  if (!spriteCtx) return sprite;
+
+  const puffs = [
+    { x: 0.18, y: 0.7, r: 0.32 },
+    { x: 0.32, y: 0.5, r: 0.4 },
+    { x: 0.48, y: 0.42, r: 0.46 },
+    { x: 0.64, y: 0.48, r: 0.42 },
+    { x: 0.8, y: 0.62, r: 0.34 },
+    { x: 0.4, y: 0.74, r: 0.3 },
+    { x: 0.62, y: 0.74, r: 0.3 },
+  ];
+
+  for (const puff of puffs) {
+    const cx = puff.x * spriteWidth;
+    const cy = puff.y * spriteHeight;
+    const r = puff.r * spriteHeight;
+    const gradient = spriteCtx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 0.85)');
+    gradient.addColorStop(0.45, 'rgba(240, 248, 255, 0.42)');
+    gradient.addColorStop(1, 'rgba(220, 235, 255, 0)');
+    spriteCtx.fillStyle = gradient;
+    spriteCtx.fillRect(cx - r * 1.4, cy - r * 1.4, r * 2.8, r * 2.8);
+  }
+
+  return sprite;
+};
+
+const initClouds = () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  clouds = [];
+
+  // 后景云：更小更慢更淡，制造远景层次
+  const backCount = 5;
+  for (let i = 0; i < backCount; i++) {
+    const scale = 0.55 + Math.random() * 0.4;
+    clouds.push({
+      layer: 'back',
+      x: Math.random() * (width + 600) - 300,
+      y: height * 0.02 + Math.random() * (height * 0.18),
+      vx: 0.05 + Math.random() * 0.07,
+      width: 280 * scale,
+      height: 140 * scale,
+      alpha: 0.18 + Math.random() * 0.14,
+    });
+  }
+
+  // 前景云：稍大稍快稍清晰，但仍局限在视口顶部 0~35%，避开正文阅读区
+  const frontCount = 4;
+  for (let i = 0; i < frontCount; i++) {
+    const scale = 0.85 + Math.random() * 0.55;
+    clouds.push({
+      layer: 'front',
+      x: Math.random() * (width + 600) - 300,
+      y: height * 0.05 + Math.random() * (height * 0.22),
+      vx: 0.11 + Math.random() * 0.14,
+      width: 280 * scale,
+      height: 140 * scale,
+      alpha: 0.3 + Math.random() * 0.2,
+    });
+  }
+};
 
 const createRainSplashes = (x: number, y: number) => {
   if (!isRainType(currentType)) return;
@@ -89,6 +199,12 @@ const resizeCanvas = () => {
   canvas.style.width = `${window.innerWidth}px`;
   canvas.style.height = `${window.innerHeight}px`;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+};
+
+const handleResize = () => {
+  resizeCanvas();
+  // 视口变化后云朵的可视区随之改变，重新分布以避免出现在屏幕外的死角
+  initClouds();
 };
 
 const spawnParticle = () => {
@@ -157,6 +273,23 @@ const spawnParticle = () => {
     return;
   }
 
+  if (currentType === 'clear') {
+    const maxLife = 360 + Math.random() * 420;
+    particles.push({
+      kind: 'sunMote',
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: -0.18 + Math.random() * 0.36,
+      vy: -0.35 - Math.random() * 0.25,
+      size: 1.2 + Math.random() * 2.4,
+      alpha: 0.28 + Math.random() * 0.32,
+      life: maxLife,
+      maxLife,
+      twinklePhase: Math.random() * Math.PI * 2,
+    });
+    return;
+  }
+
   particles.push({
     kind: 'ambient',
     x: Math.random() * width,
@@ -167,6 +300,116 @@ const spawnParticle = () => {
     alpha: 0.12 + Math.random() * 0.2,
     life: 200 + Math.random() * 260,
   });
+};
+
+// 在屏幕右上角铺一层暖色阳光氛围：远离正文阅读区，整体低不透明度
+const drawSunshineAmbience = () => {
+  if (!ctx) return;
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const sunX = width * 0.9;
+  const sunY = height * 0.16;
+  const haloRadius = Math.max(width, height) * 0.65;
+
+  const halo = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, haloRadius);
+  halo.addColorStop(0, 'rgba(255, 224, 158, 0.22)');
+  halo.addColorStop(0.18, 'rgba(255, 212, 142, 0.12)');
+  halo.addColorStop(0.5, 'rgba(255, 206, 140, 0.035)');
+  halo.addColorStop(1, 'rgba(255, 206, 140, 0)');
+  ctx.fillStyle = halo;
+  ctx.fillRect(0, 0, width, height);
+
+  // 缓慢旋转的柔和光束，让画面有"晴日"的呼吸感
+  const rayCount = 7;
+  const rayLength = haloRadius;
+  const rotation = frameCounter * 0.0006;
+  ctx.save();
+  ctx.translate(sunX, sunY);
+  ctx.rotate(rotation);
+  for (let i = 0; i < rayCount; i++) {
+    const angle = (Math.PI * 2 * i) / rayCount;
+    ctx.save();
+    ctx.rotate(angle);
+    const beam = ctx.createLinearGradient(0, 0, rayLength, 0);
+    beam.addColorStop(0, 'rgba(255, 232, 178, 0.10)');
+    beam.addColorStop(0.55, 'rgba(255, 220, 160, 0.035)');
+    beam.addColorStop(1, 'rgba(255, 220, 160, 0)');
+    ctx.fillStyle = beam;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(rayLength, -26);
+    ctx.lineTo(rayLength, 26);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+  ctx.restore();
+
+  // 太阳本体：轻微脉动
+  const pulse = 1 + 0.04 * Math.sin(frameCounter * 0.025);
+  const coreRadius = 70 * pulse;
+  const core = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, coreRadius);
+  core.addColorStop(0, 'rgba(255, 252, 226, 0.62)');
+  core.addColorStop(0.45, 'rgba(255, 232, 178, 0.30)');
+  core.addColorStop(1, 'rgba(255, 220, 160, 0)');
+  ctx.fillStyle = core;
+  ctx.fillRect(sunX - coreRadius, sunY - coreRadius, coreRadius * 2, coreRadius * 2);
+};
+
+// 多云氛围：顶部叠加一层冷调天空，再绘制前后两层缓慢漂移的云
+// 云仅出现在视口顶部 0~35%，远离正文阅读区，整体 alpha 偏低，避免视觉干扰
+const drawCloudyAmbience = () => {
+  if (!ctx) return;
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  // 顶部柔和天空：从浅蓝灰渐隐到透明，让云有"挂在天上"的归属感
+  const skyHeight = height * 0.55;
+  const skyGradient = ctx.createLinearGradient(0, 0, 0, skyHeight);
+  skyGradient.addColorStop(0, 'rgba(180, 200, 226, 0.16)');
+  skyGradient.addColorStop(0.55, 'rgba(196, 214, 234, 0.06)');
+  skyGradient.addColorStop(1, 'rgba(196, 214, 234, 0)');
+  ctx.fillStyle = skyGradient;
+  ctx.fillRect(0, 0, width, skyHeight);
+
+  if (!cloudSprite) return;
+
+  const renderCtx = ctx;
+  const sprite = cloudSprite;
+
+  // 先后景再前景，保证视差顺序正确
+  const drawLayer = (layer: 'back' | 'front') => {
+    for (const cloud of clouds) {
+      if (cloud.layer !== layer) continue;
+
+      cloud.x += cloud.vx;
+      const halfWidth = cloud.width / 2;
+
+      // 飘出右侧后从左侧重新进入，并随机化垂直位置，避免轨迹固化
+      if (cloud.x - halfWidth > width + 40) {
+        cloud.x = -halfWidth - Math.random() * 280;
+        cloud.y =
+          layer === 'back'
+            ? height * 0.02 + Math.random() * (height * 0.18)
+            : height * 0.05 + Math.random() * (height * 0.22);
+      }
+
+      renderCtx.globalAlpha = cloud.alpha;
+      renderCtx.drawImage(
+        sprite,
+        cloud.x - halfWidth,
+        cloud.y - cloud.height / 2,
+        cloud.width,
+        cloud.height
+      );
+    }
+  };
+
+  drawLayer('back');
+  drawLayer('front');
+  renderCtx.globalAlpha = 1;
 };
 
 const drawParticle = (particle: Particle) => {
@@ -188,6 +431,35 @@ const drawParticle = (particle: Particle) => {
     ctx.beginPath();
     ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
     ctx.fill();
+    return;
+  }
+
+  if (particle.kind === 'sunMote') {
+    const maxLife = particle.maxLife ?? particle.life;
+    const fadeOut = Math.min(1, particle.life / 60);
+    const fadeIn = Math.min(1, (maxLife - particle.life) / 40);
+    const twinkle = 0.55 + 0.45 * Math.sin(frameCounter * 0.06 + (particle.twinklePhase ?? 0));
+    const finalAlpha = particle.alpha * fadeIn * fadeOut * twinkle;
+
+    if (finalAlpha <= 0.01) return;
+
+    if (sunMoteSprite) {
+      const drawSize = particle.size * 7;
+      ctx.globalAlpha = finalAlpha;
+      ctx.drawImage(
+        sunMoteSprite,
+        particle.x - drawSize / 2,
+        particle.y - drawSize / 2,
+        drawSize,
+        drawSize
+      );
+      ctx.globalAlpha = 1;
+    } else {
+      ctx.fillStyle = `rgba(255, 244, 200, ${finalAlpha})`;
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
     return;
   }
 
@@ -230,6 +502,16 @@ const updateParticle = (particle: Particle) => {
     return;
   }
 
+  if (particle.kind === 'sunMote') {
+    if (particle.x < -20) particle.x = window.innerWidth + 20;
+    if (particle.x > window.innerWidth + 20) particle.x = -20;
+    if (particle.y < -20) {
+      particle.y = window.innerHeight + 20;
+      particle.x = Math.random() * window.innerWidth;
+    }
+    return;
+  }
+
   if (currentType === 'clear' || currentType === 'cloudy' || currentType === 'fog') {
     if (particle.x < -10) particle.x = window.innerWidth + 10;
     if (particle.x > window.innerWidth + 10) particle.x = -10;
@@ -242,6 +524,13 @@ const render = () => {
   if (!ctx) return;
 
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  frameCounter += 1;
+
+  if (currentType === 'clear') {
+    drawSunshineAmbience();
+  } else if (currentType === 'cloudy') {
+    drawCloudyAmbience();
+  }
 
   const spawnRate =
     currentType === 'drizzle'
@@ -254,7 +543,11 @@ const render = () => {
             ? 3
             : currentType === 'fog'
               ? 1.4
-              : 0.8;
+              : currentType === 'clear'
+                ? 0.5
+                : currentType === 'cloudy'
+                  ? 0.15
+                  : 0.8;
 
   spawnTicker += spawnRate;
   while (spawnTicker >= 1) {
@@ -319,17 +612,20 @@ onMounted(() => {
   ctx = canvas.getContext('2d');
   if (!ctx) return;
 
+  sunMoteSprite = createSunMoteSprite();
+  cloudSprite = createCloudSprite();
   resizeCanvas();
+  initClouds();
   syncGlobalWeatherType();
   render();
 
-  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('resize', handleResize);
   window.addEventListener('weather:change', handleWeatherChange as EventListener);
 });
 
 onUnmounted(() => {
   cancelAnimationFrame(animationId);
-  window.removeEventListener('resize', resizeCanvas);
+  window.removeEventListener('resize', handleResize);
   window.removeEventListener('weather:change', handleWeatherChange as EventListener);
 });
 </script>
