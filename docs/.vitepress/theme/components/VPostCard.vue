@@ -13,10 +13,10 @@ const { post } = defineProps<{
 
 <template>
   <article
-    class="group/post-card h-[340px] w-full overflow-hidden rounded-lg border border-solid border-line bg-white hover:border-primary dark:bg-neutral-900"
+    class="group/post-card border-line hover:border-primary h-[340px] w-full overflow-hidden rounded-lg border border-solid bg-white dark:bg-neutral-900"
   >
     <VLink
-      class="block h-[calc(100%-9rem)] overflow-hidden select-none"
+      class="block h-[calc(100%-9rem)] select-none overflow-hidden"
       :href="post.url"
       draggable="false"
     >
@@ -27,7 +27,7 @@ const { post } = defineProps<{
       :href="post.url"
     >
       <h2
-        class="wave-text mb-4 overflow-hidden text-xl text-ellipsis whitespace-nowrap group-hover/post-card:text-primary dark:text-white"
+        class="wave-text group-hover/post-card:text-primary mb-4 overflow-hidden text-ellipsis whitespace-nowrap text-xl dark:text-white"
       >
         {{ post.title }}
       </h2>
