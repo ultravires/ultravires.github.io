@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>南京两日 · 博物钟山与湖光烟火</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --text: #2a2a2a;
+      --muted: #6b6b6b;
+      --accent: #c45c4a;
+      --accent-soft: #f5e8e5;
+      --day1: #4a7c9b;
+      --day2: #c49a3c;
+      --jade: #5b8c7a;
+      --border: #ebe6df;
+      --shadow: 0 4px 24px rgba(42, 42, 42, 0.06);
+      --radius: 16px;
+      --rain: #6b8fbf;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #2c3e50 0%, #4a6741 50%, #8b5a4a 100%);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .hero-inner { position: relative; max-width: 720px; margin: 0 auto; }
+
+    .hero h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      opacity: 0.92;
+      margin-top: 1rem;
+    }
+
+    .hero-meta span { display: flex; align-items: center; gap: 0.35rem; }
+
+    .weather-strip {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .weather-card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.85rem;
+      min-width: 155px;
+    }
+
+    .weather-card strong { display: block; font-size: 1rem; margin-bottom: 0.2rem; }
+
+    .weather-card .temp { font-size: 1.8rem; font-weight: 700; line-height: 1.1; margin: 0.3rem 0; }
+
+    .weather-card .rain-tag {
+      display: inline-block;
+      background: var(--rain);
+      color: #fff;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      margin-top: 0.2rem;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+
+    .section { margin-top: 2.5rem; }
+
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 1.2em;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .part-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .part-morning { background: #e8f4f8; color: var(--day1); }
+    .part-afternoon { background: #f5edd8; color: #8a6d2b; }
+
+    .cta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: -1.5rem;
+      position: relative;
+      z-index: 2;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .map-wrap {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .map-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: #fdfcfa;
+    }
+
+    .map-tabs { display: flex; gap: 0.5rem; }
+
+    .map-tab {
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .map-tab.active[data-day="all"] { background: var(--text); color: #fff; border-color: var(--text); }
+    .map-tab.active[data-day="1"] { background: var(--day1); color: #fff; border-color: var(--day1); }
+    .map-tab.active[data-day="2"] { background: var(--day2); color: #fff; border-color: var(--day2); }
+
+    #map { width: 100%; height: 420px; }
+
+    .map-hint {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: #fdfcfa;
+      border-top: 1px solid var(--border);
+    }
+
+    .map-hint code {
+      background: var(--accent-soft);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .timeline { display: flex; flex-direction: column; gap: 1rem; }
+
+    .day-block {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .day-header {
+      padding: 1rem 1.25rem;
+      font-family: 'Noto Serif SC', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .day-header.d1 { background: linear-gradient(90deg, var(--day1), #6a9bb8); }
+    .day-header.d2 { background: linear-gradient(90deg, var(--day2), #d4b06a); }
+
+    .part-divider {
+      padding: 0.5rem 1.25rem;
+      background: #fdfcfa;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .day-body { padding: 1.25rem; }
+
+    .route-item {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .route-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .route-time {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .route-content h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .route-content p { font-size: 0.85rem; color: var(--muted); }
+
+    .route-detail {
+      margin-top: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.75rem;
+    }
+
+    .route-detail span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: #f8f6f2;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .metro-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      background: #e8f4f8;
+      color: var(--day1);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .metro-tag .line {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 0.65rem;
+      line-height: 20px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .line-1 { background: #00a0e9; }
+    .line-2 { background: #a32020; }
+    .line-3 { background: #f39800; }
+    .line-4 { background: #7b5ea7; }
+
+    .alert-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.35rem;
+      padding: 0.25rem 0.6rem;
+      background: #fff3e0;
+      color: #c45c4a;
+      border-radius: 6px;
+      font-size: 0.73rem;
+      font-weight: 600;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .spot-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: transform 0.25s;
+    }
+
+    .spot-card:hover { transform: translateY(-4px); }
+
+    .spot-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: var(--border);
+    }
+
+    .spot-body { padding: 1.1rem; }
+
+    .spot-body h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .spot-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .badge-d1 { background: #e3eef5; color: var(--day1); }
+    .badge-d2 { background: #f5edd8; color: #8a6d2b; }
+
+    .must-see {
+      font-size: 0.73rem;
+      color: var(--accent);
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+
+    .spot-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    .tips-list {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .tips-list li {
+      margin-left: 1.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .tips-list li strong { color: var(--text); }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .route-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      #map { height: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>金陵两日 · 博物钟山与湖光烟火</h1>
+      <p style="opacity:0.9; font-size:0.95rem;">2026.06.13 — 06.14 · 情侣双人游 · 地铁串联全程 · 高德实时数据</p>
+      <div class="hero-meta">
+        <span>🚄 汉口 → 南京南 D2198 06:43-09:46 / 返程 G3343 18:06-20:56</span>
+        <span>🏨 如家酒店·neo(南京新街口中心点) · 8:00起 · 18:06返程</span>
+        <span>👟 运动鞋 + 防晒霜 + 雨伞(6/14有小雨)</span>
+      </div>
+      <div class="weather-strip" id="weather"></div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="cta-bar">
+      <a class="btn btn-primary" id="openAmap" href="amapuri://workInAmap/createWithToken?polymericId=mcp_4447512f725749c2be1d112604e35340&from=MCP">
+        📍 在高德地图 App 中打开行程
+      </a>
+      <button class="btn btn-outline" onclick="document.getElementById('map-section').scrollIntoView({behavior:'smooth'})">
+        🗺️ 查看网页地图
+      </button>
+      </div>
+
+    <section class="section" id="map-section">
+      <h2 class="section-title">互动路线地图</h2>
+      <div class="map-wrap">
+        <div class="map-toolbar">
+          <div class="map-tabs">
+            <button class="map-tab active" data-day="all">全部路线</button>
+            <button class="map-tab" data-day="1">Day 1 博物陵园</button>
+            <button class="map-tab" data-day="2">Day 2 过早+都市+湖光</button>
+          </div>
+          <span style="font-size:0.8rem;color:var(--muted)">时间数据：高德地图 MCP 实时查询</span>
+        </div>
+        <div id="map"></div>
+        <div class="map-hint" id="map-hint">
+          地图基于高德 JS API 绘制。若地图未显示，请在 URL 添加 <code>?key=您的高德Key</code>，或修改页面内 <code>AMAP_KEY</code> 变量。
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">行程时间轴</h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">景区卡片</h2>
+      <div class="cards-grid" id="spots"></div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">避坑提醒 & 实用信息</h2>
+      <ul class="tips-list">
+        <li><strong>南博预约第一优先级</strong>：提前 7 天（6/6 起可约），公众号"南京博物院"约上午场 (9:00-13:00)，刷身份证入园，周一闭馆。</li>
+        <li><strong>中山陵预约</strong>：免费但必须提前预约，周一闭馆。台阶陡峭（392级），量力而行、慢行休息。</li>
+        <li><strong>钟山景区交通</strong>：联票 100 元/人 + 电瓶车 30 元/人（无限次，必买）。景区内各点间靠电瓶车串联，避免徒步跨点。</li>
+        <li><strong>长生鹿苑</strong>：投喂饲料 30 元/份；禁止穿鲜红色衣物（会惊扰鹿群）。</li>
+        <li><strong>梧桐网红天桥</strong>（明孝陵5号门）：俯瞰陵园路梧桐隧道，人流量大，快速合影。</li>
+        <li><strong>6/13 防暑</strong>：多云 34°C / 22°C，钟山徒步量大，午后备阳伞与小风扇，多补水。</li>
+        <li><strong>6/14 防雨</strong>：预报小雨，31°C / 21°C，备折叠伞。台城段+玄武湖若遇雨可在城墙廊道避雨。</li>
+        <li><strong>总统府</strong>：仅门口拍照打卡不进景区。门楼+门匾经典构图即可，省下门票约40元/人。</li>
+        <li><strong>明城墙台城段</strong>：解放门登城，门票约30元。玄武湖+紫峰同框机位，南京最美城墙段。</li>
+        <li><strong>颐和路公馆区</strong>：梧桐林荫+民国公馆建筑群，"一条颐和路，半部民国史"。免费漫步。</li>
+        <li><strong>返程节奏</strong>：老门东→武定门站步行约5分钟，地铁3号线直达南京南站（约24分钟），预留40分钟安检进站。</li>
+        <li><strong>盐水鸭</strong>：去章云板鸭（老门东店）现切打包，别在景区内部买。老门东蒋有记锅贴、陆氏梅花糕也值得一尝。</li>
+        <li><strong>住宿</strong>：如家酒店·neo(南京新街口中心点)，新街口站14号口出，步行约3分钟。Day 1到达寄存行李，晚上返回办入住；Day 2退房直接带行李走。</li>
+        <li><strong>过早推荐</strong>：明瓦廊/丰富路是新街口最地道的过早一条街，易记皮肚面、鸡鸣汤包、永旺大包、汪家安庆馄饨都值得一试。</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer class="footer">数据来源：高德地图 MCP 实时查询 · 天气/路程时间均基于 API 真实数据 · kmTravel.html</footer>
+
+  <script>
+    const AMAP_KEY = new URLSearchParams(location.search).get('key') || '';
+
+    // ─── 天气数据：高德 MCP 实时查询结果 (2026-06-11 查询) ───
+    const WEATHER = [
+      { date: '6月13日 周六', day: '多云', night: '阴', high: 34, low: 22, wind: '南风 1-3级', icon: '⛅', tip: '体感闷热，钟山徒步量大，午后备阳伞与小风扇，多补水' },
+      { date: '6月14日 周日', day: '小雨', night: '多云', high: 31, low: 21, wind: '东风 1-3级', icon: '🌧️', tip: '备折叠伞，玄武湖若遇雨可在台城段避雨赏湖景' }
+    ];
+
+    // ─── POI 坐标：高德 MCP 地理编码实时查询 ───
+    const POIS = {
+      nanjingSouth:  { name: '南京南站',      lng: 118.796786, lat: 31.970968, day: 0 },
+      xinjiekou:     { name: '如家酒店·neo(新街口)', lng: 118.785349, lat: 32.040633, day: 0 },
+      museum: {
+        name: '南京博物院', lng: 118.825064, lat: 32.040802, day: 1,
+        img: 'http://store.is.autonavi.com/showpic/6d9679442d9f514b78d55213b43d9417',
+        desc: '历史馆→民国馆→艺术馆顺次游览，不走回头路。金缕玉衣、琉璃塔拱门、人面纹瓦当。民国馆网红拍照点，火车头与有轨电车出片率极高。',
+        must: '金缕玉衣 / 琉璃塔拱门 / 民国馆火车头'
+      },
+      mingxiaoling: {
+        name: '明孝陵', lng: 118.835108, lat: 32.048329, day: 1,
+        img: 'http://store.is.autonavi.com/showpic/a9d8eb4d58561ffda8bb4ff08c8a4d2c',
+        desc: '石象路神道 → 翁仲路 → 棂星门 → 享殿 → 方城明楼，600米石兽+红墙纵深构图，约40分钟精华段。',
+        must: '石象路石像 / 红墙 / 方城明楼'
+      },
+      luyuanRd: {
+        name: '梧桐网红天桥', lng: 118.841586, lat: 32.046050, day: 1,
+        img: 'https://aos-comment.amap.com/B0019067DD/comment/content_media_external_file_100008600_1764499545596_96679207.jpg',
+        desc: '明孝陵5号门出门即达，步行上桥俯瞰陵园路梧桐隧道，钟山最佳网红机位之一。人流量较大，快速合影。',
+        must: '俯瞰陵园路梧桐隧道'
+      },
+      meilingPalace: {
+        name: '美龄宫', lng: 118.846557, lat: 32.045458, day: 1,
+        img: 'http://store.is.autonavi.com/showpic/96b770335df1cbccbde50d714594dd78',
+        desc: '二层阳台拍"梧桐项链"全景，一层展厅了解民国历史。室内禁止喧哗，有序参观。',
+        must: '二楼阳台"梧桐项链"全景'
+      },
+      zhongshanling: {
+        name: '中山陵', lng: 118.851672, lat: 32.055966, day: 1,
+        img: 'http://store.is.autonavi.com/showpic/46bf800a21c42453ff756fc2b77c710f',
+        desc: '博爱坊→陵门→碑亭→392级台阶→祭堂→登顶平台。"天下为公"牌匾，台阶仰拍，登顶俯瞰城景。免费预约，周一闭馆。',
+        must: '"天下为公"牌匾 / 台阶仰拍 / 登顶城景'
+      },
+      musicHall: {
+        name: '音乐台', lng: 118.855382, lat: 32.055096, day: 1,
+        img: 'http://store.is.autonavi.com/showpic/5f6f0991725450e2b8303b86403ffae2',
+        desc: '弧形回廊+白鸽群飞，中山陵东南侧。鸽食10元/份，站外圈拍照避免鸽粪。',
+        must: '弧形回廊 / 白鸽群飞'
+      },
+      lingguTemple: {
+        name: '灵谷寺', lng: 118.867693, lat: 32.055286, day: 1,
+        img: 'https://aos-comment.amap.com/B00190ABSX/comment/126431689d363ddd1360f9bd0f1de26b_2048_2048_80.jpg',
+        desc: '无梁殿 → 灵谷塔 → 九层登塔俯瞰钟山全景。Day 1 收尾景点，约1小时慢游。',
+        must: '无梁殿 / 灵谷塔九层全景'
+      },
+      deerPark: {
+        name: '长生鹿苑', lng: 118.835108, lat: 32.049500, day: 1,
+        img: 'http://store.is.autonavi.com/showpic/a9d8eb4d58561ffda8bb4ff08c8a4d2c',
+        desc: '明孝陵3号门进门右转直达，鹿群+木屋+草坪。投喂饲料30元/份，禁止穿鲜红色衣物。',
+        must: '鹿群 / 木屋草坪'
+      },
+      xuanwuLake: {
+        name: '玄武湖', lng: 118.784032, lat: 32.072752, day: 2,
+        img: 'http://store.is.autonavi.com/showpic/ff2f4114639e0110ae96ae76ad0c0287',
+        desc: '台城段入湖，精华段环洲→樱洲，免费。6月荷塘初绽，湖边吹风休憩。',
+        must: '台城段湖景 / 环洲荷塘'
+      },
+      laomendong: {
+        name: '老门东', lng: 118.787645, lat: 32.011604, day: 2,
+        img: 'https://aos-comment.amap.com/B0019067DD/comment/content_media_external_file_100008600_1764499545596_96679207.jpg',
+        desc: '青砖黛瓦小巷逛吃，蒋有记锅贴、陆氏梅花糕、章云板鸭。边营/三条营小巷拍照，比夫子庙更有味道。',
+        must: '章云板鸭 / 蒋有记锅贴 / 三条营小巷'
+      },
+      dejiPlaza: {
+        name: '德基广场', lng: 118.784855, lat: 32.046307, day: 2,
+        img: 'https://store.is.autonavi.com/showpic/6a173d9b3800a3fa0000002446986944?type=pic',
+        desc: '南京顶奢商场，10点开门。一期+二期连廊打卡，奢侈品橱窗与艺术装置。',
+        must: '一期二期连廊 / 艺术装置'
+      },
+      presidentPalace: {
+        name: '总统府', lng: 118.797628, lat: 32.044032, day: 2,
+        img: 'http://aos-cdn-image.amap.com/sns/ugccomment/21acde57-d540-4737-974a-11b6c69d23de.jpg',
+        desc: '近代史地标，在门楼前拍照留念即可。"总统府"门匾+门楼经典构图，不进景区省时省钱。',
+        must: '门楼 / 门匾合影'
+      },
+      street1912: {
+        name: '1912街区', lng: 118.795988, lat: 32.044994, day: 2,
+        img: 'https://aos-comment.amap.com/B00190AMUB/comment/%5B2026-03-22-12-07-13%5DDC44CFB2-85D6-45AB-BE06-7B768926B44_1774152436161_76155639.jpg',
+        desc: '总统府旁民国风情街区，青砖建筑+餐酒吧。白天拍照，夜晚更有氛围。30分钟快速打卡。',
+        must: '民国建筑群 / 街景'
+      },
+      cityWall: {
+        name: '明城墙台城段', lng: 118.795111, lat: 32.062190, day: 2,
+        img: 'https://store.is.autonavi.com/showpic/3d8ad5609f485a1e0000002244734512?type=pic',
+        desc: '解放门登城，俯瞰玄武湖与紫峰大厦同框，南京最美城墙段。门票约30元，35分钟精华段。',
+        must: '玄武湖+紫峰同框 / 城墙步道'
+      },
+      yiheRoad: {
+        name: '颐和路公馆区', lng: 118.770087, lat: 32.063981, day: 2,
+        img: 'https://store.is.autonavi.com/showpic/ba89d5e821fe77b20000000721932184?type=pic',
+        desc: '民国公馆建筑群，梧桐林荫道+黄墙灰瓦。"一条颐和路，半部民国史"。35分钟漫步拍照。',
+        must: '梧桐林荫道 / 民国公馆建筑'
+      }
+    };
+
+    // ─── 行程时间轴：基于高德 MCP 公交/步行 API 实时数据 ───
+    const SCHEDULE = [
+      {
+        day: 1, title: 'Day 1 · 6月13日 博物钟山深度游', cls: 'd1',
+        parts: [
+          {
+            label: '上午 — 博物时光',
+            items: [
+              {
+                time: '09:46', title: '🚄 抵达南京南站',
+                desc: '汉口 D2198 到站，出站步行至地铁1号线入口。仅寄存行李，不办入住。',
+                detail: null, metro: null
+              },
+              {
+                time: '09:46-10:15', title: '🚇 南京南站 → 新街口（如家酒店·neo）',
+                desc: '寄存行李后轻装出发',
+                detail: [
+                  { icon: '🚶', text: '步行至地铁站 约6分钟' },
+                  { icon: '🚇', text: '地铁1号线 八卦洲大桥南方向' },
+                  { icon: '📏', text: '8站 约23分钟车程' },
+                  { icon: '🚪', text: '新街口站 14号口出站' }
+                ],
+                metro: { lines: ['1'], route: '地铁1号线 23分钟', detail: '南京南站 → 花神庙 → 软件大道 → 天隆寺 → 安德门 → 中华门 → 三山街 → 张府园 → 新街口 (8站)' }
+              },
+              {
+                time: '10:15-10:40', title: '🚇 新街口 → 南京博物院',
+                desc: '站内换乘2号线至明故宫站，1号口出步行约11分钟（829m）到南博正门',
+                detail: [
+                  { icon: '🔄', text: '站内换乘2号线 经天路方向' },
+                  { icon: '🚇', text: '2站 约9分钟车程' },
+                  { icon: '🚶', text: '明故宫1号口→南博 步行约11分钟 (829m)' },
+                  { icon: '⚠️', text: '必须提前7天预约上午场(9:00-13:00)' }
+                ],
+                metro: { lines: ['2'], route: '地铁2号线 9分钟', detail: '新街口 → 大行宫 → 西安门 → 明故宫 (2站)，1号口出' },
+                alert: '刷身份证入园，必须提前7天预约'
+              },
+              {
+                time: '10:40-11:40', title: '🏛️ 南京博物院 · 历史馆',
+                desc: '负一楼→一楼，顺展厅单向游览。金缕玉衣、琉璃塔拱门、人面纹瓦当。精简浏览不走回头路。',
+                detail: null, metro: null
+              },
+              {
+                time: '11:40-12:10', title: '📸 南京博物院 · 民国馆',
+                desc: '下楼至负二层，沿复古街道直行。复古街景、火车头、有轨电车，网红拍照点快速打卡。',
+                detail: null, metro: null
+              },
+              {
+                time: '12:10-12:50', title: '🎨 南京博物院 · 艺术馆 + 文创',
+                desc: '返回一层艺术馆，书画、瓷器随缘参观。最后逛文创店，简餐可在园区便利店解决。',
+                detail: null, metro: null
+              }
+            ]
+          },
+          {
+            label: '下午 — 钟山全域（电瓶车串联）',
+            items: [
+              {
+                time: '12:50-13:15', title: '🚇 南博 → 钟山（明孝陵3号门）',
+                desc: '步行回明故宫站 → 2号线1站至苜蓿园 → 步行约16分钟(1.2km)至明孝陵3号门',
+                detail: [
+                  { icon: '🚶', text: '南博→明故宫站 步行约11分钟' },
+                  { icon: '🚇', text: '地铁2号线 1站 5分钟' },
+                  { icon: '🚶', text: '苜蓿园1号口→明孝陵3号门 步行约16分钟 (1.2km)' },
+                  { icon: '🎫', text: '现场购买：钟山联票100元/人 + 电瓶车30元/人(无限次必买)' }
+                ],
+                metro: { lines: ['2'], route: '地铁2号线 5分钟 (1站)', detail: '明故宫 → 苜蓿园 (1站)，1号口出步行1.2km至明孝陵3号门' },
+                alert: '联票100元/人 + 电瓶车30元/人，必买！'
+              },
+              {
+                time: '13:15-13:50', title: '🦌 长生鹿苑',
+                desc: '明孝陵3号门进门右转直达，全程平地步行。鹿群、木屋、草坪拍照。',
+                detail: [
+                  { icon: '🦌', text: '投喂饲料 30元/份' },
+                  { icon: '⚠️', text: '禁止穿鲜红色衣物' }
+                ],
+                metro: null
+              },
+              {
+                time: '13:50-14:30', title: '🏯 明孝陵（石象路 + 陵宫）',
+                desc: '乘电瓶车至石象路站 → 石象路 → 翁仲路 → 棂星门 → 享殿 → 方城明楼。石象路石像、红墙、方城明楼，步道平缓。',
+                detail: null, metro: null
+              },
+              {
+                time: '14:30-14:50', title: '🌳 梧桐网红天桥',
+                desc: '从明孝陵5号门出门即达天桥，步行上桥打卡。俯瞰陵园路梧桐隧道（钟山最火机位）。',
+                detail: [{ icon: '📸', text: '人流量较大，快速合影' }],
+                metro: null
+              },
+              {
+                time: '14:50-15:15', title: '🏰 美龄宫',
+                desc: '乘电瓶车前往，下车步行50米至入口。一层展厅 → 二层阳台拍"梧桐项链"全景。',
+                detail: [{ icon: '🤫', text: '室内禁止喧哗，有序参观' }],
+                metro: null
+              },
+              {
+                time: '15:15-15:40', title: '🕊️ 音乐台',
+                desc: '电瓶车直达，下车步行30米入园。弧形回廊、白鸽群飞，鸽食10元/份。站外圈拍照避免鸽粪。',
+                detail: null, metro: null
+              },
+              {
+                time: '15:40-16:40', title: '🏛️ 中山陵',
+                desc: '电瓶车至中山陵南站 → 博爱坊 → 陵门 → 碑亭 → 392级台阶 → 祭堂 → 登顶平台。"天下为公"牌匾、台阶仰拍、登顶城景。',
+                detail: [
+                  { icon: '⚠️', text: '周一闭馆，必须提前预约' },
+                  { icon: '🆓', text: '免费入园' },
+                  { icon: '🥾', text: '台阶陡峭，慢行休息' }
+                ],
+                metro: null, alert: '周一闭馆！免费但必须提前预约'
+              },
+              {
+                time: '16:40-18:00', title: '🛕 灵谷寺（收尾）',
+                desc: '无梁殿 → 灵谷塔 → 九层登塔俯瞰钟山全景。约1小时慢游，为Day 1画上句号。',
+                detail: null, metro: null
+              },
+              {
+                time: '18:00-18:15', title: '🚇 灵谷寺 → 苜蓿园 → 新街口',
+                desc: '电瓶车返回苜蓿园站 → 地铁2号线4站约11分钟返回新街口。办理入住，休整。',
+                detail: [
+                  { icon: '🚇', text: '苜蓿园→新街口 2号线 4站 约11分钟' }
+                ],
+                metro: { lines: ['2'], route: '地铁2号线 11分钟', detail: '苜蓿园 → 明故宫 → 西安门 → 大行宫 → 新街口 (4站)' }
+              },
+              {
+                time: '19:00', title: '🍜 新街口晚餐',
+                desc: '明瓦廊 / 丰富路小吃街，或南京大牌档（德基广场店）。推荐：鸭血粉丝汤、鸡鸣汤包、赤豆元宵。',
+                detail: null, metro: null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        day: 2, title: 'Day 2 · 6月14日 过早烟火 + 都市打卡 + 湖光城墙 + 老门东收尾', cls: 'd2',
+        parts: [
+          {
+            label: '上午 — 过早烟火 + 都市打卡（德基→总统府门楼）',
+            items: [
+              {
+                time: '08:00-08:15', title: '🛏️ 起床 · 退房 · 带行李',
+                desc: '收拾行李直接退房，行李随身带走。轻装出发，不用返回取行李。',
+                detail: null, metro: null
+              },
+              {
+                time: '08:15-08:25', title: '🚶 如家 → 明瓦廊/丰富路',
+                desc: '步行约700m至明瓦廊/丰富路美食街，新街口最地道的过早一条街。',
+                detail: [{ icon: '🚶', text: '步行约700m / 8分钟' }],
+                metro: null
+              },
+              {
+                time: '08:25-09:10', title: '🍜 明瓦廊/丰富路 · 过早',
+                desc: '南京地道过早：易记皮肚面、鸡鸣汤包、永旺大包、汪家安庆馄饨任选。饭后沿丰富路慢逛消食。',
+                detail: [
+                  { icon: '🍜', text: '易记皮肚面 明瓦廊101号' },
+                  { icon: '🥟', text: '鸡鸣汤包 正洪街18号' },
+                  { icon: '🥟', text: '汪家安庆馄饨 丰富路144号' }
+                ],
+                metro: null
+              },
+              {
+                time: '09:10-10:00', title: '🚶 明瓦廊 → 德基广场 + 等开门',
+                desc: '步行约750m/10分钟经新街口商圈至德基广场。德基10:00开门，提前到可在门口艺术装置拍照。',
+                detail: [
+                  { icon: '🚶', text: '步行约750m / 10分钟' },
+                  { icon: '🕙', text: '10:00开门，提前到逛门口' }
+                ],
+                metro: null
+              },
+              {
+                time: '10:00-11:00', title: '🛍️ 德基广场',
+                desc: '南京顶奢商场，一期二期连廊打卡，奢侈品橱窗+艺术装置。1小时悠闲逛。',
+                detail: [{ icon: '📸', text: '一期二期连廊 / 艺术装置' }],
+                metro: null
+              },
+              {
+                time: '11:00-11:25', title: '🚶 德基 → 总统府（途经1912街区）',
+                desc: '沿长江路向东步行约1.5km，约20分钟。沿途经过1912民国风情街区，顺路感受青砖建筑群。',
+                detail: [
+                  { icon: '🚶', text: '步行约1.5km / 20分钟' },
+                  { icon: '🏘️', text: '途经1912街区，顺路打卡' }
+                ],
+                metro: null
+              },
+              {
+                time: '11:25-11:40', title: '📸 总统府门楼 · 拍照打卡',
+                desc: '在大门前拍照留念，"总统府"门匾+门楼经典构图。不进景区，省下门票钱和时间。',
+                detail: [
+                  { icon: '📸', text: '仅门口拍照打卡，不进景区' },
+                  { icon: '💡', text: '门楼+门匾经典构图' }
+                ],
+                metro: null
+              }
+            ]
+          },
+          {
+            label: '中午 — 城墙+湖光+颐和路',
+            items: [
+              {
+                time: '11:40-12:10', title: '🚌 总统府 → 明城墙台城',
+                desc: '步行至四牌楼站乘304路公交，经鸡鸣寺，至玄武湖台城站下车。约30分钟。',
+                detail: [
+                  { icon: '🚶', text: '总统府→四牌楼站 步行约6分钟' },
+                  { icon: '🚌', text: '304路 约20分钟车程' },
+                  { icon: '📍', text: '玄武湖台城站下车' }
+                ],
+                metro: { lines: [], route: '公交304路约30分钟', detail: '四牌楼→太平北路·鸡鸣寺→鸡鸣寺→玄武湖台城' }
+              },
+              {
+                time: '12:10-12:40', title: '🧱 明城墙台城段',
+                desc: '解放门登城，俯瞰玄武湖与紫峰大厦同框——南京最经典机位。门票约30元，30分钟精华段。',
+                detail: [
+                  { icon: '🎫', text: '门票约30元/人' },
+                  { icon: '📸', text: '玄武湖+紫峰同框' }
+                ],
+                metro: null
+              },
+              {
+                time: '12:40-13:10', title: '🌿 玄武湖（台城段入湖）',
+                desc: '台城下来直接进入玄武湖，环洲精华段漫步。6月荷塘初绽，湖边吹风休憩。免费。',
+                detail: [{ icon: '🆓', text: '免费入园' }, { icon: '🌧️', text: '6/14预报小雨，备伞' }],
+                metro: null
+              },
+              {
+                time: '13:10-13:30', title: '🚲 玄武湖 → 颐和路',
+                desc: '共享单车沿台城路→傅厚岗→江苏路骑行约15分钟。沿途梧桐林荫，本身就是一道风景。',
+                detail: [{ icon: '🚲', text: '共享单车约15分钟' }],
+                metro: null
+              },
+              {
+                time: '13:30-14:00', title: '🏡 颐和路公馆区',
+                desc: '民国公馆建筑群，梧桐林荫道+黄墙灰瓦。"一条颐和路，半部民国史"。30分钟快走拍照。',
+                detail: [{ icon: '📸', text: '梧桐林荫道 / 民国公馆' }],
+                metro: null
+              }
+            ]
+          },
+          {
+            label: '下午 — 老门东收尾 + 赶车',
+            items: [
+              {
+                time: '14:00-14:55', title: '🚇 颐和路 → 老门东',
+                desc: '步行至青春广场站(约12分钟)，乘5号线至夫子庙换乘3号线→武定门站2号口出，步行至老门东。总约55分钟。',
+                detail: [
+                  { icon: '🚶', text: '颐和路→青春广场站 步行约12分钟' },
+                  { icon: '🚇', text: '5号线→夫子庙换3号线→武定门 约22分钟车程' },
+                  { icon: '🚶', text: '武定门2号口→老门东 步行约5分钟' }
+                ],
+                metro: { lines: ['5', '3'], route: '地铁约55分钟', detail: '青春广场(5号线)→云南路→五台山→上海路→朝天宫→三山街→夫子庙换3号线→武定门' }
+              },
+              {
+                time: '14:55-16:30', title: '🍢 老门东午餐 + 逛街 + 伴手礼',
+                desc: '主街逛吃：蒋有记锅贴、陆氏梅花糕、鸡鸣汤包。边营/三条营小巷拍照。章云板鸭现切打包带走。',
+                detail: [
+                  { icon: '🍜', text: '午餐：蒋有记锅贴 + 陆氏梅花糕' },
+                  { icon: '🎁', text: '伴手礼：章云板鸭现切' },
+                  { icon: '📸', text: '边营/三条营小巷' }
+                ],
+                metro: null
+              },
+              {
+                time: '16:30-17:00', title: '🚇 老门东 → 南京南站',
+                desc: '步行至武定门站2号口 → 地铁3号线秣陵方向直达南京南站。5站约24分钟。',
+                detail: [
+                  { icon: '🚶', text: '老门东→武定门站 步行约5分钟' },
+                  { icon: '🚇', text: '地铁3号线 5站 约15分钟车程' },
+                  { icon: '⚠️', text: '预留充足时间安检进站' }
+                ],
+                metro: { lines: ['3'], route: '地铁3号线约24分钟', detail: '武定门 → 雨花门 → 卡子门 → 大明路 → 明发广场 → 南京南站 (5站)' },
+                alert: '17:00前必须到达南京南站！'
+              },
+              {
+                time: '17:00-18:06', title: '🛂 安检候车',
+                desc: '南京南站安检进站，候车区休息。G3343 南京南→汉口 18:06-20:56。',
+                detail: [{ icon: '⏰', text: '66分钟候车缓冲' }],
+                metro: null
+              },
+              {
+                time: '18:06', title: '🚄 返程武汉',
+                desc: 'G3343 南京南→汉口 18:06-20:56，愉快回家 🎒',
+                detail: null, metro: null
+              }
+            ]
+          }
+        ]
+      }
+    ];
+
+    const ROUTE_COLORS = { 1: '#4a7c9b', 2: '#c49a3c' };
+
+    const ROUTES = {
+      1: [
+        [POIS.nanjingSouth, POIS.xinjiekou],
+        [POIS.xinjiekou, POIS.museum],
+        [POIS.museum, POIS.mingxiaoling],
+        [POIS.mingxiaoling, POIS.deerPark],
+        [POIS.deerPark, POIS.luyuanRd],
+        [POIS.luyuanRd, POIS.meilingPalace],
+        [POIS.meilingPalace, POIS.musicHall],
+        [POIS.musicHall, POIS.zhongshanling],
+        [POIS.zhongshanling, POIS.lingguTemple],
+        [POIS.lingguTemple, POIS.xinjiekou]
+      ],
+      2: [
+        [POIS.xinjiekou, POIS.dejiPlaza],
+        [POIS.dejiPlaza, POIS.presidentPalace],
+        [POIS.presidentPalace, POIS.cityWall],
+        [POIS.cityWall, POIS.xuanwuLake],
+        [POIS.xuanwuLake, POIS.yiheRoad],
+        [POIS.yiheRoad, POIS.laomendong],
+        [POIS.laomendong, POIS.nanjingSouth]
+      ]
+    };
+
+    function renderWeather() {
+      document.getElementById('weather').innerHTML = WEATHER.map(w => `
+        <div class="weather-card">
+          <strong>${w.icon} ${w.date}</strong>
+          <div class="temp">${w.high}° <span style="font-size:0.8rem;font-weight:400;opacity:0.8">/ ${w.low}°</span></div>
+          ${w.day} / ${w.night} · ${w.wind}
+          ${w.day === '小雨' ? '<br><span class="rain-tag">🌧️ 备伞</span>' : ''}
+          <br><span style="opacity:0.85;font-size:0.75rem;">${w.tip}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderTimeline() {
+      document.getElementById('timeline').innerHTML = SCHEDULE.map(day => `
+        <div class="day-block">
+          <div class="day-header ${day.cls}">${day.title}</div>
+          ${(day.parts || []).map(part => `
+            <div class="part-divider">
+              ${part.label === '上午 — 博物时光' ? '🌤️' : part.label === '下午 — 钟山全域（电瓶车串联）' ? '☀️' : '📍'} ${part.label}
+            </div>
+            <div class="day-body">
+              ${part.items.map(item => `
+                <div class="route-item">
+                  <div class="route-time">${item.time}</div>
+                  <div class="route-content">
+                    <h4>${item.title}</h4>
+                    <p>${item.desc}</p>
+                    ${item.detail ? `
+                      <div class="route-detail">
+                        ${item.detail.map(d => `<span>${d.icon} ${d.text}</span>`).join('')}
+                      </div>
+                    ` : ''}
+                    ${item.metro ? `
+                      <div class="metro-tag">
+                        ${item.metro.lines.map(l => `<span class="line line-${l}">${l}</span>`).join('')}
+                        <span>${item.metro.route} · ${item.metro.detail}</span>
+                      </div>
+                    ` : ''}
+                    ${item.alert ? `<div class="alert-tag">⚠️ ${item.alert}</div>` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    function renderSpots() {
+      const day1Spots = Object.values(POIS).filter(p => p.img && p.day === 1);
+      const day2Spots = Object.values(POIS).filter(p => p.img && p.day === 2);
+      const spots = [...day1Spots, ...day2Spots];
+      document.getElementById('spots').innerHTML = spots.map(s => `
+        <article class="spot-card">
+          <img class="spot-img" src="${s.img}" alt="${s.name}" loading="lazy" />
+          <div class="spot-body">
+            <div class="spot-meta">
+              <span class="badge badge-d${s.day}">Day ${s.day}</span>
+            </div>
+            <h3>${s.name}</h3>
+            <p>${s.desc}</p>
+            ${s.must ? `<div class="must-see">🏷️ 必看：${s.must}</div>` : ''}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    let mapInstance = null;
+    let polylines = [];
+    let markers = [];
+
+    function initMap() {
+      if (!AMAP_KEY) {
+        document.getElementById('map-hint').innerHTML =
+          '⚠️ 请配置高德 Web 端 Key：在 URL 添加 <code>?key=您的Key</code> 后刷新页面。申请地址：<a href="https://console.amap.com/" target="_blank">console.amap.com</a>';
+        document.getElementById('map').innerHTML =
+          '<div style="height:100%;display:flex;align-items:center;justify-content:center;background:#f0ebe3;color:#6b6b6b;padding:2rem;text-align:center;font-size:0.9rem">地图需要高德 Key 才能加载<br><br>点击上方按钮仍可在高德 App 中查看完整行程</div>';
+        return;
+      }
+
+      window._AMapSecurityConfig = { securityJsCode: '' };
+
+      const script = document.createElement('script');
+      script.src = `https://webapi.amap.com/maps?v=2.0&key=${AMAP_KEY}&plugin=AMap.Scale,AMap.ToolBar`;
+      script.onload = () => {
+        mapInstance = new AMap.Map('map', {
+          zoom: 12,
+          center: [118.82, 32.04],
+          mapStyle: 'amap://styles.whitesmoke',
+          viewMode: '2D'
+        });
+
+        mapInstance.addControl(new AMap.Scale());
+        mapInstance.addControl(new AMap.ToolBar({ position: 'RB' }));
+
+        drawRoutes('all');
+        setupTabs();
+      };
+      document.head.appendChild(script);
+    }
+
+    function drawRoutes(filter) {
+      if (!mapInstance) return;
+
+      polylines.forEach(p => mapInstance.remove(p));
+      markers.forEach(m => mapInstance.remove(m));
+      polylines = [];
+      markers = [];
+
+      const days = filter === 'all' ? [1, 2] : [Number(filter)];
+      const added = new Set();
+
+      days.forEach(day => {
+        const segs = ROUTES[day] || [];
+        segs.forEach(seg => {
+          const path = seg.map(p => [p.lng, p.lat]);
+          const pl = new AMap.Polyline({
+            path,
+            strokeColor: ROUTE_COLORS[day],
+            strokeWeight: 6,
+            strokeOpacity: 0.85,
+            lineJoin: 'round',
+            showDir: true
+          });
+          mapInstance.add(pl);
+          polylines.push(pl);
+
+          seg.forEach(p => {
+            const key = `${p.lng},${p.lat}`;
+            if (added.has(key)) return;
+            added.add(key);
+
+            const marker = new AMap.Marker({
+              position: [p.lng, p.lat],
+              title: p.name,
+              label: {
+                content: `<span style="background:${ROUTE_COLORS[p.day || day]};color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">${p.name}</span>`,
+                direction: 'top'
+              }
+            });
+            mapInstance.add(marker);
+            markers.push(marker);
+          });
+        });
+      });
+
+      if (polylines.length) mapInstance.setFitView(polylines, false, [60, 60, 60, 60]);
+    }
+
+    function setupTabs() {
+      document.querySelectorAll('.map-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.map-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          drawRoutes(tab.dataset.day);
+        });
+      });
+    }
+
+    document.getElementById('openAmap').addEventListener('click', function(e) {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (!isMobile) {
+        e.preventDefault();
+        alert('请在手机浏览器中打开此页面，点击按钮即可跳转高德地图 App 查看完整行程路线。');
+      }
+    });
+
+    renderWeather();
+    renderTimeline();
+    renderSpots();
+    initMap();
+  </script>
+</body>
+</html>
