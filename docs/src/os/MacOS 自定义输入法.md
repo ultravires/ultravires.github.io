@@ -1,3 +1,7 @@
+---
+date: 2025-11-13
+---
+
 [在 Mac 上创建和使用你自己的输入法](https://support.apple.com/zh-cn/guide/mac-help/mchlp2866/15.0/mac/15.0)
 
 新建 `mac_latin_letter_circle_solid_utf16le.inputplugin` 文件，已 `utf16` 编码格式编辑并保存。
