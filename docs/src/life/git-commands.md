@@ -2,7 +2,7 @@
 title: 常用 Git 命令
 date: 2026-06-15
 categories:
-  - 其他
+  - 程序人生
 cover:
   text: Git 命令
 banner:

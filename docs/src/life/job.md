@@ -1,6 +1,8 @@
 ---
 title: 求职渠道大全
 date: 2025-06-27 17:56
+categories:
+  - 程序人生
 cover:
   text: 求职渠道
 banner:

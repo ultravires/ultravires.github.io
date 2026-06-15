@@ -5,7 +5,7 @@ author:
   email: x555666777@qq.com
 date: 2026/03/11
 categories:
-  - 其他
+  - 程序人生
 cover:
   text: 订阅转换
 banner:

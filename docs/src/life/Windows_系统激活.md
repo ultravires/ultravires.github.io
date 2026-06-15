@@ -10,7 +10,7 @@ banner:
   wave: true
 aside: true
 categories:
-  - 系统工具
+  - 程序人生
 ---
 
 Win10 KMS 客户端安装序列号，支持 1511-1809-1903-1909 等全系列 Win10 版本。

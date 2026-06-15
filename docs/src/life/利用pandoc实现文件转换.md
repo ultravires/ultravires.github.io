@@ -1,6 +1,8 @@
 ---
 title: 利用 Pandoc 实现文件转换
 date: 2025-11-10 15:13:50
+categories:
+  - 程序人生
 ---
 
 在开发时经常会遇到文件导出为另外一个格式的需求，如将 HTML 导出为 WORD。 [pandoc](https://github.com/jgm/pandoc) 是一个通用的用于转换文件格式的命令行工具，很好用。

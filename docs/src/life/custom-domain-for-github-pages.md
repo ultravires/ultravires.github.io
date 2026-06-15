@@ -1,6 +1,8 @@
 ---
 title: Github Pages 自定义域名
 date: 2026-01-29 00:00:00
+categories:
+  - 程序人生
 ---
 
 之前一直用的是默认的 `ultravires.github.io` 作为博客的域名，现在换成 `ultravires.me` 作为博客的域名了。
