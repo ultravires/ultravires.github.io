@@ -14,10 +14,10 @@ const { post } = defineProps<{
     <div class="flex flex-col items-start">
       <div class="order-1 flex flex-col gap-0.5 max-md:hidden">
         <span
-          v-if="post.lastUpdatedTime"
+          v-if="post.date"
           class="ellipsis text-sm text-neutral-400/80 dark:text-neutral-400/80"
         >
-          {{ post.lastUpdatedTime.string }}
+          {{ post.date.string }}
         </span>
       </div>
       <div class="order-2">

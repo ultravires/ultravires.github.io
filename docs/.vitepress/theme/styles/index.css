@@ -37,6 +37,8 @@
 
   --animate-progress-timeline: progress-timeline 1s linear forwards;
 
+  --icon-external-link: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath d='M768 170.688h85.312v682.624H768V318.72l-536.96 536.96-60.352-60.288L709.952 256H170.688V170.688H768z' fill='black'/%3E%3C/svg%3E");
+
   @keyframes progress-timeline {
     from {
     }
@@ -65,5 +67,26 @@
   .prose :where(td):not(:where([class~='not-prose'] *)) {
     padding: 0.75rem 1rem;
     vertical-align: middle;
+  }
+
+  /* 外部链接：after 伪元素展示跳转图标 */
+  .prose :where(a[target='_blank']):not(:where([class~='not-prose'] *))::after {
+    content: '';
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    margin-inline-start: 0.15em;
+    vertical-align: -0.1em;
+    background-color: currentColor;
+    opacity: 0.6;
+    -webkit-mask: var(--icon-external-link) no-repeat center / contain;
+    mask: var(--icon-external-link) no-repeat center / contain;
+  }
+
+  .prose
+    :where(a[target='_blank']):not(
+      :where([class~='not-prose'] *)
+    ):hover::after {
+    opacity: 0.85;
   }
 }

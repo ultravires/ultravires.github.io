@@ -12,9 +12,7 @@ tags:
   - MCP
 ---
 
-# Claude Code 系统提示词深度拆解
-
-> 本文基于与 DeepSeek-V4-Pro 在 Claude Code 平台上的对话记录，逐层剖析其系统提示词（system prompt）的完整结构与设计哲学。Claude Code 是 Anthropic 推出的 CLI AI 编程助手，本文档旨在帮助开发者理解其内部运作机制。
+本文基于与 DeepSeek-V4-Pro 在 Claude Code 平台上的对话记录，逐层剖析其系统提示词（system prompt）的完整结构与设计哲学。Claude Code 是 Anthropic 推出的 CLI AI 编程助手，本文档旨在帮助开发者理解其内部运作机制。
 
 ---
 
@@ -59,11 +57,11 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 三个关键概念：
 
-| 概念 | 说明 |
-|------|------|
+| 概念                   | 说明                                      |
+| ---------------------- | ----------------------------------------- |
 | **durably authorized** | 持久授权——通过 `settings.json` 的权限配置 |
-| **explicitly told** | 用户在当前对话中明确说"不用确认" |
-| **doesn't extend** | 一个上下文的许可不能延续到下一个上下文 |
+| **explicitly told**    | 用户在当前对话中明确说"不用确认"          |
+| **doesn't extend**     | 一个上下文的许可不能延续到下一个上下文    |
 
 ### 1.4 数据安全警告
 
@@ -87,12 +85,12 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 已知的 Claude 模型 ID 列表：
 
-| 模型名称 | 模型 ID |
-|----------|---------|
-| Fable 5 | `claude-fable-5` |
-| Opus 4.8 | `claude-opus-4-8` |
-| Sonnet 4.6 | `claude-sonnet-4-6` |
-| Haiku 4.5 | `claude-haiku-4-5-20251001` |
+| 模型名称   | 模型 ID                     |
+| ---------- | --------------------------- |
+| Fable 5    | `claude-fable-5`            |
+| Opus 4.8   | `claude-opus-4-8`           |
+| Sonnet 4.6 | `claude-sonnet-4-6`         |
+| Haiku 4.5  | `claude-haiku-4-5-20251001` |
 
 ### 1.8 Fast Mode
 
@@ -110,13 +108,13 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 ### 2.1 参数 Schema
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `command` | string | 必填 | 要执行的命令 |
-| `timeout` | number | 120000 | 超时（ms），最大 600000 |
-| `description` | string | 必填 | 清晰、简洁的命令描述（主动语态） |
-| `run_in_background` | boolean | false | 后台运行，结束后通知模型 |
-| `dangerouslyDisableSandbox` | boolean | false | 覆盖沙箱模式 |
+| 参数                        | 类型    | 默认值 | 说明                             |
+| --------------------------- | ------- | ------ | -------------------------------- |
+| `command`                   | string  | 必填   | 要执行的命令                     |
+| `timeout`                   | number  | 120000 | 超时（ms），最大 600000          |
+| `description`               | string  | 必填   | 清晰、简洁的命令描述（主动语态） |
+| `run_in_background`         | boolean | false  | 后台运行，结束后通知模型         |
+| `dangerouslyDisableSandbox` | boolean | false  | 覆盖沙箱模式                     |
 
 ### 2.2 description 字段规范
 
@@ -127,14 +125,14 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 示例映射：
 
-| 命令 | description |
-|------|-------------|
-| `ls` | "List files in current directory" |
-| `git status` | "Show working tree status" |
-| `npm install` | "Install package dependencies" |
-| `find . -name "*.tmp" -exec rm {} \;` | "Find and delete all .tmp files recursively" |
-| `git reset --hard origin/main` | "Discard all local changes and match remote main" |
-| `curl -s url \| jq '.data[]'` | "Fetch JSON from URL and extract data array elements" |
+| 命令                                  | description                                           |
+| ------------------------------------- | ----------------------------------------------------- |
+| `ls`                                  | "List files in current directory"                     |
+| `git status`                          | "Show working tree status"                            |
+| `npm install`                         | "Install package dependencies"                        |
+| `find . -name "*.tmp" -exec rm {} \;` | "Find and delete all .tmp files recursively"          |
+| `git reset --hard origin/main`        | "Discard all local changes and match remote main"     |
+| `curl -s url \| jq '.data[]'`         | "Fetch JSON from URL and extract data array elements" |
 
 ### 2.3 Shell 环境约束
 
@@ -165,12 +163,12 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 ### 3.1 参数 Schema
 
-| 参数 | 类型 | 限制 | 说明 |
-|------|------|------|------|
-| `file_path` | string | 绝对路径，必填 | 目标文件路径 |
-| `offset` | integer | ≥0 | 起始行号 |
-| `limit` | integer | >0 | 读取行数（默认 2000） |
-| `pages` | string | 如 "1-5" | PDF 页码范围，最多 20 页/次 |
+| 参数        | 类型    | 限制           | 说明                        |
+| ----------- | ------- | -------------- | --------------------------- |
+| `file_path` | string  | 绝对路径，必填 | 目标文件路径                |
+| `offset`    | integer | ≥0             | 起始行号                    |
+| `limit`     | integer | >0             | 读取行数（默认 2000）       |
+| `pages`     | string  | 如 "1-5"       | PDF 页码范围，最多 20 页/次 |
 
 ### 3.2 支持的格式
 
@@ -192,12 +190,12 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 ### 4.1 参数 Schema
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `file_path` | string | 必填 | 绝对路径 |
-| `old_string` | string | 必填 | 要替换的文本 |
-| `new_string` | string | 必填 | 替换后的文本（必须不同） |
-| `replace_all` | boolean | false | 替换所有匹配项 |
+| 参数          | 类型    | 默认值 | 说明                     |
+| ------------- | ------- | ------ | ------------------------ |
+| `file_path`   | string  | 必填   | 绝对路径                 |
+| `old_string`  | string  | 必填   | 要替换的文本             |
+| `new_string`  | string  | 必填   | 替换后的文本（必须不同） |
+| `replace_all` | boolean | false  | 替换所有匹配项           |
 
 ### 4.2 精确匹配约束
 
@@ -214,10 +212,10 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 ### 5.1 参数 Schema
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `file_path` | string | 绝对路径 |
-| `content` | string | 文件完整内容 |
+| 参数        | 类型   | 说明         |
+| ----------- | ------ | ------------ |
+| `file_path` | string | 绝对路径     |
+| `content`   | string | 文件完整内容 |
 
 ### 5.2 约束
 
@@ -230,14 +228,14 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 ### 6.1 参数 Schema
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `description` | string | 3-5 词的任务描述 |
-| `prompt` | string | 任务详情 |
-| `subagent_type` | string | 专用 agent 类型 |
-| `model` | "sonnet" \| "opus" \| "haiku" \| "fable" | 模型覆盖 |
-| `run_in_background` | boolean | 后台运行 |
-| `isolation` | "worktree" \| "remote" | 隔离模式 |
+| 参数                | 类型                                     | 说明             |
+| ------------------- | ---------------------------------------- | ---------------- |
+| `description`       | string                                   | 3-5 词的任务描述 |
+| `prompt`            | string                                   | 任务详情         |
+| `subagent_type`     | string                                   | 专用 agent 类型  |
+| `model`             | "sonnet" \| "opus" \| "haiku" \| "fable" | 模型覆盖         |
+| `run_in_background` | boolean                                  | 后台运行         |
+| `isolation`         | "worktree" \| "remote"                   | 隔离模式         |
 
 ### 6.2 使用时机
 
@@ -247,14 +245,14 @@ Harness 是 Claude Code 最顶层的运行时规则引擎，在每次对话中�
 
 ### 6.3 Agent 类型
 
-| 类型 | 可用工具 | 用途 |
-|------|----------|------|
-| `claude` | 全部 | 通用兜底 |
-| `claude-code-guide` | Bash, Read, WebFetch, WebSearch | Claude Code/API/SDK 问答 |
-| `Explore` | 除 Agent、Edit、Write、NotebookEdit 外全部 | 只读搜索，广度优先 |
-| `general-purpose` | 全部 | 复杂搜索、多步任务 |
-| `Plan` | 除 Agent、Edit、Write、NotebookEdit 外全部 | 软件架构设计 |
-| `statusline-setup` | Read, Edit | 配置状态栏 |
+| 类型                | 可用工具                                   | 用途                     |
+| ------------------- | ------------------------------------------ | ------------------------ |
+| `claude`            | 全部                                       | 通用兜底                 |
+| `claude-code-guide` | Bash, Read, WebFetch, WebSearch            | Claude Code/API/SDK 问答 |
+| `Explore`           | 除 Agent、Edit、Write、NotebookEdit 外全部 | 只读搜索，广度优先       |
+| `general-purpose`   | 全部                                       | 复杂搜索、多步任务       |
+| `Plan`              | 除 Agent、Edit、Write、NotebookEdit 外全部 | 软件架构设计             |
+| `statusline-setup`  | Read, Edit                                 | 配置状态栏               |
 
 ### 6.4 隔离模式
 
@@ -284,17 +282,18 @@ Workflow 仅在以下情况之一满足时调用：
 > "For any other task — even one that would clearly benefit from parallelism — do NOT call this tool."
 
 当 ultracode 开启时：
+
 > "author and run a workflow for every substantive task by default. The goal is the most exhaustive, correct answer you can produce — token cost is not a constraint."
 
 ### 7.2 调用参数
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `script` | string (max 524288 chars) | 内联脚本 |
-| `name` | string | 命名 workflow（内置或 `.claude/workflows/`） |
-| `args` | any (JSON 值) | 参数化输入，暴露为全局 `args` |
-| `scriptPath` | string | 磁盘上的脚本路径 |
-| `resumeFromRunId` | string (pattern: `^wf_[a-z0-9-]{6,}$`) | 从之前的运行恢复 |
+| 参数              | 类型                                   | 说明                                         |
+| ----------------- | -------------------------------------- | -------------------------------------------- |
+| `script`          | string (max 524288 chars)              | 内联脚本                                     |
+| `name`            | string                                 | 命名 workflow（内置或 `.claude/workflows/`） |
+| `args`            | any (JSON 值)                          | 参数化输入，暴露为全局 `args`                |
+| `scriptPath`      | string                                 | 磁盘上的脚本路径                             |
+| `resumeFromRunId` | string (pattern: `^wf_[a-z0-9-]{6,}$`) | 从之前的运行恢复                             |
 
 ### 7.3 元数据声明
 
@@ -306,12 +305,13 @@ export const meta = {
   description: 'Find flaky tests and propose fixes',
   phases: [
     { title: 'Scan', detail: 'grep test logs for retries' },
-    { title: 'Fix', detail: 'one agent per flaky test' },
-  ],
-}
+    { title: 'Fix', detail: 'one agent per flaky test' }
+  ]
+};
 ```
 
 约束：
+
 - 必须是**纯字面量**——不能有变量、函数调用、展开运算符或模板插值
 - `name` 和 `description` 必填
 - `phases` 中的 `title` 必须与 `phase()` 调用中的标题**完全匹配**
@@ -366,11 +366,11 @@ parallel(thunks: Array<() => Promise<any>>): Promise<any[]>
 
 ### 7.7 并发限制
 
-| 限制项 | 值 |
-|--------|-----|
-| 单 workflow 并发 agent 上限 | `min(16, cpu_cores - 2)` |
-| 生命周期 agent 总数上限 | 1000 |
-| 单次 pipeline/parallel 项数上限 | 4096 |
+| 限制项                          | 值                       |
+| ------------------------------- | ------------------------ |
+| 单 workflow 并发 agent 上限     | `min(16, cpu_cores - 2)` |
+| 生命周期 agent 总数上限         | 1000                     |
+| 单次 pipeline/parallel 项数上限 | 4096                     |
 
 超出并发上限的调用自动排队，有空闲 slot 后执行。
 
@@ -427,6 +427,7 @@ workflow(nameOrRef: string | {scriptPath: string}, args?: any): Promise<any>
 ```
 
 约束：
+
 - 只能嵌套**一层**——嵌套 workflow 内部不能再调用 workflow()
 - 子 workflow 继承并发上限、agent 计数器、abort 信号、token 预算
 - 子 workflow 的 agent 显示为 "▸ name" 分组
@@ -454,12 +455,15 @@ workflow(nameOrRef: string | {scriptPath: string}, args?: any): Promise<any>
 
 ```js
 const votes = await parallel(
-  Array.from({length: 3}, () => () =>
-    agent(`Try to refute: ${claim}. Default to refuted=true if uncertain.`,
-      {schema: VERDICT})
+  Array.from(
+    { length: 3 },
+    () => () =>
+      agent(`Try to refute: ${claim}. Default to refuted=true if uncertain.`, {
+        schema: VERDICT
+      })
   )
-)
-const survives = votes.filter(Boolean).filter(v => !v.refuted).length >= 2
+);
+const survives = votes.filter(Boolean).filter((v) => !v.refuted).length >= 2;
 ```
 
 每个 finding 生成 N 个独立质疑者，prompt 要求 REFUTE。少数服从多数——多数通过才保留。防止看起来合理但实际错误的 findings。
@@ -475,16 +479,23 @@ N 个独立方案生成 + 并行评分 + 合成最佳方案，同时嫁接 runne
 #### loop-until-dry
 
 ```js
-const seen = new Set(), confirmed = []
-let dry = 0
+const seen = new Set(),
+  confirmed = [];
+let dry = 0;
 while (dry < 2) {
-  const found = await parallel(FINDERS.map(f => () =>
-    agent(f.prompt, {phase: 'Find', schema: BUGS})))
-  const fresh = found.filter(Boolean).flatMap(r => r.bugs)
-    .filter(b => !seen.has(key(b)))
-  if (!fresh.length) { dry++; continue }
-  dry = 0
-  fresh.forEach(b => seen.add(key(b)))
+  const found = await parallel(
+    FINDERS.map((f) => () => agent(f.prompt, { phase: 'Find', schema: BUGS }))
+  );
+  const fresh = found
+    .filter(Boolean)
+    .flatMap((r) => r.bugs)
+    .filter((b) => !seen.has(key(b)));
+  if (!fresh.length) {
+    dry++;
+    continue;
+  }
+  dry = 0;
+  fresh.forEach((b) => seen.add(key(b)));
   // ... verify and push to confirmed
 }
 ```
@@ -508,24 +519,42 @@ while (dry < 2) {
 完整的 find → dedup → multi-lens verify → loop-until-dry 模式：
 
 ```js
-const seen = new Set(), confirmed = []
-let dry = 0
+const seen = new Set(),
+  confirmed = [];
+let dry = 0;
 while (dry < 2) {
-  const found = (await parallel(FINDERS.map(f => () =>
-    agent(f.prompt, {phase: 'Find', schema: BUGS}))))
-    .filter(Boolean).flatMap(r => r.bugs)
-  const fresh = found.filter(b => !seen.has(key(b)))
-  if (!fresh.length) { dry++; continue }
-  dry = 0; fresh.forEach(b => seen.add(key(b)))
-  const judged = await parallel(fresh.map(b => () =>
-    parallel(['correctness','security','repro'].map(lens => () =>
-      agent(`Judge "${b.desc}" via the ${lens} lens — real?`,
-        {phase: 'Verify', schema: VERDICT})))
-      .then(vs => ({
-        b,
-        real: vs.filter(Boolean).filter(v => v.real).length >= 2
-      }))))
-  confirmed.push(...judged.filter(v => v.real).map(v => v.b))
+  const found = (
+    await parallel(
+      FINDERS.map((f) => () => agent(f.prompt, { phase: 'Find', schema: BUGS }))
+    )
+  )
+    .filter(Boolean)
+    .flatMap((r) => r.bugs);
+  const fresh = found.filter((b) => !seen.has(key(b)));
+  if (!fresh.length) {
+    dry++;
+    continue;
+  }
+  dry = 0;
+  fresh.forEach((b) => seen.add(key(b)));
+  const judged = await parallel(
+    fresh.map(
+      (b) => () =>
+        parallel(
+          ['correctness', 'security', 'repro'].map(
+            (lens) => () =>
+              agent(`Judge "${b.desc}" via the ${lens} lens — real?`, {
+                phase: 'Verify',
+                schema: VERDICT
+              })
+          )
+        ).then((vs) => ({
+          b,
+          real: vs.filter(Boolean).filter((v) => v.real).length >= 2
+        }))
+    )
+  );
+  confirmed.push(...judged.filter((v) => v.real).map((v) => v.b));
 }
 ```
 
@@ -533,13 +562,13 @@ while (dry < 2) {
 
 常见的单阶段工作流链式组合：
 
-| 阶段 | 用途 | 技术 |
-|------|------|------|
-| **Understand** | 并行读取相关子系统 → 结构化图谱 | parallel + Explore agents |
-| **Design** | N 个独立方案的评判团 → 评分合成 | parallel judges |
-| **Review** | 多维度发现 → 对抗验证 | pipeline + adversarial verify |
-| **Research** | 多模态扫描 → 深度阅读 → 合成 | multi-modal sweep |
-| **Migrate** | 发现迁移点 → 逐个转换（worktree 隔离）→ 验证 | pipeline + worktree isolation |
+| 阶段           | 用途                                         | 技术                          |
+| -------------- | -------------------------------------------- | ----------------------------- |
+| **Understand** | 并行读取相关子系统 → 结构化图谱              | parallel + Explore agents     |
+| **Design**     | N 个独立方案的评判团 → 评分合成              | parallel judges               |
+| **Review**     | 多维度发现 → 对抗验证                        | pipeline + adversarial verify |
+| **Research**   | 多模态扫描 → 深度阅读 → 合成                 | multi-modal sweep             |
+| **Migrate**    | 发现迁移点 → 逐个转换（worktree 隔离）→ 验证 | pipeline + worktree isolation |
 
 ---
 
@@ -549,20 +578,20 @@ while (dry < 2) {
 
 ### 8.1 参数 Schema
 
-| 参数 | 类型 | 限制 | 说明 |
-|------|------|------|------|
-| `delaySeconds` | number | [60, 3600] clamped | 从现在起的秒数 |
-| `reason` | string | 必填 | 一句话解释延迟选择 |
-| `prompt` | string | 必填 | `/loop` 输入原文，或 `<<autonomous-loop-dynamic>>` 哨兵 |
+| 参数           | 类型   | 限制               | 说明                                                    |
+| -------------- | ------ | ------------------ | ------------------------------------------------------- |
+| `delaySeconds` | number | [60, 3600] clamped | 从现在起的秒数                                          |
+| `reason`       | string | 必填               | 一句话解释延迟选择                                      |
+| `prompt`       | string | 必填               | `/loop` 输入原文，或 `<<autonomous-loop-dynamic>>` 哨兵 |
 
 ### 8.2 缓存 TTL 策略
 
 > "The Anthropic prompt cache has a 5-minute TTL."
 
-| 延迟范围 | 缓存状态 | 适用场景 |
-|----------|----------|----------|
+| 延迟范围 | 缓存状态   | 适用场景                           |
+| -------- | ---------- | ---------------------------------- |
 | 60s–270s | cache warm | 主动轮询外部状态（CI、部署、队列） |
-| 300s+ | cache miss | 慢变化等待、fallback heartbeat |
+| 300s+    | cache miss | 慢变化等待、fallback heartbeat     |
 
 > "Don't pick 300s. It's the worst-of-both: you pay the cache miss without amortizing it."
 
@@ -580,10 +609,10 @@ while (dry < 2) {
 
 ### 9.1 参数 Schema
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
+| 参数    | 类型   | 说明                                               |
+| ------- | ------ | -------------------------------------------------- |
 | `skill` | string | 技能名称（不含 `/`），plugin 格式为 `plugin:skill` |
-| `args` | string | 可选参数 |
+| `args`  | string | 可选参数                                           |
 
 ### 9.2 调用规则
 
@@ -594,28 +623,28 @@ while (dry < 2) {
 
 ### 9.3 完整 Skills 清单
 
-| Skill | 触发场景 |
-|-------|----------|
-| `frontend-design` | 新建 UI，视觉设计指导 |
-| `deep-research` | 深度多源研究报告 |
-| `chrome-devtools-mcp:a11y-debugging` | 无障碍审计 |
-| `chrome-devtools-mcp:chrome-devtools` | 浏览器调试自动化 |
-| `chrome-devtools-mcp:chrome-devtools-cli` | CLI 浏览器自动化 |
-| `chrome-devtools-mcp:debug-optimize-lcp` | LCP 性能优化 |
-| `chrome-devtools-mcp:memory-leak-debugging` | 内存泄漏调试 |
-| `chrome-devtools-mcp:troubleshooting` | 故障排查 |
-| `update-config` | settings.json 配置、权限、环境变量、hooks |
-| `keybindings-help` | 快捷键自定义 |
-| `verify` | 验证代码变更是否按预期工作 |
-| `code-review` | diff 审查（bug + 简化，支持 `--comment`/`--fix`） |
-| `simplify` | 仅质量简化（不找 bug） |
-| `fewer-permission-prompts` | 扫描 transcript 减少权限弹窗 |
-| `loop` | 定时重复任务 |
-| `claude-api` | Claude API/SDK 参考 |
-| `run` | 启动项目验证变更 |
-| `init` | 初始化 CLAUDE.md |
-| `review` | PR 审查 |
-| `security-review` | 安全审查 |
+| Skill                                       | 触发场景                                          |
+| ------------------------------------------- | ------------------------------------------------- |
+| `frontend-design`                           | 新建 UI，视觉设计指导                             |
+| `deep-research`                             | 深度多源研究报告                                  |
+| `chrome-devtools-mcp:a11y-debugging`        | 无障碍审计                                        |
+| `chrome-devtools-mcp:chrome-devtools`       | 浏览器调试自动化                                  |
+| `chrome-devtools-mcp:chrome-devtools-cli`   | CLI 浏览器自动化                                  |
+| `chrome-devtools-mcp:debug-optimize-lcp`    | LCP 性能优化                                      |
+| `chrome-devtools-mcp:memory-leak-debugging` | 内存泄漏调试                                      |
+| `chrome-devtools-mcp:troubleshooting`       | 故障排查                                          |
+| `update-config`                             | settings.json 配置、权限、环境变量、hooks         |
+| `keybindings-help`                          | 快捷键自定义                                      |
+| `verify`                                    | 验证代码变更是否按预期工作                        |
+| `code-review`                               | diff 审查（bug + 简化，支持 `--comment`/`--fix`） |
+| `simplify`                                  | 仅质量简化（不找 bug）                            |
+| `fewer-permission-prompts`                  | 扫描 transcript 减少权限弹窗                      |
+| `loop`                                      | 定时重复任务                                      |
+| `claude-api`                                | Claude API/SDK 参考                               |
+| `run`                                       | 启动项目验证变更                                  |
+| `init`                                      | 初始化 CLAUDE.md                                  |
+| `review`                                    | PR 审查                                           |
+| `security-review`                           | 安全审查                                          |
 
 ---
 
@@ -625,18 +654,18 @@ while (dry < 2) {
 
 ### 10.1 参数 Schema
 
-| 参数 | 类型 | 限制 | 说明 |
-|------|------|------|------|
-| `questions` | array | 1-4 个问题 | 问题列表 |
-| `questions[].question` | string | 以问号结尾 | 完整问题 |
-| `questions[].header` | string | 最多 12 字符 | 标签 |
-| `questions[].options` | array | 2-4 个选项 | 可选答案 |
-| `questions[].options[].label` | string | 1-5 词 | 选项文本 |
-| `questions[].options[].description` | string | 必填 | 解释含义 |
-| `questions[].options[].preview` | string | 可选 | Markdown 预览内容 |
-| `questions[].multiSelect` | boolean | 默认 false | 允许多选 |
-| `answers` | object | 可选 | 用户答案 |
-| `annotations` | object | 可选 | 用户注释 |
+| 参数                                | 类型    | 限制         | 说明              |
+| ----------------------------------- | ------- | ------------ | ----------------- |
+| `questions`                         | array   | 1-4 个问题   | 问题列表          |
+| `questions[].question`              | string  | 以问号结尾   | 完整问题          |
+| `questions[].header`                | string  | 最多 12 字符 | 标签              |
+| `questions[].options`               | array   | 2-4 个选项   | 可选答案          |
+| `questions[].options[].label`       | string  | 1-5 词       | 选项文本          |
+| `questions[].options[].description` | string  | 必填         | 解释含义          |
+| `questions[].options[].preview`     | string  | 可选         | Markdown 预览内容 |
+| `questions[].multiSelect`           | boolean | 默认 false   | 允许多选          |
+| `answers`                           | object  | 可选         | 用户答案          |
+| `annotations`                       | object  | 可选         | 用户注释          |
 
 ### 10.2 使用限制
 
@@ -660,18 +689,18 @@ while (dry < 2) {
 
 ### 11.1 参数 Schema
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `query` | string | 必填 | 查询表达式 |
-| `max_results` | number | 5 | 最大返回数 |
+| 参数          | 类型   | 默认值 | 说明       |
+| ------------- | ------ | ------ | ---------- |
+| `query`       | string | 必填   | 查询表达式 |
+| `max_results` | number | 5      | 最大返回数 |
 
 ### 11.2 查询语法
 
-| 形式 | 示例 | 说明 |
-|------|------|------|
-| 精确选择 | `"select:Read,Edit,Grep"` | 按名称精确获取 |
-| 关键词搜索 | `"notebook jupyter"` | 模糊匹配 |
-| 强制包含 | `"+slack send"` | "slack" 必须在名称中，其余词排序 |
+| 形式       | 示例                      | 说明                             |
+| ---------- | ------------------------- | -------------------------------- |
+| 精确选择   | `"select:Read,Edit,Grep"` | 按名称精确获取                   |
+| 关键词搜索 | `"notebook jupyter"`      | 模糊匹配                         |
+| 强制包含   | `"+slack send"`           | "slack" 必须在名称中，其余词排序 |
 
 ### 11.3 返回格式
 
@@ -702,12 +731,12 @@ metadata:
 
 ### 12.3 四种记忆类型
 
-| 类型 | 内容 | 格式要求 |
-|------|------|----------|
-| `user` | 用户身份、角色、专长、偏好 | 自由文本 |
-| `feedback` | 用户给的反馈和确认的做法 | 正文末尾必须含 **Why:** 和 **How to apply:** |
-| `project` | 当前工作、目标、约束（不在代码或 git 中的） | 同上 |
-| `reference` | 外部资源链接（URL、dashboard、ticket） | 自由文本 |
+| 类型        | 内容                                        | 格式要求                                     |
+| ----------- | ------------------------------------------- | -------------------------------------------- |
+| `user`      | 用户身份、角色、专长、偏好                  | 自由文本                                     |
+| `feedback`  | 用户给的反馈和确认的做法                    | 正文末尾必须含 **Why:** 和 **How to apply:** |
+| `project`   | 当前工作、目标、约束（不在代码或 git 中的） | 同上                                         |
+| `reference` | 外部资源链接（URL、dashboard、ticket）      | 自由文本                                     |
 
 ### 12.4 内部链接
 
@@ -779,6 +808,7 @@ MCP (Model Context Protocol) 服务器提供了大量外部工具。
 ### 14.1 上下文摘要
 
 当对话变长时：
+
 1. 当前上下文被摘要
 2. 摘要 + 剩余的未摘要内容 → 注入下一个上下文窗口
 3. 模型不需要主动收尾（wrap up）或中途交接（hand off）
@@ -788,11 +818,11 @@ MCP (Model Context Protocol) 服务器提供了大量外部工具。
 
 Anthropic prompt cache 的 TTL 为 **5 分钟（300 秒）**。这影响了所有定时操作的设计：
 
-| 延迟 | 缓存 | 代价 |
-|------|------|------|
-| <300s | warm | 低延迟，低成本 |
+| 延迟  | 缓存 | 代价                               |
+| ----- | ---- | ---------------------------------- |
+| <300s | warm | 低延迟，低成本                     |
 | =300s | cold | **最差**——付了 cache miss 但不摊销 |
-| >300s | cold | 一次 cache miss 换更长等待 |
+| >300s | cold | 一次 cache miss 换更长等待         |
 
 ### 14.3 同会话 Shell
 
@@ -806,14 +836,14 @@ Anthropic prompt cache 的 TTL 为 **5 分钟（300 秒）**。这影响了所�
 
 对话中注入的环境信息：
 
-| 变量 | 值 |
-|------|-----|
+| 变量     | 值                  |
+| -------- | ------------------- |
 | 工作目录 | `/Users/ultravires` |
-| Git 仓库 | `false` |
-| 平台 | `darwin` |
-| Shell | `zsh` |
-| OS 版本 | `Darwin 25.5.0` |
-| 当前日期 | `2026/06/18` |
+| Git 仓库 | `false`             |
+| 平台     | `darwin`            |
+| Shell    | `zsh`               |
+| OS 版本  | `Darwin 25.5.0`     |
+| 当前日期 | `2026/06/18`        |
 
 ## 附录 B：工具调用最佳实践摘要
 

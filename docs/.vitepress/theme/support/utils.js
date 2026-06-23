@@ -117,8 +117,12 @@ export function getImageColor(img) {
 }
 
 export function formatDate(raw) {
-  const date = new Date(raw);
-  date.setUTCHours(8);
+  // 统一转为字符串：去除首尾空白，将 / 替换为 -（兼容非标准日期格式）
+  const normalized = String(raw ?? '').trim().replace(/\//g, '-');
+  const date = new Date(normalized);
+  if (isNaN(date.getTime())) {
+    return null;
+  }
   return {
     time: +date,
     string: `${date.getFullYear()}-${(date.getMonth() + 1)

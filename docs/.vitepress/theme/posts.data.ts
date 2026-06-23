@@ -69,7 +69,7 @@ export function formatDate(raw: unknown): Post['date'] {
   if (!raw) {
     return {
       time: Date.now(),
-      string: dayjs().fromNow()
+      string: dayjs().format('YYYY-MM-DD')
     };
   }
 
@@ -80,13 +80,13 @@ export function formatDate(raw: unknown): Post['date'] {
   if (!date.isValid()) {
     return {
       time: Date.now(),
-      string: dayjs().fromNow()
+      string: dayjs().format('YYYY-MM-DD')
     };
   }
 
   return {
     time: date.valueOf(),
-    string: date.fromNow()
+    string: date.format('YYYY-MM-DD')
   };
 }
 
