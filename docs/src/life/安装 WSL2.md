@@ -1,6 +1,6 @@
 ---
 title: 安装适用于Linux的Windows子系统
-date: 2025/05/11
+date: 2025-05-11
 cover:
   text: Windows 子系统
 banner:

@@ -15,7 +15,9 @@ function parsePostDate(raw: unknown): Date {
   if (raw === undefined || raw === null || raw === '') {
     return new Date();
   }
-  const d = new Date(String(raw));
+  // 统一日期格式：去除首尾空白，将 / 替换为 -（兼容非标准日期格式）
+  const normalized = String(raw).trim().replace(/\//g, '-');
+  const d = new Date(normalized);
   return Number.isNaN(d.getTime()) ? new Date() : d;
 }
 

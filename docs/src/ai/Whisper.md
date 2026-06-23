@@ -3,7 +3,7 @@ title: Whisper 音视频文字识别
 author:
   name: 向成渝
   email: x555666777@qq.com
-date: 2025/05/11
+date: 2025-05-11
 categories:
   - 人工智能
 cover:

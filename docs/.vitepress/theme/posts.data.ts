@@ -65,7 +65,7 @@ export default createContentLoader('**/*.md', {
   }
 });
 
-export function formatDate(raw: string): Post['date'] {
+export function formatDate(raw: unknown): Post['date'] {
   if (!raw) {
     return {
       time: Date.now(),
@@ -73,11 +73,20 @@ export function formatDate(raw: string): Post['date'] {
     };
   }
 
-  const date = new Date(raw);
-  date.setUTCHours(8);
+  // 统一转为字符串：去除首尾空白，将 / 替换为 -（兼容 YAML 自动解析的 Date 对象以及 2026/03/11 这类非标准格式）
+  const rawStr = String(raw).trim().replace(/\//g, '-');
+  const date = dayjs(rawStr);
+
+  if (!date.isValid()) {
+    return {
+      time: Date.now(),
+      string: dayjs().fromNow()
+    };
+  }
+
   return {
-    time: +date,
-    string: dayjs(date).fromNow()
+    time: date.valueOf(),
+    string: date.fromNow()
   };
 }
 

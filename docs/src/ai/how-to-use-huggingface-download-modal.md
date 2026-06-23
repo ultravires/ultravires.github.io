@@ -3,7 +3,7 @@ title: Hugging Face 模型下载
 author:
   name: 向成渝
   email: x555666777@qq.com
-date: 2026/02/26
+date: 2026-02-26
 categories:
   - 人工智能
 cover:

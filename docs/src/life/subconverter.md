@@ -3,7 +3,7 @@ title: 订阅转换
 author:
   name: 向成渝
   email: x555666777@qq.com
-date: 2026/03/11
+date: 2026-03-11
 categories:
   - 程序人生
 cover:
