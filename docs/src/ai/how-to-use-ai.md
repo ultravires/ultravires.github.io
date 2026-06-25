@@ -1,6 +1,8 @@
 ---
-title: 如何正确使用 AI？
+title: 好用的 AI 应用导航
 date: 2026-04-01
+categories:
+  - 人工智能
 ---
 
 ## 短信接收
