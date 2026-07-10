@@ -1,6 +1,7 @@
 ---
 title: 开启 Chrome Gemini AI Innovations 体验
 date: 2026-07-10
+updated: 2026-07-10
 categories:
   - 人工智能
 tags:
@@ -11,17 +12,19 @@ tags:
   - 代理
 ---
 
-Google 将 Gemini 集成至 Chrome 浏览器并推出 AI Innovations 功能，但因地区限制，在中国大陆无法直接使用。本文记录如何通过修改配置在 macOS 上启用这一功能。
+Google 将 Gemini 集成至 Chrome 浏览器并推出 AI Innovations 功能，但因地区检测机制，在中国大陆无法直接使用。本文记录在 macOS 上通过修改配置启用这一功能的完整流程，以及 Chrome 自动更新后配置被重置的解决方案。
 
 ---
 
 ## 背景
 
-Google 在 Chrome 149 版本中深度集成了 Gemini，包括 DevTools 中的 AI assistant、侧边栏 Gemini 对话、以及 AI Innovations 设置面板。但由于地区检测机制，这些功能默认不对中国大陆用户开放。
+Google 自 Chrome 149 起深度集成了 Gemini，包括 DevTools 中的 AI assistant、侧边栏 Gemini 对话、以及 AI Innovations 设置面板。实际测试版本为 Chrome 150.0.7871.115。
+
+由于地区检测机制，这些功能默认不对中国大陆用户开放。配置完成后，Chrome **自动更新版本时会重置地区字段**，需重新执行修改。
 
 参考文章：[开启 Gemini in Chrome 中的 AI Innovations 体验](https://cherysunzhang.com/2026/01/enable-gemini-in-chrome-and-experience-ai-innovations/)
 
-**前置条件**：网络环境可以访问 Gemini 服务（如已配置 VPN 且 IP 位于支持地区）。本文测试环境为 macOS，VPN 出口位于 Los Angeles, US。
+**前置条件**：网络环境可以访问 Gemini 服务（需配置 VPN 且出口 IP 位于支持地区）。本文测试环境为 macOS 26（Sequoia），VPN 出口位于 Los Angeles, US（IT7 Networks, ASN 25820）。
 
 ## 1. 修改 Local State 文件
 
@@ -64,7 +67,32 @@ jq '
 ' "$INPUT" > "$INPUT.tmp" && mv "$INPUT.tmp" "$INPUT"
 ```
 
-> **注意**：务必在 Chrome 完全退出后执行，否则 Chrome 退出时会覆盖修改。如果修改后被重置，可尝试将文件设为只读后再启动 Chrome，启动后可以取消只读。
+> **重要**：务必在 Chrome 完全退出后执行脚本。Chrome 退出时会写入当前内存中的状态，覆盖手动修改；Chrome 启动时也会重新检测地区并覆盖这些字段。因此需要使用下面的「只读锁定」技巧。
+
+### 防止 Chrome 重置配置（只读锁定）
+
+Chrome 启动时会检测实际地区并重置 `variations_country` 等字段。实测可行的方案：**先锁定文件 → 启动 Chrome → 再解锁**。
+
+```bash
+# 1. 退出 Chrome
+osascript -e 'quit app "Google Chrome"'
+
+# 2. 执行 jq 修改（同上）
+INPUT="$HOME/Library/Application Support/Google/Chrome/Local State"
+jq '...' "$INPUT" > "$INPUT.tmp" && mv "$INPUT.tmp" "$INPUT"
+
+# 3. 锁定文件为只读
+chmod 444 "$INPUT"
+
+# 4. 启动 Chrome（此时无法写入，只能读取我们修改后的值）
+open -a "Google Chrome"
+sleep 5  # 等待 Chrome 完全启动
+
+# 5. 恢复可写（Chrome 已经在内存中加载了正确的值）
+chmod 644 "$INPUT"
+```
+
+经过实测，Chrome 从 149 升级到 150 后配置被重置，用上述流程重新修改并锁定后启动成功。之后即使恢复可写，AI Innovations 功能仍然可用。
 
 ## 2. 启用 Chrome 实验性标记
 
@@ -110,9 +138,17 @@ defaults write com.google.Chrome AppleLanguages -array "en-US"
 
 ## 常见问题
 
-**Q: 重启 Chrome 后设置被重置？**
+**Q: 重启 Chrome 后设置被重置，`variations_country` 变回 `"cn"`？**
 
-可以将 Local State 文件设为只读后再启动 Chrome，启动后恢复可写属性。
+这是最常见的问题。Chrome 每次启动时会重新检测网络地区并覆盖这两个字段。解决方案即上文「只读锁定」流程：
+
+1. 退出 Chrome
+2. 重新执行 `jq` 修改命令
+3. `chmod 444` 锁定文件
+4. 启动 Chrome，等 5 秒
+5. `chmod 644` 恢复可写
+
+实测：Chrome 从 149.0.7827.201 自动更新到 150.0.7871.115 后，`variations_country` 和 `variations_permanent_consistency_country` 均被重置为 `"cn"`，`is_glic_eligible` 和 Glic flags 则不受影响。用上述流程后恢复正常。
 
 **Q: 显示 "Gemini in Chrome isn't available in your location"？**
 
