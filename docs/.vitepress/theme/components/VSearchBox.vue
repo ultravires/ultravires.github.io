@@ -8,11 +8,13 @@ import {
   ref,
   watch
 } from 'vue';
+import VIconDice from '../assets/svg/dice.svg?component';
 import VIconSearch from '../assets/svg/search.svg?component';
 import { useSearch } from '../composables/useSearch';
 import { data as posts, type Post } from '../posts.data';
 
 const MAX_RESULTS = 20;
+const RECOMMEND_COUNT = 5;
 
 interface SearchRecord {
   post: Post;
@@ -32,6 +34,7 @@ const query = ref('');
 const activeIndex = ref(0);
 const inputRef = ref<HTMLInputElement | null>(null);
 const listRef = ref<HTMLElement | null>(null);
+const recommendedItems = ref<SearchResult[]>([]);
 
 let records: SearchRecord[] | null = null;
 
@@ -81,6 +84,30 @@ const results = computed<SearchResult[]>(() => {
   return matched.slice(0, MAX_RESULTS);
 });
 
+/** 当前展示列表：有搜索结果时为结果列表，否则为随机推荐 */
+const displayItems = computed<SearchResult[]>(() =>
+  results.value.length > 0 ? results.value : recommendedItems.value
+);
+
+/** 洗牌抽取指定数量的随机推荐文章（仅客户端触发，无 SSR 影响） */
+function refreshRecommendations() {
+  const shuffled = [...getRecords()];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  recommendedItems.value = shuffled
+    .slice(0, RECOMMEND_COUNT)
+    .map((record) => ({ ...record, score: 0 }));
+  activeIndex.value = 0;
+}
+
+/** 换一批后把焦点还给输入框，便于继续输入 */
+function onRefreshRecommendations() {
+  refreshRecommendations();
+  inputRef.value?.focus();
+}
+
 watch(results, () => {
   activeIndex.value = 0;
 });
@@ -88,6 +115,7 @@ watch(results, () => {
 watch(isOpen, (open) => {
   document.body.style.overflow = open ? 'hidden' : '';
   if (open) {
+    refreshRecommendations();
     nextTick(() => inputRef.value?.focus());
   }
 });
@@ -139,7 +167,7 @@ function snippetOf(record: SearchRecord): string {
 }
 
 function move(delta: number) {
-  const count = results.value.length;
+  const count = displayItems.value.length;
   if (count === 0) return;
 
   activeIndex.value = (activeIndex.value + delta + count) % count;
@@ -201,7 +229,7 @@ function onKeydown(event: KeyboardEvent) {
     event.preventDefault();
     move(-1);
   } else if (event.key === 'Enter') {
-    const target = results.value[activeIndex.value];
+    const target = displayItems.value[activeIndex.value];
     if (target) navigate(target);
   }
 }
@@ -294,15 +322,54 @@ onBeforeUnmount(() => {
             </li>
           </ul>
 
+          <!-- 随机推荐（未输入关键词时） -->
+          <div v-else-if="!query.trim()" class="flex-1 overflow-y-auto p-2">
+            <div
+              class="mb-1 flex items-center justify-between px-3 py-1 text-xs text-neutral-400"
+            >
+              <span>随机推荐</span>
+              <button
+                class="hover:bg-primary/10 hover:text-primary flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 transition-colors"
+                type="button"
+                @click="onRefreshRecommendations"
+              >
+                <VIconDice class="text-sm" />
+                换一批
+              </button>
+            </div>
+            <ul id="search-result-list" ref="listRef" role="listbox">
+              <li
+                v-for="(item, index) in recommendedItems"
+                :key="item.post.url"
+                class="cursor-pointer rounded-lg px-3 py-2"
+                :class="{ 'bg-primary/10': index === activeIndex }"
+                role="option"
+                :aria-selected="index === activeIndex"
+                @mouseenter="activeIndex = index"
+                @click="navigate(item)"
+              >
+                <div
+                  class="mb-0.5 flex items-center justify-between text-xs text-neutral-400"
+                >
+                  <span>{{ item.post.categories.join(' / ') }}</span>
+                  <span>{{ item.post.date.string }}</span>
+                </div>
+                <div
+                  class="ellipsis text-base font-medium"
+                  v-html="highlight(item.title)"
+                />
+                <div
+                  v-if="item.summary"
+                  class="mt-0.5 line-clamp-2 text-sm text-neutral-500 dark:text-neutral-400"
+                  v-html="highlight(snippetOf(item))"
+                />
+              </li>
+            </ul>
+          </div>
+
           <!-- 空状态 -->
-          <div
-            v-else
-            class="px-4 py-10 text-center text-sm text-neutral-400"
-          >
-            <template v-if="query.trim()">
-              没有找到与“{{ query.trim() }}”相关的文章
-            </template>
-            <template v-else> 输入关键词搜索文章（仅匹配标题与摘要） </template>
+          <div v-else class="px-4 py-10 text-center text-sm text-neutral-400">
+            没有找到与“{{ query.trim() }}”相关的文章
           </div>
 
           <!-- 底部快捷键提示 -->
