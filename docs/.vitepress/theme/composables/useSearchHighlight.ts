@@ -2,6 +2,7 @@ import { nextTick, onMounted, onBeforeUnmount, watch } from 'vue';
 import { useRoute } from 'vitepress';
 
 const STORAGE_KEY = 'vitepress:local-search-filter';
+const HIGHLIGHT_EVENT = 'search:highlight';
 const HIGHLIGHT_CLASS = 'search-highlight';
 
 function escapeRegExp(str: string): string {
@@ -60,7 +61,7 @@ function unmark(root: Element): void {
 
 /**
  * Highlight search terms in the article content after navigating from search.
- * Reads the search query from sessionStorage (set by VitePress's local search),
+ * Reads the search query from sessionStorage (set by VSearchBox),
  * then wraps matching text in <mark class="search-highlight"> elements.
  */
 export function useSearchHighlight() {
@@ -93,10 +94,25 @@ export function useSearchHighlight() {
       'gi'
     );
 
-    // Walk text nodes and wrap matches
+    // 先收集命中的文本节点再统一替换：
+    // 1. TreeWalker 遍历时替换当前节点会使后续遍历提前结束；
+    // 2. 全局正则的 lastIndex 会在 test/exec 间残留，需显式重置。
+    const targets: Text[] = [];
     walkTextNodes(articleEl, (textNode) => {
+      regex.lastIndex = 0;
+      if (regex.test(textNode.textContent || '')) {
+        targets.push(textNode);
+      }
+    }, [
+      'pre',
+      'code',
+      'script',
+      'style',
+      `.${HIGHLIGHT_CLASS}`
+    ]);
+
+    for (const textNode of targets) {
       const text = textNode.textContent || '';
-      if (!regex.test(text)) return;
       regex.lastIndex = 0;
 
       const fragment = document.createDocumentFragment();
@@ -130,13 +146,7 @@ export function useSearchHighlight() {
       }
 
       textNode.parentNode?.replaceChild(fragment, textNode);
-    }, [
-      'pre',
-      'code',
-      'script',
-      'style',
-      `.${HIGHLIGHT_CLASS}`
-    ]);
+    }
   }
 
   function clearHighlights() {
@@ -149,6 +159,8 @@ export function useSearchHighlight() {
 
   onMounted(() => {
     highlightSearchTerms();
+    // 搜索结果就在当前文章页时路由不会变化，由 VSearchBox 派发事件触发重新高亮
+    window.addEventListener(HIGHLIGHT_EVENT, highlightSearchTerms);
   });
 
   // Re-run on client-side navigation
@@ -160,6 +172,7 @@ export function useSearchHighlight() {
   );
 
   onBeforeUnmount(() => {
+    window.removeEventListener(HIGHLIGHT_EVENT, highlightSearchTerms);
     clearHighlights();
   });
 

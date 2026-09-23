@@ -30,21 +30,6 @@ export default defineConfigWithTheme<CustomTheme>(
         }
       ],
       [
-        'meta',
-        {
-          name: 'algolia-site-verification',
-          content: '338A0D7313BC8277'
-        }
-      ],
-      [
-        'link',
-        {
-          rel: 'preconnect',
-          href: 'https://AKWVEI7J63-dsn.algolia.net',
-          crossorigin: ''
-        }
-      ],
-      [
         'link',
         {
           rel: 'alternate',

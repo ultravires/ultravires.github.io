@@ -2,6 +2,7 @@
 import { useData } from 'vitepress';
 import VFooter from '../components/VFooter.vue';
 import VHeader from '../components/VHeader.vue';
+import VSearchBox from '../components/VSearchBox.vue';
 import VWeatherParticleBackground from '../components/VWeatherParticleBackground.vue';
 import NotFound from '../NotFound.vue';
 import AboutLayout from './AboutLayout.vue';
@@ -35,6 +36,9 @@ const { frontmatter, page } = useData();
       <DocLayout v-else />
 
       <VFooter />
+
+      <!-- 搜索弹窗（仅匹配文章标题与摘要） -->
+      <VSearchBox />
     </div>
 
     <!-- 如果没有指定布局，则使用默认布局 -->

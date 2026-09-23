@@ -2,7 +2,6 @@
 @import './vars.css';
 @import './base.css';
 @import './code.css';
-@import './docsearch.css';
 
 @source "../../theme";
 @plugin "@tailwindcss/typography";

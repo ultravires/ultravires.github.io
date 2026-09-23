@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-import '@docsearch/css';
 import { useScroll } from '@vueuse/core';
-import type { DefaultTheme } from 'vitepress';
 import { useData } from 'vitepress';
-import { defineAsyncComponent, onMounted, onUnmounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import VIconSearch from '../assets/svg/search.svg?component';
 import VIconTrain from '../assets/svg/train.svg?component';
+import { useSearch } from '../composables/useSearch';
 import LiquidClassCard from './LiquidClassCard.vue';
 import VBackTop from './VBackToTop.vue';
 import VLogo from './VLogo.vue';
@@ -14,13 +13,8 @@ import VNavBarLink from './VNavBarLink.vue';
 import VRandomArticle from './VRandomArticle.vue';
 import VThemeToggle from './VThemeToggle.vue';
 
-const VPAlgoliaSearchBox = __ALGOLIA__
-  ? defineAsyncComponent(() => import('./VAlgoliaSearchBox.vue'))
-  : () => null;
-
 const { theme, frontmatter, page } = useData();
-const loaded = ref(false);
-const actuallyLoaded = ref(false);
+const { open } = useSearch();
 const navBarRef = ref<HTMLElement | null>(null);
 /** SSR 下无 document，避免在 setup 顶层直接引用全局 document */
 const docScrollTarget = import.meta.env.SSR ? undefined : document;
@@ -39,88 +33,6 @@ function useShowTitle() {
   });
   return showTitle;
 }
-
-const preconnect = () => {
-  const id = 'VPAlgoliaPreconnect';
-
-  const rIC = window.requestIdleCallback || setTimeout;
-  rIC(() => {
-    const preconnect = document.createElement('link');
-    preconnect.id = id;
-    preconnect.rel = 'preconnect';
-    preconnect.href = `https://${((theme.value.search?.options as DefaultTheme.AlgoliaSearchOptions) ?? theme.value.algolia)!.appId}-dsn.algolia.net`;
-    preconnect.crossOrigin = '';
-    document.head.appendChild(preconnect);
-  });
-};
-
-onMounted(() => {
-  if (!__ALGOLIA__) {
-    return;
-  }
-
-  preconnect();
-
-  const handleSearchHotKey = (event: KeyboardEvent) => {
-    if (
-      (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) ||
-      (!isEditingContent(event) && event.key === '/')
-    ) {
-      event.preventDefault();
-      load();
-      remove();
-    }
-  };
-
-  const remove = () => {
-    window.removeEventListener('keydown', handleSearchHotKey);
-  };
-
-  window.addEventListener('keydown', handleSearchHotKey);
-
-  onUnmounted(remove);
-});
-
-function load() {
-  if (!loaded.value) {
-    loaded.value = true;
-    setTimeout(poll, 16);
-  }
-}
-
-function poll() {
-  // programmatically open the search box after initialize
-  const e = new Event('keydown') as any;
-
-  e.key = 'k';
-  e.metaKey = true;
-
-  window.dispatchEvent(e);
-
-  setTimeout(() => {
-    if (!document.querySelector('.DocSearch-Modal')) {
-      poll();
-    }
-  }, 16);
-}
-
-function isEditingContent(event: KeyboardEvent): boolean {
-  const element = event.target as HTMLElement;
-  const tagName = element.tagName;
-
-  return (
-    element.isContentEditable ||
-    tagName === 'INPUT' ||
-    tagName === 'SELECT' ||
-    tagName === 'TEXTAREA'
-  );
-}
-
-function handleSearch() {
-  document.getElementById('docsearch')?.querySelector('button')?.click();
-}
-
-const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 </script>
 
 <template>
@@ -165,24 +77,10 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
             </li>
             <li
               class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-2 leading-none transition-all duration-300"
-              @click="handleSearch"
+              title="搜索"
+              @click="open()"
             >
-              <template v-if="provider === 'algolia'">
-                <VPAlgoliaSearchBox
-                  v-if="loaded"
-                  :algolia="theme.search?.options ?? theme.algolia"
-                  @vue:beforeMount="actuallyLoaded = true"
-                />
-                <div
-                  v-if="!actuallyLoaded"
-                  id="docsearch"
-                >
-                  <VIconSearch
-                    title="搜索"
-                    @click="load"
-                  />
-                </div>
-              </template>
+              <VIconSearch />
             </li>
           </ul>
         </LiquidClassCard>
@@ -204,6 +102,13 @@ const provider = __ALGOLIA__ ? 'algolia' : __VP_LOCAL_SEARCH__ ? 'local' : '';
 
       <LiquidClassCard class="ml-auto rounded-full px-4">
         <div class="flex h-[40px] items-center gap-4">
+          <button
+            class="hover:text-reverse hover:bg-primary hidden cursor-pointer rounded-full p-1 text-xl transition-all duration-300 max-md:block"
+            title="搜索"
+            @click="open()"
+          >
+            <VIconSearch />
+          </button>
           <a
             class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
             href="https://www.travellings.cn/go.html"

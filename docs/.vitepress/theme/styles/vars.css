@@ -10,9 +10,6 @@
   --web-color-base: 34 31 32;
   --web-color-reverse: 255 255 255;
   --web-border-color: 229 229 229;
-  --docsearch-searchbox-background: #fff;
-  --docsearch-searchbox-focus-background: transparent;
-  --docsearch-text-color: rgb(var(--web-color-base) / 0.8);
 }
 
 [data-theme='dark'] {
@@ -23,7 +20,6 @@
   --web-color-base: 255 255 255;
   --web-color-reverse: 0 0 0;
   --web-border-color: 64 64 64;
-  --docsearch-searchbox-background: #171717;
 
   color: #fff;
 }

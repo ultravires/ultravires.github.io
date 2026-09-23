@@ -35,20 +35,12 @@
     "vue": "3.5.17"
   },
   "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "search-insights"
-      ]
-    },
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
       "esbuild"
     ]
   },
   "dependencies": {
-    "@docsearch/css": "^3.9.0",
-    "@docsearch/js": "^3.9.0",
     "@iconify/icons-mdi": "^1.2.48",
     "@vueuse/core": "^13.9.0",
     "@waline/client": "^3.13.0",

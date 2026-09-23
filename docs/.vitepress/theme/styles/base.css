@@ -84,3 +84,11 @@ svg.icon {
   ) {
   padding-inline-start: 0.75rem;
 }
+
+/* 搜索跳转后正文关键词高亮（useSearchHighlight） */
+mark.search-highlight {
+  padding: 0 1px;
+  border-radius: 2px;
+  color: inherit;
+  background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+}
