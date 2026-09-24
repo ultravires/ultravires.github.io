@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import VContent from '@theme/components/VContent.vue';
-import WalineComment from '@theme/components/WalineComment.vue';
+import GitalkComment from '@theme/components/GitalkComment.vue';
 import { useSearchHighlight } from '@theme/composables/useSearchHighlight';
 import { useData } from 'vitepress';
 
@@ -13,6 +13,6 @@ useSearchHighlight();
 <template>
   <div class="container mx-auto">
     <VContent />
-    <WalineComment />
+    <GitalkComment />
   </div>
 </template>

@@ -43,9 +43,9 @@
   "dependencies": {
     "@iconify/icons-mdi": "^1.2.48",
     "@vueuse/core": "^13.9.0",
-    "@waline/client": "^3.13.0",
     "colorthief": "^2.7.0",
     "dayjs": "^1.11.20",
+    "gitalk": "^1.8.0",
     "js-sha256": "^0.11.1",
     "typeit": "^8.8.7"
   },

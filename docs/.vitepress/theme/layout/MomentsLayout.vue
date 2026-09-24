@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import VMomentList from '@theme/components/VMomentList.vue';
-import WalineComment from '@theme/components/WalineComment.vue';
+import GitalkComment from '@theme/components/GitalkComment.vue';
 import { useData } from 'vitepress';
 import { data as moments } from '../moments.data.js';
 
@@ -47,7 +47,7 @@ const { frontmatter } = useData();
         <div
           class="mt-4 border-t border-solid border-slate-100 pt-8 dark:border-neutral-700/60"
         >
-          <WalineComment />
+          <GitalkComment />
         </div>
       </div>
     </main>

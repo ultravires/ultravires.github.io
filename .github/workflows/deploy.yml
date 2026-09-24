@@ -48,6 +48,8 @@ jobs:
         run: pnpm install # npm ci 或 pnpm install / yarn install / bun install
       - name: Build with VitePress
         run: pnpm docs:build # npm run docs:build 或 pnpm docs:build / yarn docs:build / bun run docs:build
+        env:
+          VITE_GITALK_CLIENT_SECRET: ${{ secrets.GITALK_CLIENT_SECRET }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:

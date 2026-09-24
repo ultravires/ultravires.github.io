@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
+import { fileURLToPath } from 'node:url';
 import svgLoader from 'vite-svg-loader';
 import { defineConfigWithTheme, type Plugin } from 'vitepress';
 import { withMermaid } from 'vitepress-plugin-mermaid';
@@ -40,6 +41,8 @@ export default defineConfigWithTheme<CustomTheme>(
       ]
     ],
     vite: {
+      // 从仓库根目录加载 .env.local（VITE_GITALK_CLIENT_SECRET）
+      envDir: fileURLToPath(new URL('../..', import.meta.url)),
       define: {
         // 启用生产环境构建下激活不匹配的详细警告
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
