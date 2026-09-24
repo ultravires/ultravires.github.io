@@ -104,12 +104,6 @@ const fetchLocalWeather = async () => {
       windSpeed: current.wind_speed_10m,
       weatherCode: current.weather_code,
     };
-
-    window.dispatchEvent(
-      new CustomEvent('weather:change', {
-        detail: { weatherCode: current.weather_code },
-      })
-    );
   } catch (error) {
     if (error instanceof GeolocationPositionError) {
       if (error.code === error.PERMISSION_DENIED) {
