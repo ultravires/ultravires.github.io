@@ -105,17 +105,14 @@ function useShowTitle() {
 
       <LiquidClassCard class="ml-auto rounded-full px-4">
         <div class="flex h-[40px] items-center gap-4">
-          <VTooltip
-            content="搜索"
-            class="max-md:inline-flex hidden"
+          <button
+            class="hover:text-reverse hover:bg-primary hidden cursor-pointer rounded-full p-1 text-xl transition-all duration-300 max-md:block"
+            @click="open()"
           >
-            <button
-              class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
-              @click="open()"
-            >
+            <VTooltip content="搜索">
               <VIconSearch />
-            </button>
-          </VTooltip>
+            </VTooltip>
+          </button>
           <VTooltip content="寻找宝藏博主">
             <a
               class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
