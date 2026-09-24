@@ -35,3 +35,19 @@ categories:
 
 正文从这里开始...
 ```
+
+## 时刻（Moments）
+
+「时刻」用于发布瞬时心情或日常碎片，不是正式文章，不会进入首页文章列表、搜索与 RSS。
+
+发布方式：编辑 `docs/src/moments/moments.ts`，在 `moments` 数组**顶部**追加一条记录：
+
+```ts
+{
+  date: '2026-09-24 21:30', // 发布时间，格式 'YYYY-MM-DD HH:mm'
+  content: '内容，支持 Markdown',
+  tags: ['日常'] // 可选
+}
+```
+
+页面入口为 `/moments/`，对应 `docs/src/moments/index.md`（`layout: moments` + `hidden: true`，勿改动这两个字段）。

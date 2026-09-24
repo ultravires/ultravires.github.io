@@ -47,6 +47,11 @@ export const zh = defineConfigWithTheme<CustomTheme>({
 function nav(): DefaultTheme.NavItem[] {
   return [
     {
+      text: '时刻',
+      link: '/moments/',
+      activeMatch: `^/moments/`
+    },
+    {
       text: '友链',
       link: '/link/',
       activeMatch: `^/link/`
