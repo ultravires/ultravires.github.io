@@ -1,4 +1,5 @@
 ---
+title: MacOS 自定义输入法
 date: 2025-11-13
 categories:
   - 程序人生

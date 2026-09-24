@@ -10,6 +10,8 @@ banner:
   wave: true
 tags:
   - Monorepo
+categories:
+  - 前端领域
 ---
 
 代码管理一直是一个棘手的问题，好在很多人在关注。
