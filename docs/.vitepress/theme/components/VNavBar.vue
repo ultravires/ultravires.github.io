@@ -12,6 +12,7 @@ import VNavBarHamburger from './VNavBarHamburger.vue';
 import VNavBarLink from './VNavBarLink.vue';
 import VRandomArticle from './VRandomArticle.vue';
 import VThemeToggle from './VThemeToggle.vue';
+import VTooltip from './VTooltip.vue';
 
 const { theme, frontmatter, page } = useData();
 const { open } = useSearch();
@@ -75,12 +76,14 @@ function useShowTitle() {
                 :item="item"
               />
             </li>
-            <li
-              class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-2 leading-none transition-all duration-300"
-              title="搜索"
-              @click="open()"
-            >
-              <VIconSearch />
+            <li>
+              <VTooltip
+                content="搜索"
+                class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-2 leading-none transition-all duration-300"
+                @click="open()"
+              >
+                <VIconSearch />
+              </VTooltip>
             </li>
           </ul>
         </LiquidClassCard>
@@ -102,20 +105,26 @@ function useShowTitle() {
 
       <LiquidClassCard class="ml-auto rounded-full px-4">
         <div class="flex h-[40px] items-center gap-4">
-          <button
-            class="hover:text-reverse hover:bg-primary hidden cursor-pointer rounded-full p-1 text-xl transition-all duration-300 max-md:block"
-            title="搜索"
-            @click="open()"
+          <VTooltip
+            content="搜索"
+            class="max-md:inline-flex hidden"
           >
-            <VIconSearch />
-          </button>
-          <a
-            class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
-            href="https://www.travellings.cn/go.html"
-            target="__blank"
-          >
-            <VIconTrain />
-          </a>
+            <button
+              class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
+              @click="open()"
+            >
+              <VIconSearch />
+            </button>
+          </VTooltip>
+          <VTooltip content="寻找宝藏博主">
+            <a
+              class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
+              href="https://www.travellings.cn/go.html"
+              target="__blank"
+            >
+              <VIconTrain />
+            </a>
+          </VTooltip>
           <VRandomArticle />
           <VThemeToggle
             class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"

@@ -3,6 +3,7 @@ import { useRouter } from 'vitepress';
 import VIconDice from '../assets/svg/dice.svg?component';
 import { data as posts } from '../posts.data.js';
 import { computed, ref } from 'vue';
+import VTooltip from './VTooltip.vue';
 
 const router = useRouter();
 
@@ -35,12 +36,13 @@ const visiteRandomArticle = () => {
 </script>
 
 <template>
-  <div
+  <VTooltip
+    content="随机阅读文章"
     class="hover:bg-primary hover:text-reverse p-1 text-xl rounded-full cursor-pointer transition-all duration-300"
     @click="visiteRandomArticle"
   >
-    <VIconDice :class="['dice', { rotating }]" title="随机访问该站文章" />
-  </div>
+    <VIconDice :class="['dice', { rotating }]" />
+  </VTooltip>
 </template>
 
 <style scoped>

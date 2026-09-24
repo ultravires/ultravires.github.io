@@ -3,6 +3,7 @@ import { toRefs } from 'vue';
 import { useTheme } from '../composables/useTheme';
 import VIconMoon from '../assets/svg/moon.svg?component';
 import VIconSun from '../assets/svg/sun.svg?component';
+import VTooltip from './VTooltip.vue';
 
 interface Props {
   themeConfig: {
@@ -29,13 +30,14 @@ const { dark, toggleTheme } = useTheme(themeConfig.value);
 </script>
 
 <template>
-  <div
-    class="custom-toggle-theme inline-flex cursor-pointer items-center justify-center"
+  <VTooltip
+    :content="dark ? '亮色主题' : '暗黑主题'"
+    class="custom-toggle-theme cursor-pointer justify-center"
     @click="toggleTheme"
   >
     <slot>
       <VIconSun v-show="dark" />
       <VIconMoon v-show="!dark" />
     </slot>
-  </div>
+  </VTooltip>
 </template>
