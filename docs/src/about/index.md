@@ -30,4 +30,8 @@ self:
       link: https://www.16personalities.com/ch/%E7%B1%BB%E5%9E%8B%E6%8F%8F%E8%BF%B0
 ---
 
-90后，男孩，计算机专业。
+90后，男孩，计算机专业。养了两条狗，体型小一点的叫柚子，大一点的叫西瓜。
+
+![柚子](https://files.seeusercontent.com/2026/09/24/eo4S/_.jpg)
+
+![西瓜](https://files.seeusercontent.com/2026/09/24/R8hl/_.jpg)
