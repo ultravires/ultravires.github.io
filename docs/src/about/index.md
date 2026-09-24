@@ -4,7 +4,7 @@ author:
   name: 向成渝
   email: x555666777@qq.com
 self:
-  name: 前端工程师
+  name: 开发工程师
   birth: 1997-10-01
   email: x555666777@qq.com
   nickname: 丞相
@@ -12,7 +12,7 @@ self:
   location: 武汉，中国
   works:
     - company: 达观数据
-      position: 前端工程师
+      position: 开发工程师
       time: 2025.07 - 至今
       logo: https://liguo.run/_next/static/media/datagrand.a06b05db.png
     - company: 中宏立达
@@ -32,6 +32,27 @@ self:
 
 90后，男孩，计算机专业。养了两条狗，体型小一点的叫柚子，大一点的叫西瓜。
 
-![柚子](https://files.seeusercontent.com/2026/09/24/eo4S/_.jpg)
-
-![西瓜](https://files.seeusercontent.com/2026/09/24/R8hl/_.jpg)
+<div class="not-prose my-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <figure class="overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow dark:border-neutral-700 dark:bg-neutral-700">
+    <img
+      src="https://files.seeusercontent.com/2026/09/24/eo4S/_.jpg"
+      alt="柚子正在被喂零食"
+      class="aspect-square w-full object-cover"
+      loading="lazy"
+    />
+    <figcaption class="px-3 py-2 text-center text-sm text-gray-500 dark:text-gray-300">
+      柚子 · 小个子，吃东西总感觉被下毒
+    </figcaption>
+  </figure>
+  <figure class="overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow dark:border-neutral-700 dark:bg-neutral-700">
+    <img
+      src="https://files.seeusercontent.com/2026/09/24/R8hl/_.jpg"
+      alt="西瓜正在被喂零食"
+      class="aspect-square w-full object-cover"
+      loading="lazy"
+    />
+    <figcaption class="px-3 py-2 text-center text-sm text-gray-500 dark:text-gray-300">
+      西瓜 · 大块头，一口一块饼干
+    </figcaption>
+  </figure>
+</div>
