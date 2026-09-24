@@ -10,8 +10,9 @@
 
 - `title`：文章标题
 - `date`：文章日期，格式为 `YYYY-MM-DD` 或 `YYYY-MM-DD HH:mm:ss`
+- `categories`: 文章分类
 
-可选字段包括 `categories`、`tags`、`cover`、`banner` 等。
+可选字段包括 `tags`、`cover`、`banner` 等。
 
 ### 摘要与分割线
 
