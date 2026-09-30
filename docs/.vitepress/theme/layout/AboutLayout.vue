@@ -32,13 +32,13 @@ const user = frontmatter.value?.self ?? {};
       </div>
     </div>
 
-    <div class="mt-12 flex w-full gap-4">
+    <div class="mt-12 flex w-full flex-col gap-4 lg:flex-row">
       <div class="flex-1">
         <Content class="prose dark:prose-invert max-w-none" />
       </div>
 
       <div
-        class="w-96 shrink-0 rounded-2xl border border-neutral-100/10 bg-white p-4 shadow dark:bg-neutral-700"
+        class="w-full shrink-0 rounded-2xl border border-neutral-100/10 bg-white p-4 shadow lg:w-96 dark:bg-neutral-700"
       >
         <VAvatar />
         <h3 class="flex items-center">
@@ -59,11 +59,11 @@ const user = frontmatter.value?.self ?? {};
             />
             <div class="flex-1">
               <p class="font-bold">{{ work.company }}</p>
-              <div class="mb-2 flex justify-between">
+              <div class="mb-2 flex flex-wrap justify-between gap-x-2">
                 <span class="text-gray-600 dark:text-gray-200">
                   {{ work.position }}
                 </span>
-                <span class="text-gray-400">{{ work.time }}</span>
+                <span class="shrink-0 text-gray-400">{{ work.time }}</span>
               </div>
             </div>
           </div>

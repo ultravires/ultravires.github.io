@@ -92,7 +92,7 @@ function useShowTitle() {
       <Transition name="slide-fade">
         <LiquidClassCard
           v-show="showTitle"
-          class="rounded-full"
+          class="rounded-full max-md:hidden"
           style="position: absolute"
         >
           <div
@@ -106,23 +106,25 @@ function useShowTitle() {
       <LiquidClassCard class="ml-auto rounded-full px-4">
         <div class="flex h-[40px] items-center gap-4">
           <button
-            class="hover:text-reverse hover:bg-primary hidden cursor-pointer rounded-full p-1 text-xl transition-all duration-300 max-md:block"
+            class="hover:text-reverse hover:bg-primary hidden cursor-pointer items-center justify-center rounded-full p-1 text-xl transition-all duration-300 max-md:flex"
             @click="open()"
           >
             <VTooltip content="搜索">
               <VIconSearch />
             </VTooltip>
           </button>
-          <VTooltip content="寻找宝藏博主">
-            <a
-              class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
-              href="https://www.travellings.cn/go.html"
-              target="__blank"
-            >
-              <VIconTrain />
-            </a>
-          </VTooltip>
-          <VRandomArticle />
+          <div class="contents max-md:hidden">
+            <VTooltip content="寻找宝藏博主">
+              <a
+                class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
+                href="https://www.travellings.cn/go.html"
+                target="__blank"
+              >
+                <VIconTrain />
+              </a>
+            </VTooltip>
+            <VRandomArticle />
+          </div>
           <VThemeToggle
             class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
             :theme-config="{ dark: 'dark', light: 'light' }"
