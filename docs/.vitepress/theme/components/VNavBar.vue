@@ -8,6 +8,7 @@ import { useSearch } from '../composables/useSearch';
 import LiquidClassCard from './LiquidClassCard.vue';
 import VBackTop from './VBackToTop.vue';
 import VLogo from './VLogo.vue';
+import VNavBarApps from './VNavBarApps.vue';
 import VNavBarHamburger from './VNavBarHamburger.vue';
 import VNavBarLink from './VNavBarLink.vue';
 import VRandomArticle from './VRandomArticle.vue';
@@ -48,11 +49,12 @@ function useShowTitle() {
     ]"
   >
     <div
-      class="relative z-0 mx-auto flex h-full items-center justify-center gap-4 px-8"
+      class="relative z-10 mx-auto flex h-full items-center justify-center gap-4 px-8"
     >
       <!-- Logo -->
       <LiquidClassCard class="rounded-full">
-        <div class="flex h-[40px] items-center justify-center pl-8 pr-4">
+        <div class="flex h-[40px] items-center justify-center gap-3 pl-3 pr-4">
+          <VNavBarApps />
           <VLogo />
         </div>
       </LiquidClassCard>
@@ -71,10 +73,7 @@ function useShowTitle() {
               v-for="item in theme.nav"
               :key="item.text"
             >
-              <VNavBarLink
-                class="text-md tracking-8 decoration-none hover:bg-primary group relative whitespace-nowrap rounded-full leading-none hover:text-white dark:hover:text-black"
-                :item="item"
-              />
+              <VNavBarLink :item="item" />
             </li>
             <li>
               <VTooltip

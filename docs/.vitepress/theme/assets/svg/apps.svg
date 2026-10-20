@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 1024 1024" width="32" height="32" fill="currentColor">
+  <circle cx="208" cy="208" r="96" />
+  <circle cx="512" cy="208" r="96" />
+  <circle cx="816" cy="208" r="96" />
+  <circle cx="208" cy="512" r="96" />
+  <circle cx="512" cy="512" r="96" />
+  <circle cx="816" cy="512" r="96" />
+  <circle cx="208" cy="816" r="96" />
+  <circle cx="512" cy="816" r="96" />
+  <circle cx="816" cy="816" r="96" />
+</svg>
