@@ -54,7 +54,7 @@ const sections: AppSection[] = [
         name: '航图',
         desc: '精选网址导航',
         link: 'https://nav.imarkr.com/',
-        icon: '🧭'
+        image: '/apps/hangtu.svg'
       }
     ]
   }
