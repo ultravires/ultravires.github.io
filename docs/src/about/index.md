@@ -17,7 +17,7 @@ self:
       logo: https://liguo.run/_next/static/media/datagrand.a06b05db.png
     - company: 中宏立达
       position: 前端工程师
-      time: 2018.09 - 2025.07
+      time: 2019.07 - 2025.07
       logo: https://leadal.com/res_root/qygwww/templates/1300000343/images/logo-black.png
   links:
     - text: Github
