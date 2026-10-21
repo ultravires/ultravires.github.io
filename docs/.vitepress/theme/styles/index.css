@@ -20,6 +20,10 @@
   --color-line-dark: var(--color-neutral-800);
   --color-line: var(--color-line-light);
 
+  /* 正文色与反色（随 data-theme 切换，见 vars.css） */
+  --color-normal: rgb(var(--web-color-base, 34 31 32));
+  --color-reverse: rgb(var(--web-color-reverse, 255 255 255));
+
   /* 字体 */
   --font-AlibabaPuHuiTiRegular: '阿里巴巴普惠体 3.0 Regular';
   --font-AlibabaPuHuiTiMedium: '阿里巴巴普惠体 3.0 Medium';
