@@ -151,15 +151,16 @@ onBeforeUnmount(() => clearTimeout(timer));
         <header class="mt-4">
           <div class="flex flex-wrap items-baseline justify-between gap-x-4">
             <h1 class="text-3xl font-bold max-md:text-2xl">
-              {{ frontmatter.title
-              }}<span
+              {{ frontmatter.title }}
+              <span
                 v-if="frontmatter.title"
                 class="text-primary"
-                >。</span
               >
+                。
+              </span>
             </h1>
             <span
-              class="shrink-0 text-sm text-neutral-400 tabular-nums dark:text-neutral-500"
+              class="shrink-0 text-sm tabular-nums text-neutral-400 dark:text-neutral-500"
               aria-live="polite"
             >
               <template v-if="terms.length">
@@ -181,19 +182,19 @@ onBeforeUnmount(() => clearTimeout(timer));
           <label class="relative flex-1">
             <span class="sr-only">搜索友链</span>
             <VIconSearch
-              class="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-neutral-400"
+              class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"
             />
             <input
               v-model="query"
               type="search"
               placeholder="搜索名称、简介或域名"
-              class="border-line w-full rounded-full border bg-transparent py-2.5 pr-4 pl-11 text-sm placeholder:text-neutral-400 focus-visible:border-primary focus-visible:outline-none"
+              class="border-line focus-visible:border-primary w-full rounded-full border bg-transparent py-2.5 pl-11 pr-4 text-sm transition-colors placeholder:text-neutral-400 focus-visible:outline-none dark:border-neutral-600 dark:bg-neutral-900/60"
             />
           </label>
           <button
             type="button"
             :disabled="drawing || records.length === 0"
-            class="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-wait disabled:opacity-70 dark:text-black dark:ring-offset-neutral-800"
+            class="bg-primary focus-visible:ring-primary inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-70 dark:text-black dark:ring-offset-neutral-800"
             @click="draw"
           >
             <VIconDice :class="['h-4 w-4', { rotating: drawing }]" />
@@ -205,15 +206,17 @@ onBeforeUnmount(() => clearTimeout(timer));
         <div
           v-if="drawing || drawn"
           aria-live="polite"
-          class="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-dashed border-primary/50 bg-primary/5 px-4 py-3 dark:bg-primary/10"
+          class="border-primary/50 bg-primary/5 dark:bg-primary/10 mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-dashed px-4 py-3"
         >
           <template v-if="drawing">
-            <span class="shrink-0 text-sm text-neutral-500 dark:text-neutral-400"
-              >正在串门到</span
+            <span
+              class="shrink-0 text-sm text-neutral-500 dark:text-neutral-400"
             >
-            <span class="min-w-0 flex-1 font-medium text-primary ellipsis">{{
-              shuffleName
-            }}</span>
+              正在串门到
+            </span>
+            <span class="text-primary ellipsis min-w-0 flex-1 font-medium">
+              {{ shuffleName }}
+            </span>
           </template>
           <template v-else-if="drawn">
             <span
@@ -230,11 +233,12 @@ onBeforeUnmount(() => clearTimeout(timer));
               <template v-else>{{ drawn.initial }}</template>
             </span>
             <span class="min-w-0 flex-1">
-              <span class="block font-medium ellipsis">{{ drawn.name }}</span>
+              <span class="ellipsis block font-medium">{{ drawn.name }}</span>
               <span
-                class="block text-xs text-neutral-400 ellipsis dark:text-neutral-500"
-                >{{ drawn.domain }}</span
+                class="ellipsis block text-xs text-neutral-400 dark:text-neutral-500"
               >
+                {{ drawn.domain }}
+              </span>
             </span>
             <span
               class="flex shrink-0 items-center gap-2 max-sm:basis-full max-sm:justify-end"
@@ -243,12 +247,13 @@ onBeforeUnmount(() => clearTimeout(timer));
                 :href="drawn.url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none dark:text-black dark:ring-offset-neutral-800"
-                >前往站点</a
+                class="bg-primary focus-visible:ring-primary rounded-full px-4 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:text-black dark:ring-offset-neutral-800"
               >
+                前往站点
+              </a>
               <button
                 type="button"
-                class="cursor-pointer rounded-full px-3 py-1.5 text-sm text-primary transition-colors hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                class="text-primary hover:bg-primary/10 focus-visible:ring-primary cursor-pointer rounded-full px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2"
                 @click="draw"
               >
                 再抽一个
@@ -262,7 +267,10 @@ onBeforeUnmount(() => clearTimeout(timer));
           v-if="filtered.length"
           class="mt-6 divide-y divide-slate-100 dark:divide-neutral-700/60"
         >
-          <li v-for="record in filtered" :key="record.url">
+          <li
+            v-for="record in filtered"
+            :key="record.url"
+          >
             <a
               :href="record.url"
               target="_blank"
@@ -284,18 +292,19 @@ onBeforeUnmount(() => clearTimeout(timer));
               </span>
               <span class="min-w-0 flex-1">
                 <span
-                  class="block font-medium transition-colors group-hover:text-primary"
+                  class="group-hover:text-primary block font-medium transition-colors"
                   v-html="highlight(record.name)"
                 ></span>
                 <span
-                  class="mt-0.5 block text-sm text-neutral-500 ellipsis dark:text-neutral-400"
+                  class="ellipsis mt-0.5 block text-sm text-neutral-500 dark:text-neutral-400"
                   v-html="highlight(record.description)"
                 ></span>
               </span>
               <span
                 class="shrink-0 text-xs text-neutral-400 max-sm:hidden dark:text-neutral-500"
-                >{{ record.domain }}</span
               >
+                {{ record.domain }}
+              </span>
             </a>
           </li>
         </ul>
@@ -310,7 +319,7 @@ onBeforeUnmount(() => clearTimeout(timer));
           </p>
           <button
             type="button"
-            class="mt-3 cursor-pointer rounded-full border border-line px-4 py-1.5 text-sm text-primary transition-colors hover:bg-primary/5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            class="border-line text-primary hover:bg-primary/5 focus-visible:ring-primary mt-3 cursor-pointer rounded-full border px-4 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2"
             @click="clearQuery"
           >
             清空搜索
