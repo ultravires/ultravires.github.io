@@ -23,6 +23,9 @@ self:
     - text: Github
       link: https://github.com/ultravires
       icon: mdi:github
+    - text: 微信
+      icon: mdi:wechat
+      qrcode: https://u.wechat.com/MEwX_6-avynxbVsG78uqS2M
   personalities:
     - text: 倡导者
       flag: INFJ-A

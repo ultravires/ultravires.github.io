@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/vue';
 import PageContainer from '@theme/components/PageContainer.vue';
 import VAvatar from '@theme/components/VAvatar.vue';
+import VQrCodePopover from '@theme/components/VQrCodePopover.vue';
 import { Content, useData } from 'vitepress';
 
 const { frontmatter } = useData();
@@ -17,18 +18,29 @@ const user = frontmatter.value?.self ?? {};
         <h2 class="my-4 text-4xl font-semibold">{{ user.name }}</h2>
         <p class="text-gray-600 dark:text-gray-200">{{ user.bio }}</p>
       </div>
-      <div class="mt-4">
-        <a
+      <div class="mt-4 flex items-center gap-3">
+        <template
           v-for="link in user.links"
-          :href="link.link"
-          target="_blank"
-          class="inline-block text-gray-600 hover:text-black dark:text-gray-200 dark:hover:text-white"
+          :key="link.text"
         >
-          <Icon
+          <VQrCodePopover
+            v-if="link.qrcode"
             :icon="link.icon"
-            class="text-3xl"
+            :qrcode="link.qrcode"
+            :text="link.text"
           />
-        </a>
+          <a
+            v-else
+            :href="link.link"
+            target="_blank"
+            class="text-gray-600 hover:text-black dark:text-gray-200 dark:hover:text-white"
+          >
+            <Icon
+              :icon="link.icon"
+              class="text-3xl"
+            />
+          </a>
+        </template>
       </div>
     </div>
 
