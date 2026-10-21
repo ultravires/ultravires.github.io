@@ -52,3 +52,22 @@ categories:
 ```
 
 页面入口为 `/moments/`，对应 `docs/src/moments/index.md`（`layout: moments` + `hidden: true`，勿改动这两个字段）。
+
+## 友链（Friend Links）
+
+友链页展示常去的站点与朋友们的博客，支持搜索与随机访问。
+
+维护方式：编辑 `docs/src/link/links.ts`，在 `friendLinks` 数组中追加一条记录：
+
+```ts
+{
+  name: '站点名称',
+  url: 'https://example.com/', // 完整地址，含协议
+  description: '一句话简介',
+  tags: ['前端'] // 可选，参与搜索
+}
+```
+
+头像按名称自动生成首字符徽标，也可显式指定 `avatar` 图片地址覆盖。
+
+页面入口为 `/link/`，对应 `docs/src/link/index.md`（`layout: link` + `hidden: true`，勿改动这两个字段）。

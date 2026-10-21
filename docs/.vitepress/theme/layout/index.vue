@@ -8,6 +8,7 @@ import AboutLayout from './AboutLayout.vue';
 import ColumnLayout from './ColumnLayout.vue';
 import DocLayout from './DocLayout.vue';
 import HomeLayout from './HomeLayout.vue';
+import LinkLayout from './LinkLayout.vue';
 import MomentsLayout from './MomentsLayout.vue';
 import PageLayout from './PageLayout.vue';
 
@@ -32,6 +33,7 @@ const { frontmatter, page } = useData();
       <PageLayout v-else-if="frontmatter.layout === 'page'" />
       <ColumnLayout v-else-if="frontmatter.layout === 'column'" />
       <MomentsLayout v-else-if="frontmatter.layout === 'moments'" />
+      <LinkLayout v-else-if="frontmatter.layout === 'link'" />
       <AboutLayout v-else-if="frontmatter.layout === 'about'" />
       <DocLayout v-else />
 
