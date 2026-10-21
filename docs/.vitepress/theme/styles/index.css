@@ -17,7 +17,7 @@
   --color-muted: var(--color-muted-light);
 
   --color-line-light: var(--color-slate-200);
-  --color-line-dark: var(--color-neutral-800);
+  --color-line-dark: var(--color-neutral-600);
   --color-line: var(--color-line-light);
 
   /* 正文色与反色（随 data-theme 切换，见 vars.css） */

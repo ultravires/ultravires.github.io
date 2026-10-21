@@ -1,14 +1,23 @@
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue';
 import { useData } from 'vitepress';
+import { computed } from 'vue';
 import type { Post } from '../posts.data';
 import VLink from './VLink.vue';
 import VPostCover from './VPostCover.vue';
 
 const { page } = useData();
 
-const { post } = defineProps<{
+const { post, hiddenCategories = [] } = defineProps<{
   post: Post;
+  hiddenCategories?: string[];
 }>();
+
+const visibleCategories = computed(() =>
+  (post?.categories ?? []).filter(
+    (category) => !hiddenCategories.includes(category)
+  )
+);
 </script>
 
 <template>
@@ -35,23 +44,30 @@ const { post } = defineProps<{
         v-html="post.excerpt"
         class="line-clamp-2 text-sm text-neutral-600 max-sm:hidden dark:text-neutral-400"
       ></div>
-      <div class="mt-4 flex justify-between">
-        <div class="space-x-2">
+      <div class="mt-4 flex items-center gap-x-3">
+        <span
+          v-for="category in visibleCategories"
+          :key="category"
+          class="border-line group-hover/post-card:border-primary/50 group-hover/post-card:text-primary inline-flex shrink-0 items-center gap-1 rounded-full border border-solid px-2 py-0.5 text-xs text-neutral-500 transition-colors dark:text-neutral-400"
+        >
+          <Icon
+            icon="mdi:folder-outline"
+            class="text-sm"
+          />
+          {{ category }}
+        </span>
+        <span class="flex min-w-0 items-center gap-x-2 overflow-hidden whitespace-nowrap">
           <span
             v-for="tag in post?.tags ?? []"
             :key="tag"
-            class="text-sm"
+            class="text-xs text-neutral-500 before:mr-px before:text-neutral-400 before:content-['#'] dark:text-neutral-400 dark:before:text-neutral-500"
           >
-            <span
-              class="before:font-bold before:text-neutral-500 before:content-['#']"
-            >
-              {{ tag }}
-            </span>
+            {{ tag }}
           </span>
-        </div>
-        <div class="text-sm">
+        </span>
+        <span class="ml-auto shrink-0 text-xs tabular-nums text-neutral-400 dark:text-neutral-500">
           {{ post.date.string }}
-        </div>
+        </span>
       </div>
     </VLink>
   </article>

@@ -95,7 +95,10 @@ const isCurrentColumn = (item) =>
           </nav>
         </header>
 
-        <VPostList :posts="filteredPosts" />
+        <VPostList
+          :posts="filteredPosts"
+          :hidden-categories="currentPageCategories"
+        />
       </div>
     </main>
   </section>

@@ -188,7 +188,7 @@ onBeforeUnmount(() => clearTimeout(timer));
               v-model="query"
               type="search"
               placeholder="搜索名称、简介或域名"
-              class="border-line focus-visible:border-primary w-full rounded-full border bg-transparent py-2.5 pl-11 pr-4 text-sm transition-colors placeholder:text-neutral-400 focus-visible:outline-none dark:border-neutral-600 dark:bg-neutral-900/60"
+              class="border-line focus-visible:border-primary w-full rounded-full border bg-transparent py-2.5 pl-11 pr-4 text-sm transition-colors placeholder:text-neutral-400 focus-visible:outline-none dark:bg-neutral-900/60"
             />
           </label>
           <button

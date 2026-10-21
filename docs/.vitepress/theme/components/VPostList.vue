@@ -7,6 +7,7 @@ import { type Post } from '../posts.data.js';
 
 const props = defineProps<{
   posts: Post[];
+  hiddenCategories?: string[];
 }>();
 
 const type = ref('list'); // 'card' | 'list'
@@ -76,10 +77,12 @@ const pageNumbers = computed(() => {
         <VPost
           v-if="type === 'list'"
           :post="post"
+          :hidden-categories="hiddenCategories"
         />
         <VPostCard
           v-else-if="type === 'card'"
           :post="post"
+          :hidden-categories="hiddenCategories"
         />
       </li>
     </ul>
