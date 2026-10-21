@@ -21,6 +21,9 @@ export default defineConfigWithTheme<CustomTheme>(
     ignoreDeadLinks: true,
     head: [
       ['meta', { name: 'author', content: '向成渝' }],
+      // 评论区 iframe 托管在 giscus 反代域名，提前完成 DNS/TCP/TLS 握手
+      ['link', { rel: 'preconnect', href: 'https://giscus.ultravires.me' }],
+      ['link', { rel: 'dns-prefetch', href: 'https://giscus.ultravires.me' }],
       [
         'meta',
         {

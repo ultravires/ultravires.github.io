@@ -1,0 +1,8 @@
+# giscus.app 反向代理，绑定自定义域名后博客通过 host prop 指向它
+# 部署：npx wrangler deploy（首次会自动创建 giscus.ultravires.me 的 DNS 与证书）
+name = "giscus-proxy"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+
+routes = [{ pattern = "giscus.ultravires.me", custom_domain = true }]

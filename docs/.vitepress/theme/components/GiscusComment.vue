@@ -24,6 +24,7 @@ onUnmounted(() => observer?.disconnect());
   <!-- SPA 路由切换后按新页面重新挂载评论串 -->
   <Giscus
     :key="route.path"
+    host="https://giscus.ultravires.me"
     repo="ultravires/ultravires.github.io"
     repo-id="R_kgDOHMWLag"
     category="Announcements"
