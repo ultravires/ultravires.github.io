@@ -52,7 +52,10 @@ useEventListener(eventTarget, 'resize', () => open.value && updatePosition(), {
     @mouseenter="handleEnter"
     @mouseleave="handleLeave"
   >
-    <slot name="trigger" />
+    <slot
+      name="trigger"
+      :open="open"
+    />
   </span>
   <!-- 面板 Teleport 到 body，独立层叠上下文，不会被页面内容遮盖 -->
   <Teleport to="body">

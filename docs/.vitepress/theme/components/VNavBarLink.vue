@@ -18,7 +18,7 @@ const activeClass =
 
 <template>
   <VNavBarDropdown v-if="item.items && item.items.length > 0">
-    <template #trigger>
+    <template #trigger="{ open }">
       <VLink
         class="px-4 py-2"
         :class="[
@@ -28,7 +28,8 @@ const activeClass =
               page.relativePath,
               item.activeMatch || item.link,
               !!item.activeMatch
-            )
+            ),
+            'bg-primary text-white dark:text-black': open
           }
         ]"
         :href="item.link"

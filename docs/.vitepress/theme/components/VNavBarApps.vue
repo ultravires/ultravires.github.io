@@ -63,9 +63,10 @@ const sections: AppSection[] = [
 
 <template>
   <VNavBarDropdown align="left">
-    <template #trigger>
+    <template #trigger="{ open }">
       <button
         class="hover:bg-primary cursor-pointer rounded-full p-1 text-xl leading-none transition-all duration-300 hover:text-white dark:hover:text-black"
+        :class="{ 'bg-primary text-white dark:text-black': open }"
         aria-label="我的应用"
       >
         <VIconApps />
