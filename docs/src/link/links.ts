@@ -62,5 +62,12 @@ export const friendLinks: FriendLink[] = [
     url: 'https://stackoverflow.com/',
     description: '程序员问答社区',
     tags: ['社区']
+  },
+  {
+    name: 'iMarkr',
+    url: 'https://www.imarkr.com/',
+    description: 'Jun 的个人博客',
+    tags: ['博客'],
+    avatar: '/links/imarkr.svg'
   }
 ];
