@@ -92,4 +92,12 @@
     ):hover::after {
     opacity: 0.85;
   }
+
+  /* medium-zoom 图片预览：保证遮罩与放大图盖住站点头部（z-10） */
+  .medium-zoom-overlay {
+    z-index: 998;
+  }
+  .medium-zoom-image--opened {
+    z-index: 999;
+  }
 }

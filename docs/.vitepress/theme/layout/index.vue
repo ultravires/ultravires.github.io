@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress';
+import { useImageZoom } from '../composables/useImageZoom';
 import VFooter from '../components/VFooter.vue';
 import VHeader from '../components/VHeader.vue';
 import VSearchBox from '../components/VSearchBox.vue';
@@ -13,6 +14,8 @@ import MomentsLayout from './MomentsLayout.vue';
 import PageLayout from './PageLayout.vue';
 
 const { frontmatter, page } = useData();
+
+useImageZoom();
 </script>
 
 <template>

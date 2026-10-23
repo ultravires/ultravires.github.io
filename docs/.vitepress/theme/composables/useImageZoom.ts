@@ -1,0 +1,32 @@
+import mediumZoom, { type Zoom } from 'medium-zoom';
+import { onContentUpdated } from 'vitepress';
+
+/**
+ * 正文图片点击放大预览（基于 medium-zoom）。
+ * 作用范围：文章页（#article）与关于页（#about-content）。
+ * 仅在客户端生效；初始挂载、路由切换与内容热更新时重新绑定当前页图片。
+ */
+export function useImageZoom() {
+  let zoom: Zoom | null = null;
+
+  onContentUpdated(() => {
+    // 等待正文 DOM 更新完成
+    setTimeout(() => {
+      if (!zoom) {
+        zoom = mediumZoom({
+          background: 'var(--web-content-bg)', // 跟随亮/暗主题
+          margin: 24
+        });
+      }
+      // 清理上一页的绑定，避免路由切换后累积监听
+      zoom.detach();
+      const images = Array.from(
+        document.querySelectorAll<HTMLImageElement>(
+          '#article img, #about-content img'
+        )
+        // 被链接包裹的图片保持点击跳转行为，不参与放大
+      ).filter((img) => !img.closest('a'));
+      zoom.attach(images);
+    });
+  });
+}

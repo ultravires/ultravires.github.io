@@ -45,7 +45,10 @@ const user = frontmatter.value?.self ?? {};
     </div>
 
     <div class="mt-12 flex w-full flex-col gap-4 lg:flex-row">
-      <div class="flex-1">
+      <div
+        id="about-content"
+        class="flex-1"
+      >
         <Content class="prose dark:prose-invert max-w-none" />
       </div>
 
