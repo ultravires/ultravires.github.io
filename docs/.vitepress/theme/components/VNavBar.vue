@@ -73,32 +73,39 @@ function useShowTitle() {
 
       <!-- Nav -->
       <Transition name="slide-fade-reverse">
-        <LiquidClassCard
+        <div
           v-show="!showTitle"
-          class="-z-10 mx-auto rounded-full max-md:hidden"
+          class="-z-10 mx-auto flex items-center gap-2 max-md:hidden"
           style="position: absolute"
-          :tone="glassTone"
         >
-          <ul
-            class="flex h-[40px] w-full items-center justify-center gap-4 px-1"
+          <LiquidClassCard
+            class="rounded-full"
+            :tone="glassTone"
           >
-            <li
-              v-for="item in theme.nav"
-              :key="item.text"
+            <ul
+              class="flex h-[40px] w-full items-center justify-center gap-4 px-1"
             >
-              <VNavBarLink :item="item" />
-            </li>
-            <li>
-              <VTooltip
-                content="搜索"
-                class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-2 leading-none transition-all duration-300"
-                @click="open()"
+              <li
+                v-for="item in theme.nav"
+                :key="item.text"
               >
-                <VIconSearch />
-              </VTooltip>
-            </li>
-          </ul>
-        </LiquidClassCard>
+                <VNavBarLink :item="item" />
+              </li>
+            </ul>
+          </LiquidClassCard>
+          <LiquidClassCard
+            class="rounded-full"
+            :tone="glassTone"
+          >
+            <VTooltip
+              content="搜索"
+              class="hover:text-reverse hover:bg-primary flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full leading-none transition-all duration-300"
+              @click="open()"
+            >
+              <VIconSearch />
+            </VTooltip>
+          </LiquidClassCard>
+        </div>
       </Transition>
 
       <Transition name="slide-fade">
