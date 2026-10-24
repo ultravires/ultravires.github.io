@@ -93,7 +93,7 @@ const pageNumbers = computed(() => {
 
         <!-- eslint-disable-next-line vue/no-v-html -->
         <div
-          class="VPDoc prose dark:prose-invert mt-2 max-w-none"
+          class="VPDoc prose dark:prose-invert moment-content mt-2 max-w-none"
           v-html="moment.html"
         />
 
@@ -163,3 +163,12 @@ const pageNumbers = computed(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+/* 时刻正文中的图片：限定宽度，按原始比例缩放 */
+:deep(img) {
+  max-width: 240px;
+  height: auto;
+  border-radius: 8px;
+}
+</style>

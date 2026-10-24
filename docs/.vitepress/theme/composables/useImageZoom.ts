@@ -3,7 +3,7 @@ import { onContentUpdated } from 'vitepress';
 
 /**
  * 正文图片点击放大预览（基于 medium-zoom）。
- * 作用范围：文章页（#article）与关于页（#about-content）。
+ * 作用范围：文章页（#article）、关于页（#about-content）与时刻页（.moment-content）。
  * 仅在客户端生效；初始挂载、路由切换与内容热更新时重新绑定当前页图片。
  */
 export function useImageZoom() {
@@ -22,7 +22,7 @@ export function useImageZoom() {
       zoom.detach();
       const images = Array.from(
         document.querySelectorAll<HTMLImageElement>(
-          '#article img, #about-content img'
+          '#article img, #about-content img, .moment-content img'
         )
         // 被链接包裹的图片保持点击跳转行为，不参与放大
       ).filter((img) => !img.closest('a'));
