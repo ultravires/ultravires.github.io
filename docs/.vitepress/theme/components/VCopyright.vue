@@ -1,5 +1,5 @@
 <template>
-  <div class="text-sm text-neutral-400">
+  <div class="text-sm text-neutral-400 text-center">
     <span> &copy; 版权声明: 此文章为作者原创文章，采用 </span>
     <a
       class="hover:text-blue-500 visited:text-blue-800 text-blue-700"

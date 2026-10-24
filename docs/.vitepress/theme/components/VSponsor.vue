@@ -15,24 +15,24 @@ import VIconHandHeart from '../assets/svg/handheart.svg?component';
       class="peer-hover:block peer-hover:opacity-100 peer-hover:translate-y-0 peer-hover:pointer-events-auto hover:block hover:opacity-100 hover:translate-y-0 hover:pointer-events-auto absolute bottom-full opacity-0 translate-y-4 pointer-events-none left-1/2 -translate-x-1/2 z-10 transition-all duration-300"
     >
       <div
-        class="dark:bg-neutral-900 p-8 mb-4 w-max bg-white border border-solid border-line rounded-lg"
+        class="dark:bg-neutral-900 p-5 sm:p-8 mb-4 w-max bg-white border border-solid border-line rounded-lg"
       >
         <p
           class="mb-2 whitespace-nowrap text-center text-red-500 text-lg font-medium"
         >
           感谢你赐予我前进的动力！
         </p>
-        <div class="flex gap-4">
+        <div class="flex gap-3 sm:gap-4">
           <div class="flex flex-col justify-center">
             <img
-              class="w-40 h-40 object-contain rounded-sm"
+              class="w-32 h-32 sm:w-40 sm:h-40 object-contain rounded-sm"
               :src="withBase('/WeChatPay.jpg')"
             />
             <div class="text-center">微信</div>
           </div>
           <div class="flex flex-col justify-center">
             <img
-              class="w-40 h-40 object-contain rounded-sm"
+              class="w-32 h-32 sm:w-40 sm:h-40 object-contain rounded-sm"
               :src="withBase('/AliPay.jpg')"
             />
             <div class="text-center">支付宝</div>
