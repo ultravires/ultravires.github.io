@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useScroll } from '@vueuse/core';
 import { useData } from 'vitepress';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import VIconSearch from '../assets/svg/search.svg?component';
 import VIconTrain from '../assets/svg/train.svg?component';
 import { useSearch } from '../composables/useSearch';
@@ -21,6 +21,15 @@ const navBarRef = ref<HTMLElement | null>(null);
 /** SSR 下无 document，避免在 setup 顶层直接引用全局 document */
 const docScrollTarget = import.meta.env.SSR ? undefined : document;
 const { arrivedState } = useScroll(docScrollTarget);
+
+/** 是否处于文章横幅顶部（此时导航为白色前景，玻璃需强制深色兜底） */
+const onBanner = computed(
+  () =>
+    arrivedState.top &&
+    frontmatter.value?.layout !== 'home' &&
+    !!frontmatter.value?.banner
+);
+const glassTone = computed(() => (onBanner.value ? 'dark' : 'auto'));
 
 const showTitle = useShowTitle();
 function useShowTitle() {
@@ -52,7 +61,10 @@ function useShowTitle() {
       class="relative z-10 mx-auto flex h-full items-center justify-center gap-4 px-8"
     >
       <!-- Logo -->
-      <LiquidClassCard class="rounded-full">
+      <LiquidClassCard
+        class="rounded-full"
+        :tone="glassTone"
+      >
         <div class="flex h-[40px] items-center justify-center gap-3 pl-3 pr-4">
           <VNavBarApps />
           <VLogo />
@@ -65,6 +77,7 @@ function useShowTitle() {
           v-show="!showTitle"
           class="-z-10 mx-auto rounded-full max-md:hidden"
           style="position: absolute"
+          :tone="glassTone"
         >
           <ul
             class="flex h-[40px] w-full items-center justify-center gap-4 px-1"
@@ -93,6 +106,7 @@ function useShowTitle() {
           v-show="showTitle"
           class="rounded-full max-md:hidden"
           style="position: absolute"
+          :tone="glassTone"
         >
           <div
             class="flex h-[40px] items-center justify-center px-4 font-bold leading-none"
@@ -102,7 +116,10 @@ function useShowTitle() {
         </LiquidClassCard>
       </Transition>
 
-      <LiquidClassCard class="ml-auto rounded-full px-4">
+      <LiquidClassCard
+        class="ml-auto rounded-full px-4"
+        :tone="glassTone"
+      >
         <div class="flex h-[40px] items-center gap-4">
           <button
             class="hover:text-reverse hover:bg-primary hidden cursor-pointer items-center justify-center rounded-full p-1 text-xl transition-all duration-300 max-md:flex"

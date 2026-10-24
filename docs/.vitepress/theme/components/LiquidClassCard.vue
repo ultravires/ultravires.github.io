@@ -9,7 +9,9 @@ const props = defineProps({
   // 亮度
   brightness: { type: Number, default: 0.9 },
   // 是否显示噪点纹理
-  showGrain: { type: Boolean, default: true }
+  showGrain: { type: Boolean, default: true },
+  // 玻璃底色倾向：auto 跟随站点明暗主题；dark 强制深色玻璃（用于横幅上的白色前景）
+  tone: { type: String, default: 'auto' }
 });
 
 const rotateX = ref(0);
@@ -31,6 +33,7 @@ const glassStyles = computed(() => ({
   <div
     ref="cardRef"
     class="glass-container"
+    :class="`tone-${tone}`"
     :style="glassStyles"
     @mouseleave="resetPosition"
   >
@@ -53,15 +56,22 @@ const glassStyles = computed(() => ({
 <style scoped>
 .glass-container {
   position: relative;
-  background: radial-gradient(
-    circle at 20% 0%,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.01) 100%
-  );
+
+  /* 玻璃底色与描边：浅色主题下用半透明白，保证深色前景不被页面背景干扰 */
+  --glass-fill: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(0, 0, 0, 0.08);
+
+  background:
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    var(--glass-fill);
 
   /* 极其细腻的边框 */
-  border: 0.5px solid rgba(255, 255, 255, 0.18);
+  border: 0.5px solid var(--glass-border);
 
   /* 分层阴影 */
   box-shadow:
@@ -72,6 +82,18 @@ const glassStyles = computed(() => ({
     transform 0.1s ease-out,
     box-shadow 0.3s ease;
   transform-style: preserve-3d;
+}
+
+/* 暗色主题：换成半透明黑底，避免白色前景融进玻璃 */
+[data-theme='dark'] .glass-container {
+  --glass-fill: rgba(23, 23, 23, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.12);
+}
+
+/* 深色玻璃：用于横幅等亮色/复杂背景上的白色前景 */
+.glass-container.tone-dark {
+  --glass-fill: rgba(0, 0, 0, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.18);
 }
 
 /* 噪点纹理渲染 */

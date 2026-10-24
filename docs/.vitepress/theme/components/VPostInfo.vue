@@ -20,6 +20,7 @@ const { frontmatter, page } = useData();
           v-for="item in frontmatter?.categories"
           :key="item"
           class="rounded-full px-2 text-white/80"
+          tone="dark"
         >
           {{ item }}
         </LiquidClassCard>
@@ -27,6 +28,7 @@ const { frontmatter, page } = useData();
           v-for="item in frontmatter?.tags"
           :key="item"
           class="rounded-full px-2 text-white/80"
+          tone="dark"
         >
           <span class="text-white/50">#</span>
           <span class="text-white/80">{{ item }}</span>
