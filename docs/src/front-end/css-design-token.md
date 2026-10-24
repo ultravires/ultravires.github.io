@@ -9,7 +9,7 @@ tags:
   - CSS
   - Design Token
 banner:
-  style: particle
+  style: image
   wave: true
 ---
 

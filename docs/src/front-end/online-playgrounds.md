@@ -4,7 +4,7 @@ date: 2025-11-09 15:13:50
 categories:
   - 前端领域
 banner:
-  style: particle
+  style: image
   wave: true
 ---
 

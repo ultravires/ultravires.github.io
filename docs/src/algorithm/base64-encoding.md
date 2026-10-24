@@ -4,7 +4,7 @@ date: 2024-12-09 15:13:50
 categories:
   - 算法题解
 banner:
-  style: gradient
+  style: image
   wave: true
 ---
 

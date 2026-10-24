@@ -6,7 +6,7 @@ cover:
 categories:
   - 前端领域
 banner:
-  style: gradient
+  style: image
   wave: true
 ---
 

@@ -9,7 +9,7 @@ categories:
 cover:
   text: 订阅转换
 banner:
-  style: particle
+  style: image
   wave: true
 ---
 

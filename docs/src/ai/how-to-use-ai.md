@@ -4,7 +4,7 @@ date: 2026-04-01
 categories:
   - 人工智能
 banner:
-  style: gradient
+  style: image
   wave: true
 ---
 

@@ -9,7 +9,7 @@ tags:
   - Rust
   - Color
 banner:
-  style: gradient
+  style: image
   wave: true
 ---
 

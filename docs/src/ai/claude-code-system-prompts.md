@@ -11,7 +11,7 @@ tags:
   - Workflow
   - MCP
 banner:
-  style: gradient
+  style: image
   wave: true
 ---
 

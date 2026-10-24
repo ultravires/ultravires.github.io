@@ -5,7 +5,7 @@ categories:
   - macOS
   - 后端领域
 banner:
-  style: gradient
+  style: image
   wave: true
 ---
 

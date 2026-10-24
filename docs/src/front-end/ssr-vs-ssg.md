@@ -6,7 +6,7 @@ cover:
 categories:
   - 前端领域
 banner:
-  style: particle
+  style: image
   wave: true
 ---
 

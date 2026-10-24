@@ -4,7 +4,7 @@ date: 2026-02-24 10:12:58
 categories:
   - 人工智能
 banner:
-  style: particle
+  style: image
   wave: true
 ---
 

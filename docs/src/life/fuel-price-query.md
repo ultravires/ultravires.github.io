@@ -4,7 +4,7 @@ date: 2026-05-09
 categories:
   - 程序人生
 banner:
-  style: gradient
+  style: image
   wave: true
 ---
 

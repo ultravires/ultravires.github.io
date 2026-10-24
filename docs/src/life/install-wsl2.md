@@ -6,7 +6,7 @@ cover:
 categories:
   - 程序人生
 banner:
-  style: particle
+  style: image
   wave: true
 ---
 
