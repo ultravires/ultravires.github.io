@@ -9,6 +9,7 @@ categories:
 cover:
   text: 订阅转换
 banner:
+  style: particle
   wave: true
 ---
 

@@ -3,11 +3,12 @@ title: Docker 安装 minio
 date: 2025-08-29
 cover:
   text: 安装 MinIO
-banner:
-  wave: true
 categories:
   - Docker
   - 后端领域
+banner:
+  style: image
+  wave: true
 ---
 
 

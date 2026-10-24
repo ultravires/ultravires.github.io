@@ -4,6 +4,9 @@ date: 2026-09-23
 categories:
   - macOS
   - 后端领域
+banner:
+  style: gradient
+  wave: true
 ---
 
 开发悬浮歌词、提词器、屏幕批注、系统监视条这类工具时，经常需要让自家窗口浮在其它应用之上——包括其它应用**进入全屏**之后。网上流传的经典配方（`window.level = .screenSaver` + `canJoinAllSpaces`）在 macOS 26 上实测已经失效，本文记录真正可行的方案及集成时要踩平的坑。

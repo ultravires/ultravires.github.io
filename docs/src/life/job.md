@@ -6,7 +6,7 @@ categories:
 cover:
   text: 求职渠道
 banner:
-  blur: true
+  style: particle
   wave: true
 ---
 

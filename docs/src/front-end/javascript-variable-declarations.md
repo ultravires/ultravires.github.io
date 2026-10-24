@@ -2,14 +2,15 @@
 title: JavaScript 声明变量的几种方式
 cover:
   text: 声明变量
-banner:
-  wave: true
 date: 2025-07-17
 author:
   name: 向成渝
   email: x555666777@qq.com
 categories:
   - 前端领域
+banner:
+  style: particle
+  wave: true
 ---
 
 在 JavaScript 中，声明变量的方式主要有三种：var、let 和 const。每种方式在作用域、初始化、提升行为等方面存在显著差异。

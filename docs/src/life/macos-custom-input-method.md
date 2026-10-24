@@ -3,6 +3,9 @@ title: MacOS 自定义输入法
 date: 2025-11-13
 categories:
   - 程序人生
+banner:
+  style: image
+  wave: true
 ---
 
 [在 Mac 上创建和使用你自己的输入法](https://support.apple.com/zh-cn/guide/mac-help/mchlp2866/15.0/mac/15.0)

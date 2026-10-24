@@ -5,10 +5,11 @@ tags:
   - PUBG
 cover:
   text: 游戏集锦
-banner:
-  image: https://image.baidu.com/search/down?url=https://image.api.playstation.com/vulcan/ap/rnd/202404/0504/106f7c82ac1f3990a88e25532cac35e7a3a024039d2117b1.jpg
 categories:
   - 程序人生
+banner:
+  style: particle
+  wave: true
 ---
 
 我的 `PUBG` 游戏集锦。

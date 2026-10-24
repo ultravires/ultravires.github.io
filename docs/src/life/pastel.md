@@ -8,6 +8,9 @@ tags:
   - CLI
   - Rust
   - Color
+banner:
+  style: gradient
+  wave: true
 ---
 
 

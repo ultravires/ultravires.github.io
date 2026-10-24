@@ -4,14 +4,15 @@ date: 2024-05-29 17:19:05
 cover:
    text: 单体仓库
 #   url: https://s2.loli.net/2024/11/27/profXcH31QbmT9E.webp
-banner:
-  image: https://s2.loli.net/2024/11/27/profXcH31QbmT9E.webp
-  blur: true
-  wave: true
 tags:
   - Monorepo
 categories:
   - 前端领域
+banner:
+  style: image
+  image: https://s2.loli.net/2024/11/27/profXcH31QbmT9E.webp
+  blur: true
+  wave: true
 ---
 
 代码管理一直是一个棘手的问题，好在很多人在关注。

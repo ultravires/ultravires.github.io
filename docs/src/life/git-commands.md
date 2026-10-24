@@ -6,6 +6,7 @@ categories:
 cover:
   text: Git 命令
 banner:
+  style: image
   wave: true
 ---
 

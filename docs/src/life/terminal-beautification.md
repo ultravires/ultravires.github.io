@@ -9,6 +9,7 @@ categories:
 tags:
   - Terminal
 banner:
+  style: image
   image: https://s2.loli.net/2024/11/27/yNfV3URv9Q6hH5c.webp
   blur: true
   wave: true

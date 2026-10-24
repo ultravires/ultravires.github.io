@@ -10,6 +10,9 @@ tags:
   - DevTools
   - AI
   - 代理
+banner:
+  style: image
+  wave: true
 ---
 
 Google 将 Gemini 集成至 Chrome 浏览器并推出 AI Innovations 功能，但因地区检测机制，在中国大陆无法直接使用。本文记录在 macOS 上通过修改配置启用这一功能的完整流程，以及 Chrome 自动更新后配置被重置的解决方案。

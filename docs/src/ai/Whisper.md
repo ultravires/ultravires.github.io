@@ -9,6 +9,7 @@ categories:
 cover:
   text: 语音识别
 banner:
+  style: image
   wave: true
 ---
 

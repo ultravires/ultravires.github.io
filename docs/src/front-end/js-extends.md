@@ -3,10 +3,11 @@ title: JavaScript 继承
 date: 2025-07-19 11:20
 cover:
   text: 原型继承
-banner:
-  wave: true
 categories:
   - 前端领域
+banner:
+  style: gradient
+  wave: true
 ---
 
 > 龙生龙、凤生凤，老鼠的孩子会打洞。

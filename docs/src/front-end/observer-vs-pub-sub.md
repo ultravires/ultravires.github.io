@@ -3,12 +3,13 @@ title: 观察者模式 VS. 发布-订阅者模式
 date: 2025-09-10 13:57:05
 cover:
   text: 设计模式
-banner:
-  wave: true
 categories:
   - 前端领域
 tags:
   - 设计模式
+banner:
+  style: image
+  wave: true
 ---
 
 观察者模式和发布-订阅者模式总是让人傻傻分不清。

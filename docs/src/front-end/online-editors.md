@@ -3,6 +3,9 @@ title: 在线编辑
 date: 2025-11-13
 categories:
   - 前端领域
+banner:
+  style: particle
+  wave: true
 ---
 
 在线编辑器与文档格式转换工具的选型对比。

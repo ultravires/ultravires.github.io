@@ -3,6 +3,9 @@ title: Proxifier
 date: 2026-03-09
 categories:
   - 程序人生
+banner:
+  style: image
+  wave: true
 ---
 
 有很多程序无法设置代理，使用 `Proxifier` 可以很好的解决这个问题。

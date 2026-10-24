@@ -3,6 +3,9 @@ title: Remotion：程序化视频创作框架
 date: 2026-03-14
 categories:
   - 前端领域
+banner:
+  style: image
+  wave: true
 ---
 
 Remotion 是一个用 React 程序化创作视频的开源框架。它将视频制作纳入工程化流程，支持版本控制、批量生成与 CI/CD 流水线，是数据驱动与自动化视频创作的首选工具。

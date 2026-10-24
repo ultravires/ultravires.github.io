@@ -3,10 +3,11 @@ title: 安装适用于Linux的Windows子系统
 date: 2025-05-11
 cover:
   text: Windows 子系统
-banner:
-  wave: true
 categories:
   - 程序人生
+banner:
+  style: particle
+  wave: true
 ---
 
 安装适用于 Linux 的 Windows 子系统。

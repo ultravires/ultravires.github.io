@@ -3,12 +3,13 @@ title: 关于原子化 CSS
 date: 2024-05-21 14:22:47
 cover:
   text: 原子化 CSS
-banner:
-  wave: true
 categories:
   - 前端领域
 tags:
   - CSS
+banner:
+  style: image
+  wave: true
 ---
 
 原子化 CSS 可能是最优秀的 CSS 架构设计。

@@ -10,6 +10,9 @@ tags:
   - Agent
   - Workflow
   - MCP
+banner:
+  style: gradient
+  wave: true
 ---
 
 本文基于与 DeepSeek-V4-Pro 在 Claude Code 平台上的对话记录，逐层剖析其系统提示词（system prompt）的完整结构与设计哲学。Claude Code 是 Anthropic 推出的 CLI AI 编程助手，本文档旨在帮助开发者理解其内部运作机制。

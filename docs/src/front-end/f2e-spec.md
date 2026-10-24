@@ -3,6 +3,9 @@ title: 前端代码开发规范
 date: 2026-01-30
 categories:
   - 前端领域
+banner:
+  style: particle
+  wave: true
 ---
 
 统一编码风格、普及最佳实践、提升代码质量、降低维护成本。

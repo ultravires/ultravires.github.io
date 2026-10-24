@@ -3,13 +3,14 @@ title: CSS Design Token 颜色命名规范
 date: 2026-06-17
 cover:
   text: Design Token
-banner:
-  wave: true
 categories:
   - 前端领域
 tags:
   - CSS
   - Design Token
+banner:
+  style: particle
+  wave: true
 ---
 
 以 HSB 色相与明度阈值划分色系和档位，建立 Raw / Alias / Semantic 三层颜色 Token 命名规范，兼顾标准梯度与同档近似色。

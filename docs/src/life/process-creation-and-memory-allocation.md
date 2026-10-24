@@ -3,6 +3,9 @@ title: 进程创建与内存分配底层原理（前端高阶实战版）
 date: 2026-06-02
 categories:
   - 程序人生
+banner:
+  style: gradient
+  wave: true
 ---
 
 # 进程创建与内存分配底层原理（前端高阶实战版）

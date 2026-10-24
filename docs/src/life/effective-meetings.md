@@ -3,6 +3,9 @@ title: 如何进行高效的会议
 date: 2026-04-01
 categories:
   - 程序人生
+banner:
+  style: image
+  wave: true
 ---
 
 ## 核心原则

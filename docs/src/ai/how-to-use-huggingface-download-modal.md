@@ -9,6 +9,7 @@ categories:
 cover:
   text: 模型下载
 banner:
+  style: particle
   wave: true
 ---
 

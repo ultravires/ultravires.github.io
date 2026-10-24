@@ -11,6 +11,9 @@ categories:
   - 算法题解
 tags:
   - 回溯法
+banner:
+  style: image
+  wave: true
 ---
 
 此题主要考察的是回溯法。

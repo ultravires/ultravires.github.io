@@ -4,12 +4,13 @@ date: 2024-12-02 17:17:00
 cover:
   text: 贷款买房
   # url: https://s2.loli.net/2024/12/06/aiuMCANY5DRj91f.webp
+categories:
+  - 程序人生
 banner:
+  style: image
   image: https://s2.loli.net/2024/12/06/aiuMCANY5DRj91f.webp
   blur: true
   wave: true
-categories:
-  - 程序人生
 ---
 
 <script setup>

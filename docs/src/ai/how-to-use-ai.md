@@ -3,6 +3,9 @@ title: 好用的 AI 应用导航
 date: 2026-04-01
 categories:
   - 人工智能
+banner:
+  style: gradient
+  wave: true
 ---
 
 ## 短信接收

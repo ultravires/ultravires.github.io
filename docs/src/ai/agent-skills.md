@@ -3,6 +3,9 @@ title: 什么是 agent skills ？
 date: 2026-02-24 10:12:58
 categories:
   - 人工智能
+banner:
+  style: particle
+  wave: true
 ---
 
 [Agent Skills](https://agentskills.io/home) 是具有固定格式 “经验手册”。
