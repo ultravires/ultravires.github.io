@@ -23,7 +23,9 @@ const props = defineProps({
 const container = ref(null);
 const canvasEl = ref(null);
 let gl, program, animationFrame;
+let uniforms = {};
 let start = performance.now();
+let mediaQuery;
 
 // --- 着色器源码 ---
 const vertSrc = `
@@ -41,15 +43,25 @@ const fragSrc = `
     float t = u_time * u_speed;
     vec2 r = u_res;
     vec2 p = (FC * 2.0 - r) / r.y;
+    float aspect = r.x / r.y;
+
+    // 主视觉中心：桌面端右移让出左侧标题区，竖屏自动回中
+    float shiftX = clamp(0.55 * aspect - 0.35, 0.0, 1.5) * smoothstep(0.8, 1.4, aspect);
+    vec2 center = vec2(shiftX, 0.08);
+
     vec3 c = vec3(0.0);
     for (float i = 0.0; i < 42.0; i++) {
       float a = i / 1.5 + t * 0.5;
-      vec2 q = p;
+      vec2 q = p - center;
       q.x = q.x + sin(q.y * 19.0 + t * 2.0 + i) * 29.0 * smoothstep(0.0, -2.0, q.y);
       float d = length(q - vec2(cos(a), sin(a)) * (0.4 * smoothstep(0.0, 0.5, -q.y)));
       c = c + vec3(0.34, 0.30, 0.24) * (0.015 / d);
     }
     vec3 col = c * c + 0.05;
+
+    // 左侧文字区轻微压暗，保证标题可读性
+    col *= 1.0 - 0.25 * smoothstep(0.5, -1.1, p.x);
+
     gl_FragColor = vec4(col, 1.0);
   }
 `;
@@ -86,6 +98,12 @@ const initGL = () => {
   const posLoc = gl.getAttribLocation(program, 'pos');
   gl.enableVertexAttribArray(posLoc);
   gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  uniforms = {
+    res: gl.getUniformLocation(program, 'u_res'),
+    time: gl.getUniformLocation(program, 'u_time'),
+    speed: gl.getUniformLocation(program, 'u_speed')
+  };
 };
 
 const resize = () => {
@@ -101,27 +119,46 @@ const draw = () => {
   const now = performance.now();
   const t = (now - start) * 0.001;
 
-  const uRes = gl.getUniformLocation(program, 'u_res');
-  const uTime = gl.getUniformLocation(program, 'u_time');
-  const uSpeed = gl.getUniformLocation(program, 'u_speed');
-
-  gl.uniform2f(uRes, canvasEl.value.width, canvasEl.value.height);
-  gl.uniform1f(uTime, t);
-  gl.uniform1f(uSpeed, props.speed);
+  gl.uniform2f(uniforms.res, canvasEl.value.width, canvasEl.value.height);
+  gl.uniform1f(uniforms.time, t);
+  gl.uniform1f(uniforms.speed, props.speed);
 
   gl.drawArrays(gl.TRIANGLES, 0, 3);
   animationFrame = requestAnimationFrame(draw);
 };
 
+// 减少动态偏好：只渲染一帧静态画面
+const renderStatic = () => {
+  cancelAnimationFrame(animationFrame);
+  gl.uniform2f(uniforms.res, canvasEl.value.width, canvasEl.value.height);
+  gl.uniform1f(uniforms.time, 12.0);
+  gl.uniform1f(uniforms.speed, props.speed);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+};
+
+const handleMotionPreference = () => {
+  if (mediaQuery?.matches) {
+    renderStatic();
+  } else {
+    cancelAnimationFrame(animationFrame);
+    start = performance.now();
+    draw();
+  }
+};
+
 onMounted(() => {
   initGL();
+  if (!gl) return;
   resize();
   window.addEventListener('resize', resize);
-  draw();
+  mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  mediaQuery.addEventListener?.('change', handleMotionPreference);
+  handleMotionPreference();
 });
 
 onUnmounted(() => {
   window.removeEventListener('resize', resize);
+  mediaQuery?.removeEventListener?.('change', handleMotionPreference);
   cancelAnimationFrame(animationFrame);
 });
 </script>
