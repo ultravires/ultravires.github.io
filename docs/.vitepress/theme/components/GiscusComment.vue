@@ -19,14 +19,22 @@ onMounted(() => {
 
 onUnmounted(() => observer?.disconnect());
 
-// 评论框内部配色走 giscus 自定义主题：theme 传 CSS URL（文件在 docs/src/public/，构建后发布到站点根）
-// dev 下指向本地 dev server 以便实时预览；SSR 阶段无 window，回退到线上地址（此时主题尚未真正渲染）
+// 评论框内部配色分两种来源：
+// - 生产：走 giscus 自定义主题（CSS URL，文件在 docs/src/public/，构建后发布到站点根）。
+//   统一用当前站点源 www.ultravires.me——该域名经 Cloudflare 注入了 Access-Control-Allow-Origin 且为 HTTPS，
+//   满足 giscus iframe 跨域加载自定义主题的要求；旧域名 ultravires.github.io 会 301 跳转且无 CORS 头，导致主题加载失败。
+//   仅 SSR 预渲染阶段回退到生产域名（此时主题尚未真正渲染，无实际影响）。
+// - 开发：giscus iframe 是 HTTPS，无法加载本机 HTTP 的 CSS（混合内容会被浏览器拦截），
+//   退回到官方 noborder 主题（自定义主题即以其为模板），保证暗色切换可预览。
 const giscusTheme = computed(() => {
+  if (import.meta.env.DEV) {
+    return isDark.value ? 'noborder_dark' : 'noborder_light';
+  }
   const file = isDark.value ? 'giscus-theme-dark.css' : 'giscus-theme-light.css';
   const origin =
-    import.meta.env.DEV && typeof window !== 'undefined'
+    typeof window !== 'undefined'
       ? window.location.origin
-      : 'https://ultravires.github.io';
+      : 'https://www.ultravires.me';
   return `${origin}/${file}`;
 });
 </script>
