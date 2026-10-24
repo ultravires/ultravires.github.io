@@ -14,33 +14,39 @@ const user = frontmatter.value?.self ?? {};
   <PageContainer>
     <!-- 基础信息 -->
     <div class="mb-4">
-      <div class="mt-6">
-        <h2 class="my-4 text-4xl font-semibold">{{ user.name }}</h2>
-        <p class="text-gray-600 dark:text-gray-200">{{ user.bio }}</p>
-      </div>
-      <div class="mt-4 flex items-center gap-3">
-        <template
-          v-for="link in user.links"
-          :key="link.text"
-        >
-          <VQrCodePopover
-            v-if="link.qrcode"
-            :icon="link.icon"
-            :qrcode="link.qrcode"
-            :text="link.text"
-          />
-          <a
-            v-else
-            :href="link.link"
-            target="_blank"
-            class="text-gray-600 hover:text-black dark:text-gray-200 dark:hover:text-white"
-          >
-            <Icon
-              :icon="link.icon"
-              class="text-3xl"
-            />
-          </a>
-        </template>
+      <div class="mt-6 flex flex-col items-center gap-6 sm:flex-row sm:items-center">
+        <VAvatar
+          :size="96"
+          class="shrink-0"
+        />
+        <div class="text-center sm:text-left">
+          <h2 class="my-4 text-4xl font-semibold">{{ user.name }}</h2>
+          <p class="text-gray-600 dark:text-gray-200">{{ user.bio }}</p>
+          <div class="mt-4 flex items-center justify-center gap-3 sm:justify-start">
+            <template
+              v-for="link in user.links"
+              :key="link.text"
+            >
+              <VQrCodePopover
+                v-if="link.qrcode"
+                :icon="link.icon"
+                :qrcode="link.qrcode"
+                :text="link.text"
+              />
+              <a
+                v-else
+                :href="link.link"
+                target="_blank"
+                class="text-gray-600 hover:text-black dark:text-gray-200 dark:hover:text-white"
+              >
+                <Icon
+                  :icon="link.icon"
+                  class="text-3xl"
+                />
+              </a>
+            </template>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -55,7 +61,6 @@ const user = frontmatter.value?.self ?? {};
       <div
         class="w-full shrink-0 rounded-2xl border border-neutral-100/10 bg-white p-4 shadow lg:w-96 dark:bg-neutral-700"
       >
-        <VAvatar />
         <h3 class="flex items-center">
           <Icon
             icon="mdi:briefcase-variant-outline"

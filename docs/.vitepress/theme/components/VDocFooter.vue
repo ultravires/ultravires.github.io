@@ -10,7 +10,7 @@ const { frontmatter } = useData();
 <template>
   <div
     v-show="frontmatter?.footer !== false"
-    class="relative mt-32 mb-12 flex flex-col items-center gap-5 rounded-2xl border border-solid border-line bg-neutral-50 px-6 pt-24 pb-10 dark:bg-neutral-800"
+    class="relative mt-32 mb-12 flex flex-col items-center gap-5 rounded-2xl border border-solid border-line bg-neutral-50 px-6 pt-24 pb-10 dark:bg-neutral-900"
   >
     <VAvatar
       class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
