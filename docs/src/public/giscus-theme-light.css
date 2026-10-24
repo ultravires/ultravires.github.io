@@ -1,0 +1,65 @@
+/* 评论区自定义主题（亮色）——对齐站点主色 #4759e6 与正文卡片底色 #ffffff
+ * 覆盖 giscus 内部引用的 GitHub Primer CSS 变量，使评论框融入整站视觉。
+ * 完整变量清单以 giscus 官方 styles/themes/noborder_light.css 为模板；此处覆盖影响观感的核心项。 */
+
+main {
+  /* 画布 / 文字 */
+  --color-canvas-default: #ffffff;
+  --color-canvas-subtle: #f6f8fa;
+  --color-canvas-inset: #f6f8fa;
+  --color-fg-default: #1f2328;
+  --color-fg-muted: #656d76;
+  --color-fg-subtle: #6e7781;
+
+  /* 边框（对齐站点亮色边框 #e5e5e5） */
+  --color-border-default: #e5e5e5;
+  --color-border-muted: #eaeaea;
+  --color-neutral-muted: rgba(175, 184, 193, 0.2);
+
+  /* 强调色 = 站点亮色主色 */
+  --color-accent-fg: #4759e6;
+  --color-accent-emphasis: #4759e6;
+  --color-accent-subtle: rgba(71, 89, 230, 0.12);
+
+  --color-success-fg: #1a7f37;
+  --color-attention-fg: #9a6700;
+  --color-danger-fg: #d1242f;
+  --color-danger-subtle: #ffebe9;
+
+  /* 按钮 */
+  --color-btn-primary-bg: #4759e6;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-hover-bg: #3a4bd0;
+  --color-btn-bg: #f6f8fa;
+  --color-btn-text: #24292f;
+  --color-btn-border: rgba(31, 35, 40, 0.15);
+  --color-btn-hover-bg: #f3f4f6;
+  --color-btn-active-bg: hsla(220, 14%, 93%, 1);
+
+  /* 输入框 */
+  --color-input-bg: #ffffff;
+  --color-input-border: #d0d7de;
+  --color-input-placeholder-text: #6e7781;
+
+  /* 浮层 / 次级面板 */
+  --color-bg-overlay: #ffffff;
+  --color-bg-secondary: #f6f8fa;
+  --color-bg-tertiary: #f6f8fa;
+  --color-avatar-bg: #ffffff;
+  --color-icon-primary: #24292f;
+  --color-icon-secondary: #57606a;
+
+  /* 代码块语法高亮（评论正文内代码，GitHub light 配色） */
+  --color-prettylights-syntax-comment: #6e7781;
+  --color-prettylights-syntax-constant: #0550ae;
+  --color-prettylights-syntax-entity: #6639ba;
+  --color-prettylights-syntax-entity-tag: #116329;
+  --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #953800;
+  --color-prettylights-syntax-string-regexp: #116329;
+  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+  --color-prettylights-syntax-markup-heading: #0550ae;
+  --color-prettylights-syntax-markup-italic: #24292f;
+  --color-prettylights-syntax-markup-bold: #24292f;
+}
