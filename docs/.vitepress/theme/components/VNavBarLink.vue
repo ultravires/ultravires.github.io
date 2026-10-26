@@ -20,7 +20,7 @@ const activeClass =
   <VNavBarDropdown v-if="item.items && item.items.length > 0">
     <template #trigger="{ open }">
       <VLink
-        class="px-4 py-2"
+        class="flex h-8 items-center px-4"
         :class="[
           triggerClass,
           {
@@ -42,7 +42,7 @@ const activeClass =
     >
       <VLink
         v-for="item in item.items"
-        class="decoration-none text-normal hover:bg-primary relative whitespace-nowrap rounded-full px-4 py-2 transition-all duration-300 hover:px-5 hover:text-white dark:hover:text-black"
+        class="decoration-none text-normal hover:bg-primary relative flex h-8 items-center whitespace-nowrap rounded-full px-4 transition-all duration-300 hover:px-5 hover:text-white dark:hover:text-black"
         :class="{
           [activeClass]: isActive(
             page.relativePath,
@@ -58,7 +58,7 @@ const activeClass =
   </VNavBarDropdown>
   <VLink
     v-else
-    class="px-4 py-2"
+    class="flex h-8 items-center px-4"
     :class="[
       triggerClass,
       {
