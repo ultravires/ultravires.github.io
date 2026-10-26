@@ -24,12 +24,31 @@ export default defineConfigWithTheme<CustomTheme>(
       ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
       [
         'link',
-        { rel: 'alternate icon', href: '/favicon.ico', sizes: '16x16 32x32 48x48' }
+        {
+          rel: 'alternate icon',
+          href: '/favicon.ico',
+          sizes: '16x16 32x32 48x48'
+        }
       ],
       ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
       // 评论区 iframe 托管在 giscus 反代域名，提前完成 DNS/TCP/TLS 握手
       ['link', { rel: 'preconnect', href: 'https://giscus.ultravires.me' }],
       ['link', { rel: 'dns-prefetch', href: 'https://giscus.ultravires.me' }],
+      // 51.la 站点统计 SDK（id/ck 在 v6.51.la 控制台添加站点后获取）
+      ['link', { rel: 'preconnect', href: 'https://sdk.51.la' }],
+      [
+        'script',
+        {
+          charset: 'UTF-8',
+          id: 'LA_COLLECT',
+          src: 'https://sdk.51.la/js-sdk-pro.min.js'
+        }
+      ],
+      [
+        'script',
+        {},
+        'LA.init({id:"3Rd8pMdFFdPLdgHh",ck:"3Rd8pMdFFdPLdgHh",autoTrack:true})'
+      ],
       [
         'meta',
         {

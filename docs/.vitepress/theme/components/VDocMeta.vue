@@ -1,14 +1,19 @@
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 import { useData } from 'vitepress';
+import { usePageView } from '../composables/usePageView';
 
 const { frontmatter } = useData();
+const { pv, failed, isArticle } = usePageView();
 </script>
 
 <template>
   <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
     <div
-      v-if="Array.isArray(frontmatter?.categories) && frontmatter?.categories?.length > 0"
+      v-if="
+        Array.isArray(frontmatter?.categories) &&
+        frontmatter?.categories?.length > 0
+      "
       class="flex flex-wrap items-center gap-2"
     >
       <span
@@ -35,5 +40,17 @@ const { frontmatter } = useData();
         {{ tag }}
       </span>
     </div>
+    <!-- 本文阅读数（近 30 天快照，加载失败或未入榜时静默隐藏） -->
+    <span
+      v-if="isArticle && !failed && pv !== null"
+      class="inline-flex items-center gap-1 text-xs text-neutral-500 dark:text-neutral-400"
+      title="近 30 天阅读数，每 2 天更新"
+    >
+      <Icon
+        icon="mdi:eye-outline"
+        class="text-sm"
+      />
+      阅读 {{ pv.toLocaleString() }} 次
+    </span>
   </div>
 </template>

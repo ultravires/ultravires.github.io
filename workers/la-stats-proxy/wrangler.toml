@@ -1,0 +1,22 @@
+# 51.la 站点统计数据代理：为博客前台「站点统计」页提供只读 JSON 接口
+#
+# 架构：51.la 开放数据 API 免费额度仅 100 次/月，因此由 Cron Trigger 每 2 天
+# 批量拉取一次（6 个调用 ≈ 90 次/月）写入 KV；前台 GET 接口只读 KV，不消耗配额。
+# 手动刷新：POST /api/refresh 并携带请求头 X-Refresh-Token（值为 SecretKey）。
+#
+# AccessKey / SecretKey 通过 `npx wrangler secret put` 注入，不下发到浏览器
+# 部署：npx wrangler deploy（首次会自动创建 stats.ultravires.me 的 DNS 与证书）
+name = "la-stats-proxy"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+
+routes = [{ pattern = "stats.ultravires.me", custom_domain = true }]
+
+[[kv_namespaces]]
+binding = "STATS_KV"
+id = "b3c05956ca1d4f4a9a7231a2e72b642b"
+
+# 北京时间 23:55（UTC 15:55）每两天执行一次，让快照中的「今日」接近完整
+[triggers]
+crons = ["55 15 */2 * *"]

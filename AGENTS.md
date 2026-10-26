@@ -20,11 +20,11 @@
 
 ```yaml
 banner:
-  style: particle  # particle（WebGL 粒子）| gradient（文艺渐变）| image（背景图）
-  theme: royal     # 可选，gradient 配色：royal / mauve / forest / lawrencium / aubergine / skies
+  style: particle # particle（WebGL 粒子）| gradient（文艺渐变）| image（背景图）
+  theme: royal # 可选，gradient 配色：royal / mauve / forest / lawrencium / aubergine / skies
   image: https://... # 可选，image 风格自定义背景图，缺省使用 picsum 稳定随机图
-  blur: true       # 可选，image 风格背景模糊
-  wave: true       # 可选，底部波浪
+  blur: true # 可选，image 风格背景模糊
+  wave: true # 可选，底部波浪
 ```
 
 也可简写为 `banner: true`（等价 particle）或 `banner: gradient`。
@@ -86,3 +86,17 @@ categories:
 头像按名称自动生成首字符徽标，也可显式指定 `avatar` 图片地址覆盖。
 
 页面入口为 `/link/`，对应 `docs/src/link/index.md`（`layout: link` + `hidden: true`，勿改动这两个字段）。
+
+## 站点统计（Site Stats）
+
+「站点统计」页展示访问概览、热门文章 Top 10 与访客画像，数据来自 51.la V6 统计。
+
+页面入口为 `/stats/`，对应 `docs/src/stats/index.md`（`layout: stats` + `hidden: true`，勿改动这两个字段）。
+
+数据链路：
+
+- 统计 SDK：51.la js-sdk-pro，注入于 `docs/.vitepress/config.ts` 的 `head`（`id`/`ck` 在 v6.51.la 控制台获取）。
+- 数据接口：`workers/la-stats-proxy/`（Cloudflare Worker，绑定 `stats.ultravires.me`）。51.la 开放数据 API 免费额度仅 100 次/月，因此由 Cron Trigger 每 2 天批量拉取一次快照写入 KV（6 个调用 ≈ 90 次/月），前台 GET 接口只读 KV、不消耗配额。AccessKey/SecretKey 通过 `npx wrangler secret put` 注入（`LA_ACCESS_KEY` / `LA_SECRET_KEY`），不下发到浏览器。
+- 手动刷新快照：`curl -X POST https://stats.ultravires.me/api/refresh -H "X-Refresh-Token: <SecretKey>"`（每次消耗 6 次配额，慎用）。
+- 前台请求封装在 `docs/.vitepress/theme/composables/useSiteStats.ts`，本地联调可用 `VITE_STATS_API=http://localhost:8787` 指向 `wrangler dev`。
+- 文章页头部的「阅读 N 次」来自近 30 天受访页快照（`usePageView.ts`），未进入快照的文章静默隐藏。

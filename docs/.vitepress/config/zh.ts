@@ -62,6 +62,11 @@ function nav(): DefaultTheme.NavItem[] {
       activeMatch: `^/link/`
     },
     {
+      text: '统计',
+      link: '/stats/',
+      activeMatch: `^/stats/`
+    },
+    {
       text: '专栏',
       activeMatch: `^/(life|algorithm|front-end|back-end|ai)/`,
       items: [

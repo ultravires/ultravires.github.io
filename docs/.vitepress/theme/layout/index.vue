@@ -13,6 +13,7 @@ import HomeLayout from './HomeLayout.vue';
 import LinkLayout from './LinkLayout.vue';
 import MomentsLayout from './MomentsLayout.vue';
 import PageLayout from './PageLayout.vue';
+import StatsLayout from './StatsLayout.vue';
 
 const { frontmatter, page } = useData();
 
@@ -39,6 +40,7 @@ useBannerPreload();
       <ColumnLayout v-else-if="frontmatter.layout === 'column'" />
       <MomentsLayout v-else-if="frontmatter.layout === 'moments'" />
       <LinkLayout v-else-if="frontmatter.layout === 'link'" />
+      <StatsLayout v-else-if="frontmatter.layout === 'stats'" />
       <AboutLayout v-else-if="frontmatter.layout === 'about'" />
       <DocLayout v-else />
 
