@@ -21,6 +21,12 @@ export default defineConfigWithTheme<CustomTheme>(
     ignoreDeadLinks: true,
     head: [
       ['meta', { name: 'author', content: '向成渝' }],
+      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      [
+        'link',
+        { rel: 'alternate icon', href: '/favicon.ico', sizes: '16x16 32x32 48x48' }
+      ],
+      ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
       // 评论区 iframe 托管在 giscus 反代域名，提前完成 DNS/TCP/TLS 握手
       ['link', { rel: 'preconnect', href: 'https://giscus.ultravires.me' }],
       ['link', { rel: 'dns-prefetch', href: 'https://giscus.ultravires.me' }],
