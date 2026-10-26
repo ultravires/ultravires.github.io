@@ -8,7 +8,6 @@ categories:
   - 程序人生
 banner:
   style: image
-  image: https://s2.loli.net/2024/12/06/aiuMCANY5DRj91f.webp
   blur: true
   wave: true
 ---
