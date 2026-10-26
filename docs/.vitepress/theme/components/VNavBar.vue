@@ -31,6 +31,14 @@ const onBanner = computed(
 );
 const glassTone = computed(() => (onBanner.value ? 'dark' : 'auto'));
 
+const scrollToTop = () => {
+  document.documentElement.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+  });
+};
+
 const showTitle = useShowTitle();
 function useShowTitle() {
   const showTitle = ref(false);
@@ -111,15 +119,18 @@ function useShowTitle() {
       <Transition name="slide-fade">
         <LiquidClassCard
           v-show="showTitle"
-          class="rounded-full max-md:hidden"
+          class="cursor-pointer rounded-full max-md:hidden"
           style="position: absolute"
           :tone="glassTone"
+          @click="scrollToTop"
         >
-          <div
-            class="flex h-[40px] items-center justify-center px-4 font-bold leading-none"
-          >
-            {{ page.title || '向成渝 —— 专注于计算机科学与技术' }}
-          </div>
+          <VTooltip content="回到顶部">
+            <div
+              class="flex h-[40px] items-center justify-center px-4 font-bold leading-none"
+            >
+              {{ page.title || '向成渝 —— 专注于计算机科学与技术' }}
+            </div>
+          </VTooltip>
         </LiquidClassCard>
       </Transition>
 
