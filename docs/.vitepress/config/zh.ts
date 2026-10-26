@@ -62,11 +62,6 @@ function nav(): DefaultTheme.NavItem[] {
       activeMatch: `^/link/`
     },
     {
-      text: '统计',
-      link: '/stats/',
-      activeMatch: `^/stats/`
-    },
-    {
       text: '专栏',
       activeMatch: `^/(life|algorithm|front-end|back-end|ai)/`,
       items: [
@@ -99,8 +94,19 @@ function nav(): DefaultTheme.NavItem[] {
     },
     {
       text: '关于',
-      link: '/about/',
-      activeMatch: '/about/'
+      activeMatch: `^/(about|stats)/`,
+      items: [
+        {
+          text: '关于博主',
+          link: '/about/',
+          activeMatch: `^/about/`
+        },
+        {
+          text: '关于站点',
+          link: '/stats/',
+          activeMatch: `^/stats/`
+        }
+      ]
     }
   ];
 }
