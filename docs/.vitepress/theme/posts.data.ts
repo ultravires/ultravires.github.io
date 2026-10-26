@@ -11,6 +11,8 @@ dayjs.locale('zh-cn');
 export interface Post {
   title: string;
   url: string;
+  /** 相对 srcDir 的文件路径（如 ai/xxx.md），与 page.relativePath 一致 */
+  relativePath: string;
   categories: string[];
   tags: string[];
   date: {
@@ -53,6 +55,7 @@ export default createContentLoader('**/*.md', {
           categories: frontmatter.categories ?? [],
           tags: frontmatter.tags ?? [],
           url,
+          relativePath: `${pathFromUrl}.md`,
           excerpt, // 渲染的摘录 HTML（第一个 `---` 上面的内容）
           date: formatDate(frontmatter.date),
           lastUpdatedTime,

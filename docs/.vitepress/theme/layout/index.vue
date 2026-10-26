@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useData } from 'vitepress';
+import { useBannerPreload } from '../composables/useBannerPreload';
 import { useImageZoom } from '../composables/useImageZoom';
 import VFooter from '../components/VFooter.vue';
 import VHeader from '../components/VHeader.vue';
@@ -16,6 +17,7 @@ import PageLayout from './PageLayout.vue';
 const { frontmatter, page } = useData();
 
 useImageZoom();
+useBannerPreload();
 </script>
 
 <template>

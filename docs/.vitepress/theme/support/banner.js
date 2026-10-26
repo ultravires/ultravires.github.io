@@ -33,3 +33,27 @@ export function hashString(str) {
   }
   return Math.abs(hash);
 }
+
+/**
+ * 解析 image 风格 Banner 的背景图地址：
+ * 自定义图片优先，否则按 key（通常为文章相对路径）生成 picsum 稳定随机图。
+ */
+export function resolveBannerImage(banner, key) {
+  if (typeof banner?.image === 'string' && banner.image) return banner.image;
+  return `https://picsum.photos/seed/${hashString(key || 'post')}/1920/640`;
+}
+
+const preloadedUrls = new Set();
+
+/**
+ * 预加载 Banner 背景图写入浏览器缓存。
+ * 配合文章链接的悬停/触摸预取，切换文章时新图已在缓存中，淡入可立即开始。
+ */
+export function preloadBannerImage(url) {
+  if (!url || preloadedUrls.has(url)) return;
+  if (typeof navigator !== 'undefined' && navigator.connection?.saveData) return;
+  preloadedUrls.add(url);
+  const img = new Image();
+  img.decoding = 'async';
+  img.src = url;
+}
