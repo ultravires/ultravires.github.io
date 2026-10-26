@@ -87,6 +87,25 @@ categories:
 
 页面入口为 `/link/`，对应 `docs/src/link/index.md`（`layout: link` + `hidden: true`，勿改动这两个字段）。
 
+## 我的好物（Goods）
+
+「我的好物」页以卡片形式展示买过、用过并值得分享的物品，支持按分类筛选。
+
+维护方式：编辑 `docs/src/goods/goods.ts`，在 `goods` 数组中追加一条记录：
+
+```ts
+{
+  name: '物品名称',
+  info: '物品信息，一句话规格/定位，如「人体工学键盘」',
+  description: '物品描述',
+  category: '生产力', // 同名分类自动聚合成筛选标签
+  image: 'https://...', // 物品图片（1x）
+  image2x: 'https://...' // 可选，2x 高分屏图片，用于 srcset
+}
+```
+
+页面入口为 `/goods/`，对应 `docs/src/goods/index.md`（`layout: goods` + `hidden: true`，勿改动这两个字段）。
+
 ## 站点统计（Site Stats）
 
 「站点统计」页展示访问概览、热门文章 Top 10 与访客画像，数据来自 51.la V6 统计。

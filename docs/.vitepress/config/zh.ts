@@ -94,17 +94,22 @@ function nav(): DefaultTheme.NavItem[] {
     },
     {
       text: '关于',
-      activeMatch: `^/(about|stats)/`,
+      activeMatch: `^/(about|stats|goods)/`,
       items: [
         {
-          text: '关于博主',
+          text: '博主',
           link: '/about/',
           activeMatch: `^/about/`
         },
         {
-          text: '关于站点',
+          text: '站点',
           link: '/stats/',
           activeMatch: `^/stats/`
+        },
+        {
+          text: '好物',
+          link: '/goods/',
+          activeMatch: `^/goods/`
         }
       ]
     }

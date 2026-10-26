@@ -9,6 +9,7 @@ import NotFound from '../NotFound.vue';
 import AboutLayout from './AboutLayout.vue';
 import ColumnLayout from './ColumnLayout.vue';
 import DocLayout from './DocLayout.vue';
+import GoodsLayout from './GoodsLayout.vue';
 import HomeLayout from './HomeLayout.vue';
 import LinkLayout from './LinkLayout.vue';
 import MomentsLayout from './MomentsLayout.vue';
@@ -40,6 +41,7 @@ useBannerPreload();
       <ColumnLayout v-else-if="frontmatter.layout === 'column'" />
       <MomentsLayout v-else-if="frontmatter.layout === 'moments'" />
       <LinkLayout v-else-if="frontmatter.layout === 'link'" />
+      <GoodsLayout v-else-if="frontmatter.layout === 'goods'" />
       <StatsLayout v-else-if="frontmatter.layout === 'stats'" />
       <AboutLayout v-else-if="frontmatter.layout === 'about'" />
       <DocLayout v-else />
