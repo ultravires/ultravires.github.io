@@ -34,6 +34,18 @@ const columnTitle = computed(
   () => frontmatter.value.title || currentPageCategories.value[0] || ''
 );
 
+// 各页签的文章数量：页签文案与专栏分类同名，按分类命中数统计（与列表过滤规则一致）
+const postCountByColumn = computed(() => {
+  const countMap = new Map();
+  for (const { text } of columns.value) {
+    countMap.set(
+      text,
+      posts.filter((post) => (post.categories || []).includes(text)).length
+    );
+  }
+  return countMap;
+});
+
 const isCurrentColumn = (item) =>
   isActive(
     page.value.relativePath,
@@ -90,7 +102,10 @@ const isCurrentColumn = (item) =>
                   : 'text-neutral-500 hover:bg-primary hover:text-white dark:text-neutral-400 dark:hover:text-black'
               "
             >
-              {{ column.text }}
+              {{ column.text }}<span
+                class="ml-1 text-xs tabular-nums opacity-60"
+                >{{ postCountByColumn.get(column.text) }}</span
+              >
             </a>
           </nav>
         </header>
