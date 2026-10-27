@@ -40,7 +40,18 @@ export const zh = defineConfigWithTheme<CustomTheme>({
       infoLabel: '信息',
       detailsLabel: '详细信息'
     },
-    config(md) {}
+    config(md) {
+      // 表格统一包裹一层可横向滚动的容器，避免小屏下表格溢出页面
+      type RenderRule = NonNullable<(typeof md.renderer.rules)[string]>;
+      const renderToken: RenderRule = (tokens, idx, options, _env, self) =>
+        self.renderToken(tokens, idx, options);
+      const tableOpen = md.renderer.rules.table_open ?? renderToken;
+      const tableClose = md.renderer.rules.table_close ?? renderToken;
+      md.renderer.rules.table_open = (...args) =>
+        `<div class="table-wrapper">${tableOpen(...args)}`;
+      md.renderer.rules.table_close = (...args) =>
+        `${tableClose(...args)}</div>`;
+    }
   }
 });
 

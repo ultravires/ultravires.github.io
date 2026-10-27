@@ -57,9 +57,30 @@
   .gutter {
     @apply border-x-(--pattern-fg) bg-size-[10px_10px] [--pattern-fg:var(--color-gray-950)]/5 dark:[--pattern-fg:var(--color-white)]/10 row-span-5 row-start-1 border-x bg-[repeating-linear-gradient(315deg,var(--pattern-fg)_0,var(--pattern-fg)_1px,transparent_0,transparent_50%)] bg-fixed max-lg:hidden;
   }
+  /* 表格滚动容器：小屏下表格在容器内横向滚动，避免撑破页面 */
+  .prose :where(.table-wrapper):not(:where([class~='not-prose'] *)) {
+    @apply overflow-x-auto;
+  }
+
+  /* MathJax 块级公式：小屏下在容器内横向滚动 */
+  .prose :where(mjx-container[display='true']):not(:where([class~='not-prose'] *)) {
+    @apply overflow-x-auto overflow-y-hidden;
+  }
+
+  /* MathJax 无障碍 MathML 副本用 clip 隐藏但盒体仍占宽，会在小屏撑出横向滚动条 */
+  .prose mjx-assistive-mml {
+    width: 1px !important;
+    height: 1px !important;
+  }
+
+  /* 长链接与行内代码允许溢出时断行（不影响 min-content，避免表格列被压成逐字换行） */
+  .prose :where(a, :not(pre) > code):not(:where([class~='not-prose'] *)) {
+    overflow-wrap: break-word;
+  }
+
   /* 基础表格样式重置 */
   .prose :where(table):not(:where([class~='not-prose'] *)) {
-    @apply mx-6 w-full border-collapse;
+    @apply w-full border-collapse;
   }
 
   .prose :where(th):not(:where([class~='not-prose'] *)) {
