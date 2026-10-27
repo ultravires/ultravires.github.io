@@ -1,14 +1,20 @@
+<script lang="ts" setup>
+import VIconHome from '../assets/svg/home.svg?component';
+import VTooltip from './VTooltip.vue';
+</script>
+
 <template>
-  <a
-    class="decoration-none whitespace-nowrap leading-none"
-    href="/"
-  >
-    <svg
-      class="h-6 w-auto"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1681 667"
-      fill-rule="evenodd"
+  <VTooltip content="回首页">
+    <a
+      class="group decoration-none whitespace-nowrap leading-none relative -mx-1 rounded-full px-1 transition-all duration-300 hover:bg-primary hover:text-white dark:hover:text-black"
+      href="/"
     >
+      <svg
+        class="h-6 w-auto transition-opacity duration-300 group-hover:opacity-0"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1681 667"
+        fill-rule="evenodd"
+      >
       <g
         transform="translate(0, 667) scale(0.1, -0.1)"
         fill="currentColor"
@@ -22,6 +28,8 @@
         <path d="M15694 3931 c-58 -25 -54 86 -54 -1612 0 -1523 0 -1557 -20 -1634 -58 -225 -253 -380 -506 -401 -110 -9 -145 -33 -146 -103 -1 -72 33 -97 128 -93 359 12 663 261 729 597 31 161 17 3188 -16 3220 -27 28 -82 40 -115 26z" />
         <path d="M14769 3361 c-35 -35 -48 -2015 -13 -2082 31 -61 103 -69 154 -17 30 30 30 30 30 1032 0 690 -3 1013 -11 1034 -23 66 -109 84 -160 33z" />
       </g>
-    </svg>
-  </a>
+      </svg>
+      <VIconHome class="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+    </a>
+  </VTooltip>
 </template>
