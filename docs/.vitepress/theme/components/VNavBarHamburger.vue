@@ -52,11 +52,13 @@ watch(isDesktop, (desktop) => {
     >
       <span class="menu-bar bar"></span>
     </button>
+    <!-- 菜单层级必须高于 header（z-10）：SSR 下 teleport 锚点位于 #app 之前，
+         客户端插入的菜单在 DOM 顺序上先于 header，z-index 相同时会被 Banner 遮挡 -->
     <Teleport to="body">
       <Transition name="nav-menu">
         <div
           v-if="isShow"
-          class="text-normal border-line fixed bottom-0 left-0 right-0 z-10 overflow-y-auto border-t border-solid bg-white dark:bg-neutral-900"
+          class="text-normal border-line fixed bottom-0 left-0 right-0 z-20 overflow-y-auto border-t border-solid bg-white dark:bg-neutral-900"
           :style="{ top: menuTop }"
         >
           <ul class="mx-6 py-6 sm:mx-12 sm:py-12">
