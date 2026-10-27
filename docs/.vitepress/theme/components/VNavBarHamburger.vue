@@ -99,10 +99,6 @@ watch(isDesktop, (desktop) => {
 
 <style scoped>
 .data-menu-toggle {
-  --web-toggle-menu-color: var(--web-color-base);
-}
-
-.data-menu-toggle {
   position: relative;
   width: 16px;
   height: 14px;
@@ -119,7 +115,7 @@ watch(isDesktop, (desktop) => {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: rgb(var(--web-toggle-menu-color) / 1);
+  background-color: currentColor;
   transition: all ease-in-out 0.3s;
 }
 .data-menu-toggle .menu-bar.bar {
