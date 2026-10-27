@@ -20,7 +20,7 @@ const activeClass =
   <VNavBarDropdown v-if="item.items && item.items.length > 0">
     <template #trigger="{ open }">
       <VLink
-        class="flex h-8 items-center px-4"
+        class="flex h-8 items-center px-3 lg:px-4"
         :class="[
           triggerClass,
           {
@@ -58,7 +58,7 @@ const activeClass =
   </VNavBarDropdown>
   <VLink
     v-else
-    class="flex h-8 items-center px-4"
+    class="flex h-8 items-center px-3 lg:px-4"
     :class="[
       triggerClass,
       {

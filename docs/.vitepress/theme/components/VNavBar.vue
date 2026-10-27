@@ -66,14 +66,16 @@ function useShowTitle() {
     ]"
   >
     <div
-      class="relative z-10 mx-auto flex h-full items-center justify-center gap-4 px-8"
+      class="relative z-10 mx-auto flex h-full items-center justify-center gap-2 px-4 lg:gap-4 lg:px-8"
     >
       <!-- Logo -->
       <LiquidClassCard
         class="rounded-full"
         :tone="glassTone"
       >
-        <div class="flex h-[40px] items-center justify-center gap-3 pl-3 pr-4">
+        <div
+          class="flex h-[40px] items-center justify-center gap-3 pl-2 pr-3 sm:pl-3 sm:pr-4"
+        >
           <VNavBarApps />
           <VLogo />
         </div>
@@ -91,7 +93,7 @@ function useShowTitle() {
             :tone="glassTone"
           >
             <ul
-              class="flex h-[40px] w-full items-center justify-center gap-4 px-1"
+              class="flex h-[40px] w-full items-center justify-center gap-2 px-1 lg:gap-4"
             >
               <li
                 v-for="item in theme.nav"
@@ -135,10 +137,10 @@ function useShowTitle() {
       </Transition>
 
       <LiquidClassCard
-        class="ml-auto rounded-full px-4"
+        class="ml-auto rounded-full px-2 lg:px-4"
         :tone="glassTone"
       >
-        <div class="flex h-[40px] items-center gap-4">
+        <div class="flex h-[40px] items-center gap-2 lg:gap-4">
           <button
             class="hover:text-reverse hover:bg-primary hidden cursor-pointer items-center justify-center rounded-full p-1 text-xl transition-all duration-300 max-md:flex"
             @click="open()"
@@ -147,7 +149,7 @@ function useShowTitle() {
               <VIconSearch />
             </VTooltip>
           </button>
-          <div class="contents max-md:hidden">
+          <div class="contents max-lg:hidden">
             <VTooltip content="寻找宝藏博主">
               <a
                 class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
