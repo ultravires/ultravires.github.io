@@ -73,8 +73,9 @@ function useShowTitle() {
         class="rounded-full"
         :tone="glassTone"
       >
+        <!-- pl-1.5 对齐应用按钮悬浮圆四边 6px；pr-2.5 扣除 LOGO 胶囊 -mx-1 外溢的 4px，悬浮背景同为 6px -->
         <div
-          class="flex h-[40px] items-center justify-center gap-3 pl-2 pr-3 sm:pl-3 sm:pr-4"
+          class="flex h-[40px] items-center justify-center gap-3 pl-1.5 pr-2.5"
         >
           <VNavBarApps />
           <VLogo />
@@ -136,8 +137,9 @@ function useShowTitle() {
         </LiquidClassCard>
       </Transition>
 
+      <!-- px-1.5 对齐悬浮圆与容器的四边间距：行高 40px、悬浮圆 28px，上下留白恰为 6px -->
       <LiquidClassCard
-        class="ml-auto rounded-full px-2 lg:px-4"
+        class="ml-auto rounded-full px-1.5"
         :tone="glassTone"
       >
         <div class="flex h-[40px] items-center gap-2 lg:gap-4">

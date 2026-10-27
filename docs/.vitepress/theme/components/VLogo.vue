@@ -6,7 +6,7 @@ import VTooltip from './VTooltip.vue';
 <template>
   <VTooltip content="回首页">
     <a
-      class="group decoration-none whitespace-nowrap leading-none relative -mx-1 rounded-full px-1 transition-all duration-300 hover:bg-primary hover:text-white dark:hover:text-black"
+      class="group decoration-none whitespace-nowrap leading-none relative -mx-1 rounded-full px-1 py-[2px] transition-all duration-300 hover:bg-primary hover:text-white dark:hover:text-black"
       href="/"
     >
       <svg
