@@ -30,7 +30,9 @@ const { frontmatter, page } = useData();
           <span class="text-white/40">#</span>{{ item }}
         </span>
       </div>
-      <h1 class="mb-8 mt-4 text-6xl font-bold text-white drop-shadow-md">
+      <h1
+        class="mb-8 mt-4 text-[clamp(2rem,1.2rem_+_4vw,3.75rem)] font-bold leading-tight text-white drop-shadow-md"
+      >
         {{ frontmatter?.title }}
       </h1>
       <div>
