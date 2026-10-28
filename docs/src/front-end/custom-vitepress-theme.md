@@ -10,7 +10,7 @@ tags:
   - Themes
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 别人的主题总是不满意？自己写一个吧！

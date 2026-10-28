@@ -5,7 +5,7 @@ categories:
   - 人工智能
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 ## 短信接收

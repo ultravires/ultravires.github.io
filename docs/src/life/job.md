@@ -7,7 +7,7 @@ cover:
   text: 求职渠道
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 离职了，前公司的人事总监担心我找不到工作，分享给我的求职渠道。

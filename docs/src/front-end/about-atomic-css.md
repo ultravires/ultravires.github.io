@@ -9,7 +9,7 @@ tags:
   - CSS
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 原子化 CSS 可能是最优秀的 CSS 架构设计。

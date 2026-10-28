@@ -7,7 +7,7 @@ cover:
   text: Git 命令
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 Git 是日常开发中最常用的版本控制工具。本文整理了高频 Git 命令的使用方式，覆盖从基础到进阶的常见场景。

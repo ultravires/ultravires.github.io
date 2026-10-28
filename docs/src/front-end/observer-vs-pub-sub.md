@@ -9,7 +9,7 @@ tags:
   - 设计模式
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 观察者模式和发布-订阅者模式总是让人傻傻分不清。

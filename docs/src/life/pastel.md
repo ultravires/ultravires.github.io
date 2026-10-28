@@ -10,7 +10,7 @@ tags:
   - Color
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 

@@ -5,7 +5,7 @@ categories:
   - 算法题解
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 所谓 base64 编码就是从 ASCII 码表中选取64个可打印字符（A-Za-z0-9+/）作为基本字符集对其它字符进行编码转换。加上作为填充的 “=” 实际上是 65 个字符。

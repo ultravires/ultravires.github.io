@@ -5,7 +5,7 @@ categories:
   - 程序人生
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 之前一直用的是默认的 `ultravires.github.io` 作为博客的域名，现在换成 `ultravires.me` 作为博客的域名了。

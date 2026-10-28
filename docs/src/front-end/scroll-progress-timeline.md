@@ -9,7 +9,7 @@ tags:
   - CSS3
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 滚动驱动动画。

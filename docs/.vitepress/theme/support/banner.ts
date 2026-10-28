@@ -14,19 +14,38 @@
  *   wave: true                 # 可选，底部波浪
  * ```
  */
-export const BANNER_STYLES = ['particle', 'gradient', 'image'];
 
-export function resolveBannerStyle(banner) {
+export type BannerStyle = 'particle' | 'gradient' | 'image';
+
+export const BANNER_STYLES: readonly BannerStyle[] = [
+  'particle',
+  'gradient',
+  'image'
+];
+
+function isBannerStyle(value: unknown): value is BannerStyle {
+  return (
+    typeof value === 'string' &&
+    (BANNER_STYLES as readonly string[]).includes(value)
+  );
+}
+
+export function resolveBannerStyle(banner: unknown): BannerStyle | null {
   if (!banner) return null;
   if (banner === true) return 'particle';
-  if (typeof banner === 'string') return banner;
-  if (banner.style) return banner.style;
-  if (banner.image) return 'image';
+  if (typeof banner === 'string') {
+    return isBannerStyle(banner) ? banner : 'particle';
+  }
+  if (typeof banner === 'object') {
+    const config = banner as { style?: unknown; image?: unknown };
+    if (isBannerStyle(config.style)) return config.style;
+    if (config.image) return 'image';
+  }
   return 'particle';
 }
 
 /** 稳定字符串哈希，用于按文章生成确定性随机种子。 */
-export function hashString(str) {
+export function hashString(str: string) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = (hash * 31 + str.charCodeAt(i)) | 0;
@@ -38,20 +57,33 @@ export function hashString(str) {
  * 解析 image 风格 Banner 的背景图地址：
  * 自定义图片优先，否则按 key（通常为文章相对路径）生成 picsum 稳定随机图。
  */
-export function resolveBannerImage(banner, key) {
-  if (typeof banner?.image === 'string' && banner.image) return banner.image;
+export function resolveBannerImage(banner: unknown, key?: string) {
+  if (
+    typeof banner === 'object' &&
+    banner !== null &&
+    typeof (banner as { image?: unknown }).image === 'string' &&
+    (banner as { image: string }).image
+  ) {
+    return (banner as { image: string }).image;
+  }
   return `https://picsum.photos/seed/${hashString(key || 'post')}/1920/640`;
 }
 
-const preloadedUrls = new Set();
+const preloadedUrls = new Set<string>();
 
 /**
  * 预加载 Banner 背景图写入浏览器缓存。
  * 配合文章链接的悬停/触摸预取，切换文章时新图已在缓存中，淡入可立即开始。
  */
-export function preloadBannerImage(url) {
+export function preloadBannerImage(url?: string | null) {
   if (!url || preloadedUrls.has(url)) return;
-  if (typeof navigator !== 'undefined' && navigator.connection?.saveData) return;
+  if (
+    typeof navigator !== 'undefined' &&
+    (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+      ?.saveData
+  ) {
+    return;
+  }
   preloadedUrls.add(url);
   const img = new Image();
   img.decoding = 'async';

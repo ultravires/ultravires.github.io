@@ -5,7 +5,7 @@ categories:
   - 程序人生
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 ## 核心原则

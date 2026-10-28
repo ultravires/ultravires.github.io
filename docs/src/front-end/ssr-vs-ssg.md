@@ -7,7 +7,7 @@ categories:
   - 前端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 使用 `SSR` 和直接写 `HTML` 然后部署到服务器上有什么区别？

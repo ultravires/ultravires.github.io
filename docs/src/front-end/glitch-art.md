@@ -5,7 +5,7 @@ categories:
   - 前端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 故障艺术字的效果挺有意思的，可以用来做一些比较酷炫的标题。

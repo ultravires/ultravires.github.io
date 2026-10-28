@@ -11,7 +11,7 @@ tags:
   - 开发工具
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 在国内网络环境下使用 Cursor 时，经常会遇到模型列表加载不全、部分模型无法访问的问题。本文介绍如何通过 Proxifier 强制代理 Cursor 的网络流量，让所有模型正常可用。

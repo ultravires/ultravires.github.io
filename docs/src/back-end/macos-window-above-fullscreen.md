@@ -6,7 +6,7 @@ categories:
   - 后端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 开发悬浮歌词、提词器、屏幕批注、系统监视条这类工具时，经常需要让自家窗口浮在其它应用之上——包括其它应用**进入全屏**之后。网上流传的经典配方（`window.level = .screenSaver` + `canJoinAllSpaces`）在 macOS 26 上实测已经失效，本文记录真正可行的方案及集成时要踩平的坑。
@@ -26,15 +26,15 @@ banner:
 
 我写了对照实验：每种配置创建一个纯色窗口，再把另一个窗口切全屏并截图，观察谁能留在全屏画面上：
 
-| 窗口类型 | styleMask | level | collectionBehavior | 结果 |
-| --- | --- | --- | --- | --- |
-| NSWindow | borderless | .screenSaver | canJoinAllSpaces | ❌ |
-| NSWindow | borderless | .screenSaver | canJoinAllSpaces + stationary | ❌ |
-| NSWindow | borderless | .floating | canJoinAllSpaces + fullScreenAuxiliary | ❌ |
-| NSWindow | borderless | .statusBar | canJoinAllSpaces + fullScreenAuxiliary | ❌ |
-| NSPanel | borderless | .floating | canJoinAllSpaces + fullScreenAuxiliary | ❌ |
-| **NSPanel** | **+ nonactivatingPanel** | .screenSaver | canJoinAllSpaces | ✅ |
-| **NSPanel** | **+ nonactivatingPanel** | .statusBar | canJoinAllSpaces + fullScreenAuxiliary | ✅ |
+| 窗口类型    | styleMask                | level        | collectionBehavior                     | 结果 |
+| ----------- | ------------------------ | ------------ | -------------------------------------- | ---- |
+| NSWindow    | borderless               | .screenSaver | canJoinAllSpaces                       | ❌   |
+| NSWindow    | borderless               | .screenSaver | canJoinAllSpaces + stationary          | ❌   |
+| NSWindow    | borderless               | .floating    | canJoinAllSpaces + fullScreenAuxiliary | ❌   |
+| NSWindow    | borderless               | .statusBar   | canJoinAllSpaces + fullScreenAuxiliary | ❌   |
+| NSPanel     | borderless               | .floating    | canJoinAllSpaces + fullScreenAuxiliary | ❌   |
+| **NSPanel** | **+ nonactivatingPanel** | .screenSaver | canJoinAllSpaces                       | ✅   |
+| **NSPanel** | **+ nonactivatingPanel** | .statusBar   | canJoinAllSpaces + fullScreenAuxiliary | ✅   |
 
 结论很干脆：**关键不是 level，也不是 collectionBehavior，而是窗口必须是带 `.nonactivatingPanel` 的 `NSPanel`**。少了 `nonactivatingPanel` 的 NSPanel 同样失败；有了它之后 level 高低、是否加 `fullScreenAuxiliary` 都无所谓。
 

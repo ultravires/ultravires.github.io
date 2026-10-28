@@ -5,7 +5,7 @@ categories:
   - 程序人生
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 前不久使用 ssh 命令登录服务器时，一直无法登录，后来才想起来该服务器需要先连接跳板机（堡垒机）。

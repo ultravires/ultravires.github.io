@@ -10,7 +10,7 @@ cover:
   text: 模型下载
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 ## 安装 HuggingFace CLI

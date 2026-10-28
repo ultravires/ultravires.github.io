@@ -5,7 +5,7 @@ categories:
   - 程序人生
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 最近发现自己电脑终端里有很多实用工具，也不知道是什么时候装上的。今天又发现一个新的实用工具 `blogwatcher`，它可以订阅博客文章更新。

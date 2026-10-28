@@ -7,7 +7,7 @@ categories:
   - 前端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 > 龙生龙、凤生凤，老鼠的孩子会打洞。

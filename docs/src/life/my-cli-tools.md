@@ -5,7 +5,7 @@ categories:
   - 程序人生
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 此文档由 Gemini CLI 自动生成，整理了您 macOS 系统中安装的主要命令行工具及其用途。

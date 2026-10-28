@@ -12,7 +12,7 @@ tags:
   - Claude Code
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 周末想去南京玩两天，但做攻略这件事——查天气、搜景点、规划路线、算时间——实在太费神了。正好最近在折腾 MCP（Model Context Protocol），想到高德地图提供了 MCP Server，不如让 AI 帮我搞定这一切。

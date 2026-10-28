@@ -9,7 +9,7 @@ categories:
   - 程序人生
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 我的 `PUBG` 游戏集锦。

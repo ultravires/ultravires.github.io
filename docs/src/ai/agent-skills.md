@@ -5,7 +5,7 @@ categories:
   - 人工智能
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 [Agent Skills](https://agentskills.io/home) 是具有固定格式 “经验手册”。

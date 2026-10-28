@@ -5,7 +5,7 @@ categories:
   - 前端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 Puppeteer 可以实现服务端渲染 HTML 并将其转为 PDF。

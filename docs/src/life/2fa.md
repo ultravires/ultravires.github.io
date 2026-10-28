@@ -5,7 +5,7 @@ categories:
   - 程序人生
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 越来越多的应用需要 `2FA` 验证，但是一直找不到合适的 `2FA` 工具，直到我发现了 `oath-toolkit`，很符合我的极客风格。

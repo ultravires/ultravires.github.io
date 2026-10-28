@@ -21,15 +21,46 @@ const { frontmatter } = useData();
       ></path>
     </defs>
     <g class="parallax">
-      <use href="#gentle-wave" x="48" y="0"></use>
-      <use href="#gentle-wave" x="48" y="3"></use>
-      <use href="#gentle-wave" x="48" y="5"></use>
-      <use href="#gentle-wave" x="48" y="7"></use>
+      <use
+        href="#gentle-wave"
+        x="48"
+        y="0"
+      ></use>
+      <use
+        href="#gentle-wave"
+        x="48"
+        y="3"
+      ></use>
+      <use
+        href="#gentle-wave"
+        x="48"
+        y="5"
+      ></use>
+      <use
+        href="#gentle-wave"
+        x="48"
+        y="7"
+      ></use>
     </g>
   </svg>
+  <div
+    v-show="!frontmatter?.banner?.wave"
+    class="decoration max-md:hidden"
+  ></div>
 </template>
 
 <style scoped>
+.decoration {
+  background: var(--color-muted);
+  position: absolute;
+  bottom: -10px;
+  border-top-left-radius: var(--radius-2xl);
+  border-top-right-radius: var(--radius-2xl);
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+  pointer-events: none;
+}
 .waves-svg {
   --wave-background: var(--color-muted);
   position: absolute;

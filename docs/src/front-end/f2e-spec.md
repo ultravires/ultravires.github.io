@@ -5,7 +5,7 @@ categories:
   - 前端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 统一编码风格、普及最佳实践、提升代码质量、降低维护成本。

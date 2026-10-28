@@ -10,7 +10,7 @@ cover:
   text: 订阅转换
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 一直使用 [Just My Socks](https://justmysocks.net/) 来获取科学上网服务，但是它提供的订阅链接格式不一定适合所有的客户端，所以需要使用订阅转换工具。

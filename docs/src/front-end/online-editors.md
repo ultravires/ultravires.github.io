@@ -5,7 +5,7 @@ categories:
   - 前端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 在线编辑器与文档格式转换工具的选型对比。

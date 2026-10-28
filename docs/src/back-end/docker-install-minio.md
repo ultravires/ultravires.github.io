@@ -8,7 +8,7 @@ categories:
   - 后端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 

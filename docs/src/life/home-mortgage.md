@@ -9,7 +9,7 @@ categories:
 banner:
   style: image
   blur: true
-  wave: true
+  wave: false
 ---
 
 <script setup>

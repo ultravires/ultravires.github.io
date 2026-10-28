@@ -11,7 +11,7 @@ tags:
 banner:
   style: image
   blur: true
-  wave: true
+  wave: false
 ---
 
 个人喜欢使用终端命令行，但默认的终端有点过于枯燥且不美观。

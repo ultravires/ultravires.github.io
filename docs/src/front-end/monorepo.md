@@ -11,7 +11,7 @@ categories:
 banner:
   style: image
   blur: true
-  wave: true
+  wave: false
 ---
 
 代码管理一直是一个棘手的问题，好在很多人在关注。

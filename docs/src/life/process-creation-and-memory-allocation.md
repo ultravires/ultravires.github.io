@@ -5,7 +5,7 @@ categories:
   - 程序人生
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 # 进程创建与内存分配底层原理（前端高阶实战版）

@@ -7,7 +7,7 @@ categories:
   - 前端领域
 banner:
   style: image
-  wave: true
+  wave: false
 ---
 
 在工作中经常用到 markdown-it 这个库, 在此记录在使用 markdown-it 库时遇到的一些问题及解决方案。
