@@ -12,8 +12,8 @@ const moments: Moment[] = [
   {
     date: '2026-10-24 11:09',
     content:
-      '公司举办 1024 AI 黑客马拉松比赛，今天周六来加班，感觉比工作日轻松很多，还可以调休。\n\n![达观数据 1024 AI 上分季](https://files.seeusercontent.com/2026/10/24/5nzD/datagrand_1024_small.jpg)',
-    tags: ['日常']
+      '公司举办 1024 AI 黑客马拉松比赛。\n\n![达观数据 1024 AI 上分季](https://files.seeusercontent.com/2026/10/24/5nzD/datagrand_1024_small.jpg)',
+    tags: ['工作']
   },
   {
     date: '2026-09-24 21:30',
