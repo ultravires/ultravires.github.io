@@ -58,7 +58,7 @@ watch(isDesktop, (desktop) => {
       <Transition name="nav-menu">
         <div
           v-if="isShow"
-          class="text-normal border-line fixed bottom-0 left-0 right-0 z-20 overflow-y-auto border-t border-solid bg-white dark:bg-neutral-900"
+          class="fixed right-0 bottom-0 left-0 z-20 overflow-y-auto border-t border-solid border-line bg-white text-normal dark:bg-neutral-900"
           :style="{ top: menuTop }"
         >
           <ul class="mx-6 py-6 sm:mx-12 sm:py-12">
@@ -75,7 +75,7 @@ watch(isDesktop, (desktop) => {
                     :key="child.text"
                   >
                     <VNavBarLink
-                      class="border-line block h-full border-b border-solid py-2 pl-4"
+                      class="block h-full border-b border-solid border-line py-2 pl-4"
                       :item="child"
                       @click="isShow = false"
                     />
@@ -84,7 +84,7 @@ watch(isDesktop, (desktop) => {
               </li>
               <li v-else>
                 <VNavBarLink
-                  class="border-line block h-full border-b border-solid py-2"
+                  class="block h-full border-b border-solid border-line py-2"
                   :item="item"
                   @click="isShow = false"
                 />

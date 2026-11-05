@@ -12,7 +12,7 @@ const scrollToTop = () => {
     top: 0,
     left: 0,
     behavior: 'smooth'
-  })
+  });
 };
 
 const handleScroll = throttleAndDebounce(() => {
@@ -25,13 +25,14 @@ const handleScroll = throttleAndDebounce(() => {
 
 function updateProgress() {
   // 获取文档总高度
-  const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const totalHeight =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
   // 获取当前滚动位置
   const scrollPosition = window.scrollY;
   // 更新百分比显示
   progress.value = Math.round((scrollPosition / totalHeight) * 100);
 }
-
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
@@ -40,39 +41,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <Transition name="v-scale" :duration="{ enter: 0, leave: 300 }">
+  <Transition
+    name="v-scale"
+    :duration="{ enter: 0, leave: 300 }"
+  >
     <div
       ref="backToTopRef"
       v-show="isShow"
-      class="
-        VBackToTop
-        group
-        relative
-        flex
-        items-center
-        justify-center
-        min-w-6
-        min-h-6
-        bg-black/90
-        text-white
-        text-xs
-        rounded-full
-        whitespace-nowrap
-        leading-loose
-        cursor-pointer
-        box-content
-        duration-300
-        dark:bg-white/90
-        dark:text-black
-        dark:hover:bg-primary
-        hover:bg-primary
-      "
+      class="VBackToTop group relative box-content flex min-h-6 min-w-6 cursor-pointer items-center justify-center rounded-full bg-black/90 text-xs leading-loose whitespace-nowrap text-white duration-300 hover:bg-primary dark:bg-white/90 dark:text-black dark:hover:bg-primary"
       @click="scrollToTop"
     >
-      <span class="group-hover:invisible" :class="{ 'px-2': progress > 90 }">
+      <span
+        class="group-hover:invisible"
+        :class="{ 'px-2': progress > 90 }"
+      >
         {{ progress > 90 ? '回到顶部' : progress }}
       </span>
-      <span class="group-hover:visible invisible absolute flex items-center justify-center">
+      <span
+        class="invisible absolute flex items-center justify-center group-hover:visible"
+      >
         <VIconBackToTop title="回到顶部" />
       </span>
     </div>

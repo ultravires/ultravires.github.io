@@ -35,7 +35,7 @@ const filtered = computed(() =>
           </span>
         </h1>
         <span
-          class="shrink-0 text-sm tabular-nums text-neutral-400 dark:text-neutral-500"
+          class="shrink-0 text-sm text-neutral-400 tabular-nums dark:text-neutral-500"
           aria-live="polite"
         >
           <template v-if="activeCategory !== ALL">
@@ -59,10 +59,10 @@ const filtered = computed(() =>
         :key="category"
         type="button"
         :class="[
-          'focus-visible:ring-primary cursor-pointer rounded-full border px-4 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2',
+          'cursor-pointer rounded-full border px-4 py-1.5 text-sm transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none',
           category === activeCategory
             ? 'border-primary bg-primary text-white dark:text-black'
-            : 'border-line hover:border-primary hover:text-primary text-neutral-500 dark:text-neutral-400'
+            : 'border-line text-neutral-500 hover:border-primary hover:text-primary dark:text-neutral-400'
         ]"
         @click="activeCategory = category"
       >
@@ -92,7 +92,7 @@ const filtered = computed(() =>
           <div class="flex items-center justify-between gap-2">
             <h2 class="font-semibold">{{ good.name }}</h2>
             <span
-              class="bg-primary/10 text-primary shrink-0 rounded-full px-2.5 py-0.5 text-xs"
+              class="shrink-0 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs text-primary"
             >
               {{ good.category }}
             </span>

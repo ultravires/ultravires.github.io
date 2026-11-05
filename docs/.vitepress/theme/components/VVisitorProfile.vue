@@ -60,7 +60,7 @@ function toPercent(ratio: number): string {
             <div class="flex items-baseline justify-between gap-2 text-sm">
               <span class="ellipsis">{{ item.name }}</span>
               <span
-                class="shrink-0 tabular-nums text-neutral-400 dark:text-neutral-500"
+                class="shrink-0 text-neutral-400 tabular-nums dark:text-neutral-500"
               >
                 {{ toPercent(item.ratio) }}
               </span>
@@ -69,7 +69,7 @@ function toPercent(ratio: number): string {
               class="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-200/70 dark:bg-neutral-600/50"
             >
               <div
-                class="bg-primary h-full rounded-full"
+                class="h-full rounded-full bg-primary"
                 :style="{ width: toPercent(item.ratio) }"
               />
             </div>

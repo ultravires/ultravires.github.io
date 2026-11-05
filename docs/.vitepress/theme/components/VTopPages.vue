@@ -73,12 +73,12 @@ const pages = computed(() =>
             {{ index + 1 }}
           </span>
           <span
-            class="ellipsis group-hover:text-primary min-w-0 flex-1 font-medium"
+            class="ellipsis min-w-0 flex-1 font-medium group-hover:text-primary"
           >
             {{ item.title }}
           </span>
           <span
-            class="shrink-0 text-sm tabular-nums text-neutral-400 dark:text-neutral-500"
+            class="shrink-0 text-sm text-neutral-400 tabular-nums dark:text-neutral-500"
           >
             {{ item.pv.toLocaleString() }} 次阅读
           </span>
@@ -88,7 +88,7 @@ const pages = computed(() =>
           class="-mx-2 flex items-center gap-3 px-2 py-3"
         >
           <span
-            class="w-6 shrink-0 text-center text-sm font-semibold tabular-nums text-neutral-400 dark:text-neutral-500"
+            class="w-6 shrink-0 text-center text-sm font-semibold text-neutral-400 tabular-nums dark:text-neutral-500"
           >
             {{ index + 1 }}
           </span>
@@ -96,7 +96,7 @@ const pages = computed(() =>
             {{ item.title }}
           </span>
           <span
-            class="shrink-0 text-sm tabular-nums text-neutral-400 dark:text-neutral-500"
+            class="shrink-0 text-sm text-neutral-400 tabular-nums dark:text-neutral-500"
           >
             {{ item.pv.toLocaleString() }} 次阅读
           </span>

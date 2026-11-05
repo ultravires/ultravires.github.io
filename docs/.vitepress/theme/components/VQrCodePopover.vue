@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue';
+import VIcon from './VIcon.vue';
 import VQrCode from './VQrCode.vue';
 
 interface Props {
@@ -24,13 +24,13 @@ withDefaults(defineProps<Props>(), {
       tabindex="0"
       :aria-label="text"
     >
-      <Icon
+      <VIcon
         :icon="icon"
         class="text-3xl"
       />
     </span>
     <span
-      class="invisible absolute top-full left-1/2 z-50 mt-3 flex -translate-x-1/2 translate-y-1 flex-col items-center gap-2 rounded-xl border border-neutral-100 bg-white p-3 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 dark:border-neutral-700 dark:bg-neutral-700"
+      class="invisible absolute top-full left-1/2 z-50 mt-3 flex -translate-x-1/2 translate-y-1 flex-col items-center gap-2 rounded-xl border border-neutral-100 bg-white p-3 opacity-0 shadow-lg transition-all duration-200 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 dark:border-neutral-700 dark:bg-neutral-700"
     >
       <span
         class="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-t border-l border-neutral-100 bg-white dark:border-neutral-700 dark:bg-neutral-700"

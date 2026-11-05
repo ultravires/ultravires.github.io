@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue';
+import VIcon from './VIcon.vue';
 import { useData } from 'vitepress';
 import { usePageView } from '../composables/usePageView';
 
@@ -19,9 +19,9 @@ const { pv, failed, isArticle } = usePageView();
       <span
         v-for="category in frontmatter?.categories"
         :key="category"
-        class="border-line inline-flex items-center gap-1 rounded-full border border-solid px-2 py-0.5 text-xs text-neutral-500 dark:text-neutral-400"
+        class="inline-flex items-center gap-1 rounded-full border border-solid border-line px-2 py-0.5 text-xs text-neutral-500 dark:text-neutral-400"
       >
-        <Icon
+        <VIcon
           icon="mdi:folder-outline"
           class="text-sm"
         />
@@ -46,7 +46,7 @@ const { pv, failed, isArticle } = usePageView();
       class="inline-flex items-center gap-1 text-xs text-neutral-500 dark:text-neutral-400"
       title="近 30 天阅读数，每 2 天更新"
     >
-      <Icon
+      <VIcon
         icon="mdi:eye-outline"
         class="text-sm"
       />

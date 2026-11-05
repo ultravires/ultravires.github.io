@@ -31,7 +31,7 @@ useBannerPreload();
   <template v-else>
     <div
       v-if="frontmatter.layout !== false"
-      class="text-normal flex flex-col"
+      class="flex flex-col text-normal"
     >
       <VHeader />
 

@@ -79,8 +79,8 @@ export function preloadBannerImage(url?: string | null) {
   if (!url || preloadedUrls.has(url)) return;
   if (
     typeof navigator !== 'undefined' &&
-    (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-      ?.saveData
+    (navigator as Navigator & { connection?: { saveData?: boolean } })
+      .connection?.saveData
   ) {
     return;
   }

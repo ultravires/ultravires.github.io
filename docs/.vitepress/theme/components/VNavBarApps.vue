@@ -65,7 +65,7 @@ const sections: AppSection[] = [
   <VNavBarDropdown align="left">
     <template #trigger="{ open }">
       <button
-        class="hover:bg-primary cursor-pointer rounded-full p-1 text-xl leading-none transition-all duration-300 hover:text-white dark:hover:text-black"
+        class="cursor-pointer rounded-full p-1 text-xl leading-none transition-all duration-300 hover:bg-primary hover:text-white dark:hover:text-black"
         :class="{ 'bg-primary text-white dark:text-black': open }"
         aria-label="我的应用"
       >
@@ -73,22 +73,22 @@ const sections: AppSection[] = [
       </button>
     </template>
     <div
-      class="border-primary flex cursor-default flex-col gap-1 rounded-2xl border border-solid bg-white p-2 text-black shadow-lg dark:bg-neutral-900 dark:text-white"
+      class="flex cursor-default flex-col gap-1 rounded-2xl border border-solid border-primary bg-white p-2 text-black shadow-lg dark:bg-neutral-900 dark:text-white"
     >
       <template
         v-for="(section, index) in sections"
         :key="section.title"
       >
         <div
-          class="px-3 pb-1 pt-2 text-xs opacity-60"
-          :class="{ 'border-primary mt-1 border-t border-solid': index > 0 }"
+          class="px-3 pt-2 pb-1 text-xs opacity-60"
+          :class="{ 'mt-1 border-t border-solid border-primary': index > 0 }"
         >
           {{ section.title }}
         </div>
         <a
           v-for="app in section.apps"
           :key="app.name"
-          class="decoration-none hover:bg-primary flex items-center gap-3 whitespace-nowrap rounded-xl px-3 py-2 transition-all duration-300 hover:text-white dark:hover:text-black"
+          class="decoration-none flex items-center gap-3 rounded-xl px-3 py-2 whitespace-nowrap transition-all duration-300 hover:bg-primary hover:text-white dark:hover:text-black"
           :href="app.link"
           target="_blank"
           rel="noopener noreferrer"
@@ -102,10 +102,11 @@ const sections: AppSection[] = [
           <span
             v-else
             class="text-2xl leading-none"
-            >{{ app.icon }}</span
           >
+            {{ app.icon }}
+          </span>
           <span class="flex flex-col">
-            <span class="text-sm font-bold leading-tight">{{ app.name }}</span>
+            <span class="text-sm leading-tight font-bold">{{ app.name }}</span>
             <span class="text-xs leading-tight opacity-70">{{ app.desc }}</span>
           </span>
         </a>

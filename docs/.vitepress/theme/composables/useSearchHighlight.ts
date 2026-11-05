@@ -52,7 +52,10 @@ function unmark(root: Element): void {
     const parent = mark.parentNode;
     if (parent) {
       // Replace the <mark> element with its text content
-      parent.replaceChild(document.createTextNode(mark.textContent || ''), mark);
+      parent.replaceChild(
+        document.createTextNode(mark.textContent || ''),
+        mark
+      );
       // Merge adjacent text nodes
       parent.normalize();
     }
@@ -98,18 +101,16 @@ export function useSearchHighlight() {
     // 1. TreeWalker 遍历时替换当前节点会使后续遍历提前结束；
     // 2. 全局正则的 lastIndex 会在 test/exec 间残留，需显式重置。
     const targets: Text[] = [];
-    walkTextNodes(articleEl, (textNode) => {
-      regex.lastIndex = 0;
-      if (regex.test(textNode.textContent || '')) {
-        targets.push(textNode);
-      }
-    }, [
-      'pre',
-      'code',
-      'script',
-      'style',
-      `.${HIGHLIGHT_CLASS}`
-    ]);
+    walkTextNodes(
+      articleEl,
+      (textNode) => {
+        regex.lastIndex = 0;
+        if (regex.test(textNode.textContent || '')) {
+          targets.push(textNode);
+        }
+      },
+      ['pre', 'code', 'script', 'style', `.${HIGHLIGHT_CLASS}`]
+    );
 
     for (const textNode of targets) {
       const text = textNode.textContent || '';
@@ -140,9 +141,7 @@ export function useSearchHighlight() {
       }
       // Append remaining text
       if (lastIndex < text.length) {
-        fragment.appendChild(
-          document.createTextNode(text.slice(lastIndex))
-        );
+        fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
       }
 
       textNode.parentNode?.replaceChild(fragment, textNode);

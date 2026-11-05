@@ -1,0 +1,18 @@
+node_modules
+docs/.vitepress/dist
+docs/.vitepress/cache
+pnpm-lock.yaml
+
+# 文章正文是作者内容：prettier 会格式化围栏内的代码示例，
+# 导致教程里的「输入 / 输出」对不上，故不参与格式化。
+docs/src/**/*.md
+
+# 教程引用的代码片段，按行号/区域被正文引用，保持原样。
+docs/src/snippets/
+
+# 独立交付的 HTML 产物，不参与格式化
+docs/src/public/nanjing-travel-guide.html
+
+# 编辑器 / AI 工具的本地配置
+.continue/
+.cursor/

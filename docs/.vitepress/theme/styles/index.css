@@ -3,8 +3,8 @@
 @import './base.css';
 @import './code.css';
 
-@source "../../theme";
-@plugin "@tailwindcss/typography";
+@source '../../theme';
+@plugin '@tailwindcss/typography';
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
@@ -23,12 +23,6 @@
   /* 正文色与反色（随 data-theme 切换，见 vars.css） */
   --color-normal: rgb(var(--web-color-base, 34 31 32));
   --color-reverse: rgb(var(--web-color-reverse, 255 255 255));
-
-  /* 字体 */
-  --font-AlibabaPuHuiTiRegular: '阿里巴巴普惠体 3.0 Regular';
-  --font-AlibabaPuHuiTiMedium: '阿里巴巴普惠体 3.0 Medium';
-  --font-AlibabaPuHuiTiSemiBold: '阿里巴巴普惠体 3.0 SemiBold';
-  --font-AlibabaPuHuiTiBold: '阿里巴巴普惠体 3.0 Bold';
 
   /* 宽 */
   --width-em: 1em;
@@ -55,7 +49,7 @@
     @apply overflow-hidden text-ellipsis whitespace-nowrap;
   }
   .gutter {
-    @apply border-x-(--pattern-fg) bg-size-[10px_10px] [--pattern-fg:var(--color-gray-950)]/5 dark:[--pattern-fg:var(--color-white)]/10 row-span-5 row-start-1 border-x bg-[repeating-linear-gradient(315deg,var(--pattern-fg)_0,var(--pattern-fg)_1px,transparent_0,transparent_50%)] bg-fixed max-lg:hidden;
+    @apply row-span-5 row-start-1 border-x border-x-(--pattern-fg) bg-[repeating-linear-gradient(315deg,var(--pattern-fg)_0,var(--pattern-fg)_1px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed [--pattern-fg:var(--color-gray-950)]/5 max-lg:hidden dark:[--pattern-fg:var(--color-white)]/10;
   }
   /* 表格滚动容器：小屏下表格在容器内横向滚动，避免撑破页面 */
   .prose :where(.table-wrapper):not(:where([class~='not-prose'] *)) {
@@ -63,7 +57,8 @@
   }
 
   /* MathJax 块级公式：小屏下在容器内横向滚动 */
-  .prose :where(mjx-container[display='true']):not(:where([class~='not-prose'] *)) {
+  .prose
+    :where(mjx-container[display='true']):not(:where([class~='not-prose'] *)) {
     @apply overflow-x-auto overflow-y-hidden;
   }
 

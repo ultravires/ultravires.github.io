@@ -57,7 +57,7 @@ function useShowTitle() {
 <template>
   <nav
     ref="navBarRef"
-    class="VNavBar @container h-(--web-header-height) top-0 z-10 w-full [&.fixed]:h-[55px] [&.fixed]:text-black dark:[&.fixed]:text-white"
+    class="VNavBar @container top-0 z-10 h-(--web-header-height) w-full [&.fixed]:h-[55px] [&.fixed]:text-black dark:[&.fixed]:text-white"
     :class="[
       frontmatter?.layout !== 'home' && frontmatter?.banner
         ? 'text-white'
@@ -75,7 +75,7 @@ function useShowTitle() {
       >
         <!-- pl-1.5 对齐应用按钮悬浮圆四边 6px；pr-2.5 扣除 LOGO 胶囊 -mx-1 外溢的 4px，悬浮背景同为 6px -->
         <div
-          class="flex h-[40px] items-center justify-center gap-3 pl-1.5 pr-2.5"
+          class="flex h-[40px] items-center justify-center gap-3 pr-2.5 pl-1.5"
         >
           <VNavBarApps />
           <VLogo />
@@ -110,7 +110,7 @@ function useShowTitle() {
           >
             <VTooltip
               content="搜索"
-              class="hover:text-reverse hover:bg-primary flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full leading-none transition-all duration-300"
+              class="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full leading-none transition-all duration-300 hover:bg-primary hover:text-reverse"
               @click="open()"
             >
               <VIconSearch />
@@ -129,7 +129,7 @@ function useShowTitle() {
         >
           <VTooltip content="回到顶部">
             <div
-              class="flex h-[40px] items-center justify-center px-4 font-bold leading-none"
+              class="flex h-[40px] items-center justify-center px-4 leading-none font-bold"
             >
               {{ page.title || '向成渝 —— 专注于计算机科学与技术' }}
             </div>
@@ -144,7 +144,7 @@ function useShowTitle() {
       >
         <div class="flex h-[40px] items-center gap-2 lg:gap-4">
           <button
-            class="hover:text-reverse hover:bg-primary hidden cursor-pointer items-center justify-center rounded-full p-1 text-xl transition-all duration-300 max-md:flex"
+            class="hidden cursor-pointer items-center justify-center rounded-full p-1 text-xl transition-all duration-300 hover:bg-primary hover:text-reverse max-md:flex"
             @click="open()"
           >
             <VTooltip content="搜索">
@@ -154,7 +154,7 @@ function useShowTitle() {
           <div class="contents max-lg:hidden">
             <VTooltip content="寻找宝藏博主">
               <a
-                class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
+                class="cursor-pointer rounded-full p-1 text-xl transition-all duration-300 hover:bg-primary hover:text-reverse"
                 href="https://www.travellings.cn/go.html"
                 target="__blank"
               >
@@ -164,7 +164,7 @@ function useShowTitle() {
             <VRandomArticle />
           </div>
           <VThemeToggle
-            class="hover:text-reverse hover:bg-primary cursor-pointer rounded-full p-1 text-xl transition-all duration-300"
+            class="cursor-pointer rounded-full p-1 text-xl transition-all duration-300 hover:bg-primary hover:text-reverse"
             :theme-config="{ dark: 'dark', light: 'light' }"
           />
           <VBackTop />

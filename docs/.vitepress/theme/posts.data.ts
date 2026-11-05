@@ -1,8 +1,6 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { spawnSync } from 'node:child_process';
-import { join, relative } from 'node:path';
 import { createContentLoader } from 'vitepress';
 
 dayjs.extend(relativeTime);
@@ -19,14 +17,10 @@ export interface Post {
     time: number;
     string: string;
   };
-  /** 基于 Git 最后提交的更新时间，仅构建时可用 */
-  lastUpdatedTime: {
-    time: number;
-    string: string;
-  } | null;
   excerpt: string | undefined;
   cover: string | undefined;
-  frontmatter: Record<string, any>;
+  /** frontmatter.banner 原始值，供 Banner 预加载解析样式与背景图 */
+  banner: unknown;
 }
 
 declare const data: Post[];
@@ -43,12 +37,12 @@ export default createContentLoader('**/*.md', {
     // 根据需要对原始数据进行 map、sort 或 filter
     // 最终的结果是将发送给客户端的内容
     // srcDir 为 'src'，内容在 docs/src 下；url 为 /ai/how-to-use-ai（cleanUrls）
-    const docsSrcDir = join(process.cwd(), 'docs', 'src');
     return raw
       .map(({ url, frontmatter, excerpt }) => {
-        const pathFromUrl = url.replace(/^\//, '').replace(/(\/)?$/, (_, s) => (s ? 'index' : '')) || 'index';
-        const filePath = join(docsSrcDir, `${pathFromUrl}.md`);
-        const lastUpdatedTime = getGitLastUpdatedTime(filePath);
+        const pathFromUrl =
+          url
+            .replace(/^\//, '')
+            .replace(/(\/)?$/, (_, s) => (s ? 'index' : '')) || 'index';
         return {
           title: frontmatter.title,
           cover: frontmatter.cover,
@@ -56,11 +50,10 @@ export default createContentLoader('**/*.md', {
           tags: frontmatter.tags ?? [],
           url,
           relativePath: `${pathFromUrl}.md`,
-          excerpt, // 渲染的摘录 HTML（第一个 `---` 上面的内容）
+          excerpt, // 渲染的摘录 HTML（正文首个段落）
           date: formatDate(frontmatter.date),
-          lastUpdatedTime,
-          hidden: frontmatter.hidden || false,
-          frontmatter
+          banner: frontmatter.banner,
+          hidden: frontmatter.hidden || false
         };
       })
       .filter(({ title, hidden }) => !!title && !hidden)
@@ -91,32 +84,4 @@ export function formatDate(raw: unknown): Post['date'] {
     time: date.valueOf(),
     string: date.format('YYYY-MM-DD')
   };
-}
-
-// 获取 git 最后提交时间（filePath 为绝对路径）
-function getGitLastUpdatedTime(
-  filePath: string | undefined
-): Post['lastUpdatedTime'] {
-  if (!filePath) return null;
-
-  try {
-    const relPath = relative(process.cwd(), filePath);
-    const { stdout } = spawnSync(
-      'git',
-      ['log', '-1', '--format=%at', '--', relPath],
-      { cwd: process.cwd() }
-    );
-
-    const timestamp = Number.parseInt(stdout.toString().trim(), 10) * 1000;
-
-    if (isNaN(timestamp)) return null;
-
-    return {
-      time: timestamp,
-      string: dayjs(timestamp).fromNow()
-    };
-  } catch (error) {
-    console.warn(`无法获取文件 ${filePath} 的Git最后更新时间:`, error);
-    return null;
-  }
 }

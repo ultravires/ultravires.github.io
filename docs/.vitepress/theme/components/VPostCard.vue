@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue';
+import VIcon from './VIcon.vue';
 import { useData } from 'vitepress';
 import { computed } from 'vue';
 import type { Post } from '../posts.data';
@@ -22,10 +22,10 @@ const visibleCategories = computed(() =>
 
 <template>
   <article
-    class="group/post-card border-line hover:border-primary h-[340px] w-full overflow-hidden rounded-lg border border-solid bg-white dark:bg-neutral-900"
+    class="group/post-card h-[340px] w-full overflow-hidden rounded-lg border border-solid border-line bg-white hover:border-primary dark:bg-neutral-900"
   >
     <VLink
-      class="block h-[calc(100%-9rem)] select-none overflow-hidden"
+      class="block h-[calc(100%-9rem)] overflow-hidden select-none"
       :href="post.url"
       draggable="false"
     >
@@ -36,7 +36,7 @@ const visibleCategories = computed(() =>
       :href="post.url"
     >
       <h2
-        class="wave-text group-hover/post-card:text-primary mb-4 overflow-hidden text-ellipsis whitespace-nowrap text-xl dark:text-white"
+        class="wave-text mb-4 overflow-hidden text-xl text-ellipsis whitespace-nowrap group-hover/post-card:text-primary dark:text-white"
       >
         {{ post.title }}
       </h2>
@@ -48,15 +48,17 @@ const visibleCategories = computed(() =>
         <span
           v-for="category in visibleCategories"
           :key="category"
-          class="border-line group-hover/post-card:border-primary/50 group-hover/post-card:text-primary inline-flex shrink-0 items-center gap-1 rounded-full border border-solid px-2 py-0.5 text-xs text-neutral-500 transition-colors dark:text-neutral-400"
+          class="inline-flex shrink-0 items-center gap-1 rounded-full border border-solid border-line px-2 py-0.5 text-xs text-neutral-500 transition-colors group-hover/post-card:border-primary/50 group-hover/post-card:text-primary dark:text-neutral-400"
         >
-          <Icon
+          <VIcon
             icon="mdi:folder-outline"
             class="text-sm"
           />
           {{ category }}
         </span>
-        <span class="flex min-w-0 items-center gap-x-2 overflow-hidden whitespace-nowrap">
+        <span
+          class="flex min-w-0 items-center gap-x-2 overflow-hidden whitespace-nowrap"
+        >
           <span
             v-for="tag in post?.tags ?? []"
             :key="tag"
@@ -65,7 +67,9 @@ const visibleCategories = computed(() =>
             {{ tag }}
           </span>
         </span>
-        <span class="ml-auto shrink-0 text-xs tabular-nums text-neutral-400 dark:text-neutral-500">
+        <span
+          class="ml-auto shrink-0 text-xs text-neutral-400 tabular-nums dark:text-neutral-500"
+        >
           {{ post.date.string }}
         </span>
       </div>

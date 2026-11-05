@@ -3,7 +3,10 @@
   -->
 
 <template>
-  <svg id="monkey_404" viewBox="0 0 800 480">
+  <svg
+    id="monkey_404"
+    viewBox="0 0 800 480"
+  >
     <path
       id="cloud"
       class="st0"
@@ -195,13 +198,21 @@
       </g>
     </g>
     <g id="tetris">
-      <path id="tetris_stroke" class="st12" d="M487.5,357.5h30v30h-30V357.5z" />
+      <path
+        id="tetris_stroke"
+        class="st12"
+        d="M487.5,357.5h30v30h-30V357.5z"
+      />
       <path
         class="st0"
         d="M516,359l-4.5,5.4c-0.3,0.4-0.5,0.8-0.5,1.3V380c0,0.6-0.4,1-1,1h-14.3c-0.5,0-0.9,0.2-1.3,0.5L489,386h27V359
 		z"
       />
-      <path id="tetris_stroke_2_" class="st12" d="M487.5,327h30v30h-30V327z" />
+      <path
+        id="tetris_stroke_2_"
+        class="st12"
+        d="M487.5,327h30v30h-30V327z"
+      />
       <path
         class="st0"
         d="M516,328.5l-4.5,5.4c-0.3,0.4-0.5,0.8-0.5,1.3v14.3c0,0.6-0.4,1-1,1h-14.3c-0.5,0-0.9,0.2-1.3,0.5l-5.4,4.5h27
@@ -227,7 +238,11 @@
         d="M577.5,359l-4.5,5.4c-0.3,0.4-0.5,0.8-0.5,1.3V380c0,0.6-0.4,1-1,1h-14.3c-0.5,0-0.9,0.2-1.3,0.5l-5.4,4.5h27
 		V359z"
       />
-      <path id="tetris_stroke_4_" class="st12" d="M549,388h30v30h-30V388z" />
+      <path
+        id="tetris_stroke_4_"
+        class="st12"
+        d="M549,388h30v30h-30V388z"
+      />
       <path
         class="st0"
         d="M577.5,389.5l-4.5,5.4c-0.3,0.4-0.5,0.8-0.5,1.3v14.3c0,0.6-0.4,1-1,1h-14.3c-0.5,0-0.9,0.2-1.3,0.5l-5.4,4.5
@@ -379,14 +394,39 @@
       />
     </g>
   </svg>
-  <div style="position: absolute; left: 50%; top: 80%; transform: translate(-50%, 0); z-index: 10;">
+  <div
+    style="
+      position: absolute;
+      left: 50%;
+      top: 80%;
+      transform: translate(-50%, 0);
+      z-index: 10;
+    "
+  >
     <a
       href="/"
-      class="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-[#89949b] to-[#e8ebed] text-[#222] rounded-full text-lg font-bold no-underline shadow-lg border-2 border-[#89949b] cursor-pointer hover:bg-[#89949b]/80 hover:text-white hover:bg-gradient-to-l"
+      class="inline-flex cursor-pointer items-center gap-2 rounded-full border-2 border-[#89949b] bg-gradient-to-r from-[#89949b] to-[#e8ebed] px-7 py-3 text-lg font-bold text-[#222] no-underline shadow-lg hover:bg-[#89949b]/80 hover:bg-gradient-to-l hover:text-white"
     >
-      <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-        <path d="M3 12L12 4l9 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M5 10v10h14V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg
+        width="22"
+        height="22"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M3 12L12 4l9 8"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M5 10v10h14V10"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
       返回首页
     </a>

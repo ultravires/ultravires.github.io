@@ -1,5 +1,5 @@
 <script setup>
-import { Icon } from '@iconify/vue';
+import VIcon from '@theme/components/VIcon.vue';
 import PageContainer from '@theme/components/PageContainer.vue';
 import VAvatar from '@theme/components/VAvatar.vue';
 import VQrCodePopover from '@theme/components/VQrCodePopover.vue';
@@ -14,7 +14,9 @@ const user = frontmatter.value?.self ?? {};
   <PageContainer>
     <!-- 基础信息 -->
     <div class="mb-4">
-      <div class="mt-6 flex flex-col items-center gap-6 sm:flex-row sm:items-center">
+      <div
+        class="mt-6 flex flex-col items-center gap-6 sm:flex-row sm:items-center"
+      >
         <VAvatar
           :size="96"
           class="shrink-0"
@@ -22,7 +24,9 @@ const user = frontmatter.value?.self ?? {};
         <div class="text-center sm:text-left">
           <h2 class="my-4 text-4xl font-semibold">{{ user.name }}</h2>
           <p class="text-gray-600 dark:text-gray-200">{{ user.bio }}</p>
-          <div class="mt-4 flex items-center justify-center gap-3 sm:justify-start">
+          <div
+            class="mt-4 flex items-center justify-center gap-3 sm:justify-start"
+          >
             <template
               v-for="link in user.links"
               :key="link.text"
@@ -39,7 +43,7 @@ const user = frontmatter.value?.self ?? {};
                 target="_blank"
                 class="text-gray-600 hover:text-black dark:text-gray-200 dark:hover:text-white"
               >
-                <Icon
+                <VIcon
                   :icon="link.icon"
                   class="text-3xl"
                 />
@@ -55,14 +59,16 @@ const user = frontmatter.value?.self ?? {};
         id="about-content"
         class="flex-1"
       >
-        <Content class="prose dark:prose-invert max-w-none" />
+        <Content class="prose max-w-none dark:prose-invert" />
       </div>
 
       <div class="flex w-full shrink-0 flex-col gap-4 lg:w-96">
         <!-- 工作经历 -->
-        <div class="rounded-2xl border border-neutral-100/10 bg-white p-4 shadow dark:bg-neutral-700">
+        <div
+          class="rounded-2xl border border-neutral-100/10 bg-white p-4 shadow dark:bg-neutral-700"
+        >
           <h3 class="flex items-center gap-2">
-            <Icon
+            <VIcon
               icon="mdi:briefcase-variant-outline"
               class="text-2xl"
             />
@@ -96,7 +102,7 @@ const user = frontmatter.value?.self ?? {};
           class="rounded-2xl border border-neutral-100/10 bg-white p-4 shadow dark:bg-neutral-700"
         >
           <h3 class="flex items-center gap-2">
-            <Icon
+            <VIcon
               icon="mdi:brain"
               class="text-2xl"
             />
@@ -106,25 +112,29 @@ const user = frontmatter.value?.self ?? {};
             <div
               v-for="p in user.personalities"
               :key="p.text"
-              class="border-line rounded-xl border border-solid p-3"
+              class="rounded-xl border border-solid border-line p-3"
             >
               <div class="flex items-center gap-2">
-                <span class="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-xs font-semibold">
+                <span
+                  class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary"
+                >
                   {{ p.flag }}
                 </span>
                 <span class="font-bold">{{ p.text }}</span>
               </div>
-              <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+              <p
+                class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300"
+              >
                 {{ p.desc }}
               </p>
               <a
                 :href="p.link"
                 target="_blank"
                 rel="noopener"
-                class="text-primary mt-2 inline-flex items-center gap-1 text-sm font-medium transition-opacity hover:opacity-80"
+                class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary transition-opacity hover:opacity-80"
               >
                 了解性格类型
-                <Icon
+                <VIcon
                   icon="mdi:arrow-top-right"
                   class="text-base"
                 />

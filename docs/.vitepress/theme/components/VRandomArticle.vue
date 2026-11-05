@@ -38,7 +38,7 @@ const visiteRandomArticle = () => {
 <template>
   <VTooltip
     content="随机阅读文章"
-    class="hover:bg-primary hover:text-reverse p-1 text-xl rounded-full cursor-pointer transition-all duration-300"
+    class="cursor-pointer rounded-full p-1 text-xl transition-all duration-300 hover:bg-primary hover:text-reverse"
     @click="visiteRandomArticle"
   >
     <VIconDice :class="['dice', { rotating }]" />

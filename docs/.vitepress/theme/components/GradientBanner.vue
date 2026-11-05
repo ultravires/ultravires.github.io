@@ -26,7 +26,8 @@ const colors = computed(() => {
 });
 
 const background = computed(
-  () => `linear-gradient(115deg, ${colors.value[0]} 0%, ${colors.value[1]} 100%)`
+  () =>
+    `linear-gradient(115deg, ${colors.value[0]} 0%, ${colors.value[1]} 100%)`
 );
 </script>
 

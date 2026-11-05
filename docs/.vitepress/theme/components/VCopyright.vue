@@ -1,8 +1,8 @@
 <template>
-  <div class="text-sm text-neutral-400 text-center">
-    <span> &copy; 版权声明: 此文章为作者原创文章，采用 </span>
+  <div class="text-center text-sm text-neutral-400">
+    <span>&copy; 版权声明: 此文章为作者原创文章，采用</span>
     <a
-      class="hover:text-blue-500 visited:text-blue-800 text-blue-700"
+      class="text-blue-700 visited:text-blue-800 hover:text-blue-500"
       href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
     >
       CC BY-NC-SA 4.0

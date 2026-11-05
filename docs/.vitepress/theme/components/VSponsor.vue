@@ -6,33 +6,33 @@ import VIconHandHeart from '../assets/svg/handheart.svg?component';
 <template>
   <div class="relative">
     <div
-      class="hover:bg-red-500 hover:drop-shadow-[0_0_6px_rgba(250,0,0,.6)] peer relative flex justify-center items-center bg-red-600 text-white px-6 py-2 rounded-md cursor-pointer transition-all duration-300"
+      class="peer relative flex cursor-pointer items-center justify-center rounded-md bg-red-600 px-6 py-2 text-white transition-all duration-300 hover:bg-red-500 hover:drop-shadow-[0_0_6px_rgba(250,0,0,.6)]"
     >
       <VIconHandHeart class="mr-2 text-lg" />
       <span>鼓励作者</span>
     </div>
     <div
-      class="peer-hover:block peer-hover:opacity-100 peer-hover:translate-y-0 peer-hover:pointer-events-auto hover:block hover:opacity-100 hover:translate-y-0 hover:pointer-events-auto absolute bottom-full opacity-0 translate-y-4 pointer-events-none left-1/2 -translate-x-1/2 z-10 transition-all duration-300"
+      class="pointer-events-none absolute bottom-full left-1/2 z-10 -translate-x-1/2 translate-y-4 opacity-0 transition-all duration-300 peer-hover:pointer-events-auto peer-hover:block peer-hover:translate-y-0 peer-hover:opacity-100 hover:pointer-events-auto hover:block hover:translate-y-0 hover:opacity-100"
     >
       <div
-        class="dark:bg-neutral-900 p-5 sm:p-8 mb-4 w-max bg-white border border-solid border-line rounded-lg"
+        class="mb-4 w-max rounded-lg border border-solid border-line bg-white p-5 sm:p-8 dark:bg-neutral-900"
       >
         <p
-          class="mb-2 whitespace-nowrap text-center text-red-500 text-lg font-medium"
+          class="mb-2 text-center text-lg font-medium whitespace-nowrap text-red-500"
         >
           感谢你赐予我前进的动力！
         </p>
         <div class="flex gap-3 sm:gap-4">
           <div class="flex flex-col justify-center">
             <img
-              class="w-32 h-32 sm:w-40 sm:h-40 object-contain rounded-sm"
+              class="h-32 w-32 rounded-sm object-contain sm:h-40 sm:w-40"
               :src="withBase('/WeChatPay.jpg')"
             />
             <div class="text-center">微信</div>
           </div>
           <div class="flex flex-col justify-center">
             <img
-              class="w-32 h-32 sm:w-40 sm:h-40 object-contain rounded-sm"
+              class="h-32 w-32 rounded-sm object-contain sm:h-40 sm:w-40"
               :src="withBase('/AliPay.jpg')"
             />
             <div class="text-center">支付宝</div>

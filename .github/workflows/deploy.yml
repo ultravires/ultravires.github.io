@@ -22,8 +22,33 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # 质量检查：类型检查 + 格式校验
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.22.0
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      # --frozen-lockfile 保证 CI 安装的版本与 pnpm-lock.yaml 完全一致，
+      # 避免 lockfile 漂移导致「本地正常、线上构建失败」
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Check formatting
+        run: pnpm format:check
+
   # 构建工作
   build:
+    needs: check
     environment:
       name: github-pages
     runs-on: ubuntu-latest
@@ -31,12 +56,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+          fetch-depth: 0 # lastUpdated 依赖完整 git 历史
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10.22.0
-      # - uses: oven-sh/setup-bun@v1 # 如果使用 Bun，请取消注释
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
@@ -45,11 +69,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Install dependencies
-        run: pnpm install # npm ci 或 pnpm install / yarn install / bun install
+        run: pnpm install --frozen-lockfile
       - name: Build with VitePress
-        run: pnpm docs:build # npm run docs:build 或 pnpm docs:build / yarn docs:build / bun run docs:build
-        env:
-          VITE_GITALK_CLIENT_SECRET: ${{ secrets.GITALK_CLIENT_SECRET }}
+        run: pnpm docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:

@@ -1,8 +1,7 @@
 import { ref } from 'vue';
-import { withBase, useData } from 'vitepress';
 
-export const HASH_RE = /#.*$/;
-export const EXT_RE = /(index)?\.(md|html)$/;
+const HASH_RE = /#.*$/;
+const EXT_RE = /(index)?\.(md|html)$/;
 
 const inBrowser = typeof window !== 'undefined';
 
@@ -45,80 +44,15 @@ export function isActive(currentPath, matchPath, asRegex = false) {
   return true;
 }
 
-export function ensureStartingSlash(path) {
-  return /^\//.test(path) ? path : `/${path}`;
-}
-
-export function normalize(path) {
+function normalize(path) {
   return decodeURI(path).replace(HASH_RE, '').replace(EXT_RE, '');
-}
-
-export function normalizeLink(url) {
-  if (isExternal(url)) {
-    return url;
-  }
-  const { site } = useData();
-  const { pathname, search, hash } = new URL(url, 'http://example.com');
-  const normalizedPath =
-    pathname.endsWith('/') || pathname.endsWith('.html')
-      ? url
-      : `${pathname.replace(
-          /(\.md)?$/,
-          site.value.cleanUrls === 'disabled' ? '.html' : ''
-        )}${search}${hash}`;
-  return withBase(normalizedPath);
-}
-
-export function isSSR() {
-  return import.meta.env.SSR;
-}
-
-// TODO 操作比较耗时，会导致页面卡顿，需要优化；考虑放到 worker 中
-export function getImageColor(img) {
-  const canvas = document.createElement('canvas');
-  canvas.width = img.width;
-  canvas.height = img.height;
-
-  let r = 0;
-  let g = 0;
-  let b = 0;
-
-  const context = canvas.getContext('2d');
-
-  context.drawImage(img, 0, 0);
-
-  try {
-    // 获取像素数据
-    const data = context.getImageData(0, 0, img.width, img.height).data;
-    // 取所有像素的平均值
-    for (let row = 0; row < img.height; row++) {
-      for (let col = 0; col < img.width; col++) {
-        r += data[(img.width * row + col) * 4];
-        g += data[(img.width * row + col) * 4 + 1];
-        b += data[(img.width * row + col) * 4 + 2];
-      }
-    }
-
-    // 求取平均值
-    r /= img.width * img.height;
-    g /= img.width * img.height;
-    b /= img.width * img.height;
-
-    // 将最终的值取整
-    r = Math.round(r);
-    g = Math.round(g);
-    b = Math.round(b);
-
-    return [r, g, b];
-  } catch (err) {
-    console.error('[getImageColor] 获取图片主题色失败: ' + err);
-    return [];
-  }
 }
 
 export function formatDate(raw) {
   // 统一转为字符串：去除首尾空白，将 / 替换为 -（兼容非标准日期格式）
-  const normalized = String(raw ?? '').trim().replace(/\//g, '-');
+  const normalized = String(raw ?? '')
+    .trim()
+    .replace(/\//g, '-');
   const date = new Date(normalized);
   if (isNaN(date.getTime())) {
     return null;
@@ -127,6 +61,6 @@ export function formatDate(raw) {
     time: +date,
     string: `${date.getFullYear()}-${(date.getMonth() + 1)
       .toString()
-      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`,
+      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
   };
 }

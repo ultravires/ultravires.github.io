@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue';
+import VIcon from './VIcon.vue';
 import { computed, ref } from 'vue';
 import VPost from '../components/VPost.vue';
 import VPostCard from '../components/VPostCard.vue';
@@ -68,7 +68,7 @@ const pageNumbers = computed(() => {
         :key="post.title"
         :class="[
           {
-            'mb-4 mr-4 w-[calc(calc(100%-1rem)/2)] even:mr-0 max-md:mr-0 max-md:w-full':
+            'mr-4 mb-4 w-[calc(calc(100%-1rem)/2)] even:mr-0 max-md:mr-0 max-md:w-full':
               type === 'card'
           },
           { 'mb-8 w-full': type === 'list' }
@@ -90,14 +90,14 @@ const pageNumbers = computed(() => {
     <!-- Pagination Controls -->
     <div
       v-if="totalPages > 1"
-      class="mb-8 mt-8 flex items-center justify-center gap-2"
+      class="mt-8 mb-8 flex items-center justify-center gap-2"
     >
       <button
         @click="changePage(currentPage - 1)"
         :disabled="currentPage === 1"
-        class="border-primary text-primary hover:bg-primary group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid px-4 py-2 transition-all duration-300 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
+        class="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid border-primary px-4 py-2 text-primary transition-all duration-300 hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
       >
-        <Icon icon="mdi:arrow-left" />
+        <VIcon icon="mdi:arrow-left" />
         <span>上一页</span>
       </button>
 
@@ -113,14 +113,14 @@ const pageNumbers = computed(() => {
             :class="
               currentPage === page
                 ? 'bg-primary text-white dark:text-black'
-                : 'hover:bg-primary/20 text-primary'
+                : 'text-primary hover:bg-primary/20'
             "
           >
             {{ page }}
           </button>
           <span
             v-else
-            class="text-primary flex h-8 w-8 items-center justify-center"
+            class="flex h-8 w-8 items-center justify-center text-primary"
           >
             ...
           </span>
@@ -130,10 +130,10 @@ const pageNumbers = computed(() => {
       <button
         @click="changePage(currentPage + 1)"
         :disabled="currentPage === totalPages"
-        class="border-primary text-primary hover:bg-primary group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid px-4 py-2 transition-all duration-300 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
+        class="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid border-primary px-4 py-2 text-primary transition-all duration-300 hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
       >
         <span>下一页</span>
-        <Icon icon="mdi:arrow-right" />
+        <VIcon icon="mdi:arrow-right" />
       </button>
     </div>
   </div>

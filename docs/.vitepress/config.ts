@@ -1,87 +1,93 @@
 import tailwindcss from '@tailwindcss/vite';
 import svgLoader from 'vite-svg-loader';
 import { defineConfigWithTheme, type Plugin } from 'vitepress';
-import { withMermaid } from 'vitepress-plugin-mermaid';
 import { zh } from './config/zh.js';
 import { genFeed } from './genFeed.js';
+import { seoHead } from './config/seo.js';
 import type { CustomTheme } from './theme/types/custom-vitepress-theme.d.js';
 
 // https://vitepress.vuejs.org/config/app-configs
-export default defineConfigWithTheme<CustomTheme>(
-  withMermaid({
-    lang: zh.lang,
-    title: zh.title,
-    description: zh.description,
-    srcDir: 'src',
-    cleanUrls: true,
-    buildEnd: genFeed,
-    markdown: zh.markdown,
-    themeConfig: zh.themeConfig,
-    lastUpdated: true,
-    ignoreDeadLinks: true,
-    head: [
-      ['meta', { name: 'author', content: '向成渝' }],
-      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
-      [
-        'link',
-        {
-          rel: 'alternate icon',
-          href: '/favicon.ico',
-          sizes: '16x16 32x32 48x48'
-        }
-      ],
-      ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
-      // 评论区 iframe 托管在 giscus 反代域名，提前完成 DNS/TCP/TLS 握手
-      ['link', { rel: 'preconnect', href: 'https://giscus.ultravires.me' }],
-      ['link', { rel: 'dns-prefetch', href: 'https://giscus.ultravires.me' }],
-      // 51.la 站点统计 SDK（id/ck 在 v6.51.la 控制台添加站点后获取）
-      ['link', { rel: 'preconnect', href: 'https://sdk.51.la' }],
-      [
-        'script',
-        {
-          charset: 'UTF-8',
-          id: 'LA_COLLECT',
-          src: 'https://sdk.51.la/js-sdk-pro.min.js'
-        }
-      ],
-      [
-        'script',
-        {},
-        'LA.init({id:"3Rd8pMdFFdPLdgHh",ck:"3Rd8pMdFFdPLdgHh",autoTrack:true})'
-      ],
-      [
-        'meta',
-        {
-          name: 'viewport',
-          content:
-            'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
-        }
-      ],
-      [
-        'link',
-        {
-          rel: 'alternate',
-          type: 'application/rss+xml',
-          title: `${zh.themeConfig.siteTitle ?? zh.title} RSS`,
-          href: '/feed.rss'
-        }
-      ]
+export default defineConfigWithTheme<CustomTheme>({
+  lang: zh.lang,
+  title: zh.title,
+  description: zh.description,
+  srcDir: 'src',
+  cleanUrls: true,
+  buildEnd: genFeed,
+  transformHead: seoHead,
+  markdown: zh.markdown,
+  themeConfig: zh.themeConfig,
+  lastUpdated: true,
+  // 仅忽略 localhost 链接（如文中示例的本地服务地址），其余死链一律让构建失败
+  ignoreDeadLinks: 'localhostLinks',
+  // 生成 sitemap.xml，便于搜索引擎收录
+  sitemap: {
+    hostname: 'https://www.ultravires.me'
+  },
+  head: [
+    ['meta', { name: 'author', content: '向成渝' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+    [
+      'link',
+      {
+        rel: 'alternate icon',
+        href: '/favicon.ico',
+        sizes: '16x16 32x32 48x48'
+      }
     ],
-    vite: {
-      define: {
-        // 启用生产环境构建下激活不匹配的详细警告
-        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
-      },
-      build: {
-        cssCodeSplit: false
-      },
-      plugins: [
-        svgLoader({
-          svgo: false,
-          defaultImport: 'component'
-        }) as Plugin,
-        tailwindcss() as Plugin[]
-      ]
-    }
-  })
-);
+    ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
+    // 评论区 iframe 托管在 giscus 反代域名，提前完成 DNS/TCP/TLS 握手
+    ['link', { rel: 'preconnect', href: 'https://giscus.ultravires.me' }],
+    ['link', { rel: 'dns-prefetch', href: 'https://giscus.ultravires.me' }],
+    // 51.la 站点统计 SDK（id/ck 在 v6.51.la 控制台添加站点后获取）
+    ['link', { rel: 'preconnect', href: 'https://sdk.51.la' }],
+    [
+      'script',
+      {
+        charset: 'UTF-8',
+        id: 'LA_COLLECT',
+        src: 'https://sdk.51.la/js-sdk-pro.min.js',
+        // 统计脚本不参与首屏渲染，异步加载避免阻塞
+        defer: ''
+      }
+    ],
+    [
+      'script',
+      {},
+      'LA.init({id:"3Rd8pMdFFdPLdgHh",ck:"3Rd8pMdFFdPLdgHh",autoTrack:true})'
+    ],
+    [
+      'meta',
+      {
+        name: 'viewport',
+        content:
+          'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+      }
+    ],
+    [
+      'link',
+      {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: `${zh.themeConfig?.siteTitle ?? zh.title} RSS`,
+        href: '/feed.rss'
+      }
+    ]
+  ],
+  vite: {
+    define: {
+      // 启用生产环境构建下激活不匹配的详细警告
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
+    },
+    build: {
+      cssCodeSplit: false
+    },
+    plugins: [
+      svgLoader({
+        svgo: false,
+        defaultImport: 'component'
+      }) as Plugin,
+      tailwindcss() as Plugin[]
+    ]
+  }
+});

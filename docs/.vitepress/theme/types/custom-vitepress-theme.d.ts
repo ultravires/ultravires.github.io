@@ -1,4 +1,3 @@
-import type { DefaultTheme } from "vitepress";
+import type { DefaultTheme } from 'vitepress';
 
-export interface CustomTheme extends DefaultTheme.Config {
-}
+export interface CustomTheme extends DefaultTheme.Config {}

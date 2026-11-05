@@ -38,11 +38,11 @@ const activeClass =
       </VLink>
     </template>
     <div
-      class="border-primary text-normal flex h-[50px] cursor-default items-center gap-2 rounded-full border border-solid bg-white p-2 tracking-wide text-black shadow-lg dark:bg-neutral-900 dark:text-white"
+      class="flex h-[50px] cursor-default items-center gap-2 rounded-full border border-solid border-primary bg-white p-2 tracking-wide text-black text-normal shadow-lg dark:bg-neutral-900 dark:text-white"
     >
       <VLink
         v-for="item in item.items"
-        class="decoration-none text-normal hover:bg-primary relative flex h-8 items-center whitespace-nowrap rounded-full px-4 transition-all duration-300 hover:px-5 hover:text-white dark:hover:text-black"
+        class="decoration-none relative flex h-8 items-center rounded-full px-4 whitespace-nowrap text-normal transition-all duration-300 hover:bg-primary hover:px-5 hover:text-white dark:hover:text-black"
         :class="{
           [activeClass]: isActive(
             page.relativePath,

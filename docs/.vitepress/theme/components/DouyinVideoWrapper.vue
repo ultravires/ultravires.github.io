@@ -17,7 +17,7 @@ const { imageUrl, href } = toRefs(props);
     class="relative h-[300px] w-[200px] cursor-pointer overflow-hidden rounded-md"
   >
     <div
-      class="hover:scale-115 h-[300px] w-[200px] bg-cover bg-center bg-no-repeat transition-transform"
+      class="h-[300px] w-[200px] bg-cover bg-center bg-no-repeat transition-transform hover:scale-115"
       :style="`background-image: url(${imageUrl});`"
     ></div>
     <div
@@ -59,7 +59,7 @@ const { imageUrl, href } = toRefs(props);
     <div class="absolute bottom-0 w-full p-3">
       <div class="caption-text-container">
         <div
-          class="video-caption video-caption overflow-hidden text-ellipsis whitespace-nowrap text-[14px] font-medium leading-[18px] text-white"
+          class="video-caption video-caption overflow-hidden text-[14px] leading-[18px] font-medium text-ellipsis whitespace-nowrap text-white"
         >
           7分钟速通Agent Skills是什么？
           跟MCP|Workflow|Command|Prompt有什么关系？ #程序员 #编程 #MCP

@@ -13,9 +13,11 @@ function getBannerUrls(): Map<string, string> {
   if (!bannerUrls) {
     bannerUrls = new Map();
     for (const post of posts) {
-      const banner = post.frontmatter?.banner;
-      if (resolveBannerStyle(banner) !== 'image') continue;
-      bannerUrls.set(post.url, resolveBannerImage(banner, post.relativePath));
+      if (resolveBannerStyle(post.banner) !== 'image') continue;
+      bannerUrls.set(
+        post.url,
+        resolveBannerImage(post.banner, post.relativePath)
+      );
     }
   }
   return bannerUrls;

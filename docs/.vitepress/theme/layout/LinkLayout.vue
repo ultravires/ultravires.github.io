@@ -157,7 +157,7 @@ onBeforeUnmount(() => clearTimeout(timer));
           </span>
         </h1>
         <span
-          class="shrink-0 text-sm tabular-nums text-neutral-400 dark:text-neutral-500"
+          class="shrink-0 text-sm text-neutral-400 tabular-nums dark:text-neutral-500"
           aria-live="polite"
         >
           <template v-if="terms.length">
@@ -179,19 +179,19 @@ onBeforeUnmount(() => clearTimeout(timer));
       <label class="relative flex-1">
         <span class="sr-only">搜索友链</span>
         <VIconSearch
-          class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400"
+          class="pointer-events-none absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-neutral-400"
         />
         <input
           v-model="query"
           type="search"
           placeholder="搜索名称、简介或域名"
-          class="border-line focus-visible:border-primary w-full rounded-full border bg-transparent py-2.5 pl-11 pr-4 text-sm transition-colors placeholder:text-neutral-400 focus-visible:outline-none dark:bg-neutral-900/60"
+          class="w-full rounded-full border border-line bg-transparent py-2.5 pr-4 pl-11 text-sm transition-colors placeholder:text-neutral-400 focus-visible:border-primary focus-visible:outline-none dark:bg-neutral-900/60"
         />
       </label>
       <button
         type="button"
         :disabled="drawing || records.length === 0"
-        class="bg-primary focus-visible:ring-primary inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-70 dark:text-black dark:ring-offset-neutral-800"
+        class="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-wait disabled:opacity-70 dark:text-black dark:ring-offset-neutral-800"
         @click="draw"
       >
         <VIconDice :class="['h-4 w-4', { rotating: drawing }]" />
@@ -203,13 +203,13 @@ onBeforeUnmount(() => clearTimeout(timer));
     <div
       v-if="drawing || drawn"
       aria-live="polite"
-      class="border-primary/50 bg-primary/5 dark:bg-primary/10 mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-dashed px-4 py-3"
+      class="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-dashed border-primary/50 bg-primary/5 px-4 py-3 dark:bg-primary/10"
     >
       <template v-if="drawing">
         <span class="shrink-0 text-sm text-neutral-500 dark:text-neutral-400">
           正在串门到
         </span>
-        <span class="text-primary ellipsis min-w-0 flex-1 font-medium">
+        <span class="ellipsis min-w-0 flex-1 font-medium text-primary">
           {{ shuffleName }}
         </span>
       </template>
@@ -242,13 +242,13 @@ onBeforeUnmount(() => clearTimeout(timer));
             :href="drawn.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-primary focus-visible:ring-primary rounded-full px-4 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:text-black dark:ring-offset-neutral-800"
+            class="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none dark:text-black dark:ring-offset-neutral-800"
           >
             前往站点
           </a>
           <button
             type="button"
-            class="text-primary hover:bg-primary/10 focus-visible:ring-primary cursor-pointer rounded-full px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2"
+            class="cursor-pointer rounded-full px-3 py-1.5 text-sm text-primary transition-colors hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             @click="draw"
           >
             再抽一个
@@ -287,7 +287,7 @@ onBeforeUnmount(() => clearTimeout(timer));
           </span>
           <span class="min-w-0 flex-1">
             <span
-              class="group-hover:text-primary block font-medium transition-colors"
+              class="block font-medium transition-colors group-hover:text-primary"
               v-html="highlight(record.name)"
             ></span>
             <span
@@ -314,7 +314,7 @@ onBeforeUnmount(() => clearTimeout(timer));
       </p>
       <button
         type="button"
-        class="border-line text-primary hover:bg-primary/5 focus-visible:ring-primary mt-3 cursor-pointer rounded-full border px-4 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2"
+        class="mt-3 cursor-pointer rounded-full border border-line px-4 py-1.5 text-sm text-primary transition-colors hover:bg-primary/5 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
         @click="clearQuery"
       >
         清空搜索

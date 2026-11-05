@@ -1,5 +1,6 @@
 ---
 title: Docker 安装 minio
+description: 记录使用 Docker 部署 MinIO 对象存储的完整流程，涵盖镜像拉取、容器创建、端口映射与访问验证。
 date: 2025-08-29
 cover:
   text: 安装 MinIO

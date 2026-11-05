@@ -29,6 +29,7 @@ const KV_KEYS = {
 };
 
 export default {
+  /** @param {Request} request @param {WorkerEnv} env */
   async fetch(request, env) {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin') ?? '';
@@ -60,6 +61,7 @@ export default {
   },
 
   // Cron Trigger：每 2 天拉取一次快照（见 wrangler.toml triggers）
+  /** @param {ScheduledEvent} _event @param {WorkerEnv} env @param {ExecutionContext} ctx */
   async scheduled(_event, env, ctx) {
     ctx.waitUntil(collectAll(env));
   }
@@ -67,6 +69,7 @@ export default {
 
 // ---- 快照采集：一次 6 个 API 调用 ----
 
+/** @param {WorkerEnv} env */
 async function collectAll(env) {
   const endDay = cstDate(0);
   const startDay = cstDate(-29);
@@ -74,12 +77,16 @@ async function collectAll(env) {
   const [overviewRes, interviewRes, terminalRes, srcRes, regionRes, activeRes] =
     await Promise.all([
       fetchLaApi('/overview/get', {}, env),
-      fetchLaApi('/content/listInterview', {
-        startDay,
-        endDay,
-        page: 1,
-        size: 100
-      }, env),
+      fetchLaApi(
+        '/content/listInterview',
+        {
+          startDay,
+          endDay,
+          page: 1,
+          size: 100
+        },
+        env
+      ),
       fetchLaApi('/online/data', { type: 'TERMINAL', minute: 30 }, env),
       fetchLaApi('/online/data', { type: 'SRC', minute: 30 }, env),
       fetchLaApi('/online/data', { type: 'REGION', minute: 30 }, env),
@@ -95,15 +102,33 @@ async function collectAll(env) {
     updatedAt: new Date().toISOString()
   };
 
+  /** @type {Array<{ path: string, title: string | null, pv: number, uv: number }>} */
   const pages = (Array.isArray(interviewRes.data) ? interviewRes.data : [])
-    .map((item) => ({
-      path: String(item?.path ?? ''),
-      title: item?.title ? String(item.title) : null,
-      pv: num(item?.pv),
-      uv: num(item?.uv)
-    }))
-    .filter((item) => item.path)
-    .sort((a, b) => b.pv - a.pv);
+    .map(
+      /**
+       * @param {any} item
+       * @returns {{ path: string, title: string | null, pv: number, uv: number }}
+       */
+      (item) => ({
+        path: String(item?.path ?? ''),
+        title: item?.title ? String(item.title) : null,
+        pv: num(item?.pv),
+        uv: num(item?.uv)
+      })
+    )
+    .filter(
+      /**
+       * @param {{ path: string }} item
+       */
+      (item) => item.path
+    )
+    .sort(
+      /**
+       * @param {{ pv: number }} a
+       * @param {{ pv: number }} b
+       */
+      (a, b) => b.pv - a.pv
+    );
 
   const pageviews = Object.fromEntries(
     pages.map((item) => [item.path, { pv: item.pv, uv: item.uv }])
@@ -127,6 +152,11 @@ async function collectAll(env) {
 
 // ---- 51.la 开放数据 API（POST + JSON，签名 = SHA256HEX 大写） ----
 
+/**
+ * @param {string} path
+ * @param {Record<string, unknown>} params
+ * @param {WorkerEnv} env
+ */
 async function fetchLaApi(path, params, env) {
   const accessKey = env.LA_ACCESS_KEY;
   const secretKey = env.LA_SECRET_KEY;
@@ -160,6 +190,12 @@ async function fetchLaApi(path, params, env) {
 }
 
 // 原始签名串按字典序拼装：accessKey&nonce&secretKey&timestamp，SHA256HEX 后大写
+/**
+ * @param {string} accessKey
+ * @param {string} nonce
+ * @param {string} secretKey
+ * @param {string} timestamp
+ */
 async function sign(accessKey, nonce, secretKey, timestamp) {
   const raw = `accessKey=${accessKey}&nonce=${nonce}&secretKey=${secretKey}&timestamp=${timestamp}`;
   const digest = await crypto.subtle.digest(
@@ -174,30 +210,45 @@ async function sign(accessKey, nonce, secretKey, timestamp) {
 
 // ---- 各 GET 端点：只读 KV ----
 
+/** @param {WorkerEnv} env @param {string} key @param {string} origin */
 async function serveKv(env, key, origin) {
   const text = await env.STATS_KV.get(key);
   if (!text) {
-    return json({ error: 'no_data', message: '统计数据尚未生成，等待首次快照' }, 503, origin);
+    return json(
+      { error: 'no_data', message: '统计数据尚未生成，等待首次快照' },
+      503,
+      origin
+    );
   }
   const headers = corsHeaders(origin);
   headers.set('Content-Type', 'application/json; charset=utf-8');
   return new Response(text, { status: 200, headers });
 }
 
+/** @param {WorkerEnv} env @param {URL} url @param {string} origin */
 async function serveTopPages(env, url, origin) {
   const limit = clampInt(url.searchParams.get('limit'), 10, 1, 50);
   const text = await env.STATS_KV.get(KV_KEYS.topPages);
   if (!text) {
-    return json({ error: 'no_data', message: '统计数据尚未生成，等待首次快照' }, 503, origin);
+    return json(
+      { error: 'no_data', message: '统计数据尚未生成，等待首次快照' },
+      503,
+      origin
+    );
   }
   const { pages } = JSON.parse(text);
   return json({ pages: (pages ?? []).slice(0, limit) }, 200, origin);
 }
 
+/** @param {WorkerEnv} env @param {URL} url @param {string} origin */
 async function servePageView(env, url, origin) {
   const path = url.searchParams.get('path');
   if (!path || !path.startsWith('/')) {
-    return json({ error: 'bad_request', message: '缺少合法的 path 参数' }, 400, origin);
+    return json(
+      { error: 'bad_request', message: '缺少合法的 path 参数' },
+      400,
+      origin
+    );
   }
   const text = await env.STATS_KV.get(KV_KEYS.pageviews);
   const pageviews = text ? JSON.parse(text) : {};
@@ -210,6 +261,7 @@ async function servePageView(env, url, origin) {
 }
 
 // 手动刷新快照：携带 SecretKey 作为令牌，注意每次刷新消耗 6 次 API 配额
+/** @param {WorkerEnv} env @param {string | null} token @param {string} origin */
 async function handleRefresh(env, token, origin) {
   if (!env.LA_SECRET_KEY || token !== env.LA_SECRET_KEY) {
     return json({ error: 'unauthorized' }, 401, origin);
@@ -218,8 +270,12 @@ async function handleRefresh(env, token, origin) {
     const result = await collectAll(env);
     return json({ ok: true, ...result }, 200, origin);
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
     return json(
-      { error: 'upstream_unavailable', message: String(error?.message ?? error) },
+      {
+        error: 'upstream_unavailable',
+        message
+      },
       502,
       origin
     );
@@ -228,6 +284,7 @@ async function handleRefresh(env, token, origin) {
 
 // ---- 工具函数 ----
 
+/** @param {unknown} list */
 function toRatios(list) {
   if (!Array.isArray(list) || list.length === 0) return [];
   const total = list.reduce((sum, item) => sum + num(item?.value), 0);
@@ -238,22 +295,31 @@ function toRatios(list) {
 }
 
 // 按北京时间（UTC+8）取 YYYY-MM-DD，offsetDays 为相对今天的天数偏移
+/** @param {number} offsetDays */
 function cstDate(offsetDays) {
   const ms = Date.now() + 8 * 3600 * 1000 + offsetDays * 24 * 3600 * 1000;
   return new Date(ms).toISOString().slice(0, 10);
 }
 
+/** @param {unknown} value */
 function num(value) {
   const n = Number(value);
   return Number.isFinite(n) ? n : 0;
 }
 
+/**
+ * @param {string | null} value
+ * @param {number} fallback
+ * @param {number} min
+ * @param {number} max
+ */
 function clampInt(value, fallback, min, max) {
   const n = Number.parseInt(value ?? '', 10);
   if (!Number.isFinite(n)) return fallback;
   return Math.min(max, Math.max(min, n));
 }
 
+/** @param {string} origin */
 function corsHeaders(origin) {
   const headers = new Headers({
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
@@ -267,6 +333,11 @@ function corsHeaders(origin) {
   return headers;
 }
 
+/**
+ * @param {unknown} data
+ * @param {number} status
+ * @param {string} origin
+ */
 function json(data, status, origin) {
   const headers = corsHeaders(origin);
   headers.set('Content-Type', 'application/json; charset=utf-8');

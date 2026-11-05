@@ -7,7 +7,7 @@ import VDocMeta from '@theme/components/VDocMeta.vue';
   <article
     ref="docRef"
     id="article"
-    class="VPDoc prose prose-lg lg:prose-xl dark:prose-invert prose-pre:rounded-none prose-pre:bg-inherit prose-table:rounded-2xl prose-th:border prose-th:border-solid dark:prose-th:border-neutral-700 prose-td:border prose-td:border-solid prose-img:max-w-3xl prose-img:mx-auto dark:prose-td:border-neutral-700 max-w-none transition-all duration-300"
+    class="VPDoc prose prose-lg max-w-none transition-all duration-300 lg:prose-xl dark:prose-invert prose-pre:rounded-none prose-pre:bg-inherit prose-table:rounded-2xl prose-th:border prose-th:border-solid dark:prose-th:border-neutral-700 prose-td:border prose-td:border-solid dark:prose-td:border-neutral-700 prose-img:mx-auto prose-img:max-w-3xl"
   >
     <Content />
   </article>

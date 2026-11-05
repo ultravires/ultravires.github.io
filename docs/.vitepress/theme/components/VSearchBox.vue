@@ -262,11 +262,11 @@ onBeforeUnmount(() => {
 
         <!-- 面板 -->
         <div
-          class="border-line relative mx-auto mt-[12vh] flex max-h-[70vh] w-[min(640px,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border border-solid bg-(--web-content-bg) shadow-2xl"
+          class="relative mx-auto mt-[12vh] flex max-h-[70vh] w-[min(640px,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border border-solid border-line bg-(--web-content-bg) shadow-2xl"
         >
           <!-- 输入框 -->
           <div
-            class="border-line flex items-center gap-3 border-b border-solid px-4"
+            class="flex items-center gap-3 border-b border-solid border-line px-4"
           >
             <VIconSearch class="shrink-0 text-lg opacity-60" />
             <input
@@ -280,7 +280,7 @@ onBeforeUnmount(() => {
               aria-controls="search-result-list"
             />
             <kbd
-              class="border-line shrink-0 rounded border border-solid px-1.5 py-0.5 text-xs text-neutral-400"
+              class="shrink-0 rounded border border-solid border-line px-1.5 py-0.5 text-xs text-neutral-400"
             >
               ESC
             </kbd>
@@ -323,13 +323,16 @@ onBeforeUnmount(() => {
           </ul>
 
           <!-- 随机推荐（未输入关键词时） -->
-          <div v-else-if="!query.trim()" class="flex-1 overflow-y-auto p-2">
+          <div
+            v-else-if="!query.trim()"
+            class="flex-1 overflow-y-auto p-2"
+          >
             <div
               class="mb-1 flex items-center justify-between px-3 py-1 text-xs text-neutral-400"
             >
               <span>随机推荐</span>
               <button
-                class="hover:bg-primary/10 hover:text-primary flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 transition-colors"
+                class="flex cursor-pointer items-center gap-1 rounded px-1.5 py-0.5 transition-colors hover:bg-primary/10 hover:text-primary"
                 type="button"
                 @click="onRefreshRecommendations"
               >
@@ -337,7 +340,11 @@ onBeforeUnmount(() => {
                 换一批
               </button>
             </div>
-            <ul id="search-result-list" ref="listRef" role="listbox">
+            <ul
+              id="search-result-list"
+              ref="listRef"
+              role="listbox"
+            >
               <li
                 v-for="(item, index) in recommendedItems"
                 :key="item.post.url"
@@ -368,17 +375,30 @@ onBeforeUnmount(() => {
           </div>
 
           <!-- 空状态 -->
-          <div v-else class="px-4 py-10 text-center text-sm text-neutral-400">
+          <div
+            v-else
+            class="px-4 py-10 text-center text-sm text-neutral-400"
+          >
             没有找到与“{{ query.trim() }}”相关的文章
           </div>
 
           <!-- 底部快捷键提示 -->
           <div
-            class="border-line flex items-center gap-4 border-t border-solid px-4 py-2 text-xs text-neutral-400"
+            class="flex items-center gap-4 border-t border-solid border-line px-4 py-2 text-xs text-neutral-400"
           >
-            <span><kbd>↑</kbd><kbd>↓</kbd> 切换</span>
-            <span><kbd>↵</kbd> 打开</span>
-            <span><kbd>ESC</kbd> 关闭</span>
+            <span>
+              <kbd>↑</kbd>
+              <kbd>↓</kbd>
+              切换
+            </span>
+            <span>
+              <kbd>↵</kbd>
+              打开
+            </span>
+            <span>
+              <kbd>ESC</kbd>
+              关闭
+            </span>
           </div>
         </div>
       </div>

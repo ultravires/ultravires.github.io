@@ -8,10 +8,10 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
+    "checkJs": false,
     "skipLibCheck": true,
     "strict": true,
     "jsx": "preserve",
-    "baseUrl": ".",
     "paths": {
       "@theme/*": ["./docs/.vitepress/theme/*"]
     },
@@ -29,6 +29,8 @@
   "include": [
     "./docs/.vitepress/**/*",
     "./docs/src/**/*",
+    "./scripts/**/*",
+    "./workers/**/*",
     "./node_modules/vitepress/**/*"
   ],
   "exclude": ["node_modules", "dist"]

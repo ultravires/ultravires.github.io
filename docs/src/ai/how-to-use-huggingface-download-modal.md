@@ -1,5 +1,6 @@
 ---
 title: Hugging Face 模型下载
+description: 介绍通过 HuggingFace CLI 在本地下载模型文件的完整步骤，包含安装、登录与镜像加速配置。
 author:
   name: 向成渝
   email: x555666777@qq.com

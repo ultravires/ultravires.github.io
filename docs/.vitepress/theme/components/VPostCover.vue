@@ -4,22 +4,23 @@ import { withBase } from 'vitepress';
 defineProps({
   post: {
     type: Object,
-    required: true,
-  },
+    required: true
+  }
 });
 
 const darkGradients = [
-  ["#2b5876", "#4e4376"],
-  ["#1e3c72", "#2a5298"],
-  ["#4b134f", "#c94b4b"],
-  ["#232526", "#414345"],
-  ["#0f2027", "#203a43", "#2c5364"],
+  ['#2b5876', '#4e4376'],
+  ['#1e3c72', '#2a5298'],
+  ['#4b134f', '#c94b4b'],
+  ['#232526', '#414345'],
+  ['#0f2027', '#203a43', '#2c5364']
 ];
 
 function applyRandomGradient() {
-  const randomGradient = darkGradients[Math.floor(Math.random() * darkGradients.length)];
+  const randomGradient =
+    darkGradients[Math.floor(Math.random() * darkGradients.length)];
   return {
-    backgroundImage: `linear-gradient(45deg, ${randomGradient.join(", ")})`
+    backgroundImage: `linear-gradient(45deg, ${randomGradient.join(', ')})`
   };
 }
 </script>
@@ -27,11 +28,14 @@ function applyRandomGradient() {
 <template>
   <figure
     :style="applyRandomGradient()"
-    class="cover group-hover/post-card:scale-105 dark:bg-neutral-800 relative flex justify-center items-center w-full h-full bg-slate-700 transition-transform duration-300"
+    class="cover relative flex h-full w-full items-center justify-center bg-slate-700 transition-transform duration-300 group-hover/post-card:scale-105 dark:bg-neutral-800"
   >
     <img
-      v-if="typeof post.cover === 'string' || (typeof post.cover === 'object' && post.cover.url)"
-      class="min-w-24 w-auto h-auto bg-transparent border-0 outline-0 object-contain drop-shadow-[0_25px_25px_rgb(0_0_0_/_1)]"
+      v-if="
+        typeof post.cover === 'string' ||
+        (typeof post.cover === 'object' && post.cover.url)
+      "
+      class="h-auto w-auto min-w-24 border-0 bg-transparent object-contain outline-0 drop-shadow-[0_25px_25px_rgb(0_0_0_/_1)]"
       :src="
         withBase(
           typeof post.cover === 'string' ? post.cover : post.cover.url || ''
@@ -43,9 +47,9 @@ function applyRandomGradient() {
     />
     <figcaption
       v-else-if="typeof post.cover === 'object' && post.cover.text"
-      class="absolute flex justify-center items-center gap-14 w-full h-full whitespace-nowrap z-0"
+      class="absolute z-0 flex h-full w-full items-center justify-center gap-14 whitespace-nowrap"
     >
-      <h1 class="text-white text-2xl font-black tracking-wider drop-shadow-2xl">
+      <h1 class="text-2xl font-black tracking-wider text-white drop-shadow-2xl">
         {{ post.cover.text }}
       </h1>
       <span class="icon-circle"></span>
@@ -54,9 +58,9 @@ function applyRandomGradient() {
     </figcaption>
     <div
       v-else
-      class="absolute flex justify-center items-center gap-14 w-full h-full whitespace-nowrap z-0"
+      class="absolute z-0 flex h-full w-full items-center justify-center gap-14 whitespace-nowrap"
     >
-      <h1 class="text-white text-2xl font-black tracking-wider drop-shadow-2xl">
+      <h1 class="text-2xl font-black tracking-wider text-white drop-shadow-2xl">
         暂无封面
       </h1>
       <div class="icon-circle"></div>

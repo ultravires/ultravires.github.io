@@ -8,6 +8,7 @@ const UPSTREAM_HOST = 'giscus.app';
 const PASSTHROUGH_PATHS = ['/api/oauth/authorize'];
 
 export default {
+  /** @param {Request} request */
   async fetch(request) {
     const url = new URL(request.url);
     const selfOrigin = url.origin;

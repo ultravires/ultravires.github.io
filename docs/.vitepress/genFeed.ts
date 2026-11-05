@@ -4,7 +4,7 @@ import { Feed } from 'feed';
 import { createContentLoader, type SiteConfig } from 'vitepress';
 import { zh } from './config/zh.js';
 
-const SITE_ORIGIN = 'https://ultravires.github.io';
+const SITE_ORIGIN = 'https://www.ultravires.me';
 
 function siteRoot(config: SiteConfig): string {
   const base = config.site.base.replace(/\/?$/, '');
@@ -25,14 +25,14 @@ export async function genFeed(config: SiteConfig) {
   const root = siteRoot(config);
 
   const feed = new Feed({
-    title: zh.title,
-    description: zh.description,
+    title: zh.title ?? '浅安。',
+    description: zh.description ?? '',
     id: root,
     link: root,
     language: zh.lang,
     favicon: `${root}/favicon.ico`,
     copyright: `版权所有 © 2024-${new Date().getFullYear()} 向成渝`,
-    generator: 'https://github.com/jpmonette/feed',
+    generator: 'https://github.com/jpmonette/feed'
   });
 
   const posts = await createContentLoader('**/*.md', {
@@ -44,13 +44,12 @@ export async function genFeed(config: SiteConfig) {
         const fm = page.frontmatter;
         return Boolean(fm.title) && !fm.hidden;
       });
-    },
+    }
   }).load();
 
   posts.sort(
     (a, b) =>
-      +parsePostDate(b.frontmatter.date) -
-      +parsePostDate(a.frontmatter.date)
+      +parsePostDate(b.frontmatter.date) - +parsePostDate(a.frontmatter.date)
   );
 
   for (const { url, excerpt, frontmatter } of posts) {
@@ -72,12 +71,12 @@ export async function genFeed(config: SiteConfig) {
           name: authorName,
           ...(frontmatter.twitter
             ? {
-                link: `https://twitter.com/${String(frontmatter.twitter).replace(/^@/, '')}`,
+                link: `https://twitter.com/${String(frontmatter.twitter).replace(/^@/, '')}`
               }
-            : {}),
-        },
+            : {})
+        }
       ],
-      date,
+      date
     });
   }
 

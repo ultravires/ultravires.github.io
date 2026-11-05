@@ -42,7 +42,7 @@ const weatherCodeMap: Record<number, string> = {
   86: '强阵雪',
   95: '雷暴',
   96: '雷暴伴小冰雹',
-  99: '雷暴伴大冰雹',
+  99: '雷暴伴大冰雹'
 };
 
 const weatherText = computed(() => {
@@ -63,7 +63,7 @@ const getCurrentPosition = () =>
     navigator.geolocation.getCurrentPosition(resolve, reject, {
       enableHighAccuracy: true,
       timeout: 12000,
-      maximumAge: 5 * 60 * 1000,
+      maximumAge: 5 * 60 * 1000
     });
   });
 
@@ -79,18 +79,23 @@ const fetchLocalWeather = async () => {
       ),
       fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m&timezone=auto`
-      ),
+      )
     ]);
 
     if (!weatherResponse.ok) {
       throw new Error('天气服务暂时不可用');
     }
 
-    const locationData = locationResponse.ok ? await locationResponse.json() : null;
+    const locationData = locationResponse.ok
+      ? await locationResponse.json()
+      : null;
     const weatherData = await weatherResponse.json();
     const current = weatherData?.current;
     const currentCity =
-      locationData?.city || locationData?.locality || locationData?.principalSubdivision || fallbackCity;
+      locationData?.city ||
+      locationData?.locality ||
+      locationData?.principalSubdivision ||
+      fallbackCity;
 
     if (!current) {
       throw new Error('未获取到天气数据');
@@ -102,7 +107,7 @@ const fetchLocalWeather = async () => {
       apparentTemperature: current.apparent_temperature,
       humidity: current.relative_humidity_2m,
       windSpeed: current.wind_speed_10m,
-      weatherCode: current.weather_code,
+      weatherCode: current.weather_code
     };
   } catch (error) {
     if (error instanceof GeolocationPositionError) {
@@ -131,7 +136,9 @@ onMounted(() => {
 <template>
   <div class="mt-4 rounded-md border border-line bg-(--color-content-bg) p-4">
     <h3 class="text-lg font-semibold">本地天气</h3>
-    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">根据你当前定位展示实时天气</p>
+    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+      根据你当前定位展示实时天气
+    </p>
 
     <p
       v-if="loading"

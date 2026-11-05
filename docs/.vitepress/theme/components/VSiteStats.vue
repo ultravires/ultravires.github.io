@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue';
+import VIcon from './VIcon.vue';
 import { computed } from 'vue';
 import { useOverview } from '../composables/useSiteStats';
 
@@ -55,7 +55,7 @@ const cards = computed(() => {
         <div
           class="flex items-center gap-1.5 text-sm text-neutral-500 dark:text-neutral-400"
         >
-          <Icon
+          <VIcon
             :icon="card.icon"
             class="text-base"
           />

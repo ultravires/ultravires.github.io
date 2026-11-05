@@ -48,13 +48,13 @@ const lineStyle = (level: number) => ({
   width: `${LINE_WIDTH[level] ?? 16}px`
 });
 
-const panelIndent = (level: number) =>
-  `${8 + (level - minLevel.value) * 14}px`;
+const panelIndent = (level: number) => `${8 + (level - minLevel.value) * 14}px`;
 
 onContentUpdated(() => {
   // 尊重文章显式关闭目录的情况
   const outline = frontmatter.value.outline ?? theme.value.outline;
-  headers.value = outline === false ? [] : (getHeaders([1, 6]) as unknown as TocItem[]);
+  headers.value =
+    outline === false ? [] : (getHeaders([1, 6]) as unknown as TocItem[]);
   expanded.value = false;
   activeId.value = null;
   nextTick(setActiveLink);
@@ -132,10 +132,19 @@ onBeforeUnmount(() => {
     aria-label="文章目录"
   >
     <!-- 折叠态：仅展示长短不一的横线 -->
-    <div v-show="!expanded" class="rail">
+    <div
+      v-show="!expanded"
+      class="rail"
+    >
       <ul>
-        <li v-for="item in flat" :key="item.link">
-          <VTooltip placement="right" :content="item.title">
+        <li
+          v-for="item in flat"
+          :key="item.link"
+        >
+          <VTooltip
+            placement="right"
+            :content="item.title"
+          >
             <button
               class="line"
               :class="{ active: item.link === activeId }"
@@ -149,13 +158,25 @@ onBeforeUnmount(() => {
     </div>
 
     <!-- 展开态：占据侧边栏空间的完整目录 -->
-    <div v-show="expanded" class="sidebar">
+    <div
+      v-show="expanded"
+      class="sidebar"
+    >
       <header class="sidebar-header">
         <span>目录</span>
-        <button class="sidebar-close" aria-label="收起目录" @click="expanded = false">×</button>
+        <button
+          class="sidebar-close"
+          aria-label="收起目录"
+          @click="expanded = false"
+        >
+          ×
+        </button>
       </header>
       <ul class="sidebar-list">
-        <li v-for="item in flat" :key="item.link">
+        <li
+          v-for="item in flat"
+          :key="item.link"
+        >
           <a
             class="toc-item"
             :class="{ active: item.link === activeId }"
@@ -163,7 +184,10 @@ onBeforeUnmount(() => {
             :href="item.link"
             @click.prevent="onTitleClick(item)"
           >
-            <span class="toc-line" :style="lineStyle(item.level)"></span>
+            <span
+              class="toc-line"
+              :style="lineStyle(item.level)"
+            ></span>
             <span class="toc-text">{{ item.title }}</span>
           </a>
         </li>
@@ -242,7 +266,9 @@ onBeforeUnmount(() => {
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .sidebar-close:hover {
@@ -271,7 +297,9 @@ onBeforeUnmount(() => {
   text-decoration: none;
   font-size: 13px;
   line-height: 1.5;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .toc-item:hover {

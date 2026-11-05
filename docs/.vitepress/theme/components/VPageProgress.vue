@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="VPageProgress fixed bg-blue-500 h-1 top-0 left-0 z-100"></div>
+  <div class="VPageProgress fixed top-0 left-0 z-100 h-1 bg-blue-500"></div>
 </template>
 
 <style scoped>

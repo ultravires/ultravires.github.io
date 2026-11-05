@@ -14,7 +14,7 @@ export function useTheme(
   // 惰性函数内部状态
   let doToggle = (event: MouseEvent) => {
     if (typeof document === 'undefined') return;
-    
+
     if (!document.startViewTransition) {
       doToggle = (event) => {
         dark.value = !dark.value;
@@ -96,7 +96,7 @@ function useDark(themeConfig: ThemeConfig) {
 
 function usePreferDark() {
   const dark = ref(false);
-  
+
   if (typeof window !== 'undefined') {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
     dark.value = media.matches;
@@ -106,13 +106,14 @@ function usePreferDark() {
       media.removeEventListener('change', update);
     });
   }
-  
+
   return dark;
 }
 
 function useLocalStorage(key: string, defaultValue: string) {
   const data = ref(
-    (typeof localStorage !== 'undefined' ? localStorage.getItem(key) : null) ?? defaultValue
+    (typeof localStorage !== 'undefined' ? localStorage.getItem(key) : null) ??
+      defaultValue
   );
   watch(data, () => {
     if (typeof localStorage !== 'undefined') {

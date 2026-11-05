@@ -9,7 +9,7 @@ const { frontmatter, page } = useData();
 <template>
   <div
     v-show="frontmatter?.banner && frontmatter?.title"
-    class="@container absolute left-0 top-0 h-full w-full"
+    class="@container absolute top-0 left-0 h-full w-full"
   >
     <div
       class="mx-auto flex h-full w-full flex-col items-start justify-center gap-2 px-10 max-md:items-center max-md:px-4"
@@ -27,11 +27,12 @@ const { frontmatter, page } = useData();
           :key="item"
           class="rounded-full bg-white/10 px-2.5 py-0.5 text-sm text-white/70"
         >
-          <span class="text-white/40">#</span>{{ item }}
+          <span class="text-white/40">#</span>
+          {{ item }}
         </span>
       </div>
       <h1
-        class="mb-8 mt-4 text-[clamp(2rem,1.2rem_+_4vw,3.75rem)] font-bold leading-tight text-white drop-shadow-md"
+        class="mt-4 mb-8 text-[clamp(2rem,1.2rem_+_4vw,3.75rem)] leading-tight font-bold text-white drop-shadow-md"
       >
         {{ frontmatter?.title }}
       </h1>

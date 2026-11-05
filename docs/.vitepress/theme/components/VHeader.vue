@@ -37,7 +37,7 @@ const bannerComponent = computed(
 
     <!-- 文章横幅 -->
     <div
-      class="absolute left-0 top-0 -z-10 flex h-full w-full flex-col items-center justify-center"
+      class="absolute top-0 left-0 -z-10 flex h-full w-full flex-col items-center justify-center"
     >
       <!-- 横幅背景 -->
       <component

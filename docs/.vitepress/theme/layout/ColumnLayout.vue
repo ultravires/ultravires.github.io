@@ -84,18 +84,18 @@ const isCurrentColumn = (item) =>
       <nav
         v-if="columns.length > 1"
         aria-label="专栏切换"
-        class="mb-2 mt-6 flex flex-wrap gap-2 border-b border-slate-100 pb-6 dark:border-neutral-700/60"
+        class="mt-6 mb-2 flex flex-wrap gap-2 border-b border-slate-100 pb-6 dark:border-neutral-700/60"
       >
         <a
           v-for="column in columns"
           :key="column.text"
           :href="column.link"
           :aria-current="isCurrentColumn(column) ? 'page' : undefined"
-          class="decoration-none focus-visible:outline-primary rounded-full px-4 py-1.5 text-sm transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2"
+          class="decoration-none rounded-full px-4 py-1.5 text-sm transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           :class="
             isCurrentColumn(column)
               ? 'bg-primary font-bold text-white dark:text-black'
-              : 'hover:bg-primary text-neutral-500 hover:text-white dark:text-neutral-400 dark:hover:text-black'
+              : 'text-neutral-500 hover:bg-primary hover:text-white dark:text-neutral-400 dark:hover:text-black'
           "
         >
           {{ column.text }}

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue';
+import VIcon from './VIcon.vue';
 import { computed, ref } from 'vue';
 import { type MomentItem } from '../moments.data.js';
 
@@ -76,14 +76,14 @@ const pageNumbers = computed(() => {
       >
         <!-- 时间线圆点 -->
         <span
-          class="bg-primary absolute -left-[5px] top-1.5 h-2 w-2 rounded-full ring-4 ring-white dark:ring-neutral-800"
+          class="absolute top-1.5 -left-[5px] h-2 w-2 rounded-full bg-primary ring-4 ring-white dark:ring-neutral-800"
         />
 
         <time
           class="inline-flex items-center gap-1.5 text-sm text-neutral-400 dark:text-neutral-500"
           :datetime="moment.date.string"
         >
-          <Icon
+          <VIcon
             icon="mdi:clock-outline"
             class="text-base"
           />
@@ -93,7 +93,7 @@ const pageNumbers = computed(() => {
 
         <!-- eslint-disable-next-line vue/no-v-html -->
         <div
-          class="VPDoc prose dark:prose-invert moment-content mt-2 max-w-none"
+          class="VPDoc moment-content prose mt-2 max-w-none dark:prose-invert"
           v-html="moment.html"
         />
 
@@ -104,7 +104,7 @@ const pageNumbers = computed(() => {
           <span
             v-for="tag in moment.tags"
             :key="tag"
-            class="bg-primary/10 text-primary rounded-full px-3 py-0.5 text-xs"
+            class="rounded-full bg-primary/10 px-3 py-0.5 text-xs text-primary"
           >
             {{ tag }}
           </span>
@@ -115,14 +115,14 @@ const pageNumbers = computed(() => {
     <!-- Pagination Controls -->
     <div
       v-if="totalPages > 1"
-      class="mb-8 mt-8 flex items-center justify-center gap-2"
+      class="mt-8 mb-8 flex items-center justify-center gap-2"
     >
       <button
         @click="changePage(currentPage - 1)"
         :disabled="currentPage === 1"
-        class="border-primary text-primary hover:bg-primary group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid px-4 py-2 transition-all duration-300 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
+        class="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid border-primary px-4 py-2 text-primary transition-all duration-300 hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
       >
-        <Icon icon="mdi:arrow-left" />
+        <VIcon icon="mdi:arrow-left" />
         <span>上一页</span>
       </button>
 
@@ -138,14 +138,14 @@ const pageNumbers = computed(() => {
             :class="
               currentPage === page
                 ? 'bg-primary text-white dark:text-black'
-                : 'hover:bg-primary/20 text-primary'
+                : 'text-primary hover:bg-primary/20'
             "
           >
             {{ page }}
           </button>
           <span
             v-else
-            class="text-primary flex h-8 w-8 items-center justify-center"
+            class="flex h-8 w-8 items-center justify-center text-primary"
           >
             ...
           </span>
@@ -155,10 +155,10 @@ const pageNumbers = computed(() => {
       <button
         @click="changePage(currentPage + 1)"
         :disabled="currentPage === totalPages"
-        class="border-primary text-primary hover:bg-primary group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid px-4 py-2 transition-all duration-300 hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
+        class="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-solid border-primary px-4 py-2 text-primary transition-all duration-300 hover:bg-primary hover:text-white disabled:cursor-not-allowed disabled:opacity-50 dark:hover:text-black"
       >
         <span>下一页</span>
-        <Icon icon="mdi:arrow-right" />
+        <VIcon icon="mdi:arrow-right" />
       </button>
     </div>
   </div>

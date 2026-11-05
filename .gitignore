@@ -25,3 +25,6 @@ dist-ssr
 
 # VitePress build cache
 docs/.vitepress/cache
+
+# VitePress content loader 构建产物
+docs/.vitepress/theme/*.timestamp-*.mjs

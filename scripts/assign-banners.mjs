@@ -8,7 +8,14 @@ import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
 const SRC = join(import.meta.dirname, '../docs/src');
-const EXCLUDE_DIRS = new Set(['moments', 'moment', 'link', 'about', 'archive', 'public']);
+const EXCLUDE_DIRS = new Set([
+  'moments',
+  'moment',
+  'link',
+  'about',
+  'archive',
+  'public'
+]);
 const STYLES = ['particle', 'gradient', 'image'];
 
 function hashString(str) {

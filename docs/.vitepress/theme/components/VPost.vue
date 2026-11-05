@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue';
+import VIcon from './VIcon.vue';
 import { computed } from 'vue';
 import type { Post } from '../posts.data';
 
@@ -20,7 +20,7 @@ const visibleCategories = computed(() =>
   >
     <h2
       :id="post.title"
-      class="group-hover:text-primary font-bold transition-colors"
+      class="font-bold transition-colors group-hover:text-primary"
       :title="post.title"
     >
       {{ post.title }}
@@ -34,9 +34,9 @@ const visibleCategories = computed(() =>
       <span
         v-for="category in visibleCategories"
         :key="category"
-        class="border-line group-hover:border-primary/50 group-hover:text-primary inline-flex items-center gap-1 rounded-full border border-solid px-2 py-0.5 text-xs text-neutral-500 transition-colors dark:text-neutral-400"
+        class="inline-flex items-center gap-1 rounded-full border border-solid border-line px-2 py-0.5 text-xs text-neutral-500 transition-colors group-hover:border-primary/50 group-hover:text-primary dark:text-neutral-400"
       >
-        <Icon
+        <VIcon
           icon="mdi:folder-outline"
           class="text-sm"
         />
@@ -51,7 +51,7 @@ const visibleCategories = computed(() =>
       </span>
       <span
         v-if="post.date"
-        class="ml-auto text-xs tabular-nums text-neutral-400 dark:text-neutral-500"
+        class="ml-auto text-xs text-neutral-400 tabular-nums dark:text-neutral-500"
       >
         {{ post.date.string }}
       </span>

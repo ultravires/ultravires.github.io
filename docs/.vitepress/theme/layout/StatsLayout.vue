@@ -36,7 +36,7 @@ const { frontmatter } = useData();
     />
 
     <VVisitorProfile
-      class="mb-4 mt-10 border-t border-solid border-slate-100 pt-8 dark:border-neutral-700/60"
+      class="mt-10 mb-4 border-t border-solid border-slate-100 pt-8 dark:border-neutral-700/60"
     />
   </PageContainer>
 </template>

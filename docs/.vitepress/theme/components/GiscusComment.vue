@@ -30,7 +30,9 @@ const giscusTheme = computed(() => {
   if (import.meta.env.DEV) {
     return isDark.value ? 'noborder_dark' : 'noborder_light';
   }
-  const file = isDark.value ? 'giscus-theme-dark.css' : 'giscus-theme-light.css';
+  const file = isDark.value
+    ? 'giscus-theme-dark.css'
+    : 'giscus-theme-light.css';
   const origin =
     typeof window !== 'undefined'
       ? window.location.origin
