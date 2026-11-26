@@ -1,3 +1,10 @@
+<script lang="ts">
+// 模块级计数器：同一页面的多个图共享，保证每次 render 的 DOM id 唯一。
+// 若放进 <script setup>，它会变成每个组件实例私有的计数，同页多图都从
+// mermaid-1 开始；mermaid 依赖该 id 查找临时容器，并发渲染时会相互覆盖。
+let renderSeq = 0;
+</script>
+
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useData } from 'vitepress';
@@ -18,9 +25,6 @@ type MermaidApi = {
 
 let mermaid: MermaidApi | null = null;
 let observer: MutationObserver | undefined;
-
-// 每次渲染使用独立 id，避免同页多图与跨页残留的 SVG 元素 id 冲突
-let renderSeq = 0;
 
 function currentTheme(): string {
   const explicit = frontmatter.value.mermaidTheme;
