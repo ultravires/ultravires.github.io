@@ -76,8 +76,11 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: docs/.vitepress/dist
+      # Vercel 团队额度超限被冻结时该步骤会失败；不能因此阻塞
+      # 后续 GitHub Pages 的部署（Deploy job 依赖本 job 成功）
       - name: Trigger Vercel Deployment
         uses: amondnet/vercel-action@v42.2.0
+        continue-on-error: true
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
