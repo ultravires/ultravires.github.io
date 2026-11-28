@@ -13,6 +13,9 @@ docs/src/snippets/
 # 独立交付的 HTML 产物，不参与格式化
 docs/src/public/nanjing-travel-guide.html
 
+# Snipin App 的支持与隐私页面（App Store 元数据链接），独立交付不参与格式化
+docs/src/public/app/
+
 # 编辑器 / AI 工具的本地配置
 .continue/
 .cursor/
