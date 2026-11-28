@@ -1,4 +1,5 @@
-# 构建 VitePress 站点并将其部署到 GitHub Pages 的工作流程
+# 构建 VitePress 站点并部署到 Cloudflare Pages（主站 www.ultravires.me）
+# 与 GitHub Pages（备用源站 ultravires.github.io）的工作流程
 #
 name: Deploy VitePress site to Pages
 
@@ -76,18 +77,16 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: docs/.vitepress/dist
-      # Vercel 团队额度超限被冻结时该步骤会失败；不能因此阻塞
-      # 后续 GitHub Pages 的部署（Deploy job 依赖本 job 成功）
-      - name: Trigger Vercel Deployment
-        uses: amondnet/vercel-action@v42.2.0
+      # 部署到 Cloudflare Pages（主站）。该步骤失败（Token 失效、项目未建等）
+      # 不能阻塞后续 GitHub Pages 的备用部署（Deploy job 依赖本 job 成功），
+      # 失败会以 warning 注解显示在 run 摘要中。
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         continue-on-error: true
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-args: '--prod'
-          working-directory: ./
-          vercel-version:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy docs/.vitepress/dist --project-name=ultravires-github-io
 
   # 部署工作
   deploy:
